@@ -108,6 +108,16 @@ namespace ss {
     }
 
     template <class DataType >
+	DataType inline EuclidDistance_Ary2Vec(const DataType *a, const vector<DataType> *b, int dim) {
+
+		DataType sum = .0;
+		for (int i = 0; i < dim; ++i) {
+			sum += (a[i] - b[i]) * (a[i] - b[i]);
+		}
+		return sqrt(sum);
+	}
+
+    template <class DataType >
     DataType inline AngularDistance(const DataType *a, const DataType *b, int dim) {
         return std::acos(Cosine(a, b, dim));
     }
