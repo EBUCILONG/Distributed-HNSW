@@ -150,6 +150,10 @@ namespace sm{
 			}
 		}
 
+		void cluster_balanced (int iteration){
+
+		}
+
 		void cluster_binary (int iteration){
 			Cluster c1 = new Cluster(_dimension, _datas[0]->get_data());
 			Cluster c2 = new Cluster(_dimension, _datas[1]->get_data());
@@ -175,7 +179,18 @@ namespace sm{
 			 */
 			float numPCluster = (float)_size / (float)_aimNPartition;
 			int aim1 = (int) round((float)_childrens[0]->get_size() / numPCluster);
-			_childrens[0]->set_aimNPartition(_aimNPartition - aim1);
+			if (aim1 == 0)
+				aim1 = 1;
+			_childrens[0]->set_aimNPartition(aim1);
+			if (aim1 == 1)
+				_childrens[0]->set_done();
+			_childrens[1]->set_aimNPartition(_aimNPartition - aim1);
+			if (_aimNPartition - aim1 == 1)
+				_childrens[1]->set_done();
+		}
+
+		void set_done (){
+			_done = true;
 		}
 
 		void set_aimNPartition(int num){
