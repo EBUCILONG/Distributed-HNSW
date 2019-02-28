@@ -15,18 +15,20 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <string>
+#include <queue>
+#include <utility>
 
 #include "matrix.hpp"
 #include "metric.hpp"
 #include "utils/calculator.hpp"
+//#include "hungarian/matrix.h"  /* still not sure whether this will help */
+#include "hungarian/munkres.h"
+#include "hungarian/adapters/boostmatrixadapter.h"
 
 #define NOTASSIGNED -0x978
 #define NOTKNOWN -0x246
-
-typedef enum ClusterType {
-	Binary,
-	Balance
-} clusterType;
 
 using std::cin;
 using std::cout;
@@ -37,6 +39,7 @@ using std::endl;
 namespace sm{
 
 	class Cluster;
+	class Point;
 
 	class Point{
 		int _dimension;
@@ -45,7 +48,7 @@ namespace sm{
 		int _index;
 
 	public:
-		explicit Point(int index, int dimension): _dimension(dimension),
+		Point(int index, int dimension): _dimension(dimension),
 			_index(index), _clusterId(NOTASSIGNED), _data(NULL){
 		}
 
@@ -61,7 +64,7 @@ namespace sm{
 			return _data;
 		}
 
-		void set_data(float* data){
+		void set_data(const float* data){
 			_data = data;
 		}
 
@@ -102,18 +105,16 @@ namespace sm{
 		vector <float> _centroid;
 		int _size;
 		int _dimension;
-		int _aimSize;
 		int _aimNPartition;
-		clusterType _cType;
 		bool _done;
 
 		// parallel thing
 		omp_lock_t _appendLock;
 
-		vector<Cluster*> _childrens;
 	public:
+		vector<Cluster*> _childrens;
 		explicit Cluster (int dimension, float* centre): _size(0),
-			_aimSize(NOTKNOWN), _aimNPartition(NOTKNOWN), _dimension(dimension), _done (false){
+			_aimNPartition(NOTKNOWN), _dimension(dimension), _done (false){
 			_centroid.resize(_dimension);
 			set_centroid (centre);
 			omp_init_lock(&_appendLock);
@@ -151,7 +152,53 @@ namespace sm{
 		}
 
 		void cluster_balanced (int iteration){
+			for (int i = 0; i < _aimNPartition; i++){
+				Cluster buffer = new Cluster(_dimension, _datas[i]->get_data());
+				_childrens.push_back(& buffer);
+			}
 
+			hun::Matrix<float> task = hun::Matrix<float>(_size, _size);
+
+			for (int iters = 0; iters < iteration; iters++){
+				for (int i = 0; i < _aimNPartition; i++)
+					_childrens[i]->reset_data();
+
+#pragma omp parallel for
+				for (int i = 0; i < _size; i++){
+					float dists[_aimNPartition];
+					for (int j = 0; j < _aimNPartition; i++)
+						dists[j] = _datas[i]->L2_dist(_childrens[j]->get_centroid());
+					for (int j = 0; j < _size; j++)
+						task(i, j) = dists[j % _aimNPartition];
+				}
+
+				Munkres<float> m;
+				m.solve(task);
+
+				for (int i = 0; i < _size; i++){
+					for (int j = 0; j < _size; j++){
+						if (task(i, j) == 0)
+							_childrens[j]->append_point(_datas[i]);
+					}
+				}
+
+				for (int i = 0; i < _aimNPartition; i++){
+					_childrens[i]->update_centroid();
+				}
+			}
+
+			for (int i = 0; i < _aimNPartition; i++){
+				_childrens[i]->set_aimNPartition(1);
+				_childrens[i]->set_done();
+			}
+		}
+
+		void save_cluster(std::string outFile){
+			std::ofstream wFile;
+			wFile.open(outFile.c_str());
+			for (int i = 0; i < _size; i++)
+				wFile << _datas[i]->get_index() << endl;
+			wFile.close();
 		}
 
 		void cluster_binary (int iteration){
@@ -161,6 +208,8 @@ namespace sm{
 			_childrens.push_back(& c2);
 
 			for (int i = 0; i < iteration; i++){
+				for (int j = 0; j < _aimNPartition; j++)
+					_childrens[j]->reset_data();
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
 					_datas[j]->assign_cluster(&_childrens);
@@ -169,7 +218,6 @@ namespace sm{
 #pragma omp parallel for
 				for(int j = 0; j < _childrens.size(); j++){
 					_childrens[j]->update_centroid();
-					_childrens[j]->reset_data();
 				}
 			}
 
@@ -205,10 +253,6 @@ namespace sm{
 			return _size;
 		}
 
-		int get_aim_size(){
-			return _aimSize;
-		}
-
 		int get_aim_partition(){
 			return _aimNPartition;
 		}
@@ -227,8 +271,56 @@ namespace sm{
 		}
 	};
 
+	struct cmp{
+	    bool operator() ( Cluster* a , Cluster* b ){
+	    	return true;      //与greater是等价的
+	    }
+	};
 
+	void cluster_machine (const ss::Matrix<float>& datas,std::string dire, int nPartition, int iteration, int bomber){
+		int dim = datas.getDim();
+		Cluster root = new Cluster (dim, datas[0]);
 
+		for (int i = 0; i < datas.getSize(); i++){
+			Point newPoint = new Point(i, dim);
+			newPoint.set_data(datas[i]);
+			root.append_point(&newPoint);
+		}
+
+		root.set_aimNPartition(nPartition);
+		std::priority_queue<Cluster*, std::vector<Cluster*>, cmp> workList;
+		std::vector<Cluster*> readyList;
+		workList.push(&root);
+
+		while(!workList.empty()){
+			Cluster & aimer = workList.pop();
+			if (aimer.done_or_not())
+				readyList.push_back(&aimer);
+
+			if (aimer.get_aim_partition() > bomber)
+				aimer.cluster_binary(iteration);
+			else
+				aimer.cluster_balanced(iteration);
+
+			for (int i = 0; i < aimer.get_aim_partition(); i++)
+				workList.push(aimer._childrens[i]);
+
+			delete aimer;
+		}
+
+		assert (readyList.size() == nPartition);
+
+		std::ofstream wFile;
+		wFile.open(dire.c_str());
+
+		wFile << nPartition << endl;
+
+		for (int i = 0; i < nPartition; i++){
+			wFile << i << " "<< readyList[i]->get_size() << endl;
+			for (int j = 0; j < readyList[i]->get_size(); j++)
+				wFile << readyList[i]->operator [](j)->get_index() << endl;
+		}
+	}
 }
 
 

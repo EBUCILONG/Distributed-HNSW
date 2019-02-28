@@ -28,6 +28,8 @@
 #include <cmath>
 #include <limits>
 
+using hun::Matrix;
+
 template<typename Data> class Munkres
 {
     static constexpr int NORMAL = 0;
