@@ -22,6 +22,8 @@
 #include "../matrix.h"
 #include "../munkres.h"
 
+using hun::Matrix;
+
 template<typename Data, class Container > class Adapter
 {
 public:

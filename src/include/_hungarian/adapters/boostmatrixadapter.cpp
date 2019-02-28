@@ -16,25 +16,8 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  */
 
-#ifndef _ADAPTER_H_
-#define _ADAPTER_H_
+#include "boostmatrixadapter.h"
 
-#include "../matrix.h"
-#include "../munkres.h"
-
-template<typename Data, class Container > class Adapter
-{
-public:
-    virtual Matrix<Data> convertToMatrix(const Container &con) const = 0;
-    virtual void convertFromMatrix(Container &con, const Matrix<Data> &matrix) const = 0;
-    virtual void solve(Container &con)
-    {
-        auto matrix = convertToMatrix(con);
-        m_munkres.solve(matrix);
-        convertFromMatrix(con, matrix);
-    }
-protected:
-    Munkres<Data> m_munkres;
-};
-
-#endif /* _ADAPTER_H_ */
+template class BoostMatrixAdapter<double>;
+template class BoostMatrixAdapter<float>;
+template class BoostMatrixAdapter<int>;
