@@ -30,9 +30,9 @@ namespace hun{
 	class Matrix {
 	public:
 	  Matrix();
-	  Matrix(const size_t rows, const size_t columns);
 	  //Matrix(const std::initializer_list<std::initializer_list<T>> init);
 	  Matrix(const Matrix<T> &other);
+	  Matrix(const size_t rows, const size_t columns);
 	  Matrix<T> & operator= (const Matrix<T> &other);
 	  ~Matrix();
 	  // all operations modify the matrix in-place.

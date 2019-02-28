@@ -23,7 +23,7 @@
 #include "matrix.hpp"
 #include "metric.hpp"
 #include "utils/calculator.hpp"
-//#include "hungarian/matrix.h"  /* still not sure whether this will help */
+#include "hungarian/matrix.h"  /* still not sure whether this will help */
 #include "hungarian/munkres.h"
 #include "hungarian/adapters/boostmatrixadapter.h"
 

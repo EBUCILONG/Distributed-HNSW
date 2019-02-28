@@ -20,7 +20,7 @@
 #if !defined(_MUNKRES_H_)
 #define _MUNKRES_H_
 
-#include "./matrix.h"
+#include "hungarian/matrix.h"
 
 #include <list>
 #include <utility>

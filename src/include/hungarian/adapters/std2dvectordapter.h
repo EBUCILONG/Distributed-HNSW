@@ -19,7 +19,7 @@
 #ifndef RAW2DARRAY_H
 #define RAW2DARRAY_H
 
-#include "adapter.h"
+#include "hungarian/adapters/adapter.h"
 
 template<typename Data> class Std2dVectorAdapter : public Adapter<Data,std::vector<std::vector <Data>>>
 {

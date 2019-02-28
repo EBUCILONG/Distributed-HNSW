@@ -19,7 +19,7 @@
 #ifndef STD2DARRAYADAPTER_H
 #define STD2DARRAYADAPTER_H
 
-#include "adapter.h"
+#include "hungarian/adapters/adapter.h"
 
 template<typename Data, size_t rows, size_t columns> class Std2dArrayAdapter : public Adapter<Data, std::array <std::array <Data, columns>, rows>>
 {

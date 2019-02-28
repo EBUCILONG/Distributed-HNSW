@@ -19,8 +19,8 @@
 #ifndef _ADAPTER_H_
 #define _ADAPTER_H_
 
-#include "../matrix.h"
-#include "../munkres.h"
+#include "hungarian/matrix.h"
+#include "hungarian/munkres.h"
 
 template<typename Data, class Container > class Adapter
 {

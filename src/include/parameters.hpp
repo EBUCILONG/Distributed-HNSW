@@ -42,6 +42,13 @@ namespace ss{
         /// file name of ground truth file(exact top-k nearest neighbor)
         std::string ground_truth;
 
+        std::string output_file;
+
+
+        int partition;
+
+        int max_balance;
+
         /// number of train data
         int train_size;
         /// number of base data(the data stord in index)

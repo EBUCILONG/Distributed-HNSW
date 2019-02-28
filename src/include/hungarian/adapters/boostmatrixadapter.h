@@ -19,7 +19,7 @@
 #ifndef _BOOSTMATRIXADAPTER_H_
 #define _BOOSTMATRIXADAPTER_H_
 
-#include "adapter.h"
+#include "hungarian/adapters/adapter.h"
 #include <boost/numeric/ublas/matrix.hpp>
 
 template<typename Data> class BoostMatrixAdapter : public Adapter<Data,boost::numeric::ublas::matrix<Data> >
