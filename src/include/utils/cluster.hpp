@@ -64,7 +64,7 @@ namespace sm{
 			return _data;
 		}
 
-		void set_data(const float* data){
+		void set_data(float* data){
 			_data = data;
 		}
 
@@ -84,19 +84,7 @@ namespace sm{
 			return ss::EuclidDistance_Ary2Vec(_data, centre, _dimension);
 		}
 
-		void assign_cluster (vector<Cluster*> *clusters){
-			int label = -1;
-			float dister = FLT_MAX;
-			int size = clusters->size();
-			for (int i = 0; i < size; i++){
-				float dist = L2_dist (clusters->at(i)->get_centroid());
-				if (dist < dister){
-					label = i;
-					dister = dist;
-				}
-			}
-			clusters->at(label)->append_point(this);
-		}
+		void assign_cluster (vector<Cluster*> *clusters);
 
 	};
 
@@ -153,8 +141,8 @@ namespace sm{
 
 		void cluster_balanced (int iteration){
 			for (int i = 0; i < _aimNPartition; i++){
-				Cluster buffer = new Cluster(_dimension, _datas[i]->get_data());
-				_childrens.push_back(& buffer);
+				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
+				_childrens.push_back(buffer);
 			}
 
 			hun::Matrix<float> task = hun::Matrix<float>(_size, _size);
@@ -202,10 +190,10 @@ namespace sm{
 		}
 
 		void cluster_binary (int iteration){
-			Cluster c1 = new Cluster(_dimension, _datas[0]->get_data());
-			Cluster c2 = new Cluster(_dimension, _datas[1]->get_data());
-			_childrens.push_back(& c1);
-			_childrens.push_back(& c2);
+			Cluster* c1 = new Cluster(_dimension, _datas[0]->get_data());
+			Cluster* c2 = new Cluster(_dimension, _datas[1]->get_data());
+			_childrens.push_back(c1);
+			_childrens.push_back(c2);
 
 			for (int i = 0; i < iteration; i++){
 				for (int j = 0; j < _aimNPartition; j++)
@@ -271,39 +259,54 @@ namespace sm{
 		}
 	};
 
+	void Point::assign_cluster (vector<Cluster*> *clusters){
+				int label = -1;
+				float dister = FLT_MAX;
+				int size = clusters->size();
+				for (int i = 0; i < size; i++){
+					float dist = L2_dist ((*clusters)[i]->get_centroid());
+					if (dist < dister){
+						label = i;
+						dister = dist;
+					}
+				}
+				clusters->at(label)->append_point(this);
+			}
+
 	struct cmp{
 	    bool operator() ( Cluster* a , Cluster* b ){
 	    	return true;      //与greater是等价的
 	    }
 	};
 
-	void cluster_machine (const ss::Matrix<float>& datas,std::string dire, int nPartition, int iteration, int bomber){
-		int dim = datas.getDim();
-		Cluster root = new Cluster (dim, datas[0]);
+	void cluster_machine (ss::Matrix<float>* datas,std::string dire, int nPartition, int iteration, int bomber){
+		int dim = datas->getDim();
+		Cluster* root = new Cluster (dim, datas->operator [](0));
 
-		for (int i = 0; i < datas.getSize(); i++){
-			Point newPoint = new Point(i, dim);
-			newPoint.set_data(datas[i]);
-			root.append_point(&newPoint);
+		for (int i = 0; i < datas->getSize(); i++){
+			Point* newPoint = new Point(i, dim);
+			newPoint->set_data(datas->operator [](i));
+			root->append_point(newPoint);
 		}
 
-		root.set_aimNPartition(nPartition);
+		root->set_aimNPartition(nPartition);
 		std::priority_queue<Cluster*, std::vector<Cluster*>, cmp> workList;
 		std::vector<Cluster*> readyList;
-		workList.push(&root);
+		workList.push(root);
 
 		while(!workList.empty()){
-			Cluster & aimer = workList.pop();
-			if (aimer.done_or_not())
-				readyList.push_back(&aimer);
+			Cluster * aimer = workList.top();
+			workList.pop();
+			if (aimer->done_or_not())
+				readyList.push_back(aimer);
 
-			if (aimer.get_aim_partition() > bomber)
-				aimer.cluster_binary(iteration);
+			if (aimer->get_aim_partition() > bomber)
+				aimer->cluster_binary(iteration);
 			else
-				aimer.cluster_balanced(iteration);
+				aimer->cluster_balanced(iteration);
 
-			for (int i = 0; i < aimer.get_aim_partition(); i++)
-				workList.push(aimer._childrens[i]);
+			for (int i = 0; i < aimer->get_aim_partition(); i++)
+				workList.push(aimer->_childrens[i]);
 
 			delete aimer;
 		}

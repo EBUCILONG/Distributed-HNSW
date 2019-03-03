@@ -76,6 +76,7 @@ namespace hun{
 
 	/*export*/ template <class T>
 	Matrix<T>::Matrix(const size_t rows, const size_t columns) {
+	  m_matrix = new std::vector<T>;
 	  resize(rows, columns);
 	}
 
@@ -108,13 +109,14 @@ namespace hun{
 
 	/*export*/ template <class T>
 	Matrix<T>::~Matrix() {
-	  delete m_matrix;
+	  m_matrix->clear();
+	  m_matrix->shrink_to_fit();
 	}
 
 	/*export*/ template <class T>
 	void
 	Matrix<T>::resize(const size_t rows, const size_t columns, const T default_value) {
-		m_matrix.resize(rows * columns);
+		m_matrix->resize(rows * columns);
 	  /*assert ( rows > 0 && columns > 0 && "Columns and rows must exist." );
 
 	  if ( m_matrix == nullptr ) {
@@ -170,7 +172,7 @@ namespace hun{
 
 	  for ( size_t i = 0 ; i < m_rows ; i++ ) {
 		for ( size_t j = 0 ; j < m_columns ; j++ ) {
-		  m_matrix[i*m_rows + j] = 0;
+			m_matrix->operator [](i*m_rows + j) = 0;
 		}
 	  }
 	}
@@ -180,7 +182,7 @@ namespace hun{
 	Matrix<T>::operator ()(const size_t x, const size_t y) {
 	  assert ( x < m_rows );
 	  assert ( y < m_columns );
-	  return m_matrix[x*m_rows + y];
+	  return m_matrix->at(x*m_rows + y);
 	}
 
 
@@ -189,21 +191,20 @@ namespace hun{
 	Matrix<T>::operator ()(const size_t x, const size_t y) const {
 	  assert ( x < m_rows );
 	  assert ( y < m_columns );
-	  return m_matrix[x * m_rows + y];
+	  return m_matrix->at(x*m_rows + y);
 	}
 
 
 	/*export*/ template <class T>
 	const T
 	Matrix<T>::min() const {
-	  assert( m_matrix != nullptr );
 	  assert ( m_rows > 0 );
 	  assert ( m_columns > 0 );
-	  T min = m_matrix[0];
+	  T min = m_matrix->operator [](0);
 
 	  for ( size_t i = 0 ; i < m_rows ; i++ ) {
 		for ( size_t j = 0 ; j < m_columns ; j++ ) {
-		  min = std::min<T>(min, m_matrix[i*m_rows + j]);
+		  min = std::min<T>(min, m_matrix->operator [](i*m_rows + j));
 		}
 	  }
 
@@ -216,11 +217,11 @@ namespace hun{
 	Matrix<T>::max() const {
 	  assert ( m_rows > 0 );
 	  assert ( m_columns > 0 );
-	  T max = m_matrix[0];
+	  T max = m_matrix->operator [](0);
 
 	  for ( size_t i = 0 ; i < m_rows ; i++ ) {
 		for ( size_t j = 0 ; j < m_columns ; j++ ) {
-		  max = std::max<T>(max, m_matrix[i*m_rows + j]);
+		  max = std::max<T>(max, m_matrix->operator [](i*m_rows + j));
 		}
 	  }
 

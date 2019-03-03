@@ -25,8 +25,8 @@
 template<typename Data, class Container > class Adapter
 {
 public:
-    virtual Matrix<Data> convertToMatrix(const Container &con) const = 0;
-    virtual void convertFromMatrix(Container &con, const Matrix<Data> &matrix) const = 0;
+    virtual hun::Matrix<Data> convertToMatrix(const Container &con) const = 0;
+    virtual void convertFromMatrix(Container &con, const hun::Matrix<Data> &matrix) const = 0;
     virtual void solve(Container &con)
     {
         auto matrix = convertToMatrix(con);

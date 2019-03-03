@@ -63,9 +63,9 @@ namespace ss {
             _data = reinterpret_cast<T*>(std::realloc(_data, _dimension * _size * sizeof(T)));
         }
 
-        const T *operator [] (int i) const {
+        /*const T *operator [] (int i) const {
             return _data + i * static_cast<size_t >(_dimension);/// i * dimension may overflow int
-        }
+        }*/
 
         T *operator [] (int i) {
             return _data + i * static_cast<size_t >(_dimension);/// i * dimension may overflow int

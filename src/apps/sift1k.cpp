@@ -5,9 +5,21 @@
  *      Author: oruqimaru
  */
 
-#pragma once
 
-#include "matrix.hpp"
-#include "utils/cluster.hpp"
+#include "executor.hpp"
+#include "parameters.hpp"
 
+#include <iostream>
+
+int main(int argc, char** argv) {
+
+    parameter para;
+    LoadOptions(argc, argv, para);
+
+    using DataType  = float;
+    //using IndexType = ss::ITQIndex<DataType>;
+    //using QueryType = ss::HammingRanker<DataType> ;
+
+    SearchIterative<DataType>(para);
+}
 

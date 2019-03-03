@@ -31,8 +31,13 @@
 #include <utility>
 #include <fstream>
 
+#include <boost/program_options/options_description.hpp>
 #include <boost/program_options.hpp>
+#include <boost/program_options/option.hpp>
+#include <boost/program_options/errors.hpp>
 
+
+#include <boost/format.hpp>
 
 #include "parameters.hpp"
 #include "matrix.hpp"
@@ -83,7 +88,7 @@ void LoadOptions(int argc, char **argv, parameter &para) {
     }
 }
 
-template <class DataType, class IndexType, class QueryType /*class MetricType=ss::EuclidMetric<DataType>*/ >
+template <class DataType/*, class IndexType, class QueryType, class MetricType=ss::EuclidMetric<DataType>*/ >
 int SearchIterative(parameter &para) {
     ss::timer time_recorder;
 
@@ -95,11 +100,11 @@ int SearchIterative(parameter &para) {
     cout << "#[loading ] loading fvecs data                                    " ;
     time_recorder.restart();
     cout    << "loding base file from : " << para.train_data << endl;
-    Matrix<DataType> train_data(para.train_data);
+    ss::Matrix<DataType> train_data(para.train_data);
     //Matrix<DataType> base_data (para.base_data);
     cout    << "loding query file from : " << para.query_data << endl;
 
-    Matrix<DataType> query_data(para.query_data);
+    ss::Matrix<DataType> query_data(para.query_data);
     cout << "using time :" << time_recorder.elapsed() << endl;
 
     //para.topK       = truth_bench.getTopK();
@@ -109,7 +114,8 @@ int SearchIterative(parameter &para) {
     para.dim        = train_data.getDim() + para.transformed_dim; /// useful when add dimensions for some algorithm
     para.origin_dim = train_data.getDim();
 
-    cluster_machine (&train_data, para.output_file, para.partition, para.max_balance);
+
+    sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance);
 
 
 

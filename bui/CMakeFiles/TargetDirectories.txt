@@ -1,0 +1,3 @@
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/rebuild_cache.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/edit_cache.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/sift1k.dir

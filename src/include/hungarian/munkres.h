@@ -28,6 +28,7 @@
 #include <cmath>
 #include <limits>
 
+
 template<typename Data> class Munkres
 {
     static constexpr int NORMAL = 0;
@@ -45,7 +46,7 @@ public:
      * (extra 0 values are replaced with -1)
      *
      */
-    void solve(Matrix<Data> &m) {
+    void solve(hun::Matrix<Data> &m) {
         const size_t rows = m.rows(),
                 columns = m.columns(),
                 size = std::max(rows, columns);
@@ -138,7 +139,7 @@ public:
         delete [] col_mask;
     }
 
-    static void replace_infinites(Matrix<Data> &matrix) {
+    static void replace_infinites(hun::Matrix<Data> &matrix) {
       const size_t rows = matrix.rows(),
                 columns = matrix.columns();
       assert( rows > 0 && columns > 0 );
@@ -176,7 +177,7 @@ public:
 
     }
 
-    static void minimize_along_direction(Matrix<Data> &matrix, const bool over_columns) {
+    static void minimize_along_direction(hun::Matrix<Data> &matrix, const bool over_columns) {
       const size_t outer_size = over_columns ? matrix.columns() : matrix.rows(),
                    inner_size = over_columns ? matrix.rows() : matrix.columns();
 
@@ -453,8 +454,8 @@ private:
     return 3;
   }
 
-  Matrix<int> mask_matrix;
-  Matrix<Data> matrix;
+  hun::Matrix<int> mask_matrix;
+  hun::Matrix<Data> matrix;
   bool *row_mask;
   bool *col_mask;
   size_t saverow = 0, savecol = 0;

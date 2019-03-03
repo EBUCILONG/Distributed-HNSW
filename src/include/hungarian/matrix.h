@@ -61,7 +61,7 @@ namespace hun{
 	  }
 
 	private:
-	  std::vector<T>& m_matrix;
+	  std::vector<T>* m_matrix;
 	  size_t m_rows;
 	  size_t m_columns;
 	};

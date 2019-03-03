@@ -112,7 +112,7 @@ namespace ss {
 
 		DataType sum = .0;
 		for (int i = 0; i < dim; ++i) {
-			sum += (a[i] - b[i]) * (a[i] - b[i]);
+			sum += (a[i] - b->operator [](i)) * (a[i] - b->operator [](i));
 		}
 		return sqrt(sum);
 	}

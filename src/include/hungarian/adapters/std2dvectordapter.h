@@ -21,6 +21,8 @@
 
 #include "hungarian/adapters/adapter.h"
 
+using namespace hun;
+
 template<typename Data> class Std2dVectorAdapter : public Adapter<Data,std::vector<std::vector <Data>>>
 {
 public:

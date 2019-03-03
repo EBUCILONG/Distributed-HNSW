@@ -1,0 +1,1 @@
+/usr/local/bin/g++-4.9   -std=c++11 -fopenmp  -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o  -o sift1k -lpthread /usr/local/lib/libboost_program_options.dylib 

@@ -22,6 +22,8 @@
 #include "hungarian/adapters/adapter.h"
 #include <boost/numeric/ublas/matrix.hpp>
 
+using namespace hun;
+
 template<typename Data> class BoostMatrixAdapter : public Adapter<Data,boost::numeric::ublas::matrix<Data> >
 {
 public:
