@@ -114,7 +114,7 @@ int SearchIterative(parameter &para) {
     para.dim        = train_data.getDim() + para.transformed_dim; /// useful when add dimensions for some algorithm
     para.origin_dim = train_data.getDim();
 
-
+    cout << "ready to enter cluster machine" << endl;
     sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance);
 
 

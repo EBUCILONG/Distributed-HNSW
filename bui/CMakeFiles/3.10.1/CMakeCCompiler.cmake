@@ -1,26 +1,26 @@
-set(CMAKE_C_COMPILER "/usr/local/bin/gcc-4.9")
+set(CMAKE_C_COMPILER "/data/opt/brew/bin/cc")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "GNU")
-set(CMAKE_C_COMPILER_VERSION "4.9.4")
+set(CMAKE_C_COMPILER_VERSION "5.2.0")
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
-set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "90")
+set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
 set(CMAKE_C_COMPILE_FEATURES "c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macros;c_std_11;c_static_assert")
 set(CMAKE_C90_COMPILE_FEATURES "c_std_90;c_function_prototypes")
 set(CMAKE_C99_COMPILE_FEATURES "c_std_99;c_restrict;c_variadic_macros")
 set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")
 
-set(CMAKE_C_PLATFORM_ID "Darwin")
+set(CMAKE_C_PLATFORM_ID "Linux")
 set(CMAKE_C_SIMULATE_ID "")
 set(CMAKE_C_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "/usr/bin/ar")
-set(CMAKE_C_COMPILER_AR "/usr/local/bin/gcc-ar-4.9")
-set(CMAKE_RANLIB "/usr/bin/ranlib")
-set(CMAKE_C_COMPILER_RANLIB "/usr/local/bin/gcc-ranlib-4.9")
-set(CMAKE_LINKER "/usr/bin/ld")
+set(CMAKE_AR "/data/opt/brew/bin/ar")
+set(CMAKE_C_COMPILER_AR "/data/opt/brew/bin/gcc-ar-5")
+set(CMAKE_RANLIB "/data/opt/brew/bin/ranlib")
+set(CMAKE_C_COMPILER_RANLIB "/data/opt/brew/bin/gcc-ranlib-5")
+set(CMAKE_LINKER "/data/opt/brew/bin/ld")
 set(CMAKE_COMPILER_IS_GNUCC 1)
 set(CMAKE_C_COMPILER_LOADED 1)
 set(CMAKE_C_COMPILER_WORKS TRUE)
@@ -44,7 +44,7 @@ set(CMAKE_C_LINKER_PREFERENCE 10)
 
 # Save compiler ABI information.
 set(CMAKE_C_SIZEOF_DATA_PTR "8")
-set(CMAKE_C_COMPILER_ABI "")
+set(CMAKE_C_COMPILER_ABI "ELF")
 set(CMAKE_C_LIBRARY_ARCHITECTURE "")
 
 if(CMAKE_C_SIZEOF_DATA_PTR)
@@ -65,9 +65,9 @@ if(CMAKE_C_CL_SHOWINCLUDES_PREFIX)
 endif()
 
 
-set(CMAKE_C_SYSROOT_FLAG "-isysroot")
-set(CMAKE_C_OSX_DEPLOYMENT_TARGET_FLAG "-mmacosx-version-min=")
 
-set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc_ext.10.5;gcc")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib")
-set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "/Library/Frameworks;/System/Library/Frameworks")
+
+
+set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/data/opt/lib64;/usr/local/lib64;/lib64;/usr/lib64;/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0;/data/opt/brew/Cellar/gcc/5.2.0/lib64;/data/opt/lib;/data/opt/brew/lib;/usr/local/lib;/data/opt/jdk1.8.0_60/jre/lib/amd64/server;/data/opt/hadoop-2.6.0/lib/native;/data/opt/matlabr2016b/runtime/glnxa64;/data/opt/matlabr2016b/bin/glnxa64;/data/opt/matlabr2016b/sys/os/glnxa64;/data/opt/brew/Cellar/gcc/5.2.0/lib")
+set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

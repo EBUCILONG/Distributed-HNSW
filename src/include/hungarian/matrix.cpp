@@ -109,8 +109,9 @@ namespace hun{
 
 	/*export*/ template <class T>
 	Matrix<T>::~Matrix() {
-	  m_matrix->clear();
-	  m_matrix->shrink_to_fit();
+        std::cout << "xi gou called" << std::endl;
+	  //m_matrix->clear();
+	  //m_matrix->shrink_to_fit();
 	}
 
 	/*export*/ template <class T>

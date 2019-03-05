@@ -11,7 +11,7 @@ include_directories( ${EIGEN3_INCLUDE_DIRS} )
 #find_package (Eigen3 REQUIRED)
 #include_directories(${EIGEN3_INCLUDE_DIR})
 
-find_package(Boost)
+find_package(Boost COMPONENTS system filesystem regex thread program_options date_time chrono)
 include_directories(${Boost_INCLUDE_DIRS})
 
 
@@ -30,7 +30,7 @@ SET(EXAMPLES
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
-    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} /usr/local/lib/libboost_program_options.dylib)
+    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES})
 ENDFOREACH(EXAMPLE)
 
 

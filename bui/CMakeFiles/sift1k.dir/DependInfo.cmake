@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/apps/sift1k.cpp" "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o"
+  "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/src/apps/sift1k.cpp" "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/Users/oruqimaru/anaconda3/include/eigen3"
-  "/usr/local/include"
+  "/data/opt/brew/Cellar/eigen/3.3.3/include/eigen3"
+  "/data/opt/brew/include"
   "../src/include"
   )
 

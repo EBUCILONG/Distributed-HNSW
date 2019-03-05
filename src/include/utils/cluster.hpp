@@ -106,6 +106,7 @@ namespace sm{
 			_centroid.resize(_dimension);
 			set_centroid (centre);
 			omp_init_lock(&_appendLock);
+            _childrens.resize(0);
 		}
 
 		Point * operator [] (int i) const {
@@ -151,28 +152,33 @@ namespace sm{
 				for (int i = 0; i < _aimNPartition; i++)
 					_childrens[i]->reset_data();
 
-#pragma omp parallel for
+
+//#pragma omp parallel for
 				for (int i = 0; i < _size; i++){
 					float dists[_aimNPartition];
-					for (int j = 0; j < _aimNPartition; i++)
+					for (int j = 0; j < _aimNPartition; j++)
 						dists[j] = _datas[i]->L2_dist(_childrens[j]->get_centroid());
 					for (int j = 0; j < _size; j++)
 						task(i, j) = dists[j % _aimNPartition];
 				}
 
+
 				Munkres<float> m;
 				m.solve(task);
+
 
 				for (int i = 0; i < _size; i++){
 					for (int j = 0; j < _size; j++){
 						if (task(i, j) == 0)
-							_childrens[j]->append_point(_datas[i]);
+							_childrens[j % _aimNPartition]->append_point(_datas[i]);
 					}
 				}
+
 
 				for (int i = 0; i < _aimNPartition; i++){
 					_childrens[i]->update_centroid();
 				}
+
 			}
 
 			for (int i = 0; i < _aimNPartition; i++){
@@ -195,18 +201,24 @@ namespace sm{
 			_childrens.push_back(c1);
 			_childrens.push_back(c2);
 
+            //cout << "finish constructing" << endl;
+
 			for (int i = 0; i < iteration; i++){
-				for (int j = 0; j < _aimNPartition; j++)
+				for (int j = 0; j < 2; j++)
 					_childrens[j]->reset_data();
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
 					_datas[j]->assign_cluster(&_childrens);
 				}
 
+            //   cout << "finish assign cluster" << endl;
+
 #pragma omp parallel for
 				for(int j = 0; j < _childrens.size(); j++){
 					_childrens[j]->update_centroid();
 				}
+
+                //cout << "finish update centroid" << endl;
 			}
 
 			/*
@@ -283,33 +295,42 @@ namespace sm{
 		int dim = datas->getDim();
 		Cluster* root = new Cluster (dim, datas->operator [](0));
 
-		for (int i = 0; i < datas->getSize(); i++){
+
+        for (int i = 0; i < datas->getSize(); i++){
 			Point* newPoint = new Point(i, dim);
 			newPoint->set_data(datas->operator [](i));
 			root->append_point(newPoint);
 		}
+
 
 		root->set_aimNPartition(nPartition);
 		std::priority_queue<Cluster*, std::vector<Cluster*>, cmp> workList;
 		std::vector<Cluster*> readyList;
 		workList.push(root);
 
+
 		while(!workList.empty()){
 			Cluster * aimer = workList.top();
 			workList.pop();
-			if (aimer->done_or_not())
+
+            if (aimer->done_or_not() || aimer->get_aim_partition() == 1){
 				readyList.push_back(aimer);
-
-			if (aimer->get_aim_partition() > bomber)
+                cout << "completed " << readyList.size()*1.0 / nPartition << endl;
+                continue;
+            }
+			if (aimer->get_aim_partition() > bomber){
 				aimer->cluster_binary(iteration);
-			else
+            }
+			else{
 				aimer->cluster_balanced(iteration);
-
-			for (int i = 0; i < aimer->get_aim_partition(); i++)
+            }
+			for (int i = 0; i < aimer->_childrens.size(); i++)
 				workList.push(aimer->_childrens[i]);
 
 			delete aimer;
+
 		}
+
 
 		assert (readyList.size() == nPartition);
 

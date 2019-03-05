@@ -1,6 +1,6 @@
-The system is: Darwin - 17.7.0 - x86_64
+The system is: Linux - 2.6.32-431.1.2.0.1.el6.x86_64 - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: /usr/local/bin/gcc-4.9 
+Compiler: /data/opt/brew/bin/cc 
 Build flags: 
 Id flags:  
 
@@ -10,10 +10,10 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/3.11.1/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/3.10.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: /usr/local/bin/g++-4.9 
+Compiler: /data/opt/brew/bin/c++ 
 Build flags: 
 Id flags:  
 
@@ -23,133 +23,155 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/3.11.1/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/3.10.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fd994/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_fd994.dir/build.make CMakeFiles/cmTC_fd994.dir/build
-Building C object CMakeFiles/cmTC_fd994.dir/testCCompiler.c.o
-/usr/local/bin/gcc-4.9    -o CMakeFiles/cmTC_fd994.dir/testCCompiler.c.o   -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_fd994
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fd994.dir/link.txt --verbose=1
-/usr/local/bin/gcc-4.9   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_fd994.dir/testCCompiler.c.o  -o cmTC_fd994 
+Run Build Command:"/usr/bin/gmake" "cmTC_dd224/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_dd224.dir/build.make CMakeFiles/cmTC_dd224.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_dd224.dir/testCCompiler.c.o
+/data/opt/brew/bin/cc    -o CMakeFiles/cmTC_dd224.dir/testCCompiler.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_dd224
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd224.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc      -rdynamic CMakeFiles/cmTC_dd224.dir/testCCompiler.c.o  -o cmTC_dd224 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7dbab/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7dbab.dir/build.make CMakeFiles/cmTC_7dbab.dir/build
-Building C object CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o
-/usr/local/bin/gcc-4.9    -o CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o   -c /Users/oruqimaru/anaconda3/share/cmake-3.11/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_7dbab
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7dbab.dir/link.txt --verbose=1
-/usr/local/bin/gcc-4.9   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o  -o cmTC_7dbab 
-Using built-in specs.
-COLLECT_GCC=/usr/local/bin/gcc-4.9
-COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper
-Target: x86_64-apple-darwin17.3.0
-Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib
+Run Build Command:"/usr/bin/gmake" "cmTC_ccd4f/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_ccd4f.dir/build.make CMakeFiles/cmTC_ccd4f.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o
+/data/opt/brew/bin/cc    -o CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o   -c /data/opt/brew/Cellar/cmake/3.10.1/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_ccd4f
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccd4f.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc     -v -rdynamic CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o  -o cmTC_ccd4f 
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs
+COLLECT_GCC=/data/opt/brew/bin/cc
+COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib
 Thread model: posix
-gcc version 4.9.4 (Homebrew GCC 4.9.4_1) 
-COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/
-LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-v' '-o' 'cmTC_7dbab' '-mtune=core2'
- /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_7dbab -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
-collect2 version 4.9.4
-/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_7dbab -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-Library search paths:
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
- /usr/bin/nm -n CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o
+gcc version 5.2.0 (Homebrew gcc 5.2.0) 
+COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ccd4f' '-mtune=generic' '-march=x86-64'
+ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_ccd4f /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_7dbab/fast"]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7dbab.dir/build.make CMakeFiles/cmTC_7dbab.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/local/bin/gcc-4.9    -o CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o   -c /Users/oruqimaru/anaconda3/share/cmake-3.11/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_7dbab]
-  ignore line: [/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7dbab.dir/link.txt --verbose=1]
-  ignore line: [/usr/local/bin/gcc-4.9   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o  -o cmTC_7dbab ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/local/bin/gcc-4.9]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper]
-  ignore line: [Target: x86_64-apple-darwin17.3.0]
-  ignore line: [Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_ccd4f/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_ccd4f.dir/build.make CMakeFiles/cmTC_ccd4f.dir/build]
+  ignore line: [gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/data/opt/brew/bin/cc    -o CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o   -c /data/opt/brew/Cellar/cmake/3.10.1/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_ccd4f]
+  ignore line: [/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ccd4f.dir/link.txt --verbose=1]
+  ignore line: [/data/opt/brew/bin/cc     -v -rdynamic CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o  -o cmTC_ccd4f ]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs]
+  ignore line: [COLLECT_GCC=/data/opt/brew/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.4 (Homebrew GCC 4.9.4_1) ]
-  ignore line: [COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/]
-  ignore line: [LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-v' '-o' 'cmTC_7dbab' '-mtune=core2']
-  link line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_7dbab -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v]
-    arg [/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.13.7] ==> ignore
-    arg [-weak_reference_mismatches] ==> ignore
-    arg [non-weak] ==> ignore
+  ignore line: [gcc version 5.2.0 (Homebrew gcc 5.2.0) ]
+  ignore line: [COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ccd4f' '-mtune=generic' '-march=x86-64']
+  link line: [ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_ccd4f /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o]
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-rpath] ==> ignore
+    arg [/data/opt/brew/lib] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_7dbab] ==> ignore
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..]
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_7dbab.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [-no_compact_unwind] ==> ignore
-    arg [-lSystem] ==> lib [System]
-    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [cmTC_ccd4f] ==> ignore
+    arg [/data/opt/lib/../lib64/crt1.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crti.o] ==> ignore
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o] ==> ignore
+    arg [-L/data/opt/lib/../lib64] ==> dir [/data/opt/lib/../lib64]
+    arg [-L/usr/local/lib/../lib64] ==> dir [/usr/local/lib/../lib64]
+    arg [-L/lib64/../lib64] ==> dir [/lib64/../lib64]
+    arg [-L/usr/lib64/../lib64] ==> dir [/usr/lib64/../lib64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/data/opt/lib] ==> dir [/data/opt/lib]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+    arg [-L/lib64] ==> dir [/lib64]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+    arg [-L/data/opt/hadoop-2.6.0/lib/native] ==> dir [/data/opt/hadoop-2.6.0/lib/native]
+    arg [-L/data/opt/matlabr2016b//runtime/glnxa64] ==> dir [/data/opt/matlabr2016b//runtime/glnxa64]
+    arg [-L/data/opt/matlabr2016b//bin/glnxa64] ==> dir [/data/opt/matlabr2016b//bin/glnxa64]
+    arg [-L/data/opt/matlabr2016b//sys/os/glnxa64] ==> dir [/data/opt/matlabr2016b//sys/os/glnxa64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [CMakeFiles/cmTC_ccd4f.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
-    arg [-lSystem] ==> lib [System]
-    arg [-v] ==> ignore
-  Library search paths: [;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [System]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/data/opt/lib/../lib64] ==> [/data/opt/lib64]
+  collapse library dir [/usr/local/lib/../lib64] ==> [/usr/local/lib64]
+  collapse library dir [/lib64/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/lib] ==> [/data/opt/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
   collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: [gcc_ext.10.5;gcc]
-  implicit dirs: [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+  collapse library dir [/lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+  collapse library dir [/data/opt/hadoop-2.6.0/lib/native] ==> [/data/opt/hadoop-2.6.0/lib/native]
+  collapse library dir [/data/opt/matlabr2016b//runtime/glnxa64] ==> [/data/opt/matlabr2016b/runtime/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//bin/glnxa64] ==> [/data/opt/matlabr2016b/bin/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//sys/os/glnxa64] ==> [/data/opt/matlabr2016b/sys/os/glnxa64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/data/opt/lib64;/usr/local/lib64;/lib64;/usr/lib64;/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0;/data/opt/brew/Cellar/gcc/5.2.0/lib64;/data/opt/lib;/data/opt/brew/lib;/usr/local/lib;/data/opt/jdk1.8.0_60/jre/lib/amd64/server;/data/opt/hadoop-2.6.0/lib/native;/data/opt/matlabr2016b/runtime/glnxa64;/data/opt/matlabr2016b/bin/glnxa64;/data/opt/matlabr2016b/sys/os/glnxa64;/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  implicit fwks: []
 
 
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_15c94/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_15c94.dir/build.make CMakeFiles/cmTC_15c94.dir/build
-Building C object CMakeFiles/cmTC_15c94.dir/feature_tests.c.o
-/usr/local/bin/gcc-4.9   -std=c11 -o CMakeFiles/cmTC_15c94.dir/feature_tests.c.o   -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.c
-Linking C executable cmTC_15c94
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15c94.dir/link.txt --verbose=1
-/usr/local/bin/gcc-4.9   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_15c94.dir/feature_tests.c.o  -o cmTC_15c94 
+Run Build Command:"/usr/bin/gmake" "cmTC_17019/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_17019.dir/build.make CMakeFiles/cmTC_17019.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_17019.dir/feature_tests.c.o
+/data/opt/brew/bin/cc   -std=c11 -o CMakeFiles/cmTC_17019.dir/feature_tests.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.c
+Linking C executable cmTC_17019
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_17019.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc      -rdynamic CMakeFiles/cmTC_17019.dir/feature_tests.c.o  -o cmTC_17019 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -159,15 +181,17 @@ Linking C executable cmTC_15c94
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9fd0a/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_9fd0a.dir/build.make CMakeFiles/cmTC_9fd0a.dir/build
-Building C object CMakeFiles/cmTC_9fd0a.dir/feature_tests.c.o
-/usr/local/bin/gcc-4.9   -std=c99 -o CMakeFiles/cmTC_9fd0a.dir/feature_tests.c.o   -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.c
-Linking C executable cmTC_9fd0a
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9fd0a.dir/link.txt --verbose=1
-/usr/local/bin/gcc-4.9   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_9fd0a.dir/feature_tests.c.o  -o cmTC_9fd0a 
+Run Build Command:"/usr/bin/gmake" "cmTC_233a5/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_233a5.dir/build.make CMakeFiles/cmTC_233a5.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_233a5.dir/feature_tests.c.o
+/data/opt/brew/bin/cc   -std=c99 -o CMakeFiles/cmTC_233a5.dir/feature_tests.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.c
+Linking C executable cmTC_233a5
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_233a5.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc      -rdynamic CMakeFiles/cmTC_233a5.dir/feature_tests.c.o  -o cmTC_233a5 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -177,15 +201,17 @@ Linking C executable cmTC_9fd0a
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e4c88/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_e4c88.dir/build.make CMakeFiles/cmTC_e4c88.dir/build
-Building C object CMakeFiles/cmTC_e4c88.dir/feature_tests.c.o
-/usr/local/bin/gcc-4.9   -std=c90 -o CMakeFiles/cmTC_e4c88.dir/feature_tests.c.o   -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.c
-Linking C executable cmTC_e4c88
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4c88.dir/link.txt --verbose=1
-/usr/local/bin/gcc-4.9   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_e4c88.dir/feature_tests.c.o  -o cmTC_e4c88 
+Run Build Command:"/usr/bin/gmake" "cmTC_96116/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_96116.dir/build.make CMakeFiles/cmTC_96116.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_96116.dir/feature_tests.c.o
+/data/opt/brew/bin/cc   -std=c90 -o CMakeFiles/cmTC_96116.dir/feature_tests.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.c
+Linking C executable cmTC_96116
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96116.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc      -rdynamic CMakeFiles/cmTC_96116.dir/feature_tests.c.o  -o cmTC_96116 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -193,134 +219,153 @@ Linking C executable cmTC_e4c88
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_eaf84/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_eaf84.dir/build.make CMakeFiles/cmTC_eaf84.dir/build
-Building CXX object CMakeFiles/cmTC_eaf84.dir/testCXXCompiler.cxx.o
-/usr/local/bin/g++-4.9     -o CMakeFiles/cmTC_eaf84.dir/testCXXCompiler.cxx.o -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_eaf84
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eaf84.dir/link.txt --verbose=1
-/usr/local/bin/g++-4.9    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_eaf84.dir/testCXXCompiler.cxx.o  -o cmTC_eaf84 
+Run Build Command:"/usr/bin/gmake" "cmTC_4ecf9/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_4ecf9.dir/build.make CMakeFiles/cmTC_4ecf9.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4ecf9.dir/testCXXCompiler.cxx.o
+/data/opt/brew/bin/c++     -o CMakeFiles/cmTC_4ecf9.dir/testCXXCompiler.cxx.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_4ecf9
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4ecf9.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++       -rdynamic CMakeFiles/cmTC_4ecf9.dir/testCXXCompiler.cxx.o  -o cmTC_4ecf9 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a68fb/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a68fb.dir/build.make CMakeFiles/cmTC_a68fb.dir/build
-Building CXX object CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o
-/usr/local/bin/g++-4.9     -o CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o -c /Users/oruqimaru/anaconda3/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_a68fb
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a68fb.dir/link.txt --verbose=1
-/usr/local/bin/g++-4.9    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_a68fb 
-Using built-in specs.
-COLLECT_GCC=/usr/local/bin/g++-4.9
-COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper
-Target: x86_64-apple-darwin17.3.0
-Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib
+Run Build Command:"/usr/bin/gmake" "cmTC_1cdba/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_1cdba.dir/build.make CMakeFiles/cmTC_1cdba.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o
+/data/opt/brew/bin/c++     -o CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o -c /data/opt/brew/Cellar/cmake/3.10.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_1cdba
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cdba.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++      -v -rdynamic CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_1cdba 
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs
+COLLECT_GCC=/data/opt/brew/bin/c++
+COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib
 Thread model: posix
-gcc version 4.9.4 (Homebrew GCC 4.9.4_1) 
-COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/
-LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-v' '-o' 'cmTC_a68fb' '-shared-libgcc' '-mtune=core2'
- /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_a68fb -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
-collect2 version 4.9.4
-/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_a68fb -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-Library search paths:
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
- /usr/bin/nm -n CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o
+gcc version 5.2.0 (Homebrew gcc 5.2.0) 
+COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1cdba' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_1cdba /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_a68fb/fast"]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a68fb.dir/build.make CMakeFiles/cmTC_a68fb.dir/build]
-  ignore line: [Building CXX object CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/local/bin/g++-4.9     -o CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o -c /Users/oruqimaru/anaconda3/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_a68fb]
-  ignore line: [/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a68fb.dir/link.txt --verbose=1]
-  ignore line: [/usr/local/bin/g++-4.9    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_a68fb ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/local/bin/g++-4.9]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper]
-  ignore line: [Target: x86_64-apple-darwin17.3.0]
-  ignore line: [Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_1cdba/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_1cdba.dir/build.make CMakeFiles/cmTC_1cdba.dir/build]
+  ignore line: [gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/data/opt/brew/bin/c++     -o CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o -c /data/opt/brew/Cellar/cmake/3.10.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_1cdba]
+  ignore line: [/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cdba.dir/link.txt --verbose=1]
+  ignore line: [/data/opt/brew/bin/c++      -v -rdynamic CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_1cdba ]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs]
+  ignore line: [COLLECT_GCC=/data/opt/brew/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.4 (Homebrew GCC 4.9.4_1) ]
-  ignore line: [COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/]
-  ignore line: [LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-v' '-o' 'cmTC_a68fb' '-shared-libgcc' '-mtune=core2']
-  link line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_a68fb -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v]
-    arg [/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.13.7] ==> ignore
-    arg [-weak_reference_mismatches] ==> ignore
-    arg [non-weak] ==> ignore
+  ignore line: [gcc version 5.2.0 (Homebrew gcc 5.2.0) ]
+  ignore line: [COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1cdba' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_1cdba /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o]
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-rpath] ==> ignore
+    arg [/data/opt/brew/lib] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_a68fb] ==> ignore
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..]
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_a68fb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [cmTC_1cdba] ==> ignore
+    arg [/data/opt/lib/../lib64/crt1.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crti.o] ==> ignore
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o] ==> ignore
+    arg [-L/data/opt/lib/../lib64] ==> dir [/data/opt/lib/../lib64]
+    arg [-L/usr/local/lib/../lib64] ==> dir [/usr/local/lib/../lib64]
+    arg [-L/lib64/../lib64] ==> dir [/lib64/../lib64]
+    arg [-L/usr/lib64/../lib64] ==> dir [/usr/lib64/../lib64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/data/opt/lib] ==> dir [/data/opt/lib]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+    arg [-L/lib64] ==> dir [/lib64]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+    arg [-L/data/opt/hadoop-2.6.0/lib/native] ==> dir [/data/opt/hadoop-2.6.0/lib/native]
+    arg [-L/data/opt/matlabr2016b//runtime/glnxa64] ==> dir [/data/opt/matlabr2016b//runtime/glnxa64]
+    arg [-L/data/opt/matlabr2016b//bin/glnxa64] ==> dir [/data/opt/matlabr2016b//bin/glnxa64]
+    arg [-L/data/opt/matlabr2016b//sys/os/glnxa64] ==> dir [/data/opt/matlabr2016b//sys/os/glnxa64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [CMakeFiles/cmTC_1cdba.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
-    arg [-no_compact_unwind] ==> ignore
-    arg [-lSystem] ==> lib [System]
-    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
-    arg [-lSystem] ==> lib [System]
-    arg [-v] ==> ignore
-  Library search paths: [;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [System]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/data/opt/lib/../lib64] ==> [/data/opt/lib64]
+  collapse library dir [/usr/local/lib/../lib64] ==> [/usr/local/lib64]
+  collapse library dir [/lib64/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/lib] ==> [/data/opt/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
   collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: [stdc++;gcc_ext.10.5;gcc]
-  implicit dirs: [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+  collapse library dir [/lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+  collapse library dir [/data/opt/hadoop-2.6.0/lib/native] ==> [/data/opt/hadoop-2.6.0/lib/native]
+  collapse library dir [/data/opt/matlabr2016b//runtime/glnxa64] ==> [/data/opt/matlabr2016b/runtime/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//bin/glnxa64] ==> [/data/opt/matlabr2016b/bin/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//sys/os/glnxa64] ==> [/data/opt/matlabr2016b/sys/os/glnxa64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/data/opt/lib64;/usr/local/lib64;/lib64;/usr/lib64;/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0;/data/opt/brew/Cellar/gcc/5.2.0/lib64;/data/opt/lib;/data/opt/brew/lib;/usr/local/lib;/data/opt/jdk1.8.0_60/jre/lib/amd64/server;/data/opt/hadoop-2.6.0/lib/native;/data/opt/matlabr2016b/runtime/glnxa64;/data/opt/matlabr2016b/bin/glnxa64;/data/opt/matlabr2016b/sys/os/glnxa64;/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  implicit fwks: []
 
 
 
 
-Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Detecting CXX [-std=c++1z] compiler features compiled with the following output:
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fa2d1/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_fa2d1.dir/build.make CMakeFiles/cmTC_fa2d1.dir/build
-Building CXX object CMakeFiles/cmTC_fa2d1.dir/feature_tests.cxx.o
-/usr/local/bin/g++-4.9    -std=c++14 -o CMakeFiles/cmTC_fa2d1.dir/feature_tests.cxx.o -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_fa2d1
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa2d1.dir/link.txt --verbose=1
-/usr/local/bin/g++-4.9    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_fa2d1.dir/feature_tests.cxx.o  -o cmTC_fa2d1 
+Run Build Command:"/usr/bin/gmake" "cmTC_6be4c/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_6be4c.dir/build.make CMakeFiles/cmTC_6be4c.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6be4c.dir/feature_tests.cxx.o
+/data/opt/brew/bin/c++    -std=c++1z -o CMakeFiles/cmTC_6be4c.dir/feature_tests.cxx.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_6be4c
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6be4c.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++       -rdynamic CMakeFiles/cmTC_6be4c.dir/feature_tests.cxx.o  -o cmTC_6be4c 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
-    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
     Feature record: CXX_FEATURE:1cxx_alias_templates
     Feature record: CXX_FEATURE:1cxx_alignas
     Feature record: CXX_FEATURE:1cxx_alignof
@@ -360,7 +405,7 @@ Linking CXX executable cmTC_fa2d1
     Feature record: CXX_FEATURE:1cxx_range_for
     Feature record: CXX_FEATURE:1cxx_raw_string_literals
     Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
-    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
     Feature record: CXX_FEATURE:1cxx_return_type_deduction
     Feature record: CXX_FEATURE:1cxx_right_angle_brackets
     Feature record: CXX_FEATURE:1cxx_rvalue_references
@@ -374,21 +419,96 @@ Linking CXX executable cmTC_fa2d1
     Feature record: CXX_FEATURE:1cxx_uniform_initialization
     Feature record: CXX_FEATURE:1cxx_unrestricted_unions
     Feature record: CXX_FEATURE:1cxx_user_literals
-    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_f94c3/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_f94c3.dir/build.make CMakeFiles/cmTC_f94c3.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f94c3.dir/feature_tests.cxx.o
+/data/opt/brew/bin/c++    -std=c++14 -o CMakeFiles/cmTC_f94c3.dir/feature_tests.cxx.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_f94c3
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f94c3.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++       -rdynamic CMakeFiles/cmTC_f94c3.dir/feature_tests.cxx.o  -o cmTC_f94c3 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
     Feature record: CXX_FEATURE:1cxx_variadic_macros
     Feature record: CXX_FEATURE:1cxx_variadic_templates
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e8ac5/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_e8ac5.dir/build.make CMakeFiles/cmTC_e8ac5.dir/build
-Building CXX object CMakeFiles/cmTC_e8ac5.dir/feature_tests.cxx.o
-/usr/local/bin/g++-4.9    -std=c++11 -o CMakeFiles/cmTC_e8ac5.dir/feature_tests.cxx.o -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_e8ac5
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e8ac5.dir/link.txt --verbose=1
-/usr/local/bin/g++-4.9    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_e8ac5.dir/feature_tests.cxx.o  -o cmTC_e8ac5 
+Run Build Command:"/usr/bin/gmake" "cmTC_01676/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_01676.dir/build.make CMakeFiles/cmTC_01676.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_01676.dir/feature_tests.cxx.o
+/data/opt/brew/bin/c++    -std=c++11 -o CMakeFiles/cmTC_01676.dir/feature_tests.cxx.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_01676
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_01676.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++       -rdynamic CMakeFiles/cmTC_01676.dir/feature_tests.cxx.o  -o cmTC_01676 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -451,15 +571,17 @@ Linking CXX executable cmTC_e8ac5
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7af89/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7af89.dir/build.make CMakeFiles/cmTC_7af89.dir/build
-Building CXX object CMakeFiles/cmTC_7af89.dir/feature_tests.cxx.o
-/usr/local/bin/g++-4.9    -std=c++98 -o CMakeFiles/cmTC_7af89.dir/feature_tests.cxx.o -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_7af89
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7af89.dir/link.txt --verbose=1
-/usr/local/bin/g++-4.9    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_7af89.dir/feature_tests.cxx.o  -o cmTC_7af89 
+Run Build Command:"/usr/bin/gmake" "cmTC_f5beb/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_f5beb.dir/build.make CMakeFiles/cmTC_f5beb.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f5beb.dir/feature_tests.cxx.o
+/data/opt/brew/bin/c++    -std=c++98 -o CMakeFiles/cmTC_f5beb.dir/feature_tests.cxx.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_f5beb
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5beb.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++       -rdynamic CMakeFiles/cmTC_f5beb.dir/feature_tests.cxx.o  -o cmTC_f5beb 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -519,346 +641,441 @@ Linking CXX executable cmTC_7af89
     Feature record: CXX_FEATURE:0cxx_variable_templates
     Feature record: CXX_FEATURE:0cxx_variadic_macros
     Feature record: CXX_FEATURE:0cxx_variadic_templates
-Detecting C OpenMP compiler ABI info compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a4ad5/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a4ad5.dir/build.make CMakeFiles/cmTC_a4ad5.dir/build
-Building C object CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o
-/usr/local/bin/gcc-4.9   -fopenmp -v   -o CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o   -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c
-Using built-in specs.
-COLLECT_GCC=/usr/local/bin/gcc-4.9
-Target: x86_64-apple-darwin17.3.0
-Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib
+Run Build Command:"/usr/bin/gmake" "cmTC_682e7/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_682e7.dir/build.make CMakeFiles/cmTC_682e7.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_682e7.dir/CheckIncludeFile.c.o
+/data/opt/brew/bin/cc    -o CMakeFiles/cmTC_682e7.dir/CheckIncludeFile.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_682e7
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_682e7.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc      -rdynamic CMakeFiles/cmTC_682e7.dir/CheckIncludeFile.c.o  -o cmTC_682e7 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_52dd3/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_52dd3.dir/build.make CMakeFiles/cmTC_52dd3.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_52dd3.dir/CheckFunctionExists.c.o
+/data/opt/brew/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_52dd3.dir/CheckFunctionExists.c.o   -c /data/opt/brew/Cellar/cmake/3.10.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_52dd3
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52dd3.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_52dd3.dir/CheckFunctionExists.c.o  -o cmTC_52dd3 -lpthread 
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+
+
+Detecting C OpenMP compiler ABI info compiled with the following output:
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_6c10d/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_6c10d.dir/build.make CMakeFiles/cmTC_6c10d.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o
+/data/opt/brew/bin/cc   -fopenmp -v   -o CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs
+COLLECT_GCC=/data/opt/brew/bin/cc
+Target: x86_64-unknown-linux-gnu
+Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib
 Thread model: posix
-gcc version 4.9.4 (Homebrew GCC 4.9.4_1) 
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o' '-c' '-mtune=core2'
- /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/cc1 -quiet -v -D__DYNAMIC__ /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c -fPIC -quiet -dumpbase OpenMPTryFlag.c -mmacosx-version-min=10.13.7 -mtune=core2 -auxbase-strip CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o -version -fopenmp -o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccKcBUjr.s
-GNU C (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)
-	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1
+gcc version 5.2.0 (Homebrew gcc 5.2.0) 
+COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64' '-pthread'
+ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/cc1 -quiet -v -D_REENTRANT /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c -quiet -dumpbase OpenMPTryFlag.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o -version -fopenmp -o /tmp/ccoEQQSD.s
+GNU C11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)
+	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3
+warning: GMP header version 6.0.0 differs from library version 6.1.1.
+warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-ignoring nonexistent directory "/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../x86_64-apple-darwin17.3.0/include"
+ignoring nonexistent directory "/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../x86_64-unknown-linux-gnu/include"
+ignoring nonexistent directory "/data/jinfeng/opt/intelmkl/compilers_and_libraries_2018/linux/mkl/include"
+ignoring nonexistent directory "/data/jinfeng/opt/include"
+ignoring nonexistent directory "/data/jinfeng/software/hdf5-1.8.19"
+ignoring nonexistent directory "/include"
 #include "..." search starts here:
 #include <...> search starts here:
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include
+ /data/opt/brew/include
+ /data/opt/include
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include
  /usr/local/include
- /usr/local/Cellar/gcc@4.9/4.9.4_1/include
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include-fixed
+ /data/opt/brew/Cellar/gcc/5.2.0/include
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include-fixed
  /usr/include
- /System/Library/Frameworks
- /Library/Frameworks
 End of search list.
-GNU C (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)
-	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1
+GNU C11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)
+	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3
+warning: GMP header version 6.0.0 differs from library version 6.1.1.
+warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-Compiler executable checksum: cd3c4f8ebbdca2be543d0060b54f849c
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o' '-c' '-mtune=core2'
- as -arch x86_64 -force_cpusubtype_ALL -o CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccKcBUjr.s
-COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/
-LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o' '-c' '-mtune=core2'
-Linking C executable cmTC_a4ad5
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4ad5.dir/link.txt --verbose=1
-/usr/local/bin/gcc-4.9  -fopenmp -v -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o  -o cmTC_a4ad5 -v -Wl,-v 
-Using built-in specs.
-COLLECT_GCC=/usr/local/bin/gcc-4.9
-COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper
-Target: x86_64-apple-darwin17.3.0
-Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib
+Compiler executable checksum: ca356939aa16491b238e01ecc428925c
+COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64' '-pthread'
+ as -v --64 -o CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o /tmp/ccoEQQSD.s
+GNU assembler version 2.29.1 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.29.1
+COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64' '-pthread'
+Linking C executable cmTC_6c10d
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6c10d.dir/link.txt --verbose=1
+/data/opt/brew/bin/cc  -fopenmp -v    -rdynamic CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o  -o cmTC_6c10d -v 
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs
+COLLECT_GCC=/data/opt/brew/bin/cc
+COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib
 Thread model: posix
-gcc version 4.9.4 (Homebrew GCC 4.9.4_1) 
-COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/
-LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'cmTC_a4ad5' '-v' '-mtune=core2'
- /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_a4ad5 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o -v -lgomp -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v -v
-collect2 version 4.9.4
-/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_a4ad5 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o -v -lgomp -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v -v
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-Library search paths:
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
- /usr/bin/nm -n CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o
+gcc version 5.2.0 (Homebrew gcc 5.2.0) 
+COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/libgomp.spec
+COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-rdynamic' '-o' 'cmTC_6c10d' '-v' '-mtune=generic' '-march=x86-64' '-pthread'
+ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_6c10d /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o -lgomp -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
 Parsed C OpenMP implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_a4ad5/fast"]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a4ad5.dir/build.make CMakeFiles/cmTC_a4ad5.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o]
-  ignore line: [/usr/local/bin/gcc-4.9   -fopenmp -v   -o CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o   -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/local/bin/gcc-4.9]
-  ignore line: [Target: x86_64-apple-darwin17.3.0]
-  ignore line: [Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_6c10d/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_6c10d.dir/build.make CMakeFiles/cmTC_6c10d.dir/build]
+  ignore line: [gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o]
+  ignore line: [/data/opt/brew/bin/cc   -fopenmp -v   -o CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o   -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs]
+  ignore line: [COLLECT_GCC=/data/opt/brew/bin/cc]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.4 (Homebrew GCC 4.9.4_1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o' '-c' '-mtune=core2']
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/cc1 -quiet -v -D__DYNAMIC__ /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c -fPIC -quiet -dumpbase OpenMPTryFlag.c -mmacosx-version-min=10.13.7 -mtune=core2 -auxbase-strip CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o -version -fopenmp -o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccKcBUjr.s]
-  ignore line: [GNU C (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)]
-  ignore line: [	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1]
+  ignore line: [gcc version 5.2.0 (Homebrew gcc 5.2.0) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64' '-pthread']
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/cc1 -quiet -v -D_REENTRANT /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.c -quiet -dumpbase OpenMPTryFlag.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o -version -fopenmp -o /tmp/ccoEQQSD.s]
+  ignore line: [GNU C11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3]
+  ignore line: [warning: GMP header version 6.0.0 differs from library version 6.1.1.]
+  ignore line: [warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-  ignore line: [ignoring nonexistent directory "/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../x86_64-apple-darwin17.3.0/include"]
+  ignore line: [ignoring nonexistent directory "/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../x86_64-unknown-linux-gnu/include"]
+  ignore line: [ignoring nonexistent directory "/data/jinfeng/opt/intelmkl/compilers_and_libraries_2018/linux/mkl/include"]
+  ignore line: [ignoring nonexistent directory "/data/jinfeng/opt/include"]
+  ignore line: [ignoring nonexistent directory "/data/jinfeng/software/hdf5-1.8.19"]
+  ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
   ignore line: [#include <...> search starts here:]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include]
+  ignore line: [ /data/opt/brew/include]
+  ignore line: [ /data/opt/include]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include]
   ignore line: [ /usr/local/include]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/include]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include-fixed]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/include]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include-fixed]
   ignore line: [ /usr/include]
-  ignore line: [ /System/Library/Frameworks]
-  ignore line: [ /Library/Frameworks]
   ignore line: [End of search list.]
-  ignore line: [GNU C (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)]
-  ignore line: [	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1]
+  ignore line: [GNU C11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3]
+  ignore line: [warning: GMP header version 6.0.0 differs from library version 6.1.1.]
+  ignore line: [warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-  ignore line: [Compiler executable checksum: cd3c4f8ebbdca2be543d0060b54f849c]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o' '-c' '-mtune=core2']
-  ignore line: [ as -arch x86_64 -force_cpusubtype_ALL -o CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccKcBUjr.s]
-  ignore line: [COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/]
-  ignore line: [LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o' '-c' '-mtune=core2']
-  ignore line: [Linking C executable cmTC_a4ad5]
-  ignore line: [/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4ad5.dir/link.txt --verbose=1]
-  ignore line: [/usr/local/bin/gcc-4.9  -fopenmp -v -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o  -o cmTC_a4ad5 -v -Wl,-v ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/local/bin/gcc-4.9]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper]
-  ignore line: [Target: x86_64-apple-darwin17.3.0]
-  ignore line: [Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib]
+  ignore line: [Compiler executable checksum: ca356939aa16491b238e01ecc428925c]
+  ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64' '-pthread']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o /tmp/ccoEQQSD.s]
+  ignore line: [GNU assembler version 2.29.1 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.29.1]
+  ignore line: [COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64' '-pthread']
+  ignore line: [Linking C executable cmTC_6c10d]
+  ignore line: [/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6c10d.dir/link.txt --verbose=1]
+  ignore line: [/data/opt/brew/bin/cc  -fopenmp -v    -rdynamic CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o  -o cmTC_6c10d -v ]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs]
+  ignore line: [COLLECT_GCC=/data/opt/brew/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.4 (Homebrew GCC 4.9.4_1) ]
-  ignore line: [COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/]
-  ignore line: [LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-fopenmp' '-v' '-o' 'cmTC_a4ad5' '-v' '-mtune=core2']
-  link line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_a4ad5 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o -v -lgomp -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v -v]
-    arg [/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.13.7] ==> ignore
-    arg [-weak_reference_mismatches] ==> ignore
-    arg [non-weak] ==> ignore
+  ignore line: [gcc version 5.2.0 (Homebrew gcc 5.2.0) ]
+  ignore line: [COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/libgomp.spec]
+  ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-rdynamic' '-o' 'cmTC_6c10d' '-v' '-mtune=generic' '-march=x86-64' '-pthread']
+  link line: [ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_6c10d /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o -lgomp -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o]
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-rpath] ==> ignore
+    arg [/data/opt/brew/lib] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_a4ad5] ==> ignore
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..]
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [CMakeFiles/cmTC_a4ad5.dir/OpenMPTryFlag.c.o] ==> ignore
-    arg [-v] ==> ignore
+    arg [cmTC_6c10d] ==> ignore
+    arg [/data/opt/lib/../lib64/crt1.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crti.o] ==> ignore
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o] ==> ignore
+    arg [-L/data/opt/lib/../lib64] ==> dir [/data/opt/lib/../lib64]
+    arg [-L/usr/local/lib/../lib64] ==> dir [/usr/local/lib/../lib64]
+    arg [-L/lib64/../lib64] ==> dir [/lib64/../lib64]
+    arg [-L/usr/lib64/../lib64] ==> dir [/usr/lib64/../lib64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/data/opt/lib] ==> dir [/data/opt/lib]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+    arg [-L/lib64] ==> dir [/lib64]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+    arg [-L/data/opt/hadoop-2.6.0/lib/native] ==> dir [/data/opt/hadoop-2.6.0/lib/native]
+    arg [-L/data/opt/matlabr2016b//runtime/glnxa64] ==> dir [/data/opt/matlabr2016b//runtime/glnxa64]
+    arg [-L/data/opt/matlabr2016b//bin/glnxa64] ==> dir [/data/opt/matlabr2016b//bin/glnxa64]
+    arg [-L/data/opt/matlabr2016b//sys/os/glnxa64] ==> dir [/data/opt/matlabr2016b//sys/os/glnxa64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [CMakeFiles/cmTC_6c10d.dir/OpenMPTryFlag.c.o] ==> ignore
     arg [-lgomp] ==> lib [gomp]
-    arg [-no_compact_unwind] ==> ignore
-    arg [-lSystem] ==> lib [System]
-    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
     arg [-lgcc] ==> lib [gcc]
-    arg [-lSystem] ==> lib [System]
-    arg [-v] ==> ignore
-    arg [-v] ==> ignore
-  Library search paths: [;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [System]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lpthread] ==> lib [pthread]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/data/opt/lib/../lib64] ==> [/data/opt/lib64]
+  collapse library dir [/usr/local/lib/../lib64] ==> [/usr/local/lib64]
+  collapse library dir [/lib64/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/lib] ==> [/data/opt/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
   collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: [gomp;gcc_ext.10.5;gcc]
-  implicit dirs: [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+  collapse library dir [/lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+  collapse library dir [/data/opt/hadoop-2.6.0/lib/native] ==> [/data/opt/hadoop-2.6.0/lib/native]
+  collapse library dir [/data/opt/matlabr2016b//runtime/glnxa64] ==> [/data/opt/matlabr2016b/runtime/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//bin/glnxa64] ==> [/data/opt/matlabr2016b/bin/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//sys/os/glnxa64] ==> [/data/opt/matlabr2016b/sys/os/glnxa64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
+  implicit libs: [gomp;gcc;gcc_s;pthread;c;gcc;gcc_s]
+  implicit dirs: [/data/opt/lib64;/usr/local/lib64;/lib64;/usr/lib64;/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0;/data/opt/brew/Cellar/gcc/5.2.0/lib64;/data/opt/lib;/data/opt/brew/lib;/usr/local/lib;/data/opt/jdk1.8.0_60/jre/lib/amd64/server;/data/opt/hadoop-2.6.0/lib/native;/data/opt/matlabr2016b/runtime/glnxa64;/data/opt/matlabr2016b/bin/glnxa64;/data/opt/matlabr2016b/sys/os/glnxa64;/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  implicit fwks: []
 
 
 Detecting CXX OpenMP compiler ABI info compiled with the following output:
-Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
+Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_08c49/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_08c49.dir/build.make CMakeFiles/cmTC_08c49.dir/build
-Building CXX object CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o
-/usr/local/bin/g++-4.9    -std=c++11 -fopenmp  -fopenmp -v   -o CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
-Using built-in specs.
-COLLECT_GCC=/usr/local/bin/g++-4.9
-Target: x86_64-apple-darwin17.3.0
-Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib
+Run Build Command:"/usr/bin/gmake" "cmTC_96e93/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_96e93.dir/build.make CMakeFiles/cmTC_96e93.dir/build
+gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o
+/data/opt/brew/bin/c++    -std=c++11 -fopenmp  -fopenmp -v   -o CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs
+COLLECT_GCC=/data/opt/brew/bin/c++
+Target: x86_64-unknown-linux-gnu
+Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib
 Thread model: posix
-gcc version 4.9.4 (Homebrew GCC 4.9.4_1) 
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=core2'
- /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/cc1plus -quiet -v -D__DYNAMIC__ /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp -fPIC -quiet -dumpbase OpenMPTryFlag.cpp -mmacosx-version-min=10.13.7 -mtune=core2 -auxbase-strip CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -std=c++11 -version -fopenmp -o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccHpnmdj.s
-GNU C++ (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)
-	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1
+gcc version 5.2.0 (Homebrew gcc 5.2.0) 
+COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread'
+ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/cc1plus -quiet -v -D_GNU_SOURCE -D_REENTRANT /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp -quiet -dumpbase OpenMPTryFlag.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o -std=c++11 -version -fopenmp -o /tmp/ccY9mZWZ.s
+GNU C++11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)
+	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3
+warning: GMP header version 6.0.0 differs from library version 6.1.1.
+warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-ignoring nonexistent directory "/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../x86_64-apple-darwin17.3.0/include"
+ignoring nonexistent directory "/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../x86_64-unknown-linux-gnu/include"
+ignoring nonexistent directory "/data/jinfeng/opt/intelmkl/compilers_and_libraries_2018/linux/mkl/include"
+ignoring nonexistent directory "/data/jinfeng/opt/include"
+ignoring nonexistent directory "/data/jinfeng/software/hdf5-1.8.19"
+ignoring nonexistent directory "/include"
 #include "..." search starts here:
 #include <...> search starts here:
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../include/c++/4.9.4
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../include/c++/4.9.4/x86_64-apple-darwin17.3.0
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../include/c++/4.9.4/backward
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include
+ /data/opt/brew/include
+ /data/opt/include
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/x86_64-unknown-linux-gnu
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/backward
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include
  /usr/local/include
- /usr/local/Cellar/gcc@4.9/4.9.4_1/include
- /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include-fixed
+ /data/opt/brew/Cellar/gcc/5.2.0/include
+ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include-fixed
  /usr/include
- /System/Library/Frameworks
- /Library/Frameworks
 End of search list.
-GNU C++ (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)
-	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1
+GNU C++11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)
+	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3
+warning: GMP header version 6.0.0 differs from library version 6.1.1.
+warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-Compiler executable checksum: 9f58f3a57be8f4f525886289de87b167
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=core2'
- as -arch x86_64 -force_cpusubtype_ALL -o CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccHpnmdj.s
-COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/
-LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=core2'
-Linking CXX executable cmTC_08c49
-/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_08c49.dir/link.txt --verbose=1
-/usr/local/bin/g++-4.9   -std=c++11 -fopenmp  -fopenmp -v -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o  -o cmTC_08c49 -v -Wl,-v 
-Using built-in specs.
-COLLECT_GCC=/usr/local/bin/g++-4.9
-COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper
-Target: x86_64-apple-darwin17.3.0
-Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib
+Compiler executable checksum: 137bf6cf586d405466b6a2ca9715ad20
+COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread'
+ as -v --64 -o CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o /tmp/ccY9mZWZ.s
+GNU assembler version 2.29.1 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.29.1
+COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread'
+Linking CXX executable cmTC_96e93
+/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96e93.dir/link.txt --verbose=1
+/data/opt/brew/bin/c++   -std=c++11 -fopenmp  -fopenmp -v    -rdynamic CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o  -o cmTC_96e93 -v 
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs
+COLLECT_GCC=/data/opt/brew/bin/c++
+COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib
 Thread model: posix
-gcc version 4.9.4 (Homebrew GCC 4.9.4_1) 
-COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/
-LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/
-COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'cmTC_08c49' '-v' '-shared-libgcc' '-mtune=core2'
- /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_08c49 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -v -lstdc++ -lgomp -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v -v
-collect2 version 4.9.4
-/usr/bin/ld -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_08c49 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -v -lstdc++ -lgomp -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v -v
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-@(#)PROGRAM:ld  PROJECT:ld64-409.12
-BUILD 17:47:51 Sep 25 2018
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
-Library search paths:
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4
-	/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
- /usr/bin/nm -n CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o
+gcc version 5.2.0 (Homebrew gcc 5.2.0) 
+COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/
+Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/libgomp.spec
+COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-rdynamic' '-o' 'cmTC_96e93' '-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread'
+ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_96e93 /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lgomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o
+gmake[1]: Leaving directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX OpenMP implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_08c49/fast"]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_08c49.dir/build.make CMakeFiles/cmTC_08c49.dir/build]
-  ignore line: [Building CXX object CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o]
-  ignore line: [/usr/local/bin/g++-4.9    -std=c++11 -fopenmp  -fopenmp -v   -o CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -c /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/local/bin/g++-4.9]
-  ignore line: [Target: x86_64-apple-darwin17.3.0]
-  ignore line: [Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_96e93/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_96e93.dir/build.make CMakeFiles/cmTC_96e93.dir/build]
+  ignore line: [gmake[1]: Entering directory `/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o]
+  ignore line: [/data/opt/brew/bin/c++    -std=c++11 -fopenmp  -fopenmp -v   -o CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs]
+  ignore line: [COLLECT_GCC=/data/opt/brew/bin/c++]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.4 (Homebrew GCC 4.9.4_1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=core2']
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/cc1plus -quiet -v -D__DYNAMIC__ /Users/oruqimaru/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp -fPIC -quiet -dumpbase OpenMPTryFlag.cpp -mmacosx-version-min=10.13.7 -mtune=core2 -auxbase-strip CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -std=c++11 -version -fopenmp -o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccHpnmdj.s]
-  ignore line: [GNU C++ (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)]
-  ignore line: [	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1]
+  ignore line: [gcc version 5.2.0 (Homebrew gcc 5.2.0) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread']
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/cc1plus -quiet -v -D_GNU_SOURCE -D_REENTRANT /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp -quiet -dumpbase OpenMPTryFlag.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o -std=c++11 -version -fopenmp -o /tmp/ccY9mZWZ.s]
+  ignore line: [GNU C++11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3]
+  ignore line: [warning: GMP header version 6.0.0 differs from library version 6.1.1.]
+  ignore line: [warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-  ignore line: [ignoring nonexistent directory "/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../x86_64-apple-darwin17.3.0/include"]
+  ignore line: [ignoring nonexistent directory "/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../x86_64-unknown-linux-gnu/include"]
+  ignore line: [ignoring nonexistent directory "/data/jinfeng/opt/intelmkl/compilers_and_libraries_2018/linux/mkl/include"]
+  ignore line: [ignoring nonexistent directory "/data/jinfeng/opt/include"]
+  ignore line: [ignoring nonexistent directory "/data/jinfeng/software/hdf5-1.8.19"]
+  ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
   ignore line: [#include <...> search starts here:]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../include/c++/4.9.4]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../include/c++/4.9.4/x86_64-apple-darwin17.3.0]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../../../../include/c++/4.9.4/backward]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include]
+  ignore line: [ /data/opt/brew/include]
+  ignore line: [ /data/opt/include]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/x86_64-unknown-linux-gnu]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/backward]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include]
   ignore line: [ /usr/local/include]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/include]
-  ignore line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/include-fixed]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/include]
+  ignore line: [ /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include-fixed]
   ignore line: [ /usr/include]
-  ignore line: [ /System/Library/Frameworks]
-  ignore line: [ /Library/Frameworks]
   ignore line: [End of search list.]
-  ignore line: [GNU C++ (Homebrew GCC 4.9.4_1) version 4.9.4 (x86_64-apple-darwin17.3.0)]
-  ignore line: [	compiled by GNU C version 4.9.4, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1]
+  ignore line: [GNU C++11 (Homebrew gcc 5.2.0) version 5.2.0 (x86_64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.2.0, GMP version 6.0.0, MPFR version 3.1.3-p2, MPC version 1.0.3]
+  ignore line: [warning: GMP header version 6.0.0 differs from library version 6.1.1.]
+  ignore line: [warning: MPFR header version 3.1.3-p2 differs from library version 3.1.5.]
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-  ignore line: [Compiler executable checksum: 9f58f3a57be8f4f525886289de87b167]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=core2']
-  ignore line: [ as -arch x86_64 -force_cpusubtype_ALL -o CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o /var/folders/jq/vb04gfx51g98wkcj3dnnbdxc0000gn/T//ccHpnmdj.s]
-  ignore line: [COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/]
-  ignore line: [LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=core2']
-  ignore line: [Linking CXX executable cmTC_08c49]
-  ignore line: [/Users/oruqimaru/anaconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_08c49.dir/link.txt --verbose=1]
-  ignore line: [/usr/local/bin/g++-4.9   -std=c++11 -fopenmp  -fopenmp -v -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o  -o cmTC_08c49 -v -Wl,-v ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=/usr/local/bin/g++-4.9]
-  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/lto-wrapper]
-  ignore line: [Target: x86_64-apple-darwin17.3.0]
-  ignore line: [Configured with: ../configure --build=x86_64-apple-darwin17.3.0 --prefix=/usr/local/Cellar/gcc@4.9/4.9.4_1 --libdir=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9 --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-4.9 --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --enable-plugin --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew GCC 4.9.4_1' --with-bugurl=https://github.com/Homebrew/homebrew-core/issues MAKEINFO=missing --disable-nls --enable-multilib]
+  ignore line: [Compiler executable checksum: 137bf6cf586d405466b6a2ca9715ad20]
+  ignore line: [COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o /tmp/ccY9mZWZ.s]
+  ignore line: [GNU assembler version 2.29.1 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.29.1]
+  ignore line: [COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread']
+  ignore line: [Linking CXX executable cmTC_96e93]
+  ignore line: [/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96e93.dir/link.txt --verbose=1]
+  ignore line: [/data/opt/brew/bin/c++   -std=c++11 -fopenmp  -fopenmp -v    -rdynamic CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o  -o cmTC_96e93 -v ]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/specs]
+  ignore line: [COLLECT_GCC=/data/opt/brew/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/lto-wrapper]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/data/opt/brew/Cellar/gcc/5.2.0  --enable-languages=c,c++,objc,obj-c++,fortran --program-suffix=-5 --with-gmp=/data/opt/brew/opt/gmp --with-mpfr=/data/opt/brew/opt/mpfr --with-mpc=/data/opt/brew/opt/libmpc --with-isl=/data/opt/brew/opt/isl --with-system-zlib --enable-libstdcxx-time=yes --enable-stage1-checking --enable-checking=release --enable-lto --with-build-config=bootstrap-debug --disable-werror --with-pkgversion='Homebrew gcc 5.2.0' --with-bugurl=https://github.com/Homebrew/homebrew/issues --enable-plugin --disable-nls --disable-multilib]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.9.4 (Homebrew GCC 4.9.4_1) ]
-  ignore line: [COMPILER_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/]
-  ignore line: [LIBRARY_PATH=/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/:/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../../:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mmacosx-version-min=10.13.7' '-std=c++11' '-fopenmp' '-v' '-o' 'cmTC_08c49' '-v' '-shared-libgcc' '-mtune=core2']
-  link line: [ /usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2 -dynamic -arch x86_64 -macosx_version_min 10.13.7 -weak_reference_mismatches non-weak -o cmTC_08c49 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4 -L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../.. -search_paths_first -headerpad_max_install_names CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o -v -lstdc++ -lgomp -no_compact_unwind -lSystem -lgcc_ext.10.5 -lgcc -lSystem -v -v]
-    arg [/usr/local/Cellar/gcc@4.9/4.9.4_1/libexec/gcc/x86_64-apple-darwin17.3.0/4.9.4/collect2] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.13.7] ==> ignore
-    arg [-weak_reference_mismatches] ==> ignore
-    arg [non-weak] ==> ignore
+  ignore line: [gcc version 5.2.0 (Homebrew gcc 5.2.0) ]
+  ignore line: [COMPILER_PATH=/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/data/opt/lib/../lib64/:/usr/local/lib/../lib64/:/lib64/../lib64/:/usr/lib64/../lib64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/opt/lib/:/data/opt/brew/lib/:/usr/local/lib/:/lib64/:/usr/lib64/:/data/opt/jdk1.8.0_60/jre/lib/amd64/server/:/data/opt/hadoop-2.6.0/lib/native/:/data/opt/matlabr2016b//runtime/glnxa64/:/data/opt/matlabr2016b//bin/glnxa64/:/data/opt/matlabr2016b//sys/os/glnxa64/:/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [Reading specs from /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64/libgomp.spec]
+  ignore line: [COLLECT_GCC_OPTIONS='-std=c++11' '-fopenmp' '-v' '-rdynamic' '-o' 'cmTC_96e93' '-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-pthread']
+  link line: [ /data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2 --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -rpath /data/opt/brew/lib -o cmTC_96e93 /data/opt/lib/../lib64/crt1.o /data/opt/lib/../lib64/crti.o /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o -L/data/opt/lib/../lib64 -L/usr/local/lib/../lib64 -L/lib64/../lib64 -L/usr/lib64/../lib64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/opt/lib -L/data/opt/brew/lib -L/usr/local/lib -L/lib64 -L/usr/lib64 -L/data/opt/jdk1.8.0_60/jre/lib/amd64/server -L/data/opt/hadoop-2.6.0/lib/native -L/data/opt/matlabr2016b//runtime/glnxa64 -L/data/opt/matlabr2016b//bin/glnxa64 -L/data/opt/matlabr2016b//sys/os/glnxa64 -L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../.. -L/data/opt/brew/lib CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lgomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o /data/opt/lib/../lib64/crtn.o]
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/libexec/gcc/x86_64-unknown-linux-gnu/5.2.0/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-rpath] ==> ignore
+    arg [/data/opt/brew/lib] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_08c49] ==> ignore
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-    arg [-L/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..]
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [CMakeFiles/cmTC_08c49.dir/OpenMPTryFlag.cpp.o] ==> ignore
-    arg [-v] ==> ignore
+    arg [cmTC_96e93] ==> ignore
+    arg [/data/opt/lib/../lib64/crt1.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crti.o] ==> ignore
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtbegin.o] ==> ignore
+    arg [-L/data/opt/lib/../lib64] ==> dir [/data/opt/lib/../lib64]
+    arg [-L/usr/local/lib/../lib64] ==> dir [/usr/local/lib/../lib64]
+    arg [-L/lib64/../lib64] ==> dir [/lib64/../lib64]
+    arg [-L/usr/lib64/../lib64] ==> dir [/usr/lib64/../lib64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/data/opt/lib] ==> dir [/data/opt/lib]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+    arg [-L/lib64] ==> dir [/lib64]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+    arg [-L/data/opt/hadoop-2.6.0/lib/native] ==> dir [/data/opt/hadoop-2.6.0/lib/native]
+    arg [-L/data/opt/matlabr2016b//runtime/glnxa64] ==> dir [/data/opt/matlabr2016b//runtime/glnxa64]
+    arg [-L/data/opt/matlabr2016b//bin/glnxa64] ==> dir [/data/opt/matlabr2016b//bin/glnxa64]
+    arg [-L/data/opt/matlabr2016b//sys/os/glnxa64] ==> dir [/data/opt/matlabr2016b//sys/os/glnxa64]
+    arg [-L/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..]
+    arg [-L/data/opt/brew/lib] ==> dir [/data/opt/brew/lib]
+    arg [CMakeFiles/cmTC_96e93.dir/OpenMPTryFlag.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
     arg [-lgomp] ==> lib [gomp]
-    arg [-no_compact_unwind] ==> ignore
-    arg [-lSystem] ==> lib [System]
-    arg [-lgcc_ext.10.5] ==> lib [gcc_ext.10.5]
+    arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
-    arg [-lSystem] ==> lib [System]
-    arg [-v] ==> ignore
-    arg [-v] ==> ignore
-  Library search paths: [;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [System]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4/../../..] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4]
-  collapse library dir [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9] ==> [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
+    arg [-lpthread] ==> lib [pthread]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/crtend.o] ==> ignore
+    arg [/data/opt/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/data/opt/lib/../lib64] ==> [/data/opt/lib64]
+  collapse library dir [/usr/local/lib/../lib64] ==> [/usr/local/lib64]
+  collapse library dir [/lib64/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../lib64] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/lib] ==> [/data/opt/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
   collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: [stdc++;gomp;gcc_ext.10.5;gcc]
-  implicit dirs: [/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9/gcc/x86_64-apple-darwin17.3.0/4.9.4;/usr/local/Cellar/gcc@4.9/4.9.4_1/lib/gcc/4.9;/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+  collapse library dir [/lib64] ==> [/lib64]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/data/opt/jdk1.8.0_60/jre/lib/amd64/server] ==> [/data/opt/jdk1.8.0_60/jre/lib/amd64/server]
+  collapse library dir [/data/opt/hadoop-2.6.0/lib/native] ==> [/data/opt/hadoop-2.6.0/lib/native]
+  collapse library dir [/data/opt/matlabr2016b//runtime/glnxa64] ==> [/data/opt/matlabr2016b/runtime/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//bin/glnxa64] ==> [/data/opt/matlabr2016b/bin/glnxa64]
+  collapse library dir [/data/opt/matlabr2016b//sys/os/glnxa64] ==> [/data/opt/matlabr2016b/sys/os/glnxa64]
+  collapse library dir [/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/../../..] ==> [/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  collapse library dir [/data/opt/brew/lib] ==> [/data/opt/brew/lib]
+  implicit libs: [stdc++;m;gomp;gcc_s;gcc;pthread;c;gcc_s;gcc]
+  implicit dirs: [/data/opt/lib64;/usr/local/lib64;/lib64;/usr/lib64;/data/opt/brew/Cellar/gcc/5.2.0/lib/gcc/x86_64-unknown-linux-gnu/5.2.0;/data/opt/brew/Cellar/gcc/5.2.0/lib64;/data/opt/lib;/data/opt/brew/lib;/usr/local/lib;/data/opt/jdk1.8.0_60/jre/lib/amd64/server;/data/opt/hadoop-2.6.0/lib/native;/data/opt/matlabr2016b/runtime/glnxa64;/data/opt/matlabr2016b/bin/glnxa64;/data/opt/matlabr2016b/sys/os/glnxa64;/data/opt/brew/Cellar/gcc/5.2.0/lib]
+  implicit fwks: []
 
 
