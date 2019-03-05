@@ -267,7 +267,7 @@ namespace sm{
 					_childrens[j]->reset_data();
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
-					_datas[j]->assign_cluster(&_childrens, false);
+					_datas[j]->assign_cluster(&_childrens, false, -1);
 				}
 
             //   cout << "finish assign cluster" << endl;
@@ -346,7 +346,7 @@ namespace sm{
 		}
 	};
 
-	int Point::assign_cluster (vector<Cluster*> *clusters, bool balance = true, float NoverK){
+	int Point::assign_cluster (vector<Cluster*> *clusters, bool balance, float NoverK){
 		if (balance){
 			int label = -1;
 			float balance_dister = FLT_MIN;

@@ -78,7 +78,7 @@ namespace ss {
     	DataType inline IPDistance_Ary2Vec(const DataType *a, const vector<DataType> *b, int dim){
     	DataType sum = .0;
     	for (int i = 0; i < dim; ++i){
-    		sum += a[i] * b[i];
+    		sum += a[i] * (*b)[i];
     	}
     	return sum;
     }
