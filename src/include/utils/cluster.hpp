@@ -84,24 +84,34 @@ namespace sm{
 			return ss::EuclidDistance_Ary2Vec(_data, centre, _dimension);
 		}
 
-		void assign_cluster (vector<Cluster*> *clusters);
+		float IP_dist (vector<float> * centre){
+			return ss::IPDistance_Ary2Vec(_data, centre, _dimension);
+		}
+
+		int assign_cluster (vector<Cluster*> *clusters, bool balance, float NoverK);
 
 	};
 
+
 	class Cluster{
-		vector <Point *> _datas;
+		vector <float> _unit_centroid;
 		vector <float> _centroid;
+		float _balance_size;
 		int _size;
 		int _dimension;
 		int _aimNPartition;
 		bool _done;
+		vector <Point *> _datas;
 
 		// parallel thing
 		omp_lock_t _appendLock;
 
+		friend class Cluster;
+
 	public:
 		vector<Cluster*> _childrens;
-		explicit Cluster (int dimension, float* centre): _size(0),
+
+		explicit Cluster (int dimension, float* centre): _size(0), _balance_size (-1),
 			_aimNPartition(NOTKNOWN), _dimension(dimension), _done (false){
 			_centroid.resize(_dimension);
 			set_centroid (centre);
@@ -117,6 +127,16 @@ namespace sm{
 			return _datas[i];/// i * dimension may overflow int
 		}
 
+		void insert_point (int cluster_index, Point* point){
+			omp_set_lock (&_childrens[cluster_index]->_appendLock);
+			_childrens[cluster_index]->_datas.push_back(point);
+			_childrens[cluster_index]->_size++;
+			_childrens[cluster_index]->_balance_size++;
+			for (int i = 0; i < _childrens.size(); i++)
+				_childrens[i]->_balance_size -= 1 / _aimNPartition;
+			omp_unset_lock (&_childrens[cluster_index]->_appendLock);
+		}
+
 		void append_point(Point* point){
 			omp_set_lock (&_appendLock);
 			_datas.push_back(point);
@@ -127,6 +147,9 @@ namespace sm{
 		void set_centroid (float* centre){
 			for (int i = 0; i < _dimension; i++)
 				_centroid[i] = centre[i];
+			float norm = ss::CalculateNorm<float>(_centroid.data(), _dimension);
+			for (int i = 0; i < _dimension; i++)
+				_unit_centroid[i] = _centroid[i]/ norm;
 		}
 
 		void update_centroid(){
@@ -134,13 +157,15 @@ namespace sm{
 				_centroid[i] = 0;
 			for (int i = 0; i < _size; i++){
 				float * appender = _datas[i]->get_data();
-				for(int j = 0; j < _dimension; j++){
+				for(int j = 0; j < _dimension; j++)
 					_centroid[j] += appender[j] / _size;
-				}
 			}
+			float norm = ss::CalculateNorm<float>(_centroid.data(), _dimension);
+			for (int i = 0; i < _dimension; i++)
+				_unit_centroid[i] = _centroid[i]/ norm;
 		}
 
-		void cluster_balanced (int iteration){
+		void cluster_balanced_hungarain (int iteration){
 			for (int i = 0; i < _aimNPartition; i++){
 				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
 				_childrens.push_back(buffer);
@@ -195,6 +220,40 @@ namespace sm{
 			wFile.close();
 		}
 
+		void cluster_balanced (int iteration){
+			float NoverK = _size / _aimNPartition;
+
+			for (int i = 0; i < _aimNPartition; i++){
+				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
+				buffer->set_balance_size(NoverK);
+				_childrens.push_back(buffer);
+			}
+
+			for (int i = 0; i < iteration; i++){
+				for (int j = 0; j < _aimNPartition; j++)
+					_childrens[j]->reset_data();
+#pragma omp parallel for
+				for(int j = 0; j < _size; j++){
+					int label = _datas[j]->assign_cluster(&_childrens, true, NoverK);
+					insert_point (label, _datas[j]);
+				}
+
+			//   cout << "finish assign cluster" << endl;
+
+#pragma omp parallel for
+				for(int j = 0; j < _childrens.size(); j++){
+					_childrens[j]->update_centroid();
+				}
+
+				//cout << "finish update centroid" << endl;
+			}
+
+			for (int i = 0; i < _aimNPartition; i++){
+				_childrens[i]->set_aimNPartition(1);
+				_childrens[i]->set_done();
+			}
+		}
+
 		void cluster_binary (int iteration){
 			Cluster* c1 = new Cluster(_dimension, _datas[0]->get_data());
 			Cluster* c2 = new Cluster(_dimension, _datas[1]->get_data());
@@ -208,7 +267,7 @@ namespace sm{
 					_childrens[j]->reset_data();
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
-					_datas[j]->assign_cluster(&_childrens);
+					_datas[j]->assign_cluster(&_childrens, false);
 				}
 
             //   cout << "finish assign cluster" << endl;
@@ -249,6 +308,10 @@ namespace sm{
 			return &_centroid;
 		}
 
+		vector<float> * get_unit_centroid(){
+			return &_unit_centroid;
+		}
+
 		int get_size (){
 			return _size;
 		}
@@ -269,21 +332,50 @@ namespace sm{
 			_size = 0;
 			_datas.resize(0);
 		}
+
+		float get_balance_size (){
+			float result = 0;
+			omp_set_lock (&_appendLock);
+			result = _balance_size;
+			omp_unset_lock (&_appendLock);
+			return result;
+		}
+
+		void set_balance_size (float sizer){
+			_balance_size = sizer;
+		}
 	};
 
-	void Point::assign_cluster (vector<Cluster*> *clusters){
-				int label = -1;
-				float dister = FLT_MAX;
-				int size = clusters->size();
-				for (int i = 0; i < size; i++){
-					float dist = L2_dist ((*clusters)[i]->get_centroid());
-					if (dist < dister){
-						label = i;
-						dister = dist;
-					}
+	int Point::assign_cluster (vector<Cluster*> *clusters, bool balance = true, float NoverK){
+		if (balance){
+			int label = -1;
+			float balance_dister = FLT_MIN;
+			int size = clusters->size();
+			for (int i = 0; i < size; i ++){
+				float nh = (*clusters)[i]->get_balance_size();
+				float dist = (IP_dist((*clusters)[i]->get_unit_centroid()) + 1 - nh / NoverK / _dimension * std::log(nh)) / nh;
+				if (dist > balance_dister){
+					label = i;
+					balance_dister = dist;
 				}
-				clusters->at(label)->append_point(this);
 			}
+			return label;
+		}
+		else{
+			int label = -1;
+			float dister = FLT_MAX;
+			int size = clusters->size();
+			for (int i = 0; i < size; i++){
+				float dist = L2_dist ((*clusters)[i]->get_centroid());
+				if (dist < dister){
+					label = i;
+					dister = dist;
+				}
+			}
+			clusters->at(label)->append_point(this);
+			return 0;
+		}
+	}
 
 	struct cmp{
 	    bool operator() ( Cluster* a , Cluster* b ){
