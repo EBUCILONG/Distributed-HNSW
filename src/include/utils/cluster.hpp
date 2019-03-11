@@ -158,8 +158,10 @@ namespace sm{
 			for (int i = 0; i < _size; i++){
 				float * appender = _datas[i]->get_data();
 				for(int j = 0; j < _dimension; j++)
-					_centroid[j] += appender[j] / _size;
+					_centroid[j] += appender[j] ;
 			}
+			for (int i = 0; i < _dimension; i++)
+				_centroid[i] /= _size;
 			float norm = ss::CalculateNorm<float>(_centroid.data(), _dimension);
 			for (int i = 0; i < _dimension; i++)
 				_unit_centroid[i] = _centroid[i]/ norm;
@@ -383,7 +385,7 @@ namespace sm{
 	    }
 	};
 
-	void cluster_machine (ss::Matrix<float>* datas,std::string dire, int nPartition, int iteration, int bomber){
+	vector<Cluster*>* cluster_machine (ss::Matrix<float>* datas,std::string dire, int nPartition, int iteration, int bomber, vector<float>* centroids){
 		int dim = datas->getDim();
 		Cluster* root = new Cluster (dim, datas->operator [](0));
 
@@ -397,7 +399,7 @@ namespace sm{
 
 		root->set_aimNPartition(nPartition);
 		std::priority_queue<Cluster*, std::vector<Cluster*>, cmp> workList;
-		std::vector<Cluster*> readyList;
+		std::vector<Cluster*>* readyList = new std::vector<Cluster*>;
 		workList.push(root);
 
 
@@ -406,8 +408,8 @@ namespace sm{
 			workList.pop();
 
             if (aimer->done_or_not() || aimer->get_aim_partition() == 1){
-				readyList.push_back(aimer);
-                cout << "completed " << readyList.size()*1.0 / nPartition << endl;
+				readyList->push_back(aimer);
+                cout << "completed " << readyList->size()*1.0 / nPartition << endl;
                 continue;
             }
 			if (aimer->get_aim_partition() > bomber){
@@ -424,7 +426,7 @@ namespace sm{
 		}
 
 
-		assert (readyList.size() == nPartition);
+		assert (readyList->size() == nPartition);
 
 		std::ofstream wFile;
 		wFile.open(dire.c_str());
@@ -432,10 +434,58 @@ namespace sm{
 		wFile << nPartition << endl;
 
 		for (int i = 0; i < nPartition; i++){
-			wFile << i << " "<< readyList[i]->get_size() << endl;
-			for (int j = 0; j < readyList[i]->get_size(); j++)
-				wFile << readyList[i]->operator [](j)->get_index() << endl;
+			wFile << i << " "<< readyList->operator [](i)->get_size() << endl;
+			for (int j = 0; j < readyList->operator [](i)->get_size(); j++)
+				wFile << readyList->operator [](i)->operator [](j)->get_index() << endl;
 		}
+
+		wFile.close();
+
+		centroids = new vector<float>;
+		centroids->reserve(nPartition * dim);
+		for (int i = 0; i < nPartition; i++)
+			centroids->insert(centroids->end(), readyList->operator [](i)->get_centroid()->begin(), readyList->operator [](i)->get_centroid()->begin());
+
+		return readyList;
+	}
+
+	vector<Cluster*>* load_cluster(ss::Matrix<float>* datas, std::string cluster_file, vector<float>* centroids){
+		std::vector<Cluster*>* result = new std::vector<Cluster*>;
+		int dim = datas->getDim();
+		std::ifstream rFile;
+		rFile.open(cluster_file.c_str());
+		vector<Point*> points;
+		centroids = new vector<float>;
+
+		int numCluster = 0;
+		rFile >> numCluster;
+		centroids->reserve(dim * numCluster);
+
+		for (int i = 0; i < datas->getSize(); i++){
+			Point* newPoint = new Point(i, dim);
+			newPoint->set_data(datas->operator [](i));
+			points.push_back(newPoint);
+		}
+
+		for (int i = 0; i < numCluster; i++){
+			Cluster* newCluster = new Cluster (dim, datas->operator [](0));
+			int sizer = 0;
+			rFile >> sizer;
+			rFile >> sizer;
+			int index;
+
+			for (int j = 0; j < sizer; j++){
+				rFile >> index;
+				newCluster->append_point(points[index]);
+			}
+
+			newCluster->update_centroid();
+			result->push_back(newCluster);
+			centroids->insert(centroids->end(), newCluster->get_centroid()->begin(), newCluster->get_centroid()->end());
+		}
+
+		rFile.close();
+		return result;
 	}
 }
 

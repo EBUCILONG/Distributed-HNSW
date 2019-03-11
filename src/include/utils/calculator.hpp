@@ -31,11 +31,65 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <fstream>
+#include <cassert>
 
 namespace ss {
 
     using std::vector;
     using std::pair;
+
+    vector<float>* centroid_loader(ss::Matrix& datas, std::string inFile, bool save, std::string outFile = NULL){
+    	std::ifstream rFile;
+    	rFile.open(inFile.c_str());
+    	int dimension = datas.getDim();
+    	int numCluster = 0;
+    	rFile >> numCluster;
+
+    	vector<float>* centroid_data = new std::vector<float>;
+    	centroid_data->reserve(numCluster * dimension);
+
+    	for (int i = 0; i < numCluster; i++){
+    		int sizer = 0;
+    		rFile >> sizer;
+    		rFile >> sizer;
+    		vector<int> members;
+			vector<float> centroid(dimension, 0);
+
+    		for (int j = 0; j < sizer; j++){
+    			int son = 0;
+    			rFile >> son;
+    			members.push_back(son);
+    		}
+
+    		for (int k = 0; k < sizer; k++){
+				float* data = datas[members[i]];
+				for (int j = 0; j < dimension; j++){
+					centroid[j] += data[j];
+				}
+			}
+
+    		for (int k = 0; k < dimension; k++)
+    			centroid_data->push_back(centroid[k]/sizer);
+    	}
+
+    	rFile.close();
+
+    	assert (centroid_data->size() == numCluster * dimension);
+
+    	if (save){
+    		std::ofstream wFile;
+    		wFile.open(outFile.c_str());
+
+    		wFile << numCluster << " " << dimension << std::endl;
+        	for (int i = 0; i < numCluster * dimension; i++)
+        		wFile << centroid_data->operator [](i) << " ";
+
+        	wFile.close();
+    	}
+
+    	return &centroid_data;
+    }
 
     template <typename FirstType, typename SencondType>
     void SortPairByFirst(vector<std::pair<FirstType, SencondType> > * _sorted_bucket) {

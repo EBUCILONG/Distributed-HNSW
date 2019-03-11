@@ -30,6 +30,7 @@
 #include <vector>
 #include <utility>
 #include <fstream>
+#include <omp.h>
 
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options.hpp>
@@ -44,6 +45,8 @@
 #include "metric.hpp"
 #include "utils/util.hpp"
 #include "utils/cluster.hpp"
+#include "hnswlib/hnswlib.h"
+#include "hnswlib/space_l2.h"
 
 using namespace std;
 using namespace ss;
@@ -75,7 +78,11 @@ void LoadOptions(int argc, char **argv, parameter &para) {
         ("graph_knn",        po::value<string >(&para.graph_knn),                          "k nearest neighbors")
 		//("codebook_file,cf", po::value<string >(&para.codebook_file),					   "code_books file for aq")
 		//("encodes_file,ef",  po::value<string >(&para.encodes_file),					   "encodes file for aq")
+		("out_dir,od",       po::value<string > (&para.out_dir),                            "the output dir for some in processing data")
         ("output_file,ef",   po::value<string >(&para.output_file),					       "output file for aq")
+		("load_cluster,lf",  po::value<int    >(&para.load_cluster),					   "indicator whether load clusters")
+		("cluster_file,cf",  po::value<string >(&para.cluster_file),					   "cluster file")
+  		("graph_file,gf",    po::value<string >(&para.graph_file),                        "graph_file")
     ;
 
     po::variables_map vm;
@@ -115,10 +122,34 @@ int SearchIterative(parameter &para) {
     para.origin_dim = train_data.getDim();
 
     cout << "ready to enter cluster machine" << endl;
-    sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance);
+    std::vector<sm::Cluster*>* clusters;
+    std::vector<float>* centroids;
 
+    if (para.load_cluster)
+    	clusters = sm::load_cluster(&train_data, para.cluster_file, centroids);
+    else
+    	clusters = sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance, centroids);
 
+    std::ofstream wFile;
+    wFile.open((para.out_dir + "centroids").c_str());
+    wFile << para.partition << " " << para.dim << std::endl;
+    for (int i = 0; i < para.partition * para.dim; i++)
+    	wFile << centroids->operator [](i) << " " << std::endl;
 
+    int vecdim = para.dim;
+    float* mass = centroids->data();
+    hnswlib::L2Space l2space(para.dim);
+    hnswlib::HierarchicalNSW<float> appr_alg(&l2space, para.train_size, 32, 500);
+
+    for (int i = 0; i < 1; i++) {
+            appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
+        }
+#pragma omp parallel for
+        for (int i = 1; i < para.train_size; i++) {
+            appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
+        }
+
+        appr_alg.save_level_zero(para.graph_file);
     //MetricType metric(para.origin_dim);
 
     /*cout << "#[training] initial the index." << endl;

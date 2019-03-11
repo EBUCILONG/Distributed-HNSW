@@ -42,8 +42,16 @@ namespace ss{
         /// file name of ground truth file(exact top-k nearest neighbor)
         std::string ground_truth;
 
+        std::string out_dir;
+
         std::string output_file;
 
+        std::string cluster_file;
+
+        std::string graph_file;
+
+        //int boolean to indicate whether load clusters from file
+        int load_cluster;
 
         int partition;
 
