@@ -47,7 +47,7 @@ namespace hnswlib {
             ef_ = 10;
 
             level_generator_.seed(random_seed);
-            
+
             size_links_level0_ = maxM0_ * sizeof(tableint) + sizeof(linklistsizeint);
             size_data_per_element_ = size_links_level0_ + data_size_ + sizeof(labeltype);
             offsetData_ = size_links_level0_;
@@ -227,18 +227,18 @@ namespace hnswlib {
         void save_level_zero(std::string outDir){
         	std::ofstream output(outDir.c_str());
 
-        	output << data_size_ << std::endl;
-        	for (int i = 0; i < data_size_; i++){
+            output << max_elements_ << endl;
+        	for (int i = 0; i < max_elements_; i++){
         		int *data = (int *) (data_level0_memory_ + i * size_data_per_element_ + offsetLevel0_);
         		int size = *data;
-        		output << getExternalId(i) << " " << size << std::endl;
+        		output << getExternalLabel(i) << " " << size << std::endl;
         		for (int j = 1; j < size; j++){
         			int candidate_id = *(data + j);
-        			candidate_id = getExternalId(candidate_id);
+        			candidate_id = getExternalLabel(candidate_id);
         			output << candidate_id << " ";
         		}
         		int candidate_id = *(data + size);
-        		candidate_id = getExternalId(candidate_id);
+        		candidate_id = getExternalLabel(candidate_id);
         		output << candidate_id << std::endl;
         	}
 

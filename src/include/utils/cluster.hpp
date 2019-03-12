@@ -114,6 +114,7 @@ namespace sm{
 		explicit Cluster (int dimension, float* centre): _size(0), _balance_size (-1),
 			_aimNPartition(NOTKNOWN), _dimension(dimension), _done (false){
 			_centroid.resize(_dimension);
+            _unit_centroid.resize(_dimension);
 			set_centroid (centre);
 			omp_init_lock(&_appendLock);
             _childrens.resize(0);
@@ -454,12 +455,17 @@ namespace sm{
 		int dim = datas->getDim();
 		std::ifstream rFile;
 		rFile.open(cluster_file.c_str());
+        if (!rFile) {
+            std::cout << "cannot open file " << cluster_file.c_str() << std::endl;
+            assert(false);
+        }
 		vector<Point*> points;
-		centroids = new vector<float>;
+
 
 		int numCluster = 0;
 		rFile >> numCluster;
 		centroids->reserve(dim * numCluster);
+
 
 		for (int i = 0; i < datas->getSize(); i++){
 			Point* newPoint = new Point(i, dim);
@@ -467,21 +473,25 @@ namespace sm{
 			points.push_back(newPoint);
 		}
 
+
 		for (int i = 0; i < numCluster; i++){
 			Cluster* newCluster = new Cluster (dim, datas->operator [](0));
 			int sizer = 0;
+            rFile >> sizer;
 			rFile >> sizer;
-			rFile >> sizer;
-			int index;
+            int index;
+
 
 			for (int j = 0; j < sizer; j++){
 				rFile >> index;
 				newCluster->append_point(points[index]);
 			}
 
+
 			newCluster->update_centroid();
 			result->push_back(newCluster);
 			centroids->insert(centroids->end(), newCluster->get_centroid()->begin(), newCluster->get_centroid()->end());
+
 		}
 
 		rFile.close();

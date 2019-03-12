@@ -80,9 +80,9 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		//("encodes_file,ef",  po::value<string >(&para.encodes_file),					   "encodes file for aq")
 		("out_dir,od",       po::value<string > (&para.out_dir),                            "the output dir for some in processing data")
         ("output_file,ef",   po::value<string >(&para.output_file),					       "output file for aq")
-		("load_cluster,lf",  po::value<int    >(&para.load_cluster),					   "indicator whether load clusters")
+		("load_cluster",  po::value<int    >(&para.load_cluster),					   "indicator whether load clusters")
 		("cluster_file,cf",  po::value<string >(&para.cluster_file),					   "cluster file")
-  		("graph_file,gf",    po::value<string >(&para.graph_file),                        "graph_file")
+  		("graph_file,x",    po::value<string >(&para.graph_file),                        "graph_file")
     ;
 
     po::variables_map vm;
@@ -123,33 +123,56 @@ int SearchIterative(parameter &para) {
 
     cout << "ready to enter cluster machine" << endl;
     std::vector<sm::Cluster*>* clusters;
-    std::vector<float>* centroids;
+    std::vector<float>* centroids = new std::vector<float>;
 
     if (para.load_cluster)
     	clusters = sm::load_cluster(&train_data, para.cluster_file, centroids);
     else
     	clusters = sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance, centroids);
 
+
+    cout << "finish loading clusters" << endl;
+
+    if (clusters->size() != para.partition){
+        cout << "wrong num partition input in shell file" << endl;
+        assert (false);
+    }
+
     std::ofstream wFile;
-    wFile.open((para.out_dir + "centroids").c_str());
+    wFile.open((para.out_dir + "/centroids").c_str());
+    if (!wFile) {
+                std::cout << "cannot open file " << para.out_dir.c_str() << std::endl;
+                assert(false);
+            }
+    cout << "now"<<centroids->size() << endl;
     wFile << para.partition << " " << para.dim << std::endl;
     for (int i = 0; i < para.partition * para.dim; i++)
-    	wFile << centroids->operator [](i) << " " << std::endl;
+    	wFile << centroids->operator [](i) << " ";
+
+    cout << "finish output centroids" << endl;
 
     int vecdim = para.dim;
     float* mass = centroids->data();
     hnswlib::L2Space l2space(para.dim);
-    hnswlib::HierarchicalNSW<float> appr_alg(&l2space, para.train_size, 32, 500);
+    hnswlib::HierarchicalNSW<float> appr_alg(&l2space, para.partition, 32, 500);
+
+    cout << "here" << endl;
 
     for (int i = 0; i < 1; i++) {
             appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
         }
+
+    cout << "after" << endl;
 #pragma omp parallel for
-        for (int i = 1; i < para.train_size; i++) {
+        for (int i = 1; i < para.partition; i++) {
             appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
         }
 
+        cout << "zhunbei dayin" << endl;
+
         appr_alg.save_level_zero(para.graph_file);
+
+        cout << "finish dayin" << endl;
     //MetricType metric(para.origin_dim);
 
     /*cout << "#[training] initial the index." << endl;
