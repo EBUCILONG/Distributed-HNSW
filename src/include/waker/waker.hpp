@@ -27,6 +27,7 @@ namespace sm {
 
 	class Waker{
 	private:
+		vector<int> _wake_counter;
 		int _num_cluster;
 		vector<int> _map;
 		vector<int> _wake_num;
@@ -37,6 +38,7 @@ namespace sm {
 			_querys(querys),
 			_num_cluster(num),
 			_hnsw(hnsw){
+			_wake_counter.resize(10, 0);
 			std::ifstream rFile(file);
 			if(!rFile){
 				cout << "#[error ] cannot open partition file from: " << file << endl;
@@ -67,6 +69,7 @@ namespace sm {
 			std::set<int> set;
 			for (int i = 0; i < result.size(); i++){
 				set.insert(_map[(int) result.top().second]);
+				_wake_counter[_map[(int) result.top().second]]++;
 				result.pop();
 			}
 			return set.size();
@@ -78,6 +81,10 @@ namespace sm {
 				std::priority_queue<std::pair<float, long unsigned int > > result = _hnsw.searchKnn(_querys[i], k);
 				_wake_num.push_back(getWaker(result));
 			}
+		}
+
+		vector<int>* getWakeCounter(){
+			return &_wake_counter;
 		}
 
 		float getAverWake(){
