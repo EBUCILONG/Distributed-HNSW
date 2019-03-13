@@ -90,8 +90,10 @@ namespace sm {
 				cout << "33" << endl;
 				result.pop();
 			}
+			cout << "44" << endl;
 			vector<int> waker;
 			std::copy(set.begin(), set.end(), waker.begin());
+			cout << "55" << endl;
 			return waker;
 		}
 
