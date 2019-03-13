@@ -43,7 +43,7 @@ namespace sm{
 		}
 
 		vector<pair<float, int > > probe_query(int i){
-			vector<int> member = _waker->getMember();
+			vector<int> member = _waker->getMember(i);
 			priority_queue<pair<float, int>, std::vector<pair<float, int > >, CompareByFirst> answer;
 			for (int j = 0; j < member.size(); j++){
 				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](member[j])->searchKnn(_queries->operator [](i), _k);
