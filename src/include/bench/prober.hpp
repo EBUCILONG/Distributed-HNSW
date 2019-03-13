@@ -16,6 +16,8 @@
 using std::vector;
 using std::priority_queue;
 using std::pair;
+using std::cout;
+using std::endl;
 
 #include "hnswlib/hnswalg.h"
 #include "matrix.hpp"
@@ -64,11 +66,16 @@ namespace sm{
 		}
 
 		vector<vector<pair<float, int > > > probe(){
+			cout << "1" << endl;
 			vector<vector<pair<float, int > > > returner;
+			cout << "2" << endl;
 			int sizer = _queries->getSize();
 			returner.resize(sizer);
-			for (int i = 0; i < sizer; i++)
+			cout << "3" << endl;
+			for (int i = 0; i < sizer; i++){
 				returner.push_back(probe_query(i));
+				cout << "done once" << endl;
+			}
 			return returner;
 		}
 
