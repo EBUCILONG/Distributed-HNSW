@@ -45,22 +45,22 @@ namespace sm{
 		}
 
 		vector<pair<float, int > > probe_query(int i){
-			cout << "1" << endl;
+			//cout << "1" << endl;
 			vector<int> member = _waker->wakeUp(i, 100);
-			cout << "2" << endl;
+			//cout << "2" << endl;
 			priority_queue<pair<float, int>, std::vector<pair<float, int > >, CompareByFirst> answer;
 			//cout << "1" << endl;
 			for (int j = 0; j < member.size(); j++){
-				cout << "2" << endl;
-				cout << "member: " << member[j] << endl;
+				//cout << "2" << endl;
+				//cout << "member: " << member[j] << endl;
 				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](member[j])->searchKnn(_queries->operator [](i), _k);
-				cout << "3" << endl;
+				//cout << "3" << endl;
 				for (int k = 0; k < result.size(); k++){
-					cout << "4" << endl;
+					//cout << "4" << endl;
 					const pair<float, long unsigned int>& p = result.top();
 					float first = p.first;
 					int second = (int) p.second;
-					cout << "5" << endl;
+					//cout << "5" << endl;
 					answer.push(std::make_pair(first, second));
 					result.pop();
 				}

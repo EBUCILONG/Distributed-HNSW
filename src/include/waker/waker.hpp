@@ -83,17 +83,12 @@ namespace sm {
 			std::priority_queue<std::pair<float, long unsigned int > > result = _hnsw.searchKnn(_querys[index], k);
 			std::set<int> set;
 			for (int i = 0; i < result.size(); i++){
-				cout << "11" << endl;
 				set.insert(_map[(int) result.top().second]);
-				cout << "22" << endl;
 				_wake_counter[_map[(int) result.top().second]]++;
-				cout << "33" << endl;
 				result.pop();
 			}
-			cout << "44" << endl;
-			vector<int> waker;
+			vector<int> waker(set.size());
 			std::copy(set.begin(), set.end(), waker.begin());
-			cout << "55" << endl;
 			return waker;
 		}
 
