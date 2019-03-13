@@ -42,6 +42,8 @@ namespace ss{
         /// file name of ground truth file(exact top-k nearest neighbor)
         std::string ground_truth;
 
+        std::string partition_file;
+
         std::string out_dir;
 
         std::string output_file;

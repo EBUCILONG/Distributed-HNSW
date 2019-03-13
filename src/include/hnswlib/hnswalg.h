@@ -4,6 +4,7 @@
 #include "hnswlib.h"
 #include <random>
 #include <iostream>
+#include <queue>
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>

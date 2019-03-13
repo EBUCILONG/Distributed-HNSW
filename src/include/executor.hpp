@@ -40,6 +40,7 @@
 
 #include <boost/format.hpp>
 
+#include "bench/bencher.hpp"
 #include "parameters.hpp"
 #include "matrix.hpp"
 #include "metric.hpp"
@@ -47,6 +48,7 @@
 #include "utils/cluster.hpp"
 #include "hnswlib/hnswlib.h"
 #include "hnswlib/space_l2.h"
+#include "waker/waker.hpp"
 
 using namespace std;
 using namespace ss;
@@ -80,9 +82,10 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		//("encodes_file,ef",  po::value<string >(&para.encodes_file),					   "encodes file for aq")
 		("out_dir,od",       po::value<string > (&para.out_dir),                            "the output dir for some in processing data")
         ("output_file,ef",   po::value<string >(&para.output_file),					       "output file for aq")
-		("load_cluster",  po::value<int    >(&para.load_cluster),					   "indicator whether load clusters")
+		("load_cluster",  	 po::value<int    >(&para.load_cluster),					   "indicator whether load clusters")
 		("cluster_file,cf",  po::value<string >(&para.cluster_file),					   "cluster file")
-  		("graph_file,x",    po::value<string >(&para.graph_file),                        "graph_file")
+  		("graph_file,x",     po::value<string >(&para.graph_file),                         "graph_file")
+		("partition_file,s", po::value<string >(&para.partition_file),                     "partition_file")
     ;
 
     po::variables_map vm;
@@ -102,77 +105,81 @@ int SearchIterative(parameter &para) {
     cout    << "#==============================================================================" << endl;
     cout    << "#==============================================================================" << endl;
     cout    << "#[loading ] loading ground truth " << endl;
-    //Bencher truth_bench(para.ground_truth.c_str());
+    Bencher truth_bench(para.ground_truth.c_str());
 
     cout << "#[loading ] loading fvecs data                                    " ;
     time_recorder.restart();
-    cout    << "loding base file from : " << para.train_data << endl;
+    cout    << "#[loading ] loding base file from : " << para.train_data << endl;
     ss::Matrix<DataType> train_data(para.train_data);
-    //Matrix<DataType> base_data (para.base_data);
-    cout    << "loding query file from : " << para.query_data << endl;
-
+    ss::Matrix<DataType> base_data (para.base_data);
+    cout    << "#[loading ] loding query file from : " << para.query_data << endl;
     ss::Matrix<DataType> query_data(para.query_data);
     cout << "using time :" << time_recorder.elapsed() << endl;
 
-    //para.topK       = truth_bench.getTopK();
+    para.topK       = truth_bench.getTopK();
     para.train_size = train_data.getSize();
-    //para.base_size  = base_data.getSize();
+    para.base_size  = base_data.getSize();
     para.query_size = query_data.getSize();
     para.dim        = train_data.getDim() + para.transformed_dim; /// useful when add dimensions for some algorithm
     para.origin_dim = train_data.getDim();
 
-    cout << "ready to enter cluster machine" << endl;
-    std::vector<sm::Cluster*>* clusters;
-    std::vector<float>* centroids = new std::vector<float>;
-
-    if (para.load_cluster)
+    cout << "#[training ] preparing clusters" << endl;
+    std::vector<sm::Cluster*> clusters;
+    std::vector<float> centroids;
+    if (para.load_cluster){
     	clusters = sm::load_cluster(&train_data, para.cluster_file, centroids);
+    	if (clusters.size() != para.partition){
+			cout << "#[error ]wrong num partition input in shell file" << endl;
+			assert (false);
+		}
+    }
     else
     	clusters = sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance, centroids);
 
-
-    cout << "finish loading clusters" << endl;
-
-    if (clusters->size() != para.partition){
-        cout << "wrong num partition input in shell file" << endl;
-        assert (false);
-    }
-
+    cout << "#[temprory ] save centroids in: " << para.out_dir << "/centroids" << endl;
     std::ofstream wFile;
     wFile.open((para.out_dir + "/centroids").c_str());
     if (!wFile) {
-                std::cout << "cannot open file " << para.out_dir.c_str() << std::endl;
+                std::cout << "#[error ] cannot open file " << para.out_dir.c_str() << std::endl;
                 assert(false);
             }
-    cout << "now"<<centroids->size() << endl;
     wFile << para.partition << " " << para.dim << std::endl;
     for (int i = 0; i < para.partition * para.dim; i++)
-    	wFile << centroids->operator [](i) << " ";
+    	wFile << centroids[i] << " ";
+    wFile.close();
 
-    cout << "finish output centroids" << endl;
-
+    cout << "#[training ] training hnsw on centroids" << endl;
     int vecdim = para.dim;
-    float* mass = centroids->data();
+    float* mass = centroids.data();
     hnswlib::L2Space l2space(para.dim);
     hnswlib::HierarchicalNSW<float> appr_alg(&l2space, para.partition, 32, 500);
-
-    cout << "here" << endl;
-
     for (int i = 0; i < 1; i++) {
             appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
         }
-
-    cout << "after" << endl;
 #pragma omp parallel for
-        for (int i = 1; i < para.partition; i++) {
-            appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
-        }
+	for (int i = 1; i < para.partition; i++) {
+		appr_alg.addPoint((void *) (mass + vecdim * i), (size_t) i);
+	}
 
-        cout << "zhunbei dayin" << endl;
+	cout << "#[temprory ] save hnsw on centroids in: " << para.graph_file << endl;
+    appr_alg.save_level_zero(para.graph_file);
 
-        appr_alg.save_level_zero(para.graph_file);
+    sm::Waker waker(para.partition, para.partition_file.c_str(), query_data, appr_alg);
 
-        cout << "finish dayin" << endl;
+    const char * spliter = "||";
+	cout << " k  " << spliter
+		 << "aver"<<spliter
+		 << " std" << endl;
+
+    for (int i = 10; i += 10; i < 1000){
+    	waker.testWake(i);
+    	cout << i << " " << spliter
+			 << waker.getAverWake() <<spliter
+			 << waker.getStdWake()  << endl;
+    }
+
+
+
     //MetricType metric(para.origin_dim);
 
     /*cout << "#[training] initial the index." << endl;
