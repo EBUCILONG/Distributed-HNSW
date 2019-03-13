@@ -4,6 +4,7 @@
  *  Created on: 12 Mar 2019
  *      Author: oruqimaru
  */
+#pragma once
 
 #include <vector>
 #include <iostream>
