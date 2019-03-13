@@ -78,10 +78,8 @@ namespace sm{
 			cout << "2" << endl;
 			int sizer = _queries->getSize();
 			cout << "3" << endl;
-			returner.resize(sizer);
 			for (int i = 0; i < sizer; i++){
 				returner.push_back(probe_query(i));
-				cout << "finish once" << endl;
 			}
 			return returner;
 		}
