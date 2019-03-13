@@ -127,7 +127,7 @@ int SearchIterative(parameter &para) {
     std::vector<sm::Cluster*>* clusters;
     std::vector<float> centroids;
     if (para.load_cluster){
-    	clusters = sm::load_cluster(&train_data, para.cluster_file, centroids);
+    	clusters = sm::load_cluster(train_data, para.cluster_file, centroids);
     	if (clusters->size() != para.partition){
 			cout << "#[error ]wrong num partition input in shell file" << endl;
 			assert (false);

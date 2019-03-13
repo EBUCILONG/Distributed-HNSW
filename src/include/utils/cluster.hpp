@@ -386,14 +386,14 @@ namespace sm{
 	    }
 	};
 
-	vector<Cluster*>* cluster_machine (ss::Matrix<float>* datas,std::string dire, int nPartition, int iteration, int bomber, vector<float>& centroids){
-		int dim = datas->getDim();
-		Cluster* root = new Cluster (dim, datas->operator [](0));
+	vector<Cluster*>* cluster_machine (ss::Matrix<float>& datas,std::string dire, int nPartition, int iteration, int bomber, vector<float>& centroids){
+		int dim = datas.getDim();
+		Cluster* root = new Cluster (dim, datas[0]);
 
 
-        for (int i = 0; i < datas->getSize(); i++){
+        for (int i = 0; i < datas.getSize(); i++){
 			Point* newPoint = new Point(i, dim);
-			newPoint->set_data(datas->operator [](i));
+			newPoint->set_data(datas[i]);
 			root->append_point(newPoint);
 		}
 
