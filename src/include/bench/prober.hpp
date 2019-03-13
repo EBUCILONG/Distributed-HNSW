@@ -45,7 +45,7 @@ namespace sm{
 			for (int j = 0; j < _hnsws->size(); j++){
 				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](j)->searchKnn(_queries->operator [](i), _k);
 				for (int k = 0; k < result.size(); k++){
-					pair<float, long unsigned int>& p = result.top();
+					const pair<float, long unsigned int>& p = result.top();
 					answer.push(std::make_pair<float, int>(p.first, (int) p.second));
 					result.pop();
 				}
