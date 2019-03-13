@@ -48,7 +48,7 @@ namespace sm{
 					const pair<float, long unsigned int>& p = result.top();
 					float first = p.first;
 					int second = (int) p.second;
-					answer.push(std::make_pair<float, int>(first, second));
+					answer.push(std::make_pair(first, second));
 					result.pop();
 				}
 			}
