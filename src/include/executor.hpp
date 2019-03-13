@@ -187,7 +187,7 @@ int SearchIterative(parameter &para) {
     //TODO: change num machine to changable
     vector<hnswlib::HierarchicalNSW<float>* > hnsws;
 
-    cout << "#[training ] prepare wake map" << endl;
+    /*cout << "#[training ] prepare wake map" << endl;
     for (int i = 0; i < 10; i++){
     	vector<int> member = waker.getMember(i);
     	int max_size = 0;
@@ -208,17 +208,24 @@ int SearchIterative(parameter &para) {
     			hnsws[i]->addPoint(candi->operator [](k)->get_data(), candi->operator [](k)->get_index());
     		}
     	}
-    }
+    }*/
 
-    cout << "#[temporary ] saving sub hnsws" << endl;
+    /*cout << "#[temporary ] saving sub hnsws" << endl;
     for (int i = 0; i < 10; i++){
     	hnsws[i]->saveIndex(para.out_dir + "/hnsw" + std::to_string(i));
-    }
+    }*/
+
+    cout << "#[temporary ] saving sub hnsws" << endl;
+	for (int i = 0; i < 10; i++){
+		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/hnsw" + std::to_string(i));
+		hnsws.push_back(new_hnsw);
+	}
 
     cout << "#[testing ] start query" << endl;
     sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK, &waker);
+    cout << "#[testing ] start probe" << endl;
     vector<vector<pair<float, int > > >   current_topK = prober.probe();
-
+    cout << "#[testing ] intial bench" << endl;
     Bencher current_bench(current_topK, false);
 
     cout << "#[temporary ] ready to output recall" << endl;
