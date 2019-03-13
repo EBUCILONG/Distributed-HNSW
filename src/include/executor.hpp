@@ -211,7 +211,7 @@ int SearchIterative(parameter &para) {
     }
 
     cout << "#[testing ] start query" << endl;
-    sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK);
+    sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK, &waker);
     vector<vector<pair<float, int > > >   current_topK = prober.probe();
 
     Bencher current_bench(current_topK, false);

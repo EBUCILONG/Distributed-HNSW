@@ -19,10 +19,12 @@ using std::pair;
 
 #include "hnswlib/hnswalg.h"
 #include "matrix.hpp"
+#include "waker/waker.hpp"
 
 namespace sm{
 	class Prober{
 	private:
+		Waker* _waker;
 		int _k;
 		vector<hnswlib::HierarchicalNSW<float>*>* _hnsws;
 		ss::Matrix<float>* _queries;
@@ -35,15 +37,16 @@ namespace sm{
 			}
 		};
 
-		Prober(vector<hnswlib::HierarchicalNSW<float>*>* hnsws, ss::Matrix<float>* queries, int k):
-			_k(k), _hnsws(hnsws), _queries(queries){
+		Prober(vector<hnswlib::HierarchicalNSW<float>*>* hnsws, ss::Matrix<float>* queries, int k, Waker* waker):
+			_k(k), _hnsws(hnsws), _queries(queries), _waker(waker){
 			_answer.resize(_queries->getSize());
 		}
 
 		vector<pair<float, int > > probe_query(int i){
+			vector<int> member = _waker->getMember();
 			priority_queue<pair<float, int>, std::vector<pair<float, int > >, CompareByFirst> answer;
-			for (int j = 0; j < _hnsws->size(); j++){
-				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](j)->searchKnn(_queries->operator [](i), _k);
+			for (int j = 0; j < member.size(); j++){
+				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](member[j])->searchKnn(_queries->operator [](i), _k);
 				for (int k = 0; k < result.size(); k++){
 					const pair<float, long unsigned int>& p = result.top();
 					float first = p.first;
