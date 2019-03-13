@@ -80,7 +80,9 @@ namespace sm {
 				cout << "#[error ] too big index in waker" << endl;
 				assert(false);
 			}
+			cout << "11" << endl;
 			std::priority_queue<std::pair<float, long unsigned int > > result = _hnsw.searchKnn(_querys[index], k);
+			cout << "22" <<endl;
 			std::set<int> set;
 			for (int i = 0; i < result.size(); i++){
 				set.insert(_map[(int) result.top().second]);
