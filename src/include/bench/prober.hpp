@@ -35,7 +35,7 @@ namespace sm{
 		struct CompareByFirst {
 			constexpr bool operator()(pair<float, int> const &a,
 									  pair<float, int> const &b) const noexcept {
-				return a.first < b.first;
+				return a.first > b.first;
 			}
 		};
 
@@ -66,7 +66,7 @@ namespace sm{
 				}
 			}
 			vector<pair<float, int > > returner;
-			cout << "finish for" << endl;
+			//cout << "finish for" << endl;
 			for (int j = 0; j < _k; j++){
 				returner.push_back(answer.top());
 				answer.pop();
