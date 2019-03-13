@@ -47,12 +47,17 @@ namespace sm{
 		vector<pair<float, int > > probe_query(int i){
 			vector<int> member = _waker->getMember(i);
 			priority_queue<pair<float, int>, std::vector<pair<float, int > >, CompareByFirst> answer;
+			cout << "1" << endl;
 			for (int j = 0; j < member.size(); j++){
+				cout << "2" << endl;
 				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](member[j])->searchKnn(_queries->operator [](i), _k);
+				cout << "3" << endl;
 				for (int k = 0; k < result.size(); k++){
+					cout << "4" << endl;
 					const pair<float, long unsigned int>& p = result.top();
 					float first = p.first;
 					int second = (int) p.second;
+					cout << "5" << endl;
 					answer.push(std::make_pair(first, second));
 					result.pop();
 				}
@@ -66,15 +71,11 @@ namespace sm{
 		}
 
 		vector<vector<pair<float, int > > > probe(){
-			cout << "1" << endl;
 			vector<vector<pair<float, int > > > returner;
-			cout << "2" << endl;
 			int sizer = _queries->getSize();
 			returner.resize(sizer);
-			cout << "3" << endl;
 			for (int i = 0; i < sizer; i++){
 				returner.push_back(probe_query(i));
-				cout << "done once" << endl;
 			}
 			return returner;
 		}
