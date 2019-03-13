@@ -180,7 +180,7 @@ int SearchIterative(parameter &para) {
 
     vector<int>* counters = waker.getWakeCounter();
     for(int i = 0; i < counters->size(); i++)
-    	cout << counters[i] << endl;
+    	cout << counters->operator [](i) << endl;
 
 
 
