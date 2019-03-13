@@ -35,7 +35,7 @@ namespace sm{
 			}
 		};
 
-		Prober(vector<hnswlib::HierarchicalNSW<float>*>* hnsws, ss::Matrix* queries, int k):
+		Prober(vector<hnswlib::HierarchicalNSW<float>*>* hnsws, ss::Matrix<float>* queries, int k):
 			_k(k), _hnsws(hnsws), _queries(queries){
 			_answer.resize(_queries->getSize());
 		}
