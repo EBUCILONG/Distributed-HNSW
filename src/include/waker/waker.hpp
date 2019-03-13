@@ -63,10 +63,10 @@ namespace sm {
 			_wake_num.resize(0);
 		}
 
-		int getWaker(std::priority_queue<std::pair<float, int > >& result){
+		int getWaker(std::priority_queue<std::pair<float, long unsigned int > >& result){
 			std::set<int> set;
 			for (int i = 0; i < result.size(); i++){
-				set.insert(_map[result.top().second]);
+				set.insert(_map[(int) result.top().second]);
 				result.pop();
 			}
 			return set.size();
@@ -75,7 +75,7 @@ namespace sm {
 		void testWake (int k){
 			reset_wake_num();
 			for (int i = 0; i < _querys.getSize(); i++){
-				std::priority_queue<std::pair<float, int > > result = _hnsw.searchKnn(_querys[i], k);
+				std::priority_queue<std::pair<float, long unsigned int > > result = _hnsw.searchKnn(_querys[i], k);
 				_wake_num.push_back(getWaker(result));
 			}
 		}
