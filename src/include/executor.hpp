@@ -210,6 +210,11 @@ int SearchIterative(parameter &para) {
     	}
     }
 
+    cout << "#[temporary ] saving sub hnsws" << endl;
+    for (int i = 0; i < 10; i++){
+    	hnsws[i]->saveIndex(para.out_dir + "/hnsw" + std::to_string(i));
+    }
+
     cout << "#[testing ] start query" << endl;
     sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK, &waker);
     vector<vector<pair<float, int > > >   current_topK = prober.probe();
