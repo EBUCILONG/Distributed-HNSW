@@ -216,7 +216,9 @@ int SearchIterative(parameter &para) {
 
     Bencher current_bench(current_topK, false);
 
-    cout << truth_bench.avg_recall(current_bench)                    << "\n";
+    cout << "#[temporary ] ready to output recall" << endl;
+
+    cout << truth_bench.avg_recall(current_bench) << endl;
 
     //MetricType metric(para.origin_dim);
 
