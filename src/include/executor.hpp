@@ -134,7 +134,7 @@ int SearchIterative(parameter &para) {
 		}
     }
     else
-    	clusters = sm::cluster_machine(&train_data, para.output_file, para.partition,para.iteration, para.max_balance, centroids);
+    	clusters = sm::cluster_machine(train_data, para.output_file, para.partition,para.iteration, para.max_balance, centroids);
 
     cout << "#[temprory ] save centroids in: " << para.out_dir << "/centroids" << endl;
     std::ofstream wFile;

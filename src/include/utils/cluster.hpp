@@ -449,9 +449,9 @@ namespace sm{
 		return readyList;
 	}
 
-	vector<Cluster*>* load_cluster(ss::Matrix<float>* datas, std::string cluster_file, vector<float>* centroids){
+	vector<Cluster*>* load_cluster(ss::Matrix<float>& datas, std::string cluster_file, vector<float>* centroids){
 		std::vector<Cluster*>* result = new std::vector<Cluster*>;
-		int dim = datas->getDim();
+		int dim = datas.getDim();
 		std::ifstream rFile;
 		rFile.open(cluster_file.c_str());
         if (!rFile) {
@@ -466,15 +466,15 @@ namespace sm{
 		centroids->reserve(dim * numCluster);
 
 
-		for (int i = 0; i < datas->getSize(); i++){
+		for (int i = 0; i < datas.getSize(); i++){
 			Point* newPoint = new Point(i, dim);
-			newPoint->set_data(datas->operator [](i));
+			newPoint->set_data(datas[i]);
 			points.push_back(newPoint);
 		}
 
 
 		for (int i = 0; i < numCluster; i++){
-			Cluster* newCluster = new Cluster (dim, datas->operator [](0));
+			Cluster* newCluster = new Cluster (dim, datas[0]);
 			int sizer = 0;
             rFile >> sizer;
 			rFile >> sizer;
