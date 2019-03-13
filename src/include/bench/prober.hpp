@@ -50,6 +50,7 @@ namespace sm{
 			cout << "1" << endl;
 			for (int j = 0; j < member.size(); j++){
 				cout << "2" << endl;
+				cout << "member: " << member[j] << endl;
 				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](member[j])->searchKnn(_queries->operator [](i), _k);
 				cout << "3" << endl;
 				for (int k = 0; k < result.size(); k++){
