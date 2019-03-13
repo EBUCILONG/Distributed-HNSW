@@ -101,7 +101,6 @@ namespace sm{
 		int _dimension;
 		int _aimNPartition;
 		bool _done;
-		vector <Point *> _datas;
 
 		// parallel thing
 		omp_lock_t _appendLock;
@@ -109,6 +108,7 @@ namespace sm{
 		friend class Cluster;
 
 	public:
+		vector <Point *> _datas;
 		vector<Cluster*> _childrens;
 
 		explicit Cluster (int dimension, float* centre): _size(0), _balance_size (-1),
@@ -126,6 +126,12 @@ namespace sm{
 				assert(0);
 			}
 			return _datas[i];/// i * dimension may overflow int
+		}
+
+		void mergeCluster(Cluster* merger){
+			_datas.insert(_datas.end(), merger->_datas.begin(), merger->_datas.end());
+			_size += merger->get_size();
+			delete merger;
 		}
 
 		void insert_point (int cluster_index, Point* point){

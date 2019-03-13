@@ -31,6 +31,7 @@
 #include <utility>
 #include <fstream>
 #include <omp.h>
+#include <queue>
 
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options.hpp>
@@ -41,6 +42,7 @@
 #include <boost/format.hpp>
 
 #include "bench/bencher.hpp"
+#include "bench/prober.hpp"
 #include "parameters.hpp"
 #include "matrix.hpp"
 #include "metric.hpp"
@@ -182,7 +184,39 @@ int SearchIterative(parameter &para) {
     for(int i = 0; i < counters->size(); i++)
     	cout << counters->operator [](i) << endl;
 
+    //TODO: change num machine to changable
+    vector<hnswlib::HierarchicalNSW<float>* > hnsws;
 
+    cout << "#[training ] prepare wake map" << endl;
+    for (int i = 0; i < 10; i++){
+    	vector<int> member = waker.getMember(i);
+    	int max_size = 0;
+    	for (int j = 0; j < member.size(); j++)
+    		max_size += clusters->operator [](member[j])->get_size();
+    	hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, max_size, 32, 500);
+    	hnsws.push_back(new_hnsw);
+    }
+
+    cout << "#[training ] training sub hnsws" << endl;
+#pragma omp parallel for
+    for (int i = 0; i < 10; i++){
+    	vector<int> member = waker.getMember(i);
+    	for (int j = 0; j < member.size(); j++){
+    		Cluster* candi = clusters->operator [](member[j]);
+    		int sizer = candi->get_size();
+    		for (int k = 0; k < sizer; k++){
+    			hnsws[i]->addPoint(candi->operator [](k)->get_data(), candi->operator [](k)->get_index());
+    		}
+    	}
+    }
+
+    cout << "#[testing ] start query" << endl;
+    sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK);
+    vector<vector<pair<float, int > > >   current_topK = prober.probe();
+
+    Bencher current_bench(current_topK, false);
+
+    cout << truth_bench.avg_recall(current_bench)                    << "\n";
 
     //MetricType metric(para.origin_dim);
 

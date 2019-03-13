@@ -53,6 +53,15 @@ namespace sm {
 			}
 		}
 
+		vector<int> getMember(int label){
+			vector<int> result;
+			for (int i = 0; i < _num_cluster; i++){
+				if ((int)_map[i] == label)
+					result.push_back(i);
+			}
+			return result;
+		}
+
 		vector<int>* getWakeNum(){
 			return &_wake_num;
 		}
@@ -63,6 +72,23 @@ namespace sm {
 
 		void reset_wake_num(){
 			_wake_num.resize(0);
+		}
+
+		vector<int> wakeUp(int index, int k){
+			if (index > _querys.getSize()){
+				cout << "#[error ] too big index in waker" << endl;
+				assert(false);
+			}
+			std::priority_queue<std::pair<float, long unsigned int > > result = _hnsw.searchKnn(_querys[index], k);
+			std::set<int> set;
+			for (int i = 0; i < result.size(); i++){
+				set.insert(_map[(int) result.top().second]);
+				_wake_counter[_map[(int) result.top().second]]++;
+				result.pop();
+			}
+			vector<int> waker;
+			std::copy(set.begin(), set.end(), waker.begin());
+			return waker;
 		}
 
 		int getWaker(std::priority_queue<std::pair<float, long unsigned int > >& result){
