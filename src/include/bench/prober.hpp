@@ -25,7 +25,7 @@ namespace sm{
 	private:
 		int _k;
 		vector<hnswlib::HierarchicalNSW<float>*>* _hnsws;
-		ss::Matrix* _queries;
+		ss::Matrix<float>* _queries;
 		vector<vector<pair<float, int > > > _answer;
 	public:
 		struct CompareByFirst {
