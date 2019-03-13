@@ -171,7 +171,7 @@ int SearchIterative(parameter &para) {
 		 << "aver"<<spliter
 		 << " std" << endl;
 
-    for (int i = 10; i += 10; i < 1000){
+    for (int i = 100; i += 10; i < -1000){
     	waker.testWake(i);
     	cout << i << " " << spliter
 			 << waker.getAverWake() <<spliter
