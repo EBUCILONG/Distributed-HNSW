@@ -46,7 +46,7 @@ namespace sm{
 
 		vector<pair<float, int > > probe_query(int i){
 			//cout << "1" << endl;
-			vector<int> member = _waker->wakeUp(i, 100);
+			//vector<int> member = _waker->wakeUp(i, 100);
 			//cout << "2" << endl;
 			priority_queue<pair<float, int>, std::vector<pair<float, int > >, CompareByFirst> answer;
 			//cout << "1" << endl;
@@ -68,7 +68,7 @@ namespace sm{
 			vector<pair<float, int > > returner;
 			//cout << "finish for" << endl;
 			for (int j = 0; j < _k; j++){
-				cout << answer.top().first << " ";
+				cout << answer.top().second << " ";
 				returner.push_back(answer.top());
 				answer.pop();
 			}

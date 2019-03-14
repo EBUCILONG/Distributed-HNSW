@@ -180,10 +180,6 @@ int SearchIterative(parameter &para) {
 			 << waker.getStdWake()  << endl;
     }
 
-    vector<int>* counters = waker.getWakeCounter();
-    for(int i = 0; i < counters->size(); i++)
-    	cout << counters->operator [](i) << endl;
-
     //TODO: change num machine to changable
     vector<hnswlib::HierarchicalNSW<float>* > hnsws;
 /*

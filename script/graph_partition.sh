@@ -1,12 +1,12 @@
 cd ../bui
-make
+#make
 data_dir="/data/liujie/gqr/data"
 out_dir="/data/sydeng/repositary/hnsw-repo/testOut/"
 data_set="sift1m"
 #metric="euclid"
 #topk=20
 # gdb --args \
-../bui/sift1k \
+echo ../bui/sift1k \
     -p 1000 \
     --max_balance 4 \
     -i 100 \
