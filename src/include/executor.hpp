@@ -55,6 +55,8 @@
 using namespace std;
 using namespace ss;
 
+#define BASELINE 1
+
 void LoadOptions(int argc, char **argv, parameter &para) {
     namespace po = boost::program_options;
 
@@ -182,21 +184,17 @@ int SearchIterative(parameter &para) {
 
     //TODO: change num machine to changable
     vector<hnswlib::HierarchicalNSW<float>* > hnsws;
-/*
-    int checker = 0;
 
-    cout << "#[training ] prepare wake map" << endl;
+
+    /*cout << "#[training ] prepare wake map" << endl;
     for (int i = 0; i < 10; i++){
     	vector<int> member = waker.getMember(i);
     	int max_size = 0;
     	for (int j = 0; j < member.size(); j++)
     		max_size += clusters->operator [](member[j])->get_size();
-    	checker += max_size;
     	hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, max_size, 32, 500);
     	hnsws.push_back(new_hnsw);
     }
-
-    cout << "check: " << checker << endl;
 
     cout << "#[training ] training sub hnsws" << endl;
 #pragma omp parallel for
@@ -211,17 +209,40 @@ int SearchIterative(parameter &para) {
     	}
     }
 
-    /*cout << "#[temporary ] saving sub hnsws" << endl;
+    cout << "#[temporary ] saving sub hnsws" << endl;
     for (int i = 0; i < 10; i++){
     	hnsws[i]->saveIndex(para.out_dir + "/hnsw" + std::to_string(i));
     }*/
 
-    cout << "#[temporary ] loading sub hnsws" << endl;
-	for (int i = 0; i < 10; i++){
-		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/hnsw" + std::to_string(i));
-		new_hnsw->setEf(500);
+#if BASELINE == 1
+    for (int i = 0; i < 10; i++){
+		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, train_data.getSize() / 10, 32, 500);
 		hnsws.push_back(new_hnsw);
 	}
+
+	cout << "#[training ] training sub hnsws" << endl;
+#pragma omp parallel for
+	for (int i = 0; i < 10; i++){
+		int sizer = train_data.getSize() / 10;
+		for (int j = 0; j < sizer; j++){
+			hnsws[i]->addPoint(train_data[i*sizer+j], i*sizer+j);
+		}
+	}
+
+	cout << "#[temporary ] saving sub hnsws" << endl;
+	for (int i = 0; i < 10; i++){
+		hnsws[i]->saveIndex(para.out_dir + "/baseline" + "/hnsw" + std::to_string(i));
+	}
+#endif
+
+
+
+    /*cout << "#[temporary ] loading sub hnsws" << endl;
+	for (int i = 0; i < 10; i++){
+		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/hnsw" + std::to_string(i));
+		new_hnsw->setEf(100);
+		hnsws.push_back(new_hnsw);
+	}*/
 
     cout << "#[testing ] start query" << endl;
     sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK, &waker);
