@@ -187,15 +187,20 @@ int SearchIterative(parameter &para) {
     //TODO: change num machine to changable
     vector<hnswlib::HierarchicalNSW<float>* > hnsws;
 
-    /*cout << "#[training ] prepare wake map" << endl;
+    int checker = 0;
+
+    cout << "#[training ] prepare wake map" << endl;
     for (int i = 0; i < 10; i++){
     	vector<int> member = waker.getMember(i);
     	int max_size = 0;
     	for (int j = 0; j < member.size(); j++)
     		max_size += clusters->operator [](member[j])->get_size();
+    	checker += max_size;
     	hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, max_size, 32, 500);
     	hnsws.push_back(new_hnsw);
     }
+
+    cout << "check: " << checker << endl;
 
     cout << "#[training ] training sub hnsws" << endl;
 #pragma omp parallel for
@@ -208,7 +213,7 @@ int SearchIterative(parameter &para) {
     			hnsws[i]->addPoint(candi->operator [](k)->get_data(), candi->operator [](k)->get_index());
     		}
     	}
-    }*/
+    }
 
     /*cout << "#[temporary ] saving sub hnsws" << endl;
     for (int i = 0; i < 10; i++){
