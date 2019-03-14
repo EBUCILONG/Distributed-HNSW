@@ -186,7 +186,7 @@ int SearchIterative(parameter &para) {
 
     //TODO: change num machine to changable
     vector<hnswlib::HierarchicalNSW<float>* > hnsws;
-
+/*
     int checker = 0;
 
     cout << "#[training ] prepare wake map" << endl;
@@ -223,6 +223,7 @@ int SearchIterative(parameter &para) {
     cout << "#[temporary ] loading sub hnsws" << endl;
 	for (int i = 0; i < 10; i++){
 		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/hnsw" + std::to_string(i));
+		new_hnsw->setEf(100);
 		hnsws.push_back(new_hnsw);
 	}
 
