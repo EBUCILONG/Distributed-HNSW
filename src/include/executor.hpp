@@ -55,7 +55,7 @@
 using namespace std;
 using namespace ss;
 
-#define BASELINE 1
+#define BASELINE 0
 
 void LoadOptions(int argc, char **argv, parameter &para) {
     namespace po = boost::program_options;
@@ -237,12 +237,12 @@ int SearchIterative(parameter &para) {
 
 
 
-    /*cout << "#[temporary ] loading sub hnsws" << endl;
+    cout << "#[temporary ] loading sub hnsws" << endl;
 	for (int i = 0; i < 10; i++){
-		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/hnsw" + std::to_string(i));
+		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/baseline" + "/hnsw" + std::to_string(i));
 		new_hnsw->setEf(100);
 		hnsws.push_back(new_hnsw);
-	}*/
+	}
 
     cout << "#[testing ] start query" << endl;
     sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK, &waker);
