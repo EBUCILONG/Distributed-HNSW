@@ -50,10 +50,10 @@ namespace sm{
 			//cout << "2" << endl;
 			priority_queue<pair<float, int>, std::vector<pair<float, int > >, CompareByFirst> answer;
 			//cout << "1" << endl;
-			for (int j = 0; j < member.size(); j++){
+			for (int j = 0; j < 10/*member.size()*/; j++){
 				//cout << "2" << endl;
 				//cout << "member: " << member[j] << endl;
-				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](member[j])->searchKnn(_queries->operator [](i), _k);
+				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](j)->searchKnn(_queries->operator [](i), 50);
 				//cout << "3" << endl;
 				for (int k = 0; k < result.size(); k++){
 					//cout << "4" << endl;
