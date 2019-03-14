@@ -53,7 +53,7 @@ namespace sm{
 			for (int j = 0; j < 10/*member.size()*/; j++){
 				//cout << "2" << endl;
 				//cout << "member: " << member[j] << endl;
-				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](j)->searchKnn(_queries->operator [](i), 50);
+				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](j)->searchKnn(_queries->operator [](i), _k);
 				//cout << "3" << endl;
 				for (int k = 0; k < result.size(); k++){
 					//cout << "4" << endl;
@@ -68,7 +68,6 @@ namespace sm{
 			vector<pair<float, int > > returner;
 			//cout << "finish for" << endl;
 			for (int j = 0; j < _k; j++){
-				cout << answer.top().first << " ";
 				returner.push_back(answer.top());
 				answer.pop();
 			}

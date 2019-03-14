@@ -226,7 +226,7 @@ int SearchIterative(parameter &para) {
     cout << "#[testing ] start probe" << endl;
     vector<vector<pair<float, int > > >   current_topK = prober.probe();
     cout << "#[testing ] intial bench" << endl;
-    Bencher current_bench(current_topK, false);
+    Bencher current_bench(current_topK, true);
 
     cout << "#[temporary ] ready to output recall" << endl;
 
