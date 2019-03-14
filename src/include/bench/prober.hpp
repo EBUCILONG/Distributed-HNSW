@@ -68,9 +68,11 @@ namespace sm{
 			vector<pair<float, int > > returner;
 			//cout << "finish for" << endl;
 			for (int j = 0; j < _k; j++){
+				cout << answer.top().first << " ";
 				returner.push_back(answer.top());
 				answer.pop();
 			}
+			cout << endl;
 			return returner;
 		}
 
