@@ -219,7 +219,7 @@ int SearchIterative(parameter &para) {
     cout << "#[temporary ] loading sub hnsws" << endl;
 	for (int i = 0; i < 10; i++){
 		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/hnsw" + std::to_string(i));
-		new_hnsw->setEf(100);
+		new_hnsw->setEf(500);
 		hnsws.push_back(new_hnsw);
 	}
 
