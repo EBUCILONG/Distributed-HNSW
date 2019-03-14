@@ -19,6 +19,7 @@
 #include <string>
 #include <queue>
 #include <utility>
+#include <set>
 
 #include "matrix.hpp"
 #include "metric.hpp"
@@ -456,6 +457,7 @@ namespace sm{
 	}
 
 	vector<Cluster*>* load_cluster(ss::Matrix<float>& datas, std::string cluster_file, vector<float>& centroids){
+		std::set<int> set;
 		std::vector<Cluster*>* result = new std::vector<Cluster*>;
 		int dim = datas.getDim();
 		std::ifstream rFile;
@@ -489,6 +491,7 @@ namespace sm{
 
 			for (int j = 0; j < sizer; j++){
 				rFile >> index;
+				set.insert(index);
 				newCluster->append_point(points[index]);
 			}
 
@@ -500,6 +503,14 @@ namespace sm{
 		}
 
 		rFile.close();
+		if (set.size() != datas.getSize()){
+			cout << "#[error ] clustering has bug" << endl;
+			assert(false);
+		}
+		else{
+			cout << "#[testing ] clustering no bug" << endl;
+		}
+
 		return result;
 	}
 }
