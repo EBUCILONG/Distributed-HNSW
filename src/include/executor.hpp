@@ -262,7 +262,7 @@ int SearchIterative(parameter &para) {
 	cout << "check" << endl;
 	Bencher current_benchb(current_topKb, false);
 	cout << truth_bench.avg_recall(current_benchb) << endl;
-	return;
+	return 1;
 #endif
 
 
