@@ -55,7 +55,7 @@ namespace sm{
 				//cout << "member: " << member[j] << endl;
 				priority_queue<pair<float, long unsigned int >> result = _hnsws->operator [](j)->searchKnn(_queries->operator [](i), _k);
 				//cout << "3" << endl;
-				for (int k = 0; k < result.size(); k++){
+				for (int k = 0; k < _k; k++){
 					//cout << "4" << endl;
 					const pair<float, long unsigned int>& p = result.top();
 					float first = p.first;
