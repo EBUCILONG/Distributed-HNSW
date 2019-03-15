@@ -249,7 +249,7 @@ int SearchIterative(parameter &para) {
 	hnsw.saveIndex(para.out_dir + "/baseline" + "/hnsw");
 	hnsw.setEf(100);
 	cout << "query" << endl;
-	vector<vector<pair<float, int > > >   current_topK;
+	vector<vector<pair<float, int > > >   current_topKb;
 	for (int i = 0; i < para.query_size; i++){
 		priority_queue<pair<float, long unsigned int >> result = hnsw.searchKnn(query_data[i], para.topK);
 		vector<pair<float, int > > pusher;
@@ -257,10 +257,10 @@ int SearchIterative(parameter &para) {
 			pusher.push_back(std::make_pair(result.top().first, (int)result.top().second));
 			result.pop();
 		}
-		current_topK.push_back(pusher);
+		current_topKb.push_back(pusher);
 	}
 	cout << "check" << endl;
-	Bencher current_bench(current_topK, false);
+	Bencher current_bench(current_topKb, false);
 	cout << truth_bench.avg_recall(current_bench) << endl;
 	return;
 #endif
