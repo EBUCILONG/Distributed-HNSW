@@ -241,12 +241,12 @@ int SearchIterative(parameter &para) {
 	for (int i = 0; i < 1; i++) {
 		hnsw.addPoint((void *) train_data[i], (size_t) i);
 	}
-#pragma omp parallel for
+//#pragma omp parallel for
 	for (int i = 1; i < para.train_size; i++) {
 		hnsw.addPoint((void *) train_data[i], (size_t) i);
 	}
 	cout << "save" << endl;
-	hnsw.saveIndex(para.out_dir + "/baseline" + "/hnsw");
+	hnsw.saveIndex(para.out_dir + "/baseline" + "/hnswb");
 	hnsw.setEf(100);
 	cout << "query" << endl;
 	vector<vector<pair<float, int > > >   current_topKb;
