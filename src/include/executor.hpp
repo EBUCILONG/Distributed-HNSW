@@ -55,7 +55,7 @@
 using namespace std;
 using namespace ss;
 
-#define BASELINE 0
+#define BASELINE 2
 
 void LoadOptions(int argc, char **argv, parameter &para) {
     namespace po = boost::program_options;
@@ -235,14 +235,47 @@ int SearchIterative(parameter &para) {
 	}
 #endif
 
+#if BASELINE == 2
+	hnswlib::HierarchicalNSW<float> hnsw(&l2space, para.train_size, 32, 500);
+	cout << "train" << endl;
+	for (int i = 0; i < 1; i++) {
+		hnsw.addPoint((void *) train_data[i], (size_t) i);
+	}
+#pragma omp parallel for
+	for (int i = 1; i < para.train_size; i++) {
+		hnsw.addPoint((void *) train_data[i], (size_t) i);
+	}
+	cout << "save" << endl;
+	hnsw.saveIndex(para.out_dir + "/baseline" + "/hnsw");
+	hnsw.setEf(100);
+	cout << "query" << endl;
+	vector<vector<pair<float, int > > >   current_topK;
+	for (int i = 0; i < para.query_size; i++){
+		priority_queue<pair<float, long unsigned int >> result = hnsw.searchKnn(query_data[i], para.topK);
+		vector<pair<float, int > > pusher;
+		while(result.size()){
+			pusher.push_back(std::make_pair(result.top().first, (int)result.top().second));
+			result.pop();
+		}
+		current_topK.push_back(pusher);
+	}
+	cout << "check" << endl;
+	Bencher current_bench(current_topK, false);
+	cout << truth_bench.avg_recall(current_bench) << endl;
+	return;
+#endif
 
 
+#if BASELINE == 1
     cout << "#[temporary ] loading sub hnsws" << endl;
 	for (int i = 0; i < 10; i++){
 		hnswlib::HierarchicalNSW<float>* new_hnsw = new hnswlib::HierarchicalNSW<float>(&l2space, para.out_dir + "/baseline" + "/hnsw" + std::to_string(i));
 		new_hnsw->setEf(100);
 		hnsws.push_back(new_hnsw);
 	}
+	Bencher current_bench(current_topK, true);
+
+#endif
 
     cout << "#[testing ] start query" << endl;
     sm::Prober prober = sm::Prober(&hnsws, &query_data, para.topK, &waker);
