@@ -246,6 +246,23 @@ namespace hnswlib {
         	output.close();
         }
 
+        int getLevel0Graph(std::vector<vector<int> >& graph){
+        	graph.resize(max_elements_);
+        	int counter = 0;
+        	for (int i = 0; i < max_elements_; i++){
+				int *data = (int *) (data_level0_memory_ + i * size_data_per_element_ + offsetLevel0_);
+				int size = *data;
+				counter += size;
+				int index = getExternalLabel(i);
+				for (int j = 1; j <= size; j++){
+					int candidate_id = *(data + j);
+					candidate_id = getExternalLabel(candidate_id);
+					graph[index].push_back(candidate_id);
+				}
+			}
+        	return counter;
+        }
+
 
         std::priority_queue<std::pair<dist_t, tableint>, std::vector<std::pair<dist_t, tableint>>, CompareByFirst>
         searchBaseLayerST(tableint ep_id, const void *data_point, size_t ef) const {

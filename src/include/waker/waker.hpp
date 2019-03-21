@@ -36,19 +36,21 @@ namespace sm {
 		ss::Matrix<float>& _querys;
 		hnswlib::HierarchicalNSW<float>& _hnsw;
 	public:
-		Waker(int num, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, mt::Partition partition):
+		Waker(int num, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, mt::Partition partition, vector<vector<float> > centroids,int num_worker = 10):
 			_querys(querys),
 			_num_cluster(num),
 			_hnsw(hnsw){
-
-
+			_wake_counter.resize(num_worker);
+			vector<vector<int> > graph;
+			int num_edges = _hnsw.getLevel0Graph(graph);
+			_map()
 		}
 
-		Waker(int num, const char* file, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw):
+		Waker(int num, const char* file, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, int numWorker):
 			_querys(querys),
 			_num_cluster(num),
 			_hnsw(hnsw){
-			_wake_counter.resize(10, 0);
+			_wake_counter.resize(numWorker, 0);
 			std::ifstream rFile(file);
 			if(!rFile){
 				cout << "#[error ] cannot open partition file from: " << file << endl;
