@@ -16,7 +16,7 @@ namespace mt{
 	class Partition{
 	public:
 		Partition(int mode);
-		vector<int> get_partition(vector<vector<int> >& graph, vector<vector<float> >& centroids, int num_edges);
+		vector<int> getPartition(vector<vector<int> >& graph, vector<vector<float> >& centroids, int num_edges);
 	};
 
 	class PowerPartition : public Partition{
