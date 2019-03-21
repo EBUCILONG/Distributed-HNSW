@@ -16,13 +16,12 @@ namespace mt{
 	class Partition{
 	public:
 		Partition(int mode);
-		vector<int> get_partition();
+		vector<int> get_partition(vector<vector<int> > graph, vector<vector<float> > centroids);
 	};
 
 	class PowerPartition : public Partition{
 
 	};
-
 
 	class SquarePartition : public Partition{
 

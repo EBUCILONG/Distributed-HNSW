@@ -35,6 +35,13 @@ namespace sm {
 		ss::Matrix<float>& _querys;
 		hnswlib::HierarchicalNSW<float>& _hnsw;
 	public:
+		Waker(int num, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, vector<int> map):
+		_querys(querys),
+		_num_cluster(num),
+		_hnsw(hnsw){
+			_map.assign(map.start(), map.end());
+		}
+
 		Waker(int num, const char* file, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw):
 			_querys(querys),
 			_num_cluster(num),
