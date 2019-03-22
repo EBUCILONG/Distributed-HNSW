@@ -32,6 +32,14 @@
 namespace ss{
 
     struct parameter {
+    	//for distributed part
+    	std::string hnsw_dir;
+
+    	std::string subset_dir;
+
+    	std::string centroids_file;
+
+    	int mode_code;
 
         /// file name of traning data
         std::string train_data;
@@ -41,6 +49,7 @@ namespace ss{
         std::string query_data;
         /// file name of ground truth file(exact top-k nearest neighbor)
         std::string ground_truth;
+
 
         std::string partition_file;
 
