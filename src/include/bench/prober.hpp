@@ -5,6 +5,7 @@
  *      Author: oruqimaru
  */
 
+#pragma once
 
 #include <string>
 #include <iostream>
