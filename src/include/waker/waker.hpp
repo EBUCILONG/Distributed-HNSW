@@ -48,7 +48,7 @@ namespace sm {
 			_map = partition.getPartition(graph, centroids, num_edges, _num_partition);
 		}
 
-		/*Waker(int num, const char* file, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, int num_worker):
+		Waker(int num, const char* file, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, int num_worker):
 			_querys(querys),
 			_num_cluster(num),
 			_hnsw(hnsw),
@@ -66,7 +66,7 @@ namespace sm {
 				cout << "#[error ] partition file wrong size" <<endl;
 				assert(false);
 			}
-		}*/
+		}
 
 		vector<int> getMember(int label){
 			vector<int> result;

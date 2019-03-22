@@ -90,6 +90,8 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("cluster_file,cf",  po::value<string >(&para.cluster_file),					   "cluster file")
   		("graph_file,x",     po::value<string >(&para.graph_file),                         "graph_file")
 		("partition_file,s", po::value<string >(&para.partition_file),                     "partition_file")
+		("hnsw_dir",         po::value<string >(&para.hnsw_dir),                           "hnsw directory")
+
     ;
 
     po::variables_map vm;
@@ -168,7 +170,7 @@ int SearchIterative(parameter &para) {
 	cout << "#[temprory ] save hnsw on centroids in: " << para.graph_file << endl;
     appr_alg.save_level_zero(para.graph_file);
 
-    sm::Waker waker(para.partition, para.partition_file.c_str(), query_data, appr_alg);
+    sm::Waker waker(para.partition, para.partition_file.c_str(), query_data, appr_alg, 10);
 
     const char * spliter = "||";
 	cout << " k  " << spliter
