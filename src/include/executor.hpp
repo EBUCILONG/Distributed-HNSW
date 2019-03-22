@@ -91,7 +91,9 @@ void LoadOptions(int argc, char **argv, parameter &para) {
   		("graph_file,x",     po::value<string >(&para.graph_file),                         "graph_file")
 		("partition_file,s", po::value<string >(&para.partition_file),                     "partition_file")
 		("hnsw_dir",         po::value<string >(&para.hnsw_dir),                           "hnsw directory")
-
+		("subset_dir",       po::value<string >(&para.subset_dir),                         "subset directory")
+		("centroids_file",   po::value<string >(&para.centroids_file),                     "centroids file path")
+		("mode_code",        po::value<int    >(&para.mode_code),                          "mode_code")
     ;
 
     po::variables_map vm;

@@ -14,9 +14,7 @@
 
 #include "waker/waker.hpp"
 #include "matrix.hpp"
-
-#define TASK_TAG 0
-#define DATA_DIMENSION 128
+#include "distributed/macro.h"
 
 using std::vector;
 using std::string;
@@ -102,36 +100,36 @@ namespace mt {
 	public:
 		sm::Waker _waker;
 
-		Sender(int COM_INDEX, Matrix<float>& query, string hnsw_path, vector<vector<float> > centroids, mt::Partition& partition, int centroid_size, int num_cluster, int num_worker,int ef = 100):
+		Sender(int COM_INDEX, ss::Matrix<float>& query, string hnsw_path, vector<vector<float> > centroids, mt::Partition& partition, int centroid_size, int num_cluster, int num_worker,int ef = 100):
 			_query(query),
 			_query_size(_query.getSize()),
 			_COM_INDEX(COM_INDEX),
-			_COM_WORKER_SIZE(num_worker){
-			_l2space(centroid_size);
-			_hnsw(&_l2space, hnsw_path);
+			_COM_WORKER_SIZE(num_worker),
+            _l2space(centroid_size),
+            _hnsw(&_l2space, hnsw_path),
+            _waker(num_cluster,_query, _hnsw, partition, centroids, _COM_WORKER_SIZE){
 			_hnsw.setEf(ef);
 			if (_hnsw.max_elements_ != num_cluster){
 				cout << "#[error ] sender constructor wrong cluster number" << endl;
 				MPI_Abort(MPI_COMM_WORLD, 0);
 			}
-			_waker(num_cluster,_query, _hnsw, partition, centroids, _COM_WORKER_SIZE);
 		}
 
-		Sender(int COM_INDEX, Matrix<float>& query, vector<vector<float> >& centroids, mt::Partition& partition , int centroid_size, int num_cluster, int num_worker, int ef = 100):
+		Sender(int COM_INDEX, ss::Matrix<float>& query, vector<vector<float> >& centroids, mt::Partition& partition , int centroid_size, int num_cluster, int num_worker, int ef = 100):
 			_query(query),
 			_query_size(_query.getSize()),
 			_COM_INDEX(COM_INDEX),
-			_COM_WORKER_SIZE(num_worker){
+			_COM_WORKER_SIZE(num_worker),
+            _l2space(centroid_size),
+            _hnsw(&_l2space, centroids.size(), 32, 500),
+            _waker(num_cluster,_query, _hnsw, partition, centroids, _COM_WORKER_SIZE){
 			if (centroid_size != centroids[0].size()){
 				cout << "#[error ] sender constructor wrong centroids data dimension" << endl;
 				MPI_Abort(MPI_COMM_WORLD, 0);
 			}
-			_l2space(centroid_size);
-			_hnsw(&_l2space, centroids.size(), 32, 500);
 			for (int i = 0; i < centroids.size(); i++)
 				_hnsw.addPoint(centroids[i].data(), i);
 			_hnsw.setEf(ef);
-			_waker(num_cluster,_query, _hnsw, partition, centroids, _COM_WORKER_SIZE);
 		}
 
 		void saveHNSW(string path){

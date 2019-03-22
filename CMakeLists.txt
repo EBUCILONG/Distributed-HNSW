@@ -25,6 +25,7 @@ INCLUDE_DIRECTORIES(
 )
 
 SET(EXAMPLES
+    bug
     sift1k
 )
 
