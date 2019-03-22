@@ -34,7 +34,7 @@ namespace mt{
 			}
 		}
 
-		vector<int> get_partition(vector<vector<int>>& graph, vector<vector<float>>& centroids, int n_edges, int n_parts) {
+		vector<int> getPartition(vector<vector<int>>& graph, vector<vector<float>>& centroids, int n_edges, int n_parts) {
             int n = graph.size();
             int m = n_edges;
             int dim = centroids[0].size();

@@ -73,6 +73,7 @@ namespace mt {
                     _commit_answers(answer.p_queue, result_msg->query_id);
                     _query_map.erase(result_msg->query_id);
                 }
+                free(buffer);
             }
             return _result;
         }
