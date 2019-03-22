@@ -18,6 +18,9 @@ include_directories(${Boost_INCLUDE_DIRS})
 find_package (OpenMP)
 include_directories(${OpenMP_INCLUDE_DIRS})
 
+find_package (MPI)
+include_directories(${MPI_INCLUDE_PATH})
+
 link_libraries(-lpthread)
 
 INCLUDE_DIRECTORIES(
@@ -31,7 +34,7 @@ SET(EXAMPLES
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
-    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES})
+    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES})
 ENDFOREACH(EXAMPLE)
 
 
