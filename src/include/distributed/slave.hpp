@@ -37,27 +37,24 @@ namespace mt {
 
 	class Slave{
 	private:
-		ss::Matrix<float>& _datas;
 		int _subset_size;
 		vector<int> _subset;
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _hnsw;
 	public:
-		Slave(ss::Matrix<float> datas, string hnsw_path, string subset_path, int ef = 10):
-			_datas(datas){
-			_l2space(datas.getDim());
+		Slave(string hnsw_path, string subset_path, int ef = 10){
+			_l2space(DATA_DIMENSION);
 			_hnsw(&_l2space, hnsw_path);
 			_hnsw.setEf(ef);
 			loadSubset(subset_path);
 		}
 
-		Slave(ss::Matrix<float> datas, string subset_path, int ef = 10):
-			_datas(datas){
+		Slave(ss::Matrix<float> datas, string subset_path, int ef = 10){
 			loadSubset(subset_path);
-			_l2space(datas.getDim());
+			_l2space(DATA_DIMENSION);
 			_hnsw(&_l2space, _subset.size(), 32, 500);
 			for (int i = 0; i < _subset_size; i++)
-				_hnsw.addPoint(_datas[_subset[i]], _subset[i]);
+				_hnsw.addPoint(datas[_subset[i]], _subset[i]);
 			_hnsw.setEf(ef);
 		}
 
@@ -95,6 +92,7 @@ namespace mt {
 				inFile >> buffer;
 				_subset.push_back(buffer);
 			}
+			inFile.close();
 		}
 	};
 }
