@@ -52,9 +52,9 @@ namespace mt {
 			MPI_Send((void*) &tm, sizeof(task_message), MPI_BYTE, destinations[j], TASK_TAG, MPI_COMM_WORLD);
 	}
 
-	void receiveResultMessage(void* buffer, int msg_len) {
+	void receiveResultMessage(void* buffer, int msg_len){
 		MPI_Recv(buffer, msg_len, MPI_BYTE, MPI_ANY_SOURCE, MPI_ANY_TAG,
-				 MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+		MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	}
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){

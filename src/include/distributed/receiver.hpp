@@ -15,6 +15,8 @@ using std::make_pair;
 
 namespace mt {
 
+    void receiveResultMessage(void* buffer, int msg_len);
+
     struct Answer {
         Answer(): n_slaves(0) {};
         int n_slaves;
