@@ -16,13 +16,12 @@
 #include "hnswlib/hnswalg.h"
 #include "distributed/sender.hpp"
 #include "matrix.hpp"
+#include "distributed/macro.h"
 
 using std::vector;
 using std::string;
 using std::priority_queue;
 using std::pair;
-
-#define TOPK 10
 
 namespace mt {
 
@@ -42,17 +41,16 @@ namespace mt {
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _hnsw;
 	public:
-		Slave(string hnsw_path, string subset_path, int ef = 10){
-			_l2space(DATA_DIMENSION);
-			_hnsw(&_l2space, hnsw_path);
+		Slave(string hnsw_path, string subset_path, int ef = 10):
+				_l2space(DATA_DIMENSION),
+				_hnsw(&_l2space, hnsw_path){
 			_hnsw.setEf(ef);
 			loadSubset(subset_path);
 		}
 
-		Slave(ss::Matrix<float> datas, string subset_path, int ef = 10){
-			loadSubset(subset_path);
-			_l2space(DATA_DIMENSION);
-			_hnsw(&_l2space, _subset.size(), 32, 500);
+		Slave(ss::Matrix<float>& datas, string subset_path, int ef = 10):
+				_l2space(DATA_DIMENSION),
+				_hnsw(&_l2space, loadSubset(subset_path), 32, 500){
 			for (int i = 0; i < _subset_size; i++)
 				_hnsw.addPoint(datas[_subset[i]], _subset[i]);
 			_hnsw.setEf(ef);
@@ -84,7 +82,7 @@ namespace mt {
 			_hnsw.saveIndex(path);
 		}
 
-		void loadSubset(string subset_path){
+		int loadSubset(string subset_path){
 			std::ifstream inFile(subset_path);
 			inFile >> _subset_size;
 			int buffer = 0;
@@ -93,6 +91,7 @@ namespace mt {
 				_subset.push_back(buffer);
 			}
 			inFile.close();
+			return _subset_size;
 		}
 	};
 }

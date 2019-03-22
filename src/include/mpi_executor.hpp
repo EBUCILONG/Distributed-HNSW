@@ -28,14 +28,13 @@
 #include "waker/waker.hpp"
 #include "distributed/sender.hpp"
 #include "distributed/slave.hpp"
+#include "distributed/receiver.hpp"
+#include "distributed/macro.h"
 
 using std::cout;
 using std::endl;
 using std::vector;
 using std::string;
-
-#define SIZEWORKER 10
-#define RESULT_TAG 1
 
 /*
  * status code with two digit:
@@ -50,11 +49,16 @@ namespace mt {
 		vector<int> destinations;
 		sender->makeTask(index, destinations, tm, MPI_Wtime());
 		for (int j = 0; j < destinations.size(); j++)
-			MPI_Send((void*) tm, sizeof(task_message), MPI_BYTE, destinations[j], TASK_TAG, MPI_COMM_WORLD);
+			MPI_Send((void*) &tm, sizeof(task_message), MPI_BYTE, destinations[j], TASK_TAG, MPI_COMM_WORLD);
 	}
 
-	void mpiBody(ss::parameter& para, mt::Partition& partition){
-		MPI_Init(NULL, NULL);
+	void receiveResultMessage(void* buffer, int msg_len) {
+		MPI_Recv(buffer, msg_len, MPI_BYTE, MPI_ANY_SOURCE, MPI_ANY_TAG,
+				 MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	}
+
+    void mpiBody(ss::parameter& para, mt::Partition& partition){
+        MPI_Init(NULL, NULL);
 		int world_rank;
 		MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 		int world_size;
@@ -98,6 +102,15 @@ namespace mt {
 		}
 		if (world_rank == world_size - 1){
 			//logic for result receiver
+			Bencher truth_bench(para.ground_truth.c_str());
+			mt::Receiver receiver(para.query_size);
+            MPI_Barrier(MPI_COMM_WORLD); // wait for sender to cluster
+            MPI_Barrier(MPI_COMM_WORLD); // wait for slaves to construct HNSW
+//            while(true) {
+				vector<vector<pair<float, int>>> result = receiver.receive();
+				Bencher current_bench(result, false);
+				cout << truth_bench.avg_recall(current_bench) << endl;
+//            }
 
 		}
 		else{
@@ -120,6 +133,7 @@ namespace mt {
 				MPI_Send((void*) &rm, sizeof(result_message), MPI_BYTE, world_size - 1, RESULT_TAG, MPI_COMM_WORLD);
 			}
 		}
+		MPI_Finalize();
 	}
 
 }
