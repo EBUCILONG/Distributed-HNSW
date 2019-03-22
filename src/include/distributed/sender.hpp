@@ -23,6 +23,65 @@ using std::string;
 
 namespace mt {
 
+/*
+ * void loadSubset(string subset_path){
+			std::ifstream inFile(subset_path);
+			inFile >> _subset_size;
+			int buffer = 0;
+			for (int i = 0; i < _subset_size; i++){
+				inFile >> buffer;
+				_subset.push_back(buffer);
+			}
+			inFile.close();
+		}
+ */
+
+	void saveSubset(int index, vector<int>& subset, string subset_dir){
+		std::ofstream oFile(subset_dir + "/slave" + std::to_string(index));
+		oFile << subset.size() << endl;
+		for (int i = 0; i < subset.size(); i++)
+			oFile << subset[i] << " ";
+		oFile.close();
+	}
+
+	void loadClusters(vector<vector<int> >& clusters, string cluster_file){
+		std::ifstream inFile(cluster_file);
+		int sizer = 0;
+		inFile >> sizer;
+		clusters.resize(sizer);
+		for(int i = 0; i < sizer; i++){
+			int index = 0;
+			int size = 0;
+			int buffer = 0;
+			inFile >> index >> size;
+			for (int j = 0; j < size; j++){
+				inFile >> buffer;
+				clusters[index].push_back(buffer);
+			}
+		}
+		inFile.close();
+	}
+
+	void loadCentroids(vector<vector<float> >& centroids, string centroids_file){
+		std::ifstream inFile(centroids_file);
+		int sizer = 0;
+		int dimension = 0;
+		inFile >> sizer >> dimension;
+		if (dimension != DATA_DIMENSION){
+			cout << "#[error ] centroids wrong dimension" << endl;
+			MPI_Abort(MPI_COMM_WORLD, 0);
+		}
+		centroids.resize(sizer);
+		float buffer;
+		for (int i = 0; i < sizer; i++){
+			for (int j = 0; j < dimension; j++){
+				inFile >> buffer;
+				centroids[i].push_back(buffer);
+			}
+		}
+		inFile.close();
+	}
+
 	typedef struct tm {
 		int index;
 		double start_time;
@@ -38,11 +97,11 @@ namespace mt {
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _hnsw;
 
-		sm::Waker _waker;
-
 		int _COM_INDEX;
 		int _COM_WORKER_SIZE;
 	public:
+		sm::Waker _waker;
+
 		Sender(int COM_INDEX, Matrix<float>& query, string hnsw_path, vector<vector<float> > centroids, mt::Partition& partition, int centroid_size, int num_cluster, int num_worker,int ef = 100):
 			_query(query),
 			_query_size(_query.getSize()),
