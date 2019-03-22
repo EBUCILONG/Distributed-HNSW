@@ -35,6 +35,7 @@ using std::vector;
 using std::string;
 
 #define SIZEWORKER 10
+#define RESULT_TAG 1
 
 /*
  * status code with two digit:
@@ -44,18 +45,16 @@ using std::string;
 
 namespace mt {
 
-	void sendMessage(int index, Sender& sender){
+	void sendMessage(int index, Sender* sender){
 		task_message tm;
 		vector<int> destinations;
-		sender.makeTask(index, destinations, tm, MPI_Wtime());
+		sender->makeTask(index, destinations, tm, MPI_Wtime());
 		for (int j = 0; j < destinations.size(); j++)
 			MPI_Send((void*) tm, sizeof(task_message), MPI_BYTE, destinations[j], TASK_TAG, MPI_COMM_WORLD);
 	}
 
-
-	template<class Partition>
-	void mpiBody(ss::parameter& para){
-
+	void mpiBody(ss::parameter& para, mt::Partition& partition){
+		MPI_Init(NULL, NULL);
 		int world_rank;
 		MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 		int world_size;
@@ -68,22 +67,21 @@ namespace mt {
 		if (world_rank == world_size - 2){
 			//logic for task sender
 			ss::Matrix<float> query(para.query_data);
-			mt::Sender sender;
+			mt::Sender* sender;
 			vector<vector<float> > centroids;
 			loadCentroids(centroids, para.centroids_file);
-			Partition partition;
 			if (para.mode_code / 10){
-				sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
-				sender.saveHNSW(para.hnsw_dir + "/hnsw_sender");
+				sender = new Sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
+				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
 			else
-				sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
+				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
 
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
 
 			for (int i = 0; i < SIZEWORKER; i++){
-				vector<int> members = sender._waker.getMember(i);
+				vector<int> members = sender->_waker.getMember(i);
 				vector<int> subset;
 				for (int j = 0; j < members.size(); j++)
 					subset.insert(subset.end(), clusters[members[j]].begin(), clusters[members[j]].end());
@@ -105,25 +103,21 @@ namespace mt {
 		else{
 			//logic for slaves
 			MPI_Barrier(MPI_COMM_WORLD);
-			mt::Slave slave;
+			mt::Slave* slave;
 			if (para.mode_code % 10){
 				ss::Matrix<float> data(para.base_data);
-				slave(data, para.subset_dir + "/slave" + std::to_string(world_rank), 100);
-				slave.saveHNSW(para.hnsw_dir + "hnsw_slave" + std::to_string(world_rank));
+				slave = new Slave(data, para.subset_dir + "/slave" + std::to_string(world_rank), 100);
+				slave->saveHNSW(para.hnsw_dir + "hnsw_slave" + std::to_string(world_rank));
 			}
 			else
-				slave(para.hnsw_dir + "hnsw_slave" + std::to_string(world_rank), para.subset_dir + "/slave" + std::to_string(world_rank), 100);
+				slave = new Slave(para.hnsw_dir + "hnsw_slave" + std::to_string(world_rank), para.subset_dir + "/slave" + std::to_string(world_rank), 100);
 			MPI_Barrier(MPI_COMM_WORLD);
 			while(true){
 				task_message tm;
-				MPI_Recv(
-				    void* data,
-				    int count,
-				    MPI_Datatype datatype,
-				    int source,
-				    int tag,
-				    MPI_Comm communicator,
-				    MPI_Status* status)
+				MPI_Recv((void*) &tm,sizeof(task_message), MPI_BYTE, world_size - 2, TASK_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+				result_message rm;
+				slave->makeResult(tm, rm);
+				MPI_Send((void*) &rm, sizeof(result_message), MPI_BYTE, world_size - 1, RESULT_TAG, MPI_COMM_WORLD);
 			}
 		}
 	}
