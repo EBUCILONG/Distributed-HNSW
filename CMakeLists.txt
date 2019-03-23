@@ -27,12 +27,18 @@ link_libraries(-lpthread)
 
 INCLUDE_DIRECTORIES(
         ${DistributedHNSW_SOURCE_DIR}/src/include
+        ${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib
 )
 
 SET(EXAMPLES
     bug
     sift1k
 )
+
+add_executable(interface_test misc/example_library_call/interface_test.cpp interface/kaHIP_interface.cpp)
+target_include_directories(interface_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/interface)
+target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
+target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
