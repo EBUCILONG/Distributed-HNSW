@@ -36,7 +36,7 @@ SET(EXAMPLES
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
-    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} -DMODE_KAFFPA "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/liblibmapping.a" "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/liblibkaffpa.a")
+    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} -DMODE_KAFFPA libkaffpa libmapping)
 ENDFOREACH(EXAMPLE)
 
 
