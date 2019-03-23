@@ -166,10 +166,10 @@ add_library(libmapping ${LIBMAPPING_SOURCE_FILES})
 set(LIBSPAC_SOURCE_FILES lib/spac/spac.cpp)
 add_library(libspac ${LIBSPAC_SOURCE_FILES})
 
-add_executable(interface_test misc/example_library_call/interface_test.cpp interface/kaHIP_interface.cpp)
-target_include_directories(interface_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/interface)
-target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
-target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
+#add_executable(interface_test misc/example_library_call/interface_test.cpp interface/kaHIP_interface.cpp)
+#target_include_directories(interface_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/interface)
+#target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
+#target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 
 # generate targets for each binary
 #add_executable(kaffpa app/kaffpa.cpp)
