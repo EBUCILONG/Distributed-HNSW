@@ -135,7 +135,6 @@ include_directories(src/include/waker)
 
 SET(EXAMPLES
         bug
-        sift1k
         )
 
 FOREACH(EXAMPLE ${EXAMPLES} )
