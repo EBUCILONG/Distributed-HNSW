@@ -26,7 +26,7 @@ include_directories(${MPI_INCLUDE_PATH})
 link_libraries(-lpthread)
 
 INCLUDE_DIRECTORIES(
-        ${DistributedHNSW_SOURCE_DIR}/src/include
+        $${CMAKE_SOURCE_DIR}/src/include
 )
 
 SET(EXAMPLES
