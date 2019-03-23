@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(DistributedHNSW)
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/include/kahiplib/)
+add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp ")
 
