@@ -27,7 +27,6 @@ link_libraries(-lpthread)
 
 INCLUDE_DIRECTORIES(
         ${DistributedHNSW_SOURCE_DIR}/src/include
-        ${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/
 )
 
 SET(EXAMPLES
