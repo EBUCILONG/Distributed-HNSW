@@ -25,9 +25,6 @@ include_directories(${MPI_INCLUDE_PATH})
 
 link_libraries(-lpthread)
 
-link_libraries(libkaffpa)
-link_libraries(libmapping)
-
 INCLUDE_DIRECTORIES(
         ${DistributedHNSW_SOURCE_DIR}/src/include
         ${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/
@@ -40,7 +37,7 @@ SET(EXAMPLES
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
-    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES})
+    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} libkaffpa.a libmapping.a)
 ENDFOREACH(EXAMPLE)
 
 
