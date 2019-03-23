@@ -136,6 +136,7 @@ set(LIBKAFFPA_SOURCE_FILES
   lib/partition/uncoarsening/refinement/node_separators/fm_ns_local_search.cpp
   lib/partition/uncoarsening/refinement/node_separators/localized_fm_ns_local_search.cpp
   lib/algorithms/cycle_search.cpp
+  interface/kaHIP_interface.cpp
   lib/partition/uncoarsening/refinement/cycle_improvements/cycle_refinement.cpp
   lib/partition/uncoarsening/refinement/tabu_search/tabu_search.cpp
   extern/argtable3-3.0.3/argtable3.c)
