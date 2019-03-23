@@ -25,11 +25,10 @@ include_directories(${MPI_INCLUDE_PATH})
 
 link_libraries(-lpthread)
 
-INCLUDE_DIRECTORIES(
-        ${DistributedHNSW_SOURCE_DIR}/src/include
-        ${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib
-        ${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/lib
-)
+INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include)
+INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib)
+INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/lib)
+
 
 SET(EXAMPLES
     bug
