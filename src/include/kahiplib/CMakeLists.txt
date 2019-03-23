@@ -187,11 +187,11 @@ add_library(libspac ${LIBSPAC_SOURCE_FILES})
 #target_compile_definitions(partition_to_vertex_separator PRIVATE "-DMODE_PARTITIONTOVERTEXSEPARATOR")
 #target_link_libraries(partition_to_vertex_separator libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 #
-#add_executable(interface_test misc/example_library_call/interface_test.cpp interface/kaHIP_interface.cpp)
-#target_include_directories(interface_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/interface)
-#target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
-#target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
-#
+add_executable(interface_test misc/example_library_call/interface_test.cpp interface/kaHIP_interface.cpp)
+target_include_directories(interface_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/interface)
+target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
+target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
+
 #add_executable(kaffpaE app/kaffpaE.cpp)
 #target_compile_definitions(kaffpaE PRIVATE "-DMODE_KAFFPAE")
 #target_include_directories(kaffpaE PUBLIC ${MPI_CXX_INCLUDE_PATH})
