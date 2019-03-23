@@ -8,7 +8,7 @@
 #include <mpi.h>
 
 #include "utils/calculator.hpp"
-#include "kaHIP_interface.h"
+#include "interface/kaHIP_interface.h"
 
 using std::vector;
 
