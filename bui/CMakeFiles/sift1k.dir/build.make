@@ -60,7 +60,7 @@ include CMakeFiles/sift1k.dir/flags.make
 CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o: CMakeFiles/sift1k.dir/flags.make
 CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o: ../src/apps/sift1k.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o"
-	/data/opt/brew/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/src/apps/sift1k.cpp
+	/data/opt/brew/bin/ccache /data/opt/brew/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o -c /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/src/apps/sift1k.cpp
 
 CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.i"
@@ -98,6 +98,9 @@ sift1k: /data/opt/brew/lib/libboost_program_options-mt.so
 sift1k: /data/opt/brew/lib/libboost_date_time-mt.so
 sift1k: /data/opt/brew/lib/libboost_chrono-mt.so
 sift1k: /data/opt/brew/lib/libboost_atomic-mt.so
+sift1k: /data/opt/brew/lib/libmpi.so
+sift1k: src/include/kahiplib/liblibkaffpa.a
+sift1k: src/include/kahiplib/liblibmapping.a
 sift1k: CMakeFiles/sift1k.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sift1k"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sift1k.dir/link.txt --verbose=$(VERBOSE)

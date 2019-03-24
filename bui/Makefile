@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/data/opt/brew/Cellar/cmake/3.10.1/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/data/opt/brew/Cellar/cmake/3.10.1/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,44 +111,96 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sift1k
+# Target rules for targets named bug
 
 # Build rule for target.
-sift1k: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sift1k
-.PHONY : sift1k
+bug: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bug
+.PHONY : bug
 
 # fast build rule for target.
-sift1k/fast:
-	$(MAKE) -f CMakeFiles/sift1k.dir/build.make CMakeFiles/sift1k.dir/build
-.PHONY : sift1k/fast
+bug/fast:
+	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/build
+.PHONY : bug/fast
 
-src/apps/sift1k.o: src/apps/sift1k.cpp.o
+#=============================================================================
+# Target rules for targets named libkaffpa
 
-.PHONY : src/apps/sift1k.o
+# Build rule for target.
+libkaffpa: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libkaffpa
+.PHONY : libkaffpa
+
+# fast build rule for target.
+libkaffpa/fast:
+	$(MAKE) -f src/include/kahiplib/CMakeFiles/libkaffpa.dir/build.make src/include/kahiplib/CMakeFiles/libkaffpa.dir/build
+.PHONY : libkaffpa/fast
+
+#=============================================================================
+# Target rules for targets named libkaffpa_parallel
+
+# Build rule for target.
+libkaffpa_parallel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libkaffpa_parallel
+.PHONY : libkaffpa_parallel
+
+# fast build rule for target.
+libkaffpa_parallel/fast:
+	$(MAKE) -f src/include/kahiplib/CMakeFiles/libkaffpa_parallel.dir/build.make src/include/kahiplib/CMakeFiles/libkaffpa_parallel.dir/build
+.PHONY : libkaffpa_parallel/fast
+
+#=============================================================================
+# Target rules for targets named libmapping
+
+# Build rule for target.
+libmapping: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libmapping
+.PHONY : libmapping
+
+# fast build rule for target.
+libmapping/fast:
+	$(MAKE) -f src/include/kahiplib/CMakeFiles/libmapping.dir/build.make src/include/kahiplib/CMakeFiles/libmapping.dir/build
+.PHONY : libmapping/fast
+
+#=============================================================================
+# Target rules for targets named libspac
+
+# Build rule for target.
+libspac: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 libspac
+.PHONY : libspac
+
+# fast build rule for target.
+libspac/fast:
+	$(MAKE) -f src/include/kahiplib/CMakeFiles/libspac.dir/build.make src/include/kahiplib/CMakeFiles/libspac.dir/build
+.PHONY : libspac/fast
+
+src/apps/bug.o: src/apps/bug.cpp.o
+
+.PHONY : src/apps/bug.o
 
 # target to build an object file
-src/apps/sift1k.cpp.o:
-	$(MAKE) -f CMakeFiles/sift1k.dir/build.make CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.o
-.PHONY : src/apps/sift1k.cpp.o
+src/apps/bug.cpp.o:
+	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug.cpp.o
+.PHONY : src/apps/bug.cpp.o
 
-src/apps/sift1k.i: src/apps/sift1k.cpp.i
+src/apps/bug.i: src/apps/bug.cpp.i
 
-.PHONY : src/apps/sift1k.i
+.PHONY : src/apps/bug.i
 
 # target to preprocess a source file
-src/apps/sift1k.cpp.i:
-	$(MAKE) -f CMakeFiles/sift1k.dir/build.make CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.i
-.PHONY : src/apps/sift1k.cpp.i
+src/apps/bug.cpp.i:
+	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug.cpp.i
+.PHONY : src/apps/bug.cpp.i
 
-src/apps/sift1k.s: src/apps/sift1k.cpp.s
+src/apps/bug.s: src/apps/bug.cpp.s
 
-.PHONY : src/apps/sift1k.s
+.PHONY : src/apps/bug.s
 
 # target to generate assembly for a file
-src/apps/sift1k.cpp.s:
-	$(MAKE) -f CMakeFiles/sift1k.dir/build.make CMakeFiles/sift1k.dir/src/apps/sift1k.cpp.s
-.PHONY : src/apps/sift1k.cpp.s
+src/apps/bug.cpp.s:
+	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug.cpp.s
+.PHONY : src/apps/bug.cpp.s
 
 # Help Target
 help:
@@ -156,12 +208,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... sift1k"
-	@echo "... src/apps/sift1k.o"
-	@echo "... src/apps/sift1k.i"
-	@echo "... src/apps/sift1k.s"
+	@echo "... edit_cache"
+	@echo "... bug"
+	@echo "... libkaffpa"
+	@echo "... libkaffpa_parallel"
+	@echo "... libmapping"
+	@echo "... libspac"
+	@echo "... src/apps/bug.o"
+	@echo "... src/apps/bug.i"
+	@echo "... src/apps/bug.s"
 .PHONY : help
 
 

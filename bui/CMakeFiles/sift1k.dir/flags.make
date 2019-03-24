@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -fopenmp
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/data/opt/brew/Cellar/eigen/3.3.3/include/eigen3 -I/data/opt/brew/include -I/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/src/include 
+CXX_INCLUDES = -I/data/opt/brew/Cellar/eigen/3.3.3/include/eigen3 -I/data/opt/brew/include -I/data/opt/brew/Cellar/mpich/3.2_2/include -I/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/src/include -I/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/src/include/kahiplib 
 

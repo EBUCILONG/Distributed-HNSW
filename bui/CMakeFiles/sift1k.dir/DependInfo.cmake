@@ -12,11 +12,15 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/data/opt/brew/Cellar/eigen/3.3.3/include/eigen3"
   "/data/opt/brew/include"
+  "/data/opt/brew/Cellar/mpich/3.2_2/include"
   "../src/include"
+  "../src/include/kahiplib"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/libkaffpa.dir/DependInfo.cmake"
+  "/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/libmapping.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
