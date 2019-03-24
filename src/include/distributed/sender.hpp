@@ -81,8 +81,10 @@ namespace mt {
 	}
 
 	int trainHNSW(hnswlib::HierarchicalNSW<float>& hnsw, vector<vector<float> >& centroids){
+		cout << "#[error ] inside trainer" << endl;
 		for (int i = 0; i < centroids.size(); i++)
 			hnsw.addPoint(centroids[i].data(), i);
+		cout << "#[error ] ready to quit trainer" << endl;
 		return 0;
 	}
 
