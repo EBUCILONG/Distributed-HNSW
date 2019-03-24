@@ -123,13 +123,16 @@ namespace mt {
             _l2space(centroid_size),
             _hnsw(&_l2space, centroids.size(), 32, 500),
             _waker(num_cluster,_query, _hnsw, partition, centroids, _COM_WORKER_SIZE){
+		    cout << "#[sender] Started to add points to hnsw." << endl;
 			if (centroid_size != centroids[0].size()){
 				cout << "#[error ] sender constructor wrong centroids data dimension" << endl;
 				MPI_Abort(MPI_COMM_WORLD, 0);
 			}
 			for (int i = 0; i < centroids.size(); i++)
 				_hnsw.addPoint(centroids[i].data(), i);
+            cout << "#[sender] Finished adding points to hnsw, setting ef." << endl;
 			_hnsw.setEf(ef);
+            cout << "#[sender] Finished setting ef." << endl;
 		}
 
 		void saveHNSW(string path){
