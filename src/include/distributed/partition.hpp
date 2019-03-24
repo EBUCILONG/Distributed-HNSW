@@ -58,12 +58,14 @@ namespace mt{
             int pos_count = 0;
             float max_weight = -1;
             for(int i=0; i<n; i++) {
-                int n_neighbours = graph[n].size();
+                int n_neighbours = graph[i].size();
+                cout << "#[sender] n_neighbours: " + std::to_string(n_neighbours) << endl;
                 xadj[i] = pos_count;
                 for(int j=0; j<n_neighbours; j++) {
                     // edge: i -> graph[i][j]
                     int edge_to = graph[i][j];
                     float distance = ss::EuclidDistance<float>(centroids[i].data(), centroids[edge_to].data(), dim);
+                    cout << "#[sender] distance: " + std::to_string(distance) << endl;
                     adjncy[pos_count + j] = edge_to;
                     adjwgt_t[pos_count + j] = distance;
                     if (distance > max_weight) max_weight = distance;
