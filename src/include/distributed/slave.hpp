@@ -51,8 +51,10 @@ namespace mt {
 		Slave(ss::Matrix<float>& datas, string subset_path, int ef = 10):
 				_l2space(DATA_DIMENSION),
 				_hnsw(&_l2space, loadSubset(subset_path), 32, 500){
+			cout << "#[slav] inside constructor, before adding points in hnsw" << endl;
 			for (int i = 0; i < _subset_size; i++)
 				_hnsw.addPoint(datas[_subset[i]], _subset[i]);
+			cout << "#[slav] points added in hnsw" << endl;
 			_hnsw.setEf(ef);
 		}
 

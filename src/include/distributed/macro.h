@@ -9,3 +9,4 @@
 #define DATA_DIMENSION 128
 #define SIZEWORKER 10
 #define RESULT_TAG 1
+#define QUERY_SIZE 10000

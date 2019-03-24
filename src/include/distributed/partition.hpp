@@ -23,7 +23,7 @@ namespace mt{
 		}
 
 		static int inline _power_weight(float weight) {
-            return int(pow(1.04, weight));
+            return int(pow(1.01, weight));
         }
 
 	public:
@@ -39,10 +39,6 @@ namespace mt{
 		vector<int> getPartition(vector<vector<int>>& graph, vector<vector<float>>& centroids, int n_edges, int n_parts) {
             cout << "#[sender] inside getPartition" << endl;
             int n = graph.size();
-            cout << "#[sender] graph size: " + std::to_string(n) << endl;
-            for (int i=0;i<n;i++) {
-                cout << "#[sender] point " + std::to_string(i) + " have " + std::to_string(graph[i].size()) + " neighbours" << endl;
-            }
             int m = n_edges;
             int dim = centroids[0].size();
             // malloc
@@ -63,13 +59,11 @@ namespace mt{
             float max_weight = -1;
             for(int i=0; i<n; i++) {
                 int n_neighbours = graph[i].size();
-//                cout << "#[sender] n_neighbours: " + std::to_string(n_neighbours) << endl;
                 xadj[i] = pos_count;
                 for(int j=0; j<n_neighbours; j++) {
                     // edge: i -> graph[i][j]
                     int edge_to = graph[i][j];
                     float distance = ss::EuclidDistance<float>(centroids[i].data(), centroids[edge_to].data(), dim);
-//                    cout << "#[sender] distance: " + std::to_string(distance) << endl;
                     adjncy[pos_count + j] = edge_to;
                     adjwgt_t[pos_count + j] = distance;
                     if (distance > max_weight) max_weight = distance;
@@ -85,7 +79,8 @@ namespace mt{
             cout << "#[sender] inside getPartition after weight inverse" << endl;
             // run kaffpa
             double imbalance = 0.03;
-            kaffpa(&n, nullptr, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, int(time(nullptr)), STRONG, nullptr, result_partition);
+            int edge_cut = 0;
+            kaffpa(&n, NULL, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, 0, STRONG, &edge_cut, result_partition);
             cout << "#[sender] inside getPartition after kaffpa" << endl;
             vector<int> result(result_partition, result_partition + n);
             // free all malloced arrays

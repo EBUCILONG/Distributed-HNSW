@@ -3,7 +3,7 @@ cd ../bui
 data_dir="/data/liujie/gqr/data"
 out_dir="/data/sydeng/repositary/hnsw-repo/testOut"
 hnsw_dir="/data/sydeng/repositary/hnsw-repo"
-mode_code=11
+mode_code=0
 data_set="sift1m"
 #metric="euclid"
 #topk=20

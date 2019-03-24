@@ -58,13 +58,17 @@ namespace mt {
                 are received. */
 
             // main Loop for receiving message
+            cout << "#[recv] Inside receiver.receive()" << endl;
             int ef = -1;
-            while (_result.size() < _n_queries) {
+            int counter = 0;
+            cout << "#[recv] N queries: " + std::to_string(_n_queries) << endl;
+            while (counter < _n_queries) {
                 int msg_len = sizeof(mt::result_message);
                 void* buffer = malloc(msg_len);
                 mt::receiveResultMessage(buffer, msg_len);
                 mt::result_message* result_msg = (mt::result_message*)buffer;
-
+//                cout << "===ResultMessage:\nQuery id: " + std::to_string(result_msg->query_id) +
+//                    "\nNum wakeup = " + std::to_string(result_msg->num_wake_up) << endl;
                 Answer& answer = _query_map[result_msg->query_id];
                 ef = result_msg->ef;
                 // Add result into queue
@@ -74,9 +78,11 @@ namespace mt {
                 if (answer.n_slaves == result_msg->num_wake_up) {
                     _commit_answers(answer.p_queue, result_msg->query_id);
                     _query_map.erase(result_msg->query_id);
+                    counter++;
                 }
                 free(buffer);
             }
+            cout << "#[recv] result size: " + std::to_string(_result.size()) << endl;
             return _result;
         }
 
