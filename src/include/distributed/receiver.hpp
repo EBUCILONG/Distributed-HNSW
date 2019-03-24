@@ -50,7 +50,7 @@ namespace mt {
 
     public:
         explicit Receiver(int n_queries): _n_queries(n_queries) {
-            _result.reserve(n_queries);
+            _result.resize(n_queries);
         };
 
         vector<vector<pair<float, int>>> receive() {
