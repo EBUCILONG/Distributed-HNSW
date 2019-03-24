@@ -102,9 +102,9 @@ namespace mt {
 	private:
 		ss::Matrix<float>& _query;
 		int _query_size;
-		int trainer;
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _hnsw;
+		int trainer;
 
 		int _COM_INDEX;
 		int _COM_WORKER_SIZE;
