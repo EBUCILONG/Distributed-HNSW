@@ -77,16 +77,17 @@ namespace mt {
 			mt::Sender* sender;
 			vector<vector<float> > centroids;
 			loadCentroids(centroids, para.centroids_file);
+			cout << "#[send] Sender loaded centroids." << endl;
 			if (para.mode_code / 10){
 				sender = new Sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
 				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
 			else
 				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
-            cout << "#[sender ] Finished initializing Sender object.\n";
+            cout << "#[sender ] Finished initializing Sender object." << endl;
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
-            cout << "#[sender ] Finished loading clusters.\n";
+            cout << "#[sender ] Finished loading clusters." << endl;
 			for (int i = 0; i < SIZEWORKER; i++){
 				vector<int> members = sender->_waker.getMember(i);
 				vector<int> subset;
@@ -107,19 +108,22 @@ namespace mt {
 		if (world_rank == world_size - 1){
 			//logic for result receiver
 			cout << "#[mpi ] receiver start \n";
-			Bencher truth_bench(para.ground_truth.c_str());
-			mt::Receiver receiver(para.query_size);
+//			Bencher truth_bench(para.ground_truth.c_str());
+//			mt::Receiver receiver(para.query_size);
+            cout << "#[mpi ] Before receiver barrier 1." << endl;
             MPI_Barrier(MPI_COMM_WORLD); // wait for sender to cluster
+			cout << "#[mpi ] Before receiver barrier 2." << endl;
             MPI_Barrier(MPI_COMM_WORLD); // wait for slaves to construct HNSW
 //            while(true) {
-				vector<vector<pair<float, int>>> result = receiver.receive();
-				Bencher current_bench(result, false);
-				cout << truth_bench.avg_recall(current_bench) << endl;
+//				vector<vector<pair<float, int>>> result = receiver.receive();
+//				Bencher current_bench(result, false);
+//				cout << truth_bench.avg_recall(current_bench) << endl;
 //            }
 
 		}
 		else{
 			//logic for slaves
+			cout << "#[slav] " + std::to_string(world_rank) + " before barrier 1." << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
 			mt::Slave* slave;
 			if (para.mode_code % 10){
