@@ -11,6 +11,8 @@
 #include "kahiplib/interface/kaHIP_interface.h"
 
 using std::vector;
+using std::cout;
+using std::endl;
 
 namespace mt{
 	class Partition{
@@ -35,6 +37,7 @@ namespace mt{
 		}
 
 		vector<int> getPartition(vector<vector<int>>& graph, vector<vector<float>>& centroids, int n_edges, int n_parts) {
+            cout << "#[sender] inside getPartition" << endl;
             int n = graph.size();
             int m = n_edges;
             int dim = centroids[0].size();
@@ -44,12 +47,14 @@ namespace mt{
             float* adjwgt_t = (float*)malloc(sizeof(float)*m);
             int* adjwgt = (int*)malloc(sizeof(int)*m);
             int* result_partition = (int*)malloc(sizeof(int)*n);
+            cout << "#[sender] inside getPartition after malloc" << endl;
             // check if successful
             if(!xadj || !adjncy || !adjwgt || !adjwgt_t) {
                 std::cout << "#[error] Failed to allocate memory for graph file." << std::endl;
                 MPI_Abort(MPI_COMM_WORLD, 0);
             }
             // fill in the arrays
+            cout << "#[sender] inside getPartition after pointer check" << endl;
             int pos_count = 0;
             float max_weight = -1;
             for(int i=0; i<n; i++) {
@@ -67,11 +72,14 @@ namespace mt{
                 pos_count += n_neighbours;
             }
             xadj[n] = pos_count;
+            cout << "#[sender] inside getPartition after fill in arrays" << endl;
             // inverse the weights
             for(int i=0;i<m;i++) adjwgt[i] = _weight_func(max_weight - adjwgt_t[i]);
+            cout << "#[sender] inside getPartition after weight inverse" << endl;
             // run kaffpa
             double imbalance = 0.03;
             kaffpa(&n, nullptr, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, int(time(nullptr)), STRONG, nullptr, result_partition);
+            cout << "#[sender] inside getPartition after kaffpa" << endl;
             vector<int> result(result_partition, result_partition + n);
             // free all malloced arrays
             free(xadj);
@@ -79,6 +87,7 @@ namespace mt{
             free(adjwgt_t);
             free(adjwgt);
             free(result_partition);
+            cout << "#[sender] exiting getPartition" << endl;
             return result;
 		}
 	};
