@@ -5,8 +5,8 @@ out_dir="/data/sydeng/repositary/hnsw-repo/testOut"
 hnsw_dir="/data/sydeng/repositary/hnsw-repo"
 mode_code=0
 data_set="sift1m"
-#metric="euclid"
-#topk=20
+metric="euclid"
+topk=10
 # gdb --args \
 mpirun -np 12 --hostfile host_file ./bug \
     -p 1000 \

@@ -73,22 +73,22 @@ namespace mt {
 
 		if (world_rank == world_size - 2){
 			//logic for task sender
-			cout << "#[mpi ] sender start" << endl;
+//			cout << "#[mpi ] sender start" << endl;
 			ss::Matrix<float> query(para.query_data);
 			mt::Sender* sender;
 			vector<vector<float> > centroids;
 			loadCentroids(centroids, para.centroids_file);
-			cout << "#[sender] Sender loaded centroids." << endl;
+//			cout << "#[sender] Sender loaded centroids." << endl;
 			if (para.mode_code / 10){
 				sender = new Sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
 				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
 			else
 				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
-            cout << "#[sender ] Finished initializing Sender object." << endl;
+//            cout << "#[sender ] Finished initializing Sender object." << endl;
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
-            cout << "#[sender ] Finished loading clusters." << endl;
+//            cout << "#[sender ] Finished loading clusters." << endl;
 			for (int i = 0; i < SIZEWORKER; i++){
 				vector<int> members = sender->_waker.getMember(i);
 				vector<int> subset;
@@ -98,9 +98,9 @@ namespace mt {
 			}
 
 
-			cout << "#[mpi ] sender finish partition and hit first barrier" << endl;
+//			cout << "#[mpi ] sender finish partition and hit first barrier" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
-			cout << "#[mpi ] sender hit second barrier and wait for slave to finish learning" << endl;
+//			cout << "#[mpi ] sender hit second barrier and wait for slave to finish learning" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
 			for (int i = 0; i < query.getSize(); i++)
 				sendMessage(i, sender);
@@ -116,7 +116,7 @@ namespace mt {
 			cout << "#[mpi ] Before receiver barrier 2." << endl;
             MPI_Barrier(MPI_COMM_WORLD); // wait for slaves to construct HNSW
 //            while(true) {
-            cout << "#[mpi ] After receiver barrier 2." << endl;
+            	cout << "#[mpi ] After receiver barrier 2." << endl;
 				vector<vector<pair<float, int>>> result = receiver.receive();
 				Bencher current_bench(result, false);
 				cout << "#[bench] bench size: " << std::to_string(current_bench.size()) << endl;
