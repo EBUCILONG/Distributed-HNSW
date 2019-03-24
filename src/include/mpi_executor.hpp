@@ -58,18 +58,21 @@ namespace mt {
 	}
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){
-        MPI_Init(NULL, NULL);
 		int world_rank;
 		MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 		int world_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+		cout << "#[mpi ] process " << world_size << "finish mpi initiallizing" << endl;
+
 		if (world_size != SIZEWORKER + 2){
-			cout << "#[error ] wrong process initialled" << endl;
+			cout << "#[error ] wrong number process initialled" << endl;
 			MPI_Abort(MPI_COMM_WORLD, 0);
 		}
 
 		if (world_rank == world_size - 2){
 			//logic for task sender
+			cout << "#[mpi ] sender start" << endl;
 			ss::Matrix<float> query(para.query_data);
 			mt::Sender* sender;
 			vector<vector<float> > centroids;
@@ -93,8 +96,9 @@ namespace mt {
 			}
 
 
-
+			cout << "#[mpi ] sender finish partition and hit first barrier" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
+			cout << "#[mpi ] sender hit second barrier and wait for slave to finish learning" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
 			for (int i = 0; i < query.getSize(); i++)
 				sendMessage(i, sender);

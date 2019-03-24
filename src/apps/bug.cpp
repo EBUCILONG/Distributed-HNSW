@@ -8,6 +8,7 @@
 #include "executor.hpp"
 
 int main(int argc, char** argv){
+    MPI_Init(&argc, &argv);
     mt::Partition partition(1);
     ss::parameter para;
     LoadOptions(argc, argv, para);
