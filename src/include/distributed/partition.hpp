@@ -40,6 +40,9 @@ namespace mt{
             cout << "#[sender] inside getPartition" << endl;
             int n = graph.size();
             cout << "#[sender] graph size: " + std::to_string(n) << endl;
+            for (int i=0;i<n;i++) {
+                cout << "#[sender] point " + std::to_string(i) + " have " + std::to_string(graph[i].size()) + " neighbours" << endl;
+            }
             int m = n_edges;
             int dim = centroids[0].size();
             // malloc
@@ -72,7 +75,7 @@ namespace mt{
                     if (distance > max_weight) max_weight = distance;
                 }
                 pos_count += n_neighbours;
-                cout << "#[sender] pos_count" + std::to_string(pos_count) << endl;
+//                cout << "#[sender] pos_count" + std::to_string(pos_count) << endl;
             }
             cout << "#[sender] inside getPartition after large loop" << endl;
             xadj[n] = pos_count;
