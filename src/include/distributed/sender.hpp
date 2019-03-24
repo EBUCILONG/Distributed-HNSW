@@ -83,6 +83,7 @@ namespace mt {
 	int trainHNSW(hnswlib::HierarchicalNSW<float>& hnsw, vector<vector<float> >& centroids){
 		for (int i = 0; i < centroids.size(); i++)
 			hnsw.addPoint(centroids[i].data(), i);
+		return 0;
 	}
 
 	typedef struct tm {
