@@ -63,14 +63,15 @@ namespace mt{
                 for(int j=0; j<n_neighbours; j++) {
                     // edge: i -> graph[i][j]
                     int edge_to = graph[i][j];
-                    //float distance = ss::EuclidDistance<float>(centroids[i].data(), centroids[edge_to].data(), dim);
-                    float distance = 0;
+                    float distance = ss::EuclidDistance<float>(centroids[i].data(), centroids[edge_to].data(), dim);
                     adjncy[pos_count + j] = edge_to;
                     adjwgt_t[pos_count + j] = distance;
                     if (distance > max_weight) max_weight = distance;
                 }
                 pos_count += n_neighbours;
+                cout << "#[sender] pos_count" + std::to_string(pos_count) << endl;
             }
+            cout << "#[sender] inside getPartition after large loop" << endl;
             xadj[n] = pos_count;
             cout << "#[sender] inside getPartition after fill in arrays" << endl;
             // inverse the weights
