@@ -79,7 +79,6 @@ namespace mt {
 			loadCentroids(centroids, para.centroids_file);
 			cout << "#[sender] Sender loaded centroids." << endl;
 			if (para.mode_code / 10){
-				cout << "#[sender] prepare to learn new hnsw." << endl;
 				sender = new Sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
 				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
