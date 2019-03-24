@@ -63,7 +63,7 @@ namespace mt {
 		int world_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-		cout << "#[mpi ] process " + std::to_string(world_rank) + "finish mpi initiallizing\n";
+		cout << "#[mpi ] process " + std::to_string(world_rank) + " finish mpi initiallizing\n";
 
 		if (world_size != SIZEWORKER + 2){
 			cout << "#[error ] wrong number process initialled" << endl;
@@ -83,10 +83,10 @@ namespace mt {
 			}
 			else
 				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
-
+            cout << "#[sender ] Finished initializing Sender object.\n";
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
-
+            cout << "#[sender ] Finished loading clusters.\n";
 			for (int i = 0; i < SIZEWORKER; i++){
 				vector<int> members = sender->_waker.getMember(i);
 				vector<int> subset;
@@ -106,6 +106,7 @@ namespace mt {
 		}
 		if (world_rank == world_size - 1){
 			//logic for result receiver
+			cout << "#[mpi ] receiver start \n";
 			Bencher truth_bench(para.ground_truth.c_str());
 			mt::Receiver receiver(para.query_size);
             MPI_Barrier(MPI_COMM_WORLD); // wait for sender to cluster
