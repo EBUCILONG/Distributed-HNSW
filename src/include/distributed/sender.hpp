@@ -80,6 +80,11 @@ namespace mt {
 		inFile.close();
 	}
 
+	int trainHNSW(hnswlib::HierarchicalNSW<float>& hnsw, vector<vector<float> >& centroids){
+		for (int i = 0; i < centroids.size(); i++)
+			hnsw.addPoint(centroids[i].data(), i);
+	}
+
 	typedef struct tm {
 		int index;
 		double start_time;
@@ -92,6 +97,7 @@ namespace mt {
 	private:
 		ss::Matrix<float>& _query;
 		int _query_size;
+		int trainer;
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _hnsw;
 
@@ -122,17 +128,16 @@ namespace mt {
 			_COM_WORKER_SIZE(num_worker),
             _l2space(centroid_size),
             _hnsw(&_l2space, centroids.size(), 32, 500),
+            trainer(trainHNSW(_hnsw, centroids)),
             _waker(num_cluster,_query, _hnsw, partition, centroids, _COM_WORKER_SIZE){
 		    cout << "#[sender] Started to add points to hnsw." << endl;
 			if (centroid_size != centroids[0].size()){
 				cout << "#[error ] sender constructor wrong centroids data dimension" << endl;
 				MPI_Abort(MPI_COMM_WORLD, 0);
 			}
-			for (int i = 0; i < centroids.size(); i++)
-				_hnsw.addPoint(centroids[i].data(), i);
             cout << "#[sender] Finished adding points to hnsw, setting ef." << endl;
 			_hnsw.setEf(ef);
-            cout << "#[sender] Finished setting ef." << endl;
+            cout << "#[sender] Finished setting " << endl;
 		}
 
 		void saveHNSW(string path){
