@@ -44,8 +44,10 @@ namespace sm {
 			_num_partition(num_worker){
 			cout << "#[sender] inside waker" << endl;
 			_wake_counter.resize(num_worker);
-			vector<vector<int> > graph;
+			cout << "#[sender] inside waker after resize" << endl;
+			vector<vector<int>> graph;
 			int num_edges = _hnsw.getLevel0Graph(graph);
+			cout << "#[sender] inside waker after get l0 graph" << endl;
 			_map = partition.getPartition(graph, centroids, num_edges, _num_partition);
 			cout << "#[sender] exiting waker" << endl;
 		}
