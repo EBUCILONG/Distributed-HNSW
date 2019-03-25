@@ -53,7 +53,7 @@ namespace mt {
             _result.resize(n_queries);
         };
 
-        vector<vector<pair<float, int>>> receive() {
+        vector<vector<pair<float, int>>> receive(double& avg_time) {
             /* Starts the receiver. It will return result stack when all answers
                 are received. */
 
@@ -61,6 +61,7 @@ namespace mt {
             cout << "#[recv] Inside receiver.receive()" << endl;
             int ef = -1;
             int counter = 0;
+            double total_time = 0;
             cout << "#[recv] N queries: " + std::to_string(_n_queries) << endl;
             while (counter < _n_queries) {
                 int msg_len = sizeof(mt::result_message);
@@ -78,11 +79,13 @@ namespace mt {
                 if (answer.n_slaves == result_msg->num_wake_up) {
                     _commit_answers(answer.p_queue, result_msg->query_id);
                     _query_map.erase(result_msg->query_id);
+                    total_time += MPI_Wtime() - result_msg->start_time;
                     counter++;
                 }
                 free(buffer);
             }
-            cout << "#[recv] result size: " + std::to_string(_result.size()) << endl;
+//            cout << "#[recv] result size: " + std::to_string(_result.size()) << endl;
+            avg_time = total_time / _n_queries;
             return _result;
         }
 

@@ -119,10 +119,11 @@ namespace mt {
             MPI_Barrier(MPI_COMM_WORLD); // wait for slaves to construct HNSW
 //            while(true) {
 //            	cout << "#[mpi ] After receiver barrier 2." << endl;
-				vector<vector<pair<float, int>>> result = receiver.receive();
+                double avg_time;
+				vector<vector<pair<float, int>>> result = receiver.receive(avg_time);
 				Bencher current_bench(result, false);
 //				cout << "#[bench] bench size: " << std::to_string(current_bench.size()) << endl;
-				cout << truth_bench.avg_recall(current_bench) << endl;
+				cout << "time || recall"<< endl << std::to_string(avg_time) + " " + std::to_string(truth_bench.avg_recall(current_bench)) << endl;
 //            }
 //            cout << "#[mpi ] Receiver Finished." << endl;
 
