@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="04bf529a-10bc-4e68-8d1a-87bd458f33f5" name="proj99" url="http://projgw.cse.cuhk.edu.hk">
+        <fileTransfer host="projgw.cse.cuhk.edu.hk" port="2299" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2299" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
