@@ -44,10 +44,11 @@ using std::string;
 
 namespace mt {
 
-	void sendMessage(int index, Sender* sender){
+	void sendMessage(int index, Sender* sender, int& counter){
 		task_message tm;
 		vector<int> destinations;
 		sender->makeTask(index, destinations, tm, MPI_Wtime());
+		counter += tm.num_wake_up;
 		for (int j = 0; j < destinations.size(); j++)
 			MPI_Send((void*) &tm, sizeof(task_message), MPI_BYTE, destinations[j], TASK_TAG, MPI_COMM_WORLD);
 //		cout << "#[sender] Sent a message." << endl;
@@ -102,9 +103,10 @@ namespace mt {
 			MPI_Barrier(MPI_COMM_WORLD);
 //			cout << "#[mpi ] sender hit second barrier and wait for slave to finish learning" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
+			int total_wakeup = 0;
 			for (int i = 0; i < query.getSize(); i++)
-				sendMessage(i, sender);
-			cout << "#[sender ] finish sending all the task with wake rate " + std::to_string(sender->_waker.getAverWake()) << endl;
+				sendMessage(i, sender, total_wakeup);
+			cout << "#[sender ] finish sending all the task with wake num " + std::to_string(total_wakeup) << endl;
 		}
 		if (world_rank == world_size - 1){
 			//logic for result receiver
