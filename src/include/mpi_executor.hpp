@@ -65,7 +65,7 @@ namespace mt {
 		int world_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-//		cout << "#[mpi ] process " + std::to_string(world_rank) + " finish mpi initiallizing\n";
+		cout << "#[mpi ] process " + std::to_string(world_rank) + " time: " + std::to_string(MPI_Wtime());
 
 		if (world_size != SIZEWORKER + 2){
 			cout << "#[error ] wrong number process initialled" << endl;
