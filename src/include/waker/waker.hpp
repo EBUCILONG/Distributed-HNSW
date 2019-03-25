@@ -42,14 +42,14 @@ namespace sm {
 			_num_cluster(num),
 			_hnsw(hnsw),
 			_num_partition(num_worker){
-			cout << "#[sender] inside waker" << endl;
+//			cout << "#[sender] inside waker" << endl;
 			_wake_counter.resize(num_worker);
-			cout << "#[sender] inside waker after resize" << endl;
+//			cout << "#[sender] inside waker after resize" << endl;
 			vector<vector<int>> graph;
 			int num_edges = _hnsw.getLevel0Graph(graph);
-			cout << "#[sender] inside waker after get l0 graph" << endl;
+//			cout << "#[sender] inside waker after get l0 graph" << endl;
 			_map = partition.getPartition(graph, centroids, num_edges, _num_partition);
-			cout << "#[sender] exiting waker" << endl;
+//			cout << "#[sender] exiting waker" << endl;
 		}
 
 		Waker(int num, const char* file, ss::Matrix<float>& querys, hnswlib::HierarchicalNSW<float>& hnsw, int num_worker):
