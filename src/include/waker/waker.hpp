@@ -14,10 +14,12 @@
 #include <set>
 #include <math.h>
 
+#include "distributed/macro.h"
 #include "utils/cluster.hpp"
 #include "matrix.hpp"
 #include "hnswlib/hnswalg.h"
 #include "distributed/partition.hpp"
+
 
 using std::vector;
 using sm::Point;
@@ -43,7 +45,7 @@ namespace sm {
 			_hnsw(hnsw),
 			_num_partition(num_worker){
 //			cout << "#[sender] inside waker" << endl;
-			_wake_counter.resize(num_worker);
+			_wake_counter.resize(num_worker, 0);
 //			cout << "#[sender] inside waker after resize" << endl;
 			vector<vector<int>> graph;
 			int num_edges = _hnsw.getLevel0Graph(graph);
@@ -134,9 +136,9 @@ namespace sm {
 
 		float getAverWake(){
 			float result = 0;
-			for (int i = 0; i < _wake_num.size(); i++)
-				result +=  _wake_num[i];
-			return result / _wake_num.size();
+			for (int i = 0; i < _wake_counter.size(); i++)
+				result +=  _wake_counter[i];
+			return result / (SIZEWORKER * _querys.getSize());
 		}
 
 		float getStdWake(){

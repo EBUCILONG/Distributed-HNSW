@@ -149,7 +149,7 @@ namespace mt {
 		}
 
 		void makeTask(int index, vector<int>& destination, task_message& tm, double start_time, int ef = 100, int wake_rate_controller = 10){
-			destination = _waker.wakeUp(index, 10);
+			destination = _waker.wakeUp(index, wake_rate_controller);
 			tm.index = index;
 			memcpy(tm.data, _query[index], DATA_DIMENSION * sizeof(float));
 			tm.start_time = start_time;
