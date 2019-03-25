@@ -106,7 +106,7 @@ namespace mt {
 			int total_wakeup = 0;
 			for (int i = 0; i < query.getSize(); i++)
 				sendMessage(i, sender, total_wakeup);
-			cout << "#[sender ] finish sending all the task with wake num " + std::to_string(total_wakeup) << endl;
+			cout << "#[sender ] finish sending all the task with wake rate: " + std::to_string(total_wakeup * 1.0 / (SIZEWORKER * query.getSize() * 1.0)) << endl;
 		}
 		if (world_rank == world_size - 1){
 			//logic for result receiver

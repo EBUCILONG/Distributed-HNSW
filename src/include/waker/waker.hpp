@@ -104,7 +104,7 @@ namespace sm {
 			std::set<int> set;
 			for (int i = 0; i < result.size(); i++){
 				set.insert(_map[(int) result.top().second]);
-				_wake_counter[_map[(int) result.top().second]]++;
+				//_wake_counter[_map[(int) result.top().second]]++;
 				result.pop();
 			}
 			vector<int> waker(set.size());
