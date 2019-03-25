@@ -65,7 +65,7 @@ namespace mt {
 		int world_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-		cout << "#[mpi ] process " + std::to_string(world_rank) + " time: " + std::to_string(MPI_Wtime()) + "\n";
+//		cout << "#[mpi ] process " + std::to_string(world_rank) + " time: " + std::to_string(MPI_Wtime()) + "\n";
 
 		if (world_size != SIZEWORKER + 2){
 			cout << "#[error ] wrong number process initialled" << endl;
@@ -158,6 +158,7 @@ namespace mt {
 			while(true){
 				task_message tm;
 				MPI_Recv((void*) &tm,sizeof(task_message), MPI_BYTE, world_size - 2, TASK_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+				cout << "receive delay " + std::to_string(MPI_Wtime() - tm.start_time) + "\n";
 				result_message rm;
 				slave->makeResult(tm, rm);
 				MPI_Send((void*) &rm, sizeof(result_message), MPI_BYTE, world_size - 1, RESULT_TAG, MPI_COMM_WORLD);
