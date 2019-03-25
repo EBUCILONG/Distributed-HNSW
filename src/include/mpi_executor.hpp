@@ -73,6 +73,16 @@ namespace mt {
 		}
 
 		if (world_rank == world_size - 2){
+		    void* v;
+		    int flag;
+		    MPI_Comm_get_attr(MPI_COMM_WORLD, MPI_WTIME_IS_GLOBAL, &v, &flag);
+		    if(flag) {
+		    	int vval = *(int*)v;
+		    	cout << "MPI_WTIME_IS_GLOBAL is " + std::to_string(vval) << endl;
+		    }
+		    else {
+		    	cout << "MPI_WTIME_IS_GLOBAL NOT SET" << endl;
+		    }
 			//logic for task sender
 			cout << "#[mpi ] sender start" << endl;
 			ss::Matrix<float> query(para.query_data);
