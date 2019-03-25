@@ -116,7 +116,7 @@ namespace mt {
 //			cout << "#[mpi ] Before receiver barrier 2." << endl;
             MPI_Barrier(MPI_COMM_WORLD); // wait for slaves to construct HNSW
 //            while(true) {
-            	cout << "#[mpi ] After receiver barrier 2." << endl;
+//            	cout << "#[mpi ] After receiver barrier 2." << endl;
 				vector<vector<pair<float, int>>> result = receiver.receive();
 				Bencher current_bench(result, false);
 //				cout << "#[bench] bench size: " << std::to_string(current_bench.size()) << endl;
