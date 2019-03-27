@@ -41,14 +41,14 @@ namespace mt {
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _hnsw;
 	public:
-		Slave(string hnsw_path, string subset_path, int ef = 10):
+		Slave(string hnsw_path, string subset_path, int ef):
 				_l2space(DATA_DIMENSION),
 				_hnsw(&_l2space, hnsw_path){
-			_hnsw.setEf(ef);
 			loadSubset(subset_path);
+            _hnsw.setEf(ef);
 		}
 
-		Slave(ss::Matrix<float>& datas, string subset_path, int ef = 10):
+		Slave(ss::Matrix<float>& datas, string subset_path, int ef):
 				_l2space(DATA_DIMENSION),
 				_hnsw(&_l2space, loadSubset(subset_path), 32, 500){
 			cout << "#[slav] inside constructor, before adding points in hnsw" << endl;
