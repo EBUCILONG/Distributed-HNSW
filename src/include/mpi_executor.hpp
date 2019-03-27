@@ -51,7 +51,6 @@ namespace mt {
 		counter += tm.num_wake_up;
 		for (int j = 0; j < destinations.size(); j++)
 			MPI_Send((void*) &tm, sizeof(task_message), MPI_BYTE, destinations[j], TASK_TAG, MPI_COMM_WORLD);
-//		cout << "#[sender] Sent a message." << endl;
 	}
 
 	void receiveResultMessage(void* buffer, int msg_len){
@@ -65,7 +64,6 @@ namespace mt {
 		int world_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-//		cout << "#[mpi ] process " + std::to_string(world_rank) + " time: " + std::to_string(MPI_Wtime()) + "\n";
 
 		if (world_size != SIZEWORKER + 2){
 			cout << "#[error ] wrong number process initialled" << endl;
@@ -89,17 +87,14 @@ namespace mt {
 			mt::Sender* sender;
 			vector<vector<float> > centroids;
 			loadCentroids(centroids, para.centroids_file);
-//			cout << "#[sender] Sender loaded centroids." << endl;
 			if (para.mode_code / 10){
-				sender = new Sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
+				sender = new Sender(world_size - 2 ,query, centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER, para.sender_ef);
 				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
 			else
-				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER, 10);
-//            cout << "#[sender ] Finished initializing Sender object." << endl;
+				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER, para.sender_ef);
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
-//            cout << "#[sender ] Finished loading clusters." << endl;
 			for (int i = 0; i < SIZEWORKER; i++){
 				vector<int> members = sender->_waker.getMember(i);
 				vector<int> subset;
@@ -109,9 +104,7 @@ namespace mt {
 			}
 
 
-//			cout << "#[mpi ] sender finish partition and hit first barrier" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
-//			cout << "#[mpi ] sender hit second barrier and wait for slave to finish learning" << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
 			int total_wakeup = 0;
 			for (int i = 0; i < query.getSize(); i++)
@@ -120,41 +113,30 @@ namespace mt {
 		}
 		if (world_rank == world_size - 1){
 			//logic for result receiver
-//			cout << "#[mpi ] receiver start \n";
 			Bencher truth_bench(para.ground_truth.c_str());
 			mt::Receiver receiver(QUERY_SIZE);
-//            cout << "#[mpi ] Before receiver barrier 1." << endl;
             MPI_Barrier(MPI_COMM_WORLD); // wait for sender to cluster
-//			cout << "#[mpi ] Before receiver barrier 2." << endl;
             MPI_Barrier(MPI_COMM_WORLD); // wait for slaves to construct HNSW
 //            while(true) {
-//            	cout << "#[mpi ] After receiver barrier 2." << endl;
                 double avg_time;
 				vector<vector<pair<float, int>>> result = receiver.receive(avg_time);
 				Bencher current_bench(result, false);
-//				cout << "#[bench] bench size: " << std::to_string(current_bench.size()) << endl;
 				cout << "time || recall"<< endl << std::to_string(avg_time) + " " + std::to_string(truth_bench.avg_recall(current_bench)) << endl;
 //            }
-//            cout << "#[mpi ] Receiver Finished." << endl;
 
 		}
 		else{
 			//logic for slaves
-//			cout << "#[slav] " + std::to_string(world_rank) + " before barrier 1." << endl;
 			MPI_Barrier(MPI_COMM_WORLD);
-//			cout << "#[slav] First Barrier Breached!" << endl;
 			mt::Slave* slave;
 			if (para.mode_code % 10){
 				ss::Matrix<float> data(para.base_data);
-//                cout << "#[slav] Before constructing slave." << endl;
-				slave = new Slave(data, para.subset_dir + "/slave" + std::to_string(world_rank), 100);
+				slave = new Slave(data, para.subset_dir + "/slave" + std::to_string(world_rank), para.slave_ef);
 				slave->saveHNSW(para.hnsw_dir + "/hnsw_slave" + std::to_string(world_rank));
-//                cout << "#[slav] After saving hnsw." << endl;
 			}
 			else
-				slave = new Slave(para.hnsw_dir + "/hnsw_slave" + std::to_string(world_rank), para.subset_dir + "/slave" + std::to_string(world_rank), 10);
+				slave = new Slave(para.hnsw_dir + "/hnsw_slave" + std::to_string(world_rank), para.subset_dir + "/slave" + std::to_string(world_rank), para.slave_ef);
 			MPI_Barrier(MPI_COMM_WORLD);
-//			cout << "#[slav] Second Barrier Breached." << endl;
 			while(true){
 				task_message tm;
 				MPI_Recv((void*) &tm,sizeof(task_message), MPI_BYTE, world_size - 2, TASK_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);

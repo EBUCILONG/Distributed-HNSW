@@ -41,6 +41,9 @@ namespace ss{
 
     	int mode_code;
 
+    	int sender_ef;
+    	int slave_ef;
+
         /// file name of traning data
         std::string train_data;
         /// file name of base data(the data stored in index)
