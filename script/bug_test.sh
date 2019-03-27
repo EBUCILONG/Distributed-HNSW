@@ -7,6 +7,8 @@ mode_code=0
 data_set="sift1m"
 metric="euclid"
 topk=10
+sender_ef=10
+slave_ef=10
 # gdb --args \
 mpirun -np 12 --hostfile host_file ./bug \
     -p 1000 \
@@ -23,5 +25,7 @@ mpirun -np 12 --hostfile host_file ./bug \
     --hnsw_dir ${out_dir}/${data_set}/hnsw \
     --subset_dir ${out_dir}/${data_set}/subset \
     --centroids_file ${out_dir}/${data_set}/centroids \
-    --mode_code ${mode_code}
+    --mode_code ${mode_code} \
+    --sender_ef ${sender_ef} \
+    --slave_ef ${slave_ef}
 
