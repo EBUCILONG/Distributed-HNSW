@@ -95,7 +95,7 @@ namespace mt {
 				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
 			else
-				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER);
+				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER, 10);
 //            cout << "#[sender ] Finished initializing Sender object." << endl;
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
@@ -152,7 +152,7 @@ namespace mt {
 //                cout << "#[slav] After saving hnsw." << endl;
 			}
 			else
-				slave = new Slave(para.hnsw_dir + "/hnsw_slave" + std::to_string(world_rank), para.subset_dir + "/slave" + std::to_string(world_rank), 100);
+				slave = new Slave(para.hnsw_dir + "/hnsw_slave" + std::to_string(world_rank), para.subset_dir + "/slave" + std::to_string(world_rank), 10);
 			MPI_Barrier(MPI_COMM_WORLD);
 //			cout << "#[slav] Second Barrier Breached." << endl;
 			while(true){
