@@ -40,11 +40,68 @@ using std::vector;
 using std::ifstream;
 
 namespace dhnsw {
+    class ResultMessage{
+    private:
+        int _query_id;
+        int _total_piece;
+        int _top_k;
+        vector<int> _result_ids;
+        vector<float> _dists;
+        //vector<vector<float> > _result_datas;
+        long long _start_time;
+    public:
+        ResultMessage(int query_id, int total_piece, int top_k, long long start_time,vector<int>& result_ids, vector<float>& dists):
+        _query_id(query_id),
+        _total_piece(total_piece),
+        _top_k(top_k),
+        _result_ids(result_ids),
+        _dists(dists),
+        _start_time(start_time){
+            if (_top_k != _result_ids.size()){
+                cout << "#[error ] sending result message wrong topk or vec size!" << endl;
+                assert(0);
+            }
+        }
+
+        ResultMessage(int top_k, string input_string){
+            vector<char> buffer(input_string.length());
+            std::copy(input_string.c_str(), input_string.c_str() + input_string.length(), buffer.begin());
+            BinStream bs(buffer);
+            bs >> _query_id >> _total_piece >> _top_k;
+            int id_buffer = 0;
+            float dist_buffer = 0;
+            if (_top_k != top_k){
+                cout << "#[error ] received result message wrong topK!" << endl;
+                assert(0);
+            }
+            for (int i = 0; i < _top_k; i++){
+                bs >> id_buffer;
+                _result_ids.push_back(id_buffer);
+            }
+            for (int i = 0; i < _top_k; i++){
+                bs >> dist_buffer;
+                _dists.push_back(id_buffer);
+            }
+            bs >> _start_time;
+        }
+
+        string toString(){
+            BinStream bs;
+            bs << _query_id << _total_piece << _top_k;
+            for (auto& elem : _result_ids)
+                bs << elem;
+            for (auto& elem : _dists)
+                bs << elem;
+            bs << _start_time;
+            return bs.to_string();
+        }
+    };
 
     class Worker {
     private:
         int _top_k;
         int _subhnsw_id;
+        int _data_dim;
         hnswlib::HierarchicalNSW<float>* _hnsw;
         cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
@@ -55,12 +112,13 @@ namespace dhnsw {
             return config;
         }
     public:
-        Worker(int subhnsw_id, int top_k, hnswlib::HierarchicalNSW<float>* hnsw, cppkafka::Configuration config):
+        Worker(int subhnsw_id, int top_k, int data_dim, hnswlib::HierarchicalNSW<float>* hnsw, cppkafka::Configuration consumer_config, cppkafka::Configuration producer_config):
+        _data_dim(data_dim),
         _subhnsw_id(subhnsw_id),
         _top_k(top_k),
         _hnsw(hnsw),
-        _consumer(config),
-        _producer(modifyConfig(config)){
+        _consumer(consumer_config),
+        _producer(modifyConfig(producer_config)){
             string topic("subhnsw_");
             topic =topic + std::to_string(_subhnsw_id);
             _consumer.subscribe({topic});
@@ -81,13 +139,37 @@ namespace dhnsw {
                         continue;
                     } else {
                         _consumer.commit(msg);
-                        string_msg = string((msg.get_payload()));
+                        string_msg = string(msg.get_payload());
                         break;
                     }
                 }
             }
 
+            return TaskMessage(_data_dim, string_msg);
+        }
 
+        ResultMessage solveTask(TaskMessage& task){
+            priority_queue<pair<float, long unsigned int >> topk = _hnsw->searchKnn(task._query.data(), _top_k);
+            vector<int> ids;
+            vector<float> dists;
+            for (int i = 0; i < _top_k; i++){
+                ids.push_back((int) topk.top().second);
+                dists.push_back(topk.top().first);
+                topk.pop();
+            }
+            return ResultMessage(task._query_id, task._total_piece, _top_k, task._start_time, ids, dists);
+        }
+
+        void startWork(){
+            while(true) {
+                TaskMessage task = getTask();
+                ResultMessage result = solveTask(task);
+                string topic("receiver_");
+                topic = topic + std::to_string(task._process_id);
+                const string key = "key";
+                const string payload = result.toString();
+                _producer.produce(cppkafka::MessageBuilder(topic.c_str()).key(key).payload(payload));
+            }
         }
     };
 

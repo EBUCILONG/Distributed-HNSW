@@ -1,0 +1,9 @@
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/bug.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib/CMakeFiles/libkaffpa_parallel.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib/CMakeFiles/edit_cache.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib/CMakeFiles/libmapping.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib/CMakeFiles/rebuild_cache.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib/CMakeFiles/libspac.dir
+/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib/CMakeFiles/libkaffpa.dir
