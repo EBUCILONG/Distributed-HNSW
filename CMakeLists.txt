@@ -39,7 +39,7 @@ SET(EXAMPLES
 #target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 
 FOREACH(EXAMPLE ${EXAMPLES} )
-    ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
+    ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp src/include/dhnswlib/slave.hpp.cpp src/include/dhnswlib/worker.hpp.cpp)
     target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 ENDFOREACH(EXAMPLE)
 
