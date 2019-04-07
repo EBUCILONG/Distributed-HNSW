@@ -1,2 +1,0 @@
-/data/opt/brew/bin/ccache /data/opt/brew/bin/ar qc liblibspac.a  CMakeFiles/libspac.dir/lib/spac/spac.cpp.o
-/data/opt/brew/bin/ccache /data/opt/brew/bin/ranlib liblibspac.a

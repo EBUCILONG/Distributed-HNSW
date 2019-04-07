@@ -1,9 +1,0 @@
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/rebuild_cache.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/edit_cache.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/CMakeFiles/bug.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/edit_cache.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/libkaffpa.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/libkaffpa_parallel.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/libmapping.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/rebuild_cache.dir
-/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/kahiplib/CMakeFiles/libspac.dir

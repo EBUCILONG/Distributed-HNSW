@@ -1,1 +1,0 @@
-/data/opt/brew/bin/ccache /data/opt/brew/bin/c++     CMakeFiles/interface_test.dir/misc/example_library_call/interface_test.cpp.o CMakeFiles/interface_test.dir/interface/kaHIP_interface.cpp.o  -o interface_test liblibkaffpa.a liblibmapping.a /data/opt/brew/Cellar/gcc/5.2.0/lib64/libgomp.so -lpthread 
