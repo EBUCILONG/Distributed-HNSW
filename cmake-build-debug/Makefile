@@ -202,33 +202,6 @@ src/apps/bug.cpp.s:
 	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug.cpp.s
 .PHONY : src/apps/bug.cpp.s
 
-src/include/dhnswlib/slave.hpp.o: src/include/dhnswlib/slave.hpp.cpp.o
-
-.PHONY : src/include/dhnswlib/slave.hpp.o
-
-# target to build an object file
-src/include/dhnswlib/slave.hpp.cpp.o:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/include/dhnswlib/slave.hpp.cpp.o
-.PHONY : src/include/dhnswlib/slave.hpp.cpp.o
-
-src/include/dhnswlib/slave.hpp.i: src/include/dhnswlib/slave.hpp.cpp.i
-
-.PHONY : src/include/dhnswlib/slave.hpp.i
-
-# target to preprocess a source file
-src/include/dhnswlib/slave.hpp.cpp.i:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/include/dhnswlib/slave.hpp.cpp.i
-.PHONY : src/include/dhnswlib/slave.hpp.cpp.i
-
-src/include/dhnswlib/slave.hpp.s: src/include/dhnswlib/slave.hpp.cpp.s
-
-.PHONY : src/include/dhnswlib/slave.hpp.s
-
-# target to generate assembly for a file
-src/include/dhnswlib/slave.hpp.cpp.s:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/include/dhnswlib/slave.hpp.cpp.s
-.PHONY : src/include/dhnswlib/slave.hpp.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -245,9 +218,6 @@ help:
 	@echo "... src/apps/bug.o"
 	@echo "... src/apps/bug.i"
 	@echo "... src/apps/bug.s"
-	@echo "... src/include/dhnswlib/slave.hpp.o"
-	@echo "... src/include/dhnswlib/slave.hpp.i"
-	@echo "... src/include/dhnswlib/slave.hpp.s"
 .PHONY : help
 
 

@@ -349,9 +349,6 @@
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/apps/bug.cpp">
 			<Option target="bug"/>
 		</Unit>
-		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include/dhnswlib/slave.hpp.cpp">
-			<Option target="bug"/>
-		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include/kahiplib/extern/argtable3-3.0.3/argtable3.c">
 			<Option target="libkaffpa"/>
 		</Unit>

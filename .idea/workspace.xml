@@ -16,9 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff9f53fc-11a0-46c3-910f-ed409d8bab66" name="Default Changelist" comment="test mpi time flag">
-      <change afterPath="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/include/utils/binstream.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,24 +44,24 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cpp" value="5" />
+          <entry key="cpp" value="6" />
           <entry key="h" value="11" />
           <entry key="host_file" value="2" />
           <entry key="hpp" value="25" />
           <entry key="sh" value="5" />
-          <entry key="txt" value="2" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CMakeLists.txt" value="2" />
-          <entry key="ObjectiveC" value="41" />
+          <entry key="CMakeLists.txt" value="4" />
+          <entry key="ObjectiveC" value="42" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="12" />
+          <entry key="cpp" value="13" />
           <entry key="h" value="19" />
           <entry key="host_file" value="27" />
           <entry key="hpp" value="8600" />
@@ -72,7 +72,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="118" />
-          <entry key="ObjectiveC" value="8631" />
+          <entry key="ObjectiveC" value="8632" />
           <entry key="PLAIN_TEXT" value="432" />
         </counts>
       </usages-collector>
@@ -84,7 +84,19 @@
         <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="427">
-              <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+              <caret line="156" selection-start-line="156" selection-end-line="156" />
+              <folding>
+                <element signature="e#96#112#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="687">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
               <folding>
                 <element signature="e#96#112#0" expanded="true" />
               </folding>
@@ -93,13 +105,54 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
+        <entry file="file://$PROJECT_DIR$/src/include/utils/binstream.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="89" column="12" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
+            <state relative-caret-position="450">
+              <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
               <folding>
-                <element signature="e#96#112#0" expanded="true" />
+                <element signature="e#642#660#0" expanded="true" />
+                <element signature="e#2427#2439#0" expanded="true" />
+                <element signature="e#2508#2520#0" expanded="true" />
+                <element signature="e#2701#2711#0" expanded="true" />
+                <element signature="e#2919#2931#0" expanded="true" />
+                <element signature="e#3002#3014#0" expanded="true" />
+                <element signature="e#3197#3207#0" expanded="true" />
+                <element signature="e#3415#3432#0" expanded="true" />
+                <element signature="e#3650#3668#0" expanded="true" />
+                <element signature="e#3886#3903#0" expanded="true" />
+                <element signature="e#4374#4392#0" expanded="true" />
+                <element signature="e#4803#4820#0" expanded="true" />
+                <element signature="e#5098#5116#0" expanded="true" />
+                <element signature="e#5428#5452#0" expanded="true" />
+                <element signature="e#5717#5741#0" expanded="true" />
+                <element signature="e#6107#6131#0" expanded="true" />
+                <element signature="e#6436#6460#0" expanded="true" />
+                <element signature="e#6866#6878#0" expanded="true" />
+                <element signature="e#7044#7056#0" expanded="true" />
+                <element signature="e#7288#7300#0" expanded="true" />
+                <element signature="e#7466#7478#0" expanded="true" />
+                <element signature="e#7710#7727#0" expanded="true" />
+                <element signature="e#7997#8015#0" expanded="true" />
+                <element signature="e#8427#8462#0" expanded="true" />
+                <element signature="e#8649#8684#0" expanded="true" />
+                <element signature="e#9294#9310#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-473" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -142,15 +195,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/include/distributed/sender.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="121" column="40" selection-start-line="121" selection-start-column="40" selection-end-line="121" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/distributed/partition.hpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-783">
@@ -178,7 +222,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/include/kahiplib/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/apps/bug.cpp" />
         <option value="$PROJECT_DIR$/src/include/distributed/macro.h" />
         <option value="$PROJECT_DIR$/bui/host_file" />
@@ -194,6 +237,9 @@
         <option value="$PROJECT_DIR$/src/include/distributed/slave.hpp" />
         <option value="$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp" />
         <option value="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/include/utils/binstream.cpp" />
+        <option value="$PROJECT_DIR$/src/include/utils/binstream.hpp" />
       </list>
     </option>
   </component>
@@ -220,6 +266,24 @@
             <path>
               <item name="DistributedHNSW" type="b2602c69:ProjectViewProjectNode" />
               <item name="Distributed-HNSW" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistributedHNSW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Distributed-HNSW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistributedHNSW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Distributed-HNSW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistributedHNSW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Distributed-HNSW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -304,7 +368,7 @@
       <workItem from="1553779689782" duration="582000" />
       <workItem from="1553842405010" duration="419000" />
       <workItem from="1554473953608" duration="141000" />
-      <workItem from="1554534740523" duration="14744000" />
+      <workItem from="1554534740523" duration="14978000" />
     </task>
     <task id="LOCAL-00014" summary="debug">
       <created>1553327805944</created>
@@ -653,13 +717,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50581000" />
+    <option name="totallyTimeSpent" value="50815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15450644" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15450644" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -760,13 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -889,7 +946,7 @@
     <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
-          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+          <caret line="156" selection-start-line="156" selection-end-line="156" />
           <folding>
             <element signature="e#96#112#0" expanded="true" />
           </folding>
@@ -899,9 +956,56 @@
     <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="687">
-          <caret line="89" column="12" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="e#96#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-473" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/utils/binstream.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding>
+            <element signature="e#642#660#0" expanded="true" />
+            <element signature="e#2427#2439#0" expanded="true" />
+            <element signature="e#2508#2520#0" expanded="true" />
+            <element signature="e#2701#2711#0" expanded="true" />
+            <element signature="e#2919#2931#0" expanded="true" />
+            <element signature="e#3002#3014#0" expanded="true" />
+            <element signature="e#3197#3207#0" expanded="true" />
+            <element signature="e#3415#3432#0" expanded="true" />
+            <element signature="e#3650#3668#0" expanded="true" />
+            <element signature="e#3886#3903#0" expanded="true" />
+            <element signature="e#4374#4392#0" expanded="true" />
+            <element signature="e#4803#4820#0" expanded="true" />
+            <element signature="e#5098#5116#0" expanded="true" />
+            <element signature="e#5428#5452#0" expanded="true" />
+            <element signature="e#5717#5741#0" expanded="true" />
+            <element signature="e#6107#6131#0" expanded="true" />
+            <element signature="e#6436#6460#0" expanded="true" />
+            <element signature="e#6866#6878#0" expanded="true" />
+            <element signature="e#7044#7056#0" expanded="true" />
+            <element signature="e#7288#7300#0" expanded="true" />
+            <element signature="e#7466#7478#0" expanded="true" />
+            <element signature="e#7710#7727#0" expanded="true" />
+            <element signature="e#7997#8015#0" expanded="true" />
+            <element signature="e#8427#8462#0" expanded="true" />
+            <element signature="e#8649#8684#0" expanded="true" />
+            <element signature="e#9294#9310#0" expanded="true" />
           </folding>
         </state>
       </provider>

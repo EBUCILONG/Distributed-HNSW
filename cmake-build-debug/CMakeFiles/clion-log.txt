@@ -22,19 +22,7 @@ CMake Warning at src/include/kahiplib/CMakeLists.txt:52 (message):
 -- Could NOT find MPI_CXX (missing: MPI_CXX_WORKS) 
 -- Could NOT find MPI (missing: MPI_CXX_FOUND) (found version "3.1")
 -- Configuring done
-CMake Error at CMakeLists.txt:42 (ADD_EXECUTABLE):
-  Cannot find source file:
-
-    src/include/dhnswlib/slave.hpp.cpp
-
-  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
-  .hpp .hxx .in .txx
-
-
-CMake Error at CMakeLists.txt:42 (ADD_EXECUTABLE):
-  No SOURCES given to target: bug
-
-
+-- Generating done
 -- Build files have been written to: /Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug
 
 Problems were encountered while collecting compiler information:

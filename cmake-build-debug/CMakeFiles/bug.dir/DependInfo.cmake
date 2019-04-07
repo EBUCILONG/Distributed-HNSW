@@ -5,7 +5,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/apps/bug.cpp" "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/bug.dir/src/apps/bug.cpp.o"
-  "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include/dhnswlib/slave.hpp.cpp" "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/bug.dir/src/include/dhnswlib/slave.hpp.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bug.dir/src/apps/bug.cpp.o"
-  "CMakeFiles/bug.dir/src/include/dhnswlib/slave.hpp.cpp.o"
   "bug.pdb"
   "bug"
 )
