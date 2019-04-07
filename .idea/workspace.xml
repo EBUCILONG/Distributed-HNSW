@@ -15,13 +15,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9f53fc-11a0-46c3-910f-ed409d8bab66" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/include/distributed/TaskControl.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/include/distributed/receiver.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/distributed/receiver.hpp" afterDir="false" />
-    </list>
+    <list default="true" id="ff9f53fc-11a0-46c3-910f-ed409d8bab66" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/include/distributed/receiver.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state relative-caret-position="225">
+              <caret line="30" column="60" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -129,6 +123,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -182,13 +177,6 @@
               <item name="Distributed-HNSW" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DistributedHNSW" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Distributed-HNSW" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="distributed" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -275,21 +263,7 @@
       <workItem from="1553779689782" duration="582000" />
       <workItem from="1553842405010" duration="419000" />
       <workItem from="1554473953608" duration="141000" />
-      <workItem from="1554607067167" duration="7879000" />
-    </task>
-    <task id="LOCAL-00014" summary="debug">
-      <created>1553327805944</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1553327805944</updated>
-    </task>
-    <task id="LOCAL-00015" summary="debug">
-      <created>1553327835644</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1553327835644</updated>
+      <workItem from="1554607067167" duration="8111000" />
     </task>
     <task id="LOCAL-00016" summary="debug">
       <created>1553327888676</created>
@@ -620,15 +594,28 @@
       <option name="project" value="LOCAL" />
       <updated>1553662834624</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="add TaskControl.hpp">
+      <created>1554623894934</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1554623894936</updated>
+    </task>
+    <task id="LOCAL-00064" summary="added FindZookeeper.cmake">
+      <created>1554624054119</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1554624054119</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43716000" />
+    <option name="totallyTimeSpent" value="43948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="782" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28540772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -669,7 +656,9 @@
     <MESSAGE value="Debug finished" />
     <MESSAGE value="remove print" />
     <MESSAGE value="test mpi time flag" />
-    <option name="LAST_COMMIT_MESSAGE" value="test mpi time flag" />
+    <MESSAGE value="add TaskControl.hpp" />
+    <MESSAGE value="added FindZookeeper.cmake" />
+    <option name="LAST_COMMIT_MESSAGE" value="added FindZookeeper.cmake" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/include/kahiplib/lib/data_structure/graph_access.h">
@@ -846,8 +835,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/include/distributed/receiver.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+        <state relative-caret-position="225">
+          <caret line="30" column="60" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
         </state>
       </provider>
     </entry>
