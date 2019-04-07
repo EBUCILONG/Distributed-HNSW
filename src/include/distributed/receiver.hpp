@@ -58,11 +58,11 @@ namespace mt {
                 are received. */
 
             // main Loop for receiving message
-            cout << "#[recv] Inside receiver.receive()" << endl;
+//            cout << "#[recv] Inside receiver.receive()" << endl;
             int ef = -1;
             int counter = 0;
             double total_time = 0;
-            cout << "#[recv] N queries: " + std::to_string(_n_queries) << endl;
+//            cout << "#[recv] N queries: " + std::to_string(_n_queries) << endl;
             while (counter < _n_queries) {
                 int msg_len = sizeof(mt::result_message);
                 void* buffer = malloc(msg_len);
