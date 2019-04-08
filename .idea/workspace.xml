@@ -2,11 +2,11 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="DistributedHNSW" targetName="libkaffpa_parallel" />
-      <config projectName="DistributedHNSW" targetName="libspac" />
       <config projectName="DistributedHNSW" targetName="libmapping" />
       <config projectName="DistributedHNSW" targetName="bug" />
       <config projectName="DistributedHNSW" targetName="libkaffpa" />
+      <config projectName="DistributedHNSW" targetName="libkaffpa_parallel" />
+      <config projectName="DistributedHNSW" targetName="libspac" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -17,9 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ff9f53fc-11a0-46c3-910f-ed409d8bab66" name="Default Changelist" comment="test mpi time flag">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/include/utils/binstream.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/utils/binstream.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,14 +31,15 @@
     <session id="-1235474143">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -66,7 +65,7 @@
           <entry key="cpp" value="13" />
           <entry key="h" value="19" />
           <entry key="host_file" value="27" />
-          <entry key="hpp" value="11304" />
+          <entry key="hpp" value="11313" />
           <entry key="sh" value="86" />
           <entry key="txt" value="437" />
         </counts>
@@ -74,7 +73,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="118" />
-          <entry key="ObjectiveC" value="11336" />
+          <entry key="ObjectiveC" value="11345" />
           <entry key="PLAIN_TEXT" value="432" />
         </counts>
       </usages-collector>
@@ -85,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/distributed/slave.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
-              <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+            <state relative-caret-position="1170">
+              <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -94,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="183" column="34" lean-forward="true" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
+            <state relative-caret-position="2745">
+              <caret line="183" column="34" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
               <folding>
                 <element signature="e#96#112#0" expanded="true" />
               </folding>
@@ -106,8 +105,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="141" column="61" selection-start-line="141" selection-start-column="61" selection-end-line="141" selection-end-column="61" />
+            <state relative-caret-position="339">
+              <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
               <folding>
                 <element signature="e#96#112#0" expanded="true" />
               </folding>
@@ -118,7 +117,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/utils/binstream.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2382">
+            <state relative-caret-position="2400">
               <caret line="160" column="27" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="27" />
               <folding>
                 <element signature="e#642#660#0" expanded="true" />
@@ -144,15 +143,13 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-473" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="615">
               <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
             </state>
           </provider>
@@ -161,7 +158,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/configuration.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
+            <state relative-caret-position="2415">
               <caret line="161" column="19" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="19" />
             </state>
           </provider>
@@ -170,7 +167,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/hnswlib/hnswalg.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11760">
+            <state relative-caret-position="11940">
               <caret line="796" column="59" selection-start-line="796" selection-start-column="59" selection-end-line="796" selection-end-column="59" />
             </state>
           </provider>
@@ -178,9 +175,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/cppkafka.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-345" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -233,9 +228,8 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="782" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -350,7 +344,9 @@
       <workItem from="1553779689782" duration="582000" />
       <workItem from="1553842405010" duration="419000" />
       <workItem from="1554473953608" duration="141000" />
-      <workItem from="1554534740523" duration="22907000" />
+      <workItem from="1554534740523" duration="22992000" />
+      <workItem from="1554641716980" duration="37000" />
+      <workItem from="1554701676263" duration="22000" />
     </task>
     <task id="LOCAL-00014" summary="debug">
       <created>1553327805944</created>
@@ -699,13 +695,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58744000" />
+    <option name="totallyTimeSpent" value="58888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15450644" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15879828" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -802,13 +798,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bui/host_file">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bui/host_file" />
     <entry file="file://$PROJECT_DIR$/script/bug_test.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -848,9 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="135" column="13" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
-          <folding>
-            <element signature="e#99#116#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -877,9 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-783">
           <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-          <folding>
-            <element signature="e#14#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -887,46 +871,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="110" column="61" selection-start-line="109" selection-start-column="12" selection-end-line="110" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/slave.hpp.cpp" />
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp.cpp" />
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/vector">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-794">
+          <caret line="533" column="10" selection-start-line="533" selection-start-column="4" selection-end-line="533" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/distributed/slave.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2745">
+          <caret line="183" column="34" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
           <folding>
-            <element signature="e#91#108#0" expanded="true" />
+            <element signature="e#96#112#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/slave.hpp.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/cppkafka.h">
+    <entry file="file://$PROJECT_DIR$/src/include/utils/binstream.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-345" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/configuration.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="161" column="19" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-473" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/hnswlib/hnswalg.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11760">
-          <caret line="796" column="59" selection-start-line="796" selection-start-column="59" selection-end-line="796" selection-end-column="59" />
+        <state relative-caret-position="2400">
+          <caret line="160" column="27" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="27" />
+          <folding>
+            <element signature="e#642#660#0" expanded="true" />
+            <element signature="e#2948#2960#0" expanded="true" />
+            <element signature="e#3915#3932#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -941,46 +923,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/vector">
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-794">
-          <caret line="533" column="10" selection-start-line="533" selection-start-column="4" selection-end-line="533" selection-end-column="10" />
+        <state relative-caret-position="615">
+          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/utils/binstream.hpp">
+    <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/configuration.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2382">
-          <caret line="160" column="27" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="27" />
-          <folding>
-            <element signature="e#642#660#0" expanded="true" />
-            <element signature="e#2948#2960#0" expanded="true" />
-            <element signature="e#3915#3932#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2415">
+          <caret line="161" column="19" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/distributed/slave.hpp">
+    <entry file="file://$PROJECT_DIR$/src/include/hnswlib/hnswalg.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+        <state relative-caret-position="11940">
+          <caret line="796" column="59" selection-start-line="796" selection-start-column="59" selection-end-line="796" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="183" column="34" lean-forward="true" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
-          <folding>
-            <element signature="e#96#112#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/cppkafka.h">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="141" column="61" selection-start-line="141" selection-start-column="61" selection-end-line="141" selection-end-column="61" />
+        <state relative-caret-position="339">
+          <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
           <folding>
             <element signature="e#96#112#0" expanded="true" />
           </folding>

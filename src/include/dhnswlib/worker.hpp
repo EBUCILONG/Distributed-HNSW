@@ -41,7 +41,7 @@ using std::ifstream;
 
 namespace dhnsw {
     class ResultMessage{
-    private:
+    public:
         int _query_id;
         int _total_piece;
         int _top_k;
@@ -49,7 +49,6 @@ namespace dhnsw {
         vector<float> _dists;
         //vector<vector<float> > _result_datas;
         long long _start_time;
-    public:
         ResultMessage(int query_id, int total_piece, int top_k, long long start_time,vector<int>& result_ids, vector<float>& dists):
         _query_id(query_id),
         _total_piece(total_piece),
