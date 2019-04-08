@@ -4,7 +4,7 @@
 #include <queue>
 #include "cppkafka/include/cppkafka/consumer.h"
 #include "cppkafka/include/cppkafka/configuration.h"
-#include "distributed/slave.hpp"
+#include "dhnswlib/worker.hpp"
 #include "parameters.hpp"
 
 using std::unordered_map;
@@ -25,11 +25,13 @@ namespace dhnsw {
 
     class Receiver {
         int _n_queries;                             // for benchmarking & debug
+        int _top_k;
         unordered_map<int, Answer> _query_map;
         vector<vector<pair<float, int>>> _result;
         cppkafka::Consumer _consumer;
 
-        bool _receive_answers() {
+        // takes an uninitialized result_msg pointer
+        bool _receive_answers(ResultMessage*& result_msg) {
             cppkafka::Message msg = _consumer.poll();
             if(!msg) return false;
             if(msg.get_error()) {
@@ -40,8 +42,10 @@ namespace dhnsw {
                 return false;
             }
             // a message is received
-            const cppkafka::Buffer& body = msg.get_payload();
-            // TODO: deserialize content & return the object
+            const cppkafka::Buffer& msg_body = msg.get_payload();
+            string msg_string = msg_body;
+            // deserialize content & return the object
+            result_msg = new ResultMessage(_top_k, msg_string);
             return true;
         }
 
@@ -66,7 +70,8 @@ namespace dhnsw {
         }
 
     public:
-        explicit Receiver(int n_queries, cppkafka::Configuration config, string topic_name): _n_queries(n_queries), _consumer(config){
+        explicit Receiver(int n_queries, int top_k, cppkafka::Configuration config, string topic_name):
+        _n_queries(n_queries), _top_k(top_k), _consumer(config) {
             _result.resize(n_queries);
             _consumer.subscribe(topic_name);
         };
@@ -76,30 +81,32 @@ namespace dhnsw {
                 are received. */
 
             // main Loop for receiving message
-//            int ef = -1;
-//            int counter = 0;
-//            double total_time = 0;
-//            while (counter < _n_queries) {
-//                int msg_len = sizeof(mt::result_message);
-//                void* buffer = malloc(msg_len);
-//                mt::receiveResultMessage(buffer, msg_len);
-//                mt::result_message* result_msg = (mt::result_message*)buffer;
-//                Answer& answer = _query_map[result_msg->query_id];
-//                ef = result_msg->ef;
-//                // Add result into queue
-//                _insert_answers(answer.p_queue, result_msg->result_id, result_msg->dist);
-//                // Increment counter & check if received data from all slaves
-//                answer.n_slaves ++;
-//                if (answer.n_slaves == result_msg->num_wake_up) {
-//                    _commit_answers(answer.p_queue, result_msg->query_id);
-//                    _query_map.erase(result_msg->query_id);
-//                    total_time += MPI_Wtime() - result_msg->start_time;
-//                    counter++;
-//                }
-//                free(buffer);
-//            }
-//            avg_time = total_time / _n_queries;
-//            return _result;
+            int counter = 0;
+            double total_time = 0;
+            while (counter < _n_queries) {
+                // receive message
+                ResultMessage* result_msg;
+                bool ret = _receive_answers(result_msg);
+                if(!ret) continue;  // failed to receive msg
+                else {
+                    // msg received
+                    Answer& answer = _query_map[result_msg->query_id];
+                    // Add result into queue
+                    _insert_answers(answer.p_queue, result_msg->result_ids, result_msg->dists);
+                    // Increment counter & check if received data from all slaves
+                    answer.n_slaves ++;
+                    if (answer.n_slaves == result_msg->num_wake_up) {
+                        _commit_answers(answer.p_queue, result_msg->query_id);
+                        _query_map.erase(result_msg->query_id);
+                        total_time += MPI_Wtime() - result_msg->start_time;
+                        counter++;
+                    }
+                    // free memory
+                    delete result_msg;
+                }
+            }
+            avg_time = total_time / _n_queries;
+            return _result;
         }
 
     };
