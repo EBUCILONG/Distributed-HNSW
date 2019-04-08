@@ -5,6 +5,7 @@
 #include "cppkafka/include/cppkafka/consumer.h"
 #include "cppkafka/include/cppkafka/configuration.h"
 #include "dhnswlib/worker.hpp"
+#include "dhnswlib/coordinator.hpp"
 #include "parameters.hpp"
 
 using std::unordered_map;
@@ -25,7 +26,6 @@ namespace dhnsw {
 
     class Receiver {
         int _n_queries;                             // for benchmarking & debug
-        int _top_k;
         unordered_map<int, Answer> _query_map;
         vector<vector<pair<float, int>>> _result;
         cppkafka::Consumer _consumer;
@@ -45,11 +45,11 @@ namespace dhnsw {
             const cppkafka::Buffer& msg_body = msg.get_payload();
             string msg_string = msg_body;
             // deserialize content & return the object
-            result_msg = new ResultMessage(_top_k, msg_string);
+            result_msg = new ResultMessage(TOPK, msg_string);
             return true;
         }
 
-        void _insert_answers(priority_queue<pair<float, int>>& pq, int* index, float* dist) {
+        void _insert_answers(priority_queue<pair<float, int>>& pq, vector<int>& index, vector<float>& dist) {
             /* Inserts candidate vectors into priority queue. An vector will be
                 ignored if it is not in the top n results. */
             for (int i=0; i< TOPK; i++) {
@@ -70,8 +70,8 @@ namespace dhnsw {
         }
 
     public:
-        explicit Receiver(int n_queries, int top_k, cppkafka::Configuration config, string topic_name):
-        _n_queries(n_queries), _top_k(top_k), _consumer(config) {
+        explicit Receiver(int n_queries, const cppkafka::Configuration& config, string topic_name):
+        _n_queries(n_queries), _consumer(config) {
             _result.resize(n_queries);
             _consumer.subscribe(topic_name);
         };
@@ -82,7 +82,7 @@ namespace dhnsw {
 
             // main Loop for receiving message
             int counter = 0;
-            double total_time = 0;
+            long long total_time = 0;
             while (counter < _n_queries) {
                 // receive message
                 ResultMessage* result_msg;
@@ -90,22 +90,22 @@ namespace dhnsw {
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
-                    Answer& answer = _query_map[result_msg->query_id];
+                    Answer& answer = _query_map[result_msg->_query_id];
                     // Add result into queue
-                    _insert_answers(answer.p_queue, result_msg->result_ids, result_msg->dists);
+                    _insert_answers(answer.p_queue, result_msg->_result_ids, result_msg->_dists);
                     // Increment counter & check if received data from all slaves
                     answer.n_slaves ++;
-                    if (answer.n_slaves == result_msg->num_wake_up) {
-                        _commit_answers(answer.p_queue, result_msg->query_id);
-                        _query_map.erase(result_msg->query_id);
-                        total_time += MPI_Wtime() - result_msg->start_time;
+                    if (answer.n_slaves == result_msg->_total_piece) {
+                        _commit_answers(answer.p_queue, result_msg->_query_id);
+                        _query_map.erase(result_msg->_query_id);
+                        total_time += getSysTime() - result_msg->_start_time;
                         counter++;
                     }
                     // free memory
                     delete result_msg;
                 }
             }
-            avg_time = total_time / _n_queries;
+            avg_time = static_cast<double>(total_time) / _n_queries;
             return _result;
         }
 

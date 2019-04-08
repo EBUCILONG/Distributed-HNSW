@@ -27,7 +27,7 @@
 #include "waker/waker.hpp"
 #include "cppkafka/include/cppkafka/cppkafka.h"
 #include "hnswlib/hnswalg.h"
-#include "dhnswlib/coodinator.hpp"
+#include "dhnswlib/coordinator.hpp"
 
 using std::stringstream;
 using std::pair;
