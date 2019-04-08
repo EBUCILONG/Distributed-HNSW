@@ -16,7 +16,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff9f53fc-11a0-46c3-910f-ed409d8bab66" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/include/dhnswlib/receiver.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/dhnswlib/receiver.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/include/dhnsw_executor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/include/executor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/executor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/include/parameters.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/include/parameters.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,12 +34,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/receiver.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="102" column="21" lean-forward="true" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+            <state relative-caret-position="689">
+              <caret line="82" column="46" lean-forward="true" selection-start-line="82" selection-start-column="46" selection-end-line="82" selection-end-column="46" />
               <folding>
                 <element signature="e#14#38#0" expanded="true" />
               </folding>
@@ -43,13 +47,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coordinator.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+            <state relative-caret-position="449">
+              <caret line="177" column="47" lean-forward="true" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
               <folding>
-                <element signature="e#64#83#0" expanded="true" />
+                <element signature="e#96#112#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,31 +62,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+            <state relative-caret-position="-1216">
+              <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/consumer.h">
+        <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5775">
-              <caret line="385" column="6" selection-start-line="385" selection-start-column="6" selection-end-line="385" selection-end-column="6" />
+            <state relative-caret-position="44">
+              <caret line="68" column="11" lean-forward="true" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+              <folding>
+                <element signature="e#64#83#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/include/dhnsw_executor.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="701">
+              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+              <folding>
+                <element signature="e#14#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/cppkafka.h">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+        <entry file="file://$PROJECT_DIR$/src/include/parameters.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="80" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
+            <state relative-caret-position="1860">
+              <caret line="124" column="36" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -95,6 +109,9 @@
       <find>query_size</find>
       <find>_EVENT</find>
       <find>_STATE</find>
+      <find>value</find>
+      <find>get</find>
+      <find>zoo_get</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,8 +129,6 @@
         <option value="$PROJECT_DIR$/src/include/distributed/partition.hpp" />
         <option value="$PROJECT_DIR$/src/include/distributed/sender.hpp" />
         <option value="$PROJECT_DIR$/src/include/waker/waker.hpp" />
-        <option value="$PROJECT_DIR$/src/include/parameters.hpp" />
-        <option value="$PROJECT_DIR$/src/include/executor.hpp" />
         <option value="$PROJECT_DIR$/src/include/mpi_executor.hpp" />
         <option value="$PROJECT_DIR$/script/bug_test.sh" />
         <option value="$PROJECT_DIR$/src/include/distributed/slave.hpp" />
@@ -122,6 +137,11 @@
         <option value="$PROJECT_DIR$/src/include/distributed/TaskControl.hpp" />
         <option value="$PROJECT_DIR$/src/include/distributed/dhnsw_receiver.hpp" />
         <option value="$PROJECT_DIR$/src/include/dhnswlib/receiver.hpp" />
+        <option value="$PROJECT_DIR$/src/include/parameters.hpp" />
+        <option value="$PROJECT_DIR$/src/include/executor.hpp" />
+        <option value="$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp" />
+        <option value="$PROJECT_DIR$/src/include/dhnswlib/worker.hpp" />
+        <option value="$PROJECT_DIR$/src/include/dhnsw_executor.hpp" />
       </list>
     </option>
   </component>
@@ -252,28 +272,7 @@
       <workItem from="1553842405010" duration="419000" />
       <workItem from="1554473953608" duration="141000" />
       <workItem from="1554607067167" duration="8111000" />
-      <workItem from="1554694740174" duration="1950000" />
-    </task>
-    <task id="LOCAL-00017" summary="debug">
-      <created>1553327918953</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1553327918953</updated>
-    </task>
-    <task id="LOCAL-00018" summary="debug">
-      <created>1553327979090</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1553327979090</updated>
-    </task>
-    <task id="LOCAL-00019" summary="debug">
-      <created>1553328238016</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1553328238016</updated>
+      <workItem from="1554694740174" duration="7378000" />
     </task>
     <task id="LOCAL-00020" summary="debug">
       <created>1553328368383</created>
@@ -597,16 +596,38 @@
       <option name="project" value="LOCAL" />
       <updated>1554694773115</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="modified receiver in dhnswlib">
+      <created>1554703266018</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1554703266018</updated>
+    </task>
+    <task id="LOCAL-00067" summary="modified receiver in dhnswlib">
+      <created>1554703290214</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1554703290214</updated>
+    </task>
+    <task id="LOCAL-00068" summary="finished receiver and renamed coodinator.hpp -&gt; coordinator.hpp">
+      <created>1554703909111</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1554703909111</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50938000" />
+    <option name="totallyTimeSpent" value="56366000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19170243" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18526466" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -618,7 +639,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3289855" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.25797102" />
       <window_info anchor="bottom" id="File Transfer" order="12" weight="0.3289855" />
@@ -648,7 +669,9 @@
     <MESSAGE value="add TaskControl.hpp" />
     <MESSAGE value="added FindZookeeper.cmake" />
     <MESSAGE value="added receiver in dhnswlib" />
-    <option name="LAST_COMMIT_MESSAGE" value="added receiver in dhnswlib" />
+    <MESSAGE value="modified receiver in dhnswlib" />
+    <MESSAGE value="finished receiver and renamed coodinator.hpp -&gt; coordinator.hpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished receiver and renamed coodinator.hpp -&gt; coordinator.hpp" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/include/kahiplib/lib/data_structure/graph_access.h">
@@ -704,13 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/mpi_executor.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1959">
-          <caret line="145" column="13" lean-forward="true" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/script/bug_test.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -722,20 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/parameters.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/executor.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -760,21 +762,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/include/TaskControl.hpp" />
-    <entry file="file:///usr/local/include/zookeeper/zookeeper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="113" column="13" selection-start-line="113" selection-start-column="2" selection-end-line="113" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/include/distributed/dhnsw_receiver.hpp" />
-    <entry file="file://$PROJECT_DIR$/src/include/distributed/macro.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/git.sh" />
     <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/message.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -800,24 +788,10 @@
     <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/cppkafka.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coodinator.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-484">
-          <caret line="27" selection-start-line="27" selection-end-line="27" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/include/cppkafka/include/cppkafka/buffer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1616">
           <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -842,22 +816,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/receiver.hpp">
+    <entry file="file://$PROJECT_DIR$/src/include/graph_constructor.hpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/distributed/macro.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/zookeeper/zookeeper.jute.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="102" column="7" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/zookeeper/zookeeper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="1346" column="18" selection-start-line="1346" selection-start-column="11" selection-end-line="1346" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/executor.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="101" column="25" lean-forward="true" selection-start-line="101" selection-start-column="25" selection-end-line="101" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/mpi_executor.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1530">
-          <caret line="102" column="21" lean-forward="true" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+          <caret line="124" column="15" lean-forward="true" selection-start-line="124" selection-start-column="15" selection-end-line="124" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="68" column="11" lean-forward="true" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+          <folding>
+            <element signature="e#64#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/coordinator.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="177" column="47" lean-forward="true" selection-start-line="177" selection-start-column="47" selection-end-line="177" selection-end-column="47" />
+          <folding>
+            <element signature="e#96#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/worker.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1216">
+          <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/receiver.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="82" column="46" lean-forward="true" selection-start-line="82" selection-start-column="46" selection-end-line="82" selection-end-column="46" />
           <folding>
             <element signature="e#14#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/dhnswlib/task_control.hpp">
+    <entry file="file://$PROJECT_DIR$/src/include/parameters.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+        <state relative-caret-position="1860">
+          <caret line="124" column="36" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/dhnsw_executor.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="701">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
           <folding>
-            <element signature="e#64#83#0" expanded="true" />
+            <element signature="e#14#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

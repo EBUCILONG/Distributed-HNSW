@@ -121,6 +121,10 @@ namespace ss{
         /// h(x) = ceil[(av+b)/r]
         float r;
 
+        // for ZooKeeper
+        // specifies the host server
+        string hosts;
+
     } typedef parameter;
 
 } // namespace ss

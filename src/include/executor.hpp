@@ -96,6 +96,7 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("mode_code",        po::value<int    >(&para.mode_code),                          "mode_code")
 		("sender_ef",        po::value<int    >(&para.sender_ef),                          "sender accurate controller")
 		("slave_ef",         po::value<int    >(&para.slave_ef),                           "slave accurate controller")
+		("zookeeper_hosts",  po::value<string >(&para.hosts),                              "host for ZooKeeper")
     ;
 
     po::variables_map vm;
