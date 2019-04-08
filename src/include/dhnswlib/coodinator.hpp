@@ -27,7 +27,9 @@
 #include "waker/waker.hpp"
 #include "cppkafka/include/cppkafka/cppkafka.h"
 #include "hnswlib/hnswalg.h"
+#include "utils/binstream.hpp"
 
+using husky::base::BinStream;
 using std::stringstream;
 using std::pair;
 using std::priority_queue;
@@ -53,25 +55,49 @@ namespace dhnsw {
 	};
 
 	class TaskMessage{
-	private:
-		int _query_id;
-		vector<float> _query;
-		long long _start_time;
 	public:
-		TaskMessage(int query_id, vector<float>& query){
+	    int _process_id;
+        int _query_id;
+        int _total_piece;
+        vector<float> _query;
+        long long _start_time;
+
+	    TaskMessage(int vec_dim, string& input_string){
+            vector<char> buffer(input_string.length());
+            std::copy(input_string.c_str(), input_string.c_str() + input_string.length(), buffer.begin());
+            BinStream bs(buffer);
+            int size;
+            if (vec_dim != size){
+                cout << "#[error ] received task message query wrong length!" << endl;
+                assert(0);
+            }
+            float float_buffer;
+            bs >> _process_id >> _query_id >> _total_piece >> size;
+            for (int i = 0; i < size; i++){
+                bs >> float_buffer;
+                _query.push_back(float_buffer);
+            }
+            bs >> _start_time;
+	    }
+
+		TaskMessage(int process_id, int query_id, int vec_dim, vector<float>& query):
+		_process_id(process_id),
+		_query(query){
+	        if (query.size() != vec_dim){
+	            cout << "#[error ] sending task message query wrong length!" << endl;
+	            assert(0);
+	        }
 			_start_time = getSysTime();
-			_query.resize(query.size());
-			std::copy(_query.begin(), _query.end(), query.begin());
 			_query_id = query_id;
 		}
 
 		string toString(){
-			stringstream ss;
-			ss << _query_id  << " " << _start_time << " " << _query.size();
-			for (int i = 0; i < _query.size(); i++){
-				ss << " " << _query[i];
-			}
-			return ss.str();
+            BinStream bs;
+            bs << _process_id << _query_id << _total_piece << _query.size();
+            for(auto& elem : _query)
+                bs << elem;
+            bs << _start_time;
+            return bs.to_string();
 		}
 	};
 
@@ -116,7 +142,7 @@ namespace dhnsw {
 			return config;
         }
 	public:
-		Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller, string subhnsw_dir, string meta_hnsw_dir, string map_dir, cppkafka::Configuration config):
+		Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller, string subhnsw_dir, string meta_hnsw_dir, string map_dir, cppkafka::Configuration config, int meta_ef = 10, int sub_ef = 10):
 		_subhnsw_id(hnsw_id),
 		_process_id(process_id),
 		_l2space(vec_dim),
@@ -128,6 +154,8 @@ namespace dhnsw {
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
 			loadMap(map_dir);
+			_subhnsw_addr->setEf(sub_ef);
+			_metahnsw.setEf(meta_ef);
 		}
 
 		void getWakeUpId(vector<float>& query, vector<int>& result){
@@ -149,12 +177,12 @@ namespace dhnsw {
 			vector<int> aim_subhnsw_id;
 			getWakeUpId(query, aim_subhnsw_id);
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
-				string topic = "subhnsw_" + std::to_string(aim_subhnsw_id[i]);
-				TaskMessage message(query_id, query);
-				string key = "key";
+				string topic("subhnsw_");
+				topic = topic + std::to_string(aim_subhnsw_id[i]);
+				TaskMessage message(_process_id, query_id, _data_dim, query);
+				const string key = "key";
 				const string payload = message.toString();
 				_producer.produce(cppkafka::MessageBuilder(topic.c_str()).key(key).payload(payload));
-
 			}
         }
 	};

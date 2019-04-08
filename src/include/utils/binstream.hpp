@@ -30,6 +30,8 @@
 #include <utility>
 #include <vector>
 
+#include "utils/macros.hpp"
+
 namespace husky {
     namespace base {
 
