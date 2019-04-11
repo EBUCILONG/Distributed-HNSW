@@ -3,7 +3,9 @@
 #include <unordered_map>
 #include <queue>
 #include "cppkafka/include/cppkafka/consumer.h"
+#include "cppkafka/include/cppkafka/producer.h"
 #include "cppkafka/include/cppkafka/configuration.h"
+#include "dhnswlib/time.hpp"
 #include "dhnswlib/worker.hpp"
 #include "dhnswlib/coordinator.hpp"
 #include "parameters.hpp"
@@ -18,36 +20,36 @@ using std::endl;
 
 namespace dhnsw {
 
+    // takes an uninitialized result_msg pointer
+    bool receiveAnswer(ResultMessage*& result_msg, cppkafka::Consumer& consumer) {
+        cppkafka::Message msg = consumer.poll();
+        if(!msg) return false;
+        if(msg.get_error()) {
+            if (!msg.is_eof()) {
+                // error
+                cout << "[RECV] Some error occured when polling from kafka." << endl;
+            }
+            return false;
+        }
+        // a message is received
+        const cppkafka::Buffer& msg_body = msg.get_payload();
+        string msg_string = msg_body;
+        // deserialize content & return the object
+        result_msg = new ResultMessage(TOPK, msg_string);
+        return true;
+    }
+
     struct Answer {
-        Answer(): n_slaves(0) {};
+        Answer(): n_slaves(0), start_time(0) {};
         int n_slaves;
+        long long start_time;
         priority_queue<pair<float, int>> p_queue;
     };
 
     class Receiver {
-        int _n_queries;                             // for benchmarking & debug
         unordered_map<int, Answer> _query_map;
-        vector<vector<pair<float, int>>> _result;
         cppkafka::Consumer _consumer;
-
-        // takes an uninitialized result_msg pointer
-        bool _receive_answers(ResultMessage*& result_msg) {
-            cppkafka::Message msg = _consumer.poll();
-            if(!msg) return false;
-            if(msg.get_error()) {
-                if (!msg.is_eof()) {
-                    // error
-                    cout << "[RECV] Some error occured when polling from kafka." << endl;
-                }
-                return false;
-            }
-            // a message is received
-            const cppkafka::Buffer& msg_body = msg.get_payload();
-            string msg_string = msg_body;
-            // deserialize content & return the object
-            result_msg = new ResultMessage(TOPK, msg_string);
-            return true;
-        }
+        cppkafka::Producer _producer;
 
         void _insert_answers(priority_queue<pair<float, int>>& pq, vector<int>& index, vector<float>& dist) {
             /* Inserts candidate vectors into priority queue. An vector will be
@@ -60,37 +62,45 @@ namespace dhnsw {
         }
 
         void _commit_answers(priority_queue<pair<float, int>>& pq, int query_id) {
-            /* Gets all elements from the priority queue and commit them to result stack */
-            vector<pair<float, int>> indexes;
+            /* Gets all elements from the priority queue, and sends a message to evaluator */
+            vector<int> result_ids;
+            vector<float> dists;
             while(!pq.empty()) {
-                indexes.push_back(pq.top());
+                dists.push_back(pq.top().first);
+                result_ids.push_back(pq.top().second);
                 pq.pop();
             }
-            _result[query_id] = indexes;
+            ResultMessage result(query_id, 1, TOPK, _query_map[query_id].start_time, result_ids, dists);
+            string topic = "evaluation";
+            string payload = result.toString();
+            _producer.produce(cppkafka::MessageBuilder(topic.c_str()).key("key").payload(payload));
         }
 
     public:
-        explicit Receiver(int n_queries, const cppkafka::Configuration& config, string topic_name):
-        _n_queries(n_queries), _consumer(config) {
-            _result.resize(n_queries);
+        explicit Receiver(int process_id, const cppkafka::Configuration& consumer_config,
+                const cppkafka::Configuration& producer_config):
+                _consumer(consumer_config), _producer(producer_config) {
+            string topic_name = "receiver_" + std::to_string(process_id);
             _consumer.subscribe(topic_name);
         };
 
-        vector<vector<pair<float, int>>> receive(double& avg_time) {
-            /* Starts the receiver. It will return result stack when all answers
-                are received. */
+        void receive() {
+            /* Starts the receiver. */
 
             // main Loop for receiving message
             int counter = 0;
             long long total_time = 0;
-            while (counter < _n_queries) {
+
+            // deliberate endless loop
+            while (true) {
                 // receive message
                 ResultMessage* result_msg;
-                bool ret = _receive_answers(result_msg);
+                bool ret = receiveAnswer(result_msg, _consumer);
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
                     Answer& answer = _query_map[result_msg->_query_id];
+                    answer.start_time = result_msg->_start_time;
                     // Add result into queue
                     _insert_answers(answer.p_queue, result_msg->_result_ids, result_msg->_dists);
                     // Increment counter & check if received data from all slaves
@@ -98,15 +108,13 @@ namespace dhnsw {
                     if (answer.n_slaves == result_msg->_total_piece) {
                         _commit_answers(answer.p_queue, result_msg->_query_id);
                         _query_map.erase(result_msg->_query_id);
-                        total_time += getSysTime() - result_msg->_start_time;
+                        total_time += get_current_time_milliseconds() - result_msg->_start_time;
                         counter++;
                     }
                     // free memory
                     delete result_msg;
                 }
             }
-            avg_time = static_cast<double>(total_time) / _n_queries;
-            return _result;
         }
 
     };

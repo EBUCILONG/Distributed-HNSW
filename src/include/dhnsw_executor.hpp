@@ -38,8 +38,10 @@ namespace dhnsw {
         //TODO: Implement worker logic
     }
 
-    void receiver_func() {
-//        Receiver receiver =
+    void receiver_func(int process_id, const cppkafka::Configuration& consumer_config,
+                       const cppkafka::Configuration& producer_config) {
+        Receiver receiver(process_id, consumer_config, producer_config);
+        receiver.receive();
     }
 
     void dhnsw_execute(ss::parameter& para, mt::Partition& partition) {
