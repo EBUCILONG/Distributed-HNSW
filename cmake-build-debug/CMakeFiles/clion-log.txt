@@ -1,0 +1,29 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/oruqimaru/hnsw-repo/Distributed-HNSW
+-- Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 
+-- Could NOT find OpenMP_CXX (missing: OpenMP_CXX_FLAGS OpenMP_CXX_LIB_NAMES) 
+-- Could NOT find OpenMP (missing: OpenMP_C_FOUND OpenMP_CXX_FOUND) 
+CMake Warning at src/include/kahiplib/CMakeLists.txt:52 (message):
+  OpenMP not available, activating workaround
+
+
+-- Build will generate a shared library. Use CPPKAFKA_BUILD_SHARED=0 to perform a static build
+-- Could NOT find RDKAFKA (missing: RDKAFKA_LIBRARY RDKAFKA_INCLUDE_DIR) 
+CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
+Please set them or make sure they are set and tested correctly in the CMake files:
+RDKAFKA_INCLUDE_DIR
+   used as include directory in directory /Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/cppkafka/CMakeFiles/CMakeTmp
+   used as include directory in directory /Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/cppkafka/CMakeFiles/CMakeTmp
+   used as include directory in directory /Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/cppkafka/CMakeFiles/CMakeTmp
+
+CMake Error at src/include/cppkafka/cmake/FindRdKafka.cmake:43 (try_compile):
+  Failed to configure test project build system.
+Call Stack (most recent call first):
+  src/include/cppkafka/CMakeLists.txt:61 (find_package)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/CMakeFiles/CMakeError.log".
+
+Problems were encountered while collecting compiler information:
+	clang: error: unsupported option '-fopenmp'
