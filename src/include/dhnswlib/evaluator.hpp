@@ -4,7 +4,6 @@
 #include <thread>
 #include <vector>
 #include <string>
-#include <cppkafka/include/cppkafka/configuration.h>
 #include <fstream>
 #include <ostream>
 #include <set>
@@ -15,10 +14,12 @@
 #include <stdlib.h>
 #include <sys/timeb.h>
 #include <sys/types.h>
-#include <cppkafka/include/cppkafka/message_builder.h>
+#include <cppkafka/message_builder.h>
+#include <cppkafka/cppkafka.h>
+#include <cppkafka/configuration.h>
+#include <cppkafka/consumer.h>
+#include <cppkafka/producer.h>
 
-#include "cppkafka/include/cppkafka/consumer.h"
-#include "cppkafka/include/cppkafka/configuration.h"
 #include "dhnswlib/time.hpp"
 #include "dhnswlib/worker.hpp"
 #include "dhnswlib/coordinator.hpp"
