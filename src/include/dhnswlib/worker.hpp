@@ -104,12 +104,6 @@ namespace dhnsw {
         hnswlib::HierarchicalNSW<float>* _hnsw;
         cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
-        cppkafka::Configuration modifyConfig(cppkafka::Configuration config){
-            cppkafka::TopicConfiguration default_topic_config;
-            default_topic_config.set_partitioner_callback(callback);
-            config.set_default_topic_configuration(std::move(default_topic_config));
-            return config;
-        }
     public:
         Worker(int subhnsw_id, int top_k, int data_dim, hnswlib::HierarchicalNSW<float>* hnsw, cppkafka::Configuration consumer_config, cppkafka::Configuration producer_config):
         _data_dim(data_dim),
@@ -117,9 +111,9 @@ namespace dhnsw {
         _top_k(top_k),
         _hnsw(hnsw),
         _consumer(consumer_config),
-        _producer(modifyConfig(producer_config)){
+        _producer(producer_config){
             string topic("subhnsw_");
-            topic =topic + std::to_string(_subhnsw_id);
+            topic = topic + std::to_string(_subhnsw_id);
             _consumer.subscribe({topic});
         }
 
