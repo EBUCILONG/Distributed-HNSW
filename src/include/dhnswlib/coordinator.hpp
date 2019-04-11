@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <ctime>
+#include <chrono>
 #include <thread>
 #include <vector>
 #include <string>
@@ -24,6 +24,8 @@
 #include <sys/types.h>
 #include <cppkafka/include/cppkafka/message_builder.h>
 
+#include "dhnswlib/customer.hpp"
+#include "dhnswlib/time.hpp"
 #include "waker/waker.hpp"
 #include "cppkafka/include/cppkafka/cppkafka.h"
 #include "hnswlib/hnswalg.h"
@@ -39,13 +41,9 @@ using std::endl;
 using std::string;
 using std::vector;
 using std::ifstream;
+using std::chrono::steady_clock;
 
 namespace dhnsw {
-	long long getSysTime(){
-		struct timeb t;
-		ftime(&t);
-		return 1000 * t.time + t.millitm;
-	}
 
 	const auto callback = [](const cppkafka::Topic&, const cppkafka::Buffer& key, int32_t partition_count) {
 		// We'll convert the key into an int and perform modulo
@@ -80,14 +78,14 @@ namespace dhnsw {
             bs >> _start_time;
 	    }
 
-		TaskMessage(int process_id, int query_id, int vec_dim, vector<float>& query):
+		TaskMessage(int process_id, int query_id, int vec_dim, long long start_time, vector<float>& query):
 		_process_id(process_id),
 		_query(query){
 	        if (query.size() != vec_dim){
 	            cout << "#[error ] sending task message query wrong length!" << endl;
 	            assert(0);
 	        }
-			_start_time = getSysTime();
+			_start_time = start_time;
 			_query_id = query_id;
 		}
 
@@ -111,7 +109,8 @@ namespace dhnsw {
 		int _num_subhnsw;
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _metahnsw;
-		hnswlib::HierarchicalNSW<float>*	_subhnsw_addr;
+		hnswlib::HierarchicalNSW<float>* _subhnsw_addr;
+		cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
         vector<int> _map;
 
@@ -134,22 +133,18 @@ namespace dhnsw {
 				_map.push_back(buffer);
 			}
 		}
-
-		cppkafka::Configuration modifyConfig(cppkafka::Configuration config){
-			cppkafka::TopicConfiguration default_topic_config;
-			default_topic_config.set_partitioner_callback(callback);
-			config.set_default_topic_configuration(std::move(default_topic_config));
-			return config;
-        }
 	public:
-		Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller, string subhnsw_dir, string meta_hnsw_dir, string map_dir, cppkafka::Configuration config, int meta_ef = 10, int sub_ef = 10):
+		Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller, string subhnsw_dir, string meta_hnsw_dir, string map_dir, cppkafka::Configuration producer_config, cppkafka::Configuration consumer_config, int meta_ef = 10, int sub_ef = 10):
 		_subhnsw_id(hnsw_id),
 		_process_id(process_id),
 		_l2space(vec_dim),
 		_metahnsw(&_l2space, meta_hnsw_dir),
 		_data_dim(vec_dim),
 		_wakeup_controller(wakeup_controller),
-		_producer(modifyConfig(config)){
+		_producer(producer_config),
+		_consumer(consumer_config){
+        	string topic = "query";
+        	_consumer.subscribe({topic});
 			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
@@ -173,17 +168,48 @@ namespace dhnsw {
 			std::copy(set.begin(), set.end(), result.begin());
         }
 
-        void produceTask(int query_id, vector<float>& query){
+		QueryMessage getQuery(){
+			string string_msg;
+
+			while (true) {
+				cppkafka::Message msg = _consumer.poll();
+
+				// Make sure we have a message before processing it
+				if (msg) {
+					if (msg.get_error()) {
+						if (!msg.is_eof()) {
+							cout << "#[error #] receive error message from kafka" << endl;
+						}
+						continue;
+					} else {
+						_consumer.commit(msg);
+						string_msg = string(msg.get_payload());
+						break;
+					}
+				}
+			}
+
+			return QueryMessage(_data_dim, string_msg);
+		}
+
+        void produceTask(int query_id, vector<float>& query, long long start_time){
 			vector<int> aim_subhnsw_id;
 			getWakeUpId(query, aim_subhnsw_id);
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
-				TaskMessage message(_process_id, query_id, _data_dim, query);
+				TaskMessage message(_process_id, query_id, _data_dim, start_time, query);
 				const string key = "key";
 				const string payload = message.toString();
 				_producer.produce(cppkafka::MessageBuilder(topic.c_str()).key(key).payload(payload));
 			}
+        }
+
+        void startWork(){
+        	while(true){
+        		QueryMessage msg = getQuery();
+        		produceTask(msg.query_id_, msg.query_, msg.start_time_);
+        	}
         }
 	};
 
