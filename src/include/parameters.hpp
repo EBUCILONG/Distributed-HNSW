@@ -39,6 +39,18 @@ namespace ss{
 
     	std::string centroids_file;
 
+    	std::string map_address;
+
+    	std::string broker_list;
+
+    	int num_worker;
+
+    	int num_centroid;
+
+    	int num_subhnsw;
+
+    	int wake_up_controller;
+
     	int mode_code;
 
     	int sender_ef;
@@ -123,7 +135,7 @@ namespace ss{
 
         // for ZooKeeper
         // specifies the host server
-        string hosts;
+        std::string hosts;
 
     } typedef parameter;
 

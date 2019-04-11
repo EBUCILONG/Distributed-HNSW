@@ -109,7 +109,6 @@ namespace dhnsw {
 		int _num_subhnsw;
 		hnswlib::L2Space _l2space;
 		hnswlib::HierarchicalNSW<float> _metahnsw;
-		hnswlib::HierarchicalNSW<float>* _subhnsw_addr;
 		cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
         vector<int> _map;
@@ -134,6 +133,9 @@ namespace dhnsw {
 			}
 		}
 	public:
+        hnswlib::HierarchicalNSW<float>* _subhnsw_addr;
+
+
 		Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller, string subhnsw_dir, string meta_hnsw_dir, string map_dir, cppkafka::Configuration producer_config, cppkafka::Configuration consumer_config, int meta_ef = 10, int sub_ef = 10):
 		_subhnsw_id(hnsw_id),
 		_process_id(process_id),
@@ -143,7 +145,7 @@ namespace dhnsw {
 		_wakeup_controller(wakeup_controller),
 		_producer(producer_config),
 		_consumer(consumer_config){
-        	string topic = "query";
+        	string topic = "query_t";
         	_consumer.subscribe({topic});
 			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
@@ -196,7 +198,7 @@ namespace dhnsw {
 			vector<int> aim_subhnsw_id;
 			getWakeUpId(query, aim_subhnsw_id);
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
-				string topic("subhnsw_");
+				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
 				TaskMessage message(_process_id, query_id, _data_dim, start_time, query);
 				const string key = "key";

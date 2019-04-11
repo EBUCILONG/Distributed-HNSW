@@ -18,6 +18,7 @@
 #include "utils/util.hpp"
 #include "utils/cluster.hpp"
 #include "hnswlib/hnswlib.h"
+#include "hnswlib/hnswalg.h"
 #include "hnswlib/space_l2.h"
 #include "waker/waker.hpp"
 #include "dhnswlib/coordinator.hpp"
@@ -34,8 +35,10 @@ using std::thread;
 
 namespace dhnsw {
 
-    void worker_func() {
+    void worker_func(int subhnsw_id, int top_k, int data_dim, hnswlib::HierarchicalNSW<float>* hnsw, cppkafka::Configuration consumer_config, cppkafka::Configuration producer_config) {
         //TODO: Implement worker logic
+        dhnsw::Worker worker(subhnsw_id, top_k, data_dim, hnsw, consumer_config, producer_config);
+        worker.startWork();
     }
 
     void receiver_func(int process_id, const cppkafka::Configuration& consumer_config,
@@ -44,7 +47,7 @@ namespace dhnsw {
         receiver.receive();
     }
 
-    void dhnsw_execute(ss::parameter& para, mt::Partition& partition) {
+    void dhnsw_execute(ss::parameter& para) {
         // get task from ZooKeeper
         int sub_hnsw_id = -1, process_id = -1;
         TaskControl tc(para.hosts);
@@ -56,14 +59,45 @@ namespace dhnsw {
             cout << "[EXEC] All tasks occupied." << endl;
             return;
         }
-        // get task successful, launch threads
-        //TODO: Fill in arguments for thread functions
-//        std::thread receiver_thread(receiver_func, args...);
-//        std::thread worker_threads[para.num_thread];
-//        for(int i=0; i<para.num_thread; i++) worker_threads[i] = std::thread(worker_func);
-
+        // get task successful
         //TODO: Implement coordinator logic
+        string worker_group = "subhnsw_g_";
+        worker_group += std::to_string(sub_hnsw_id);
+        string coordinator_group = "query_g";
+        string receiver_group = "receiver_g_";
+        receiver_group += std::to_string(process_id);
 
+        cppkafka::Configuration coordinator_consumer_config = {
+                { "metadata.broker.list", para.broker_list},
+                { "group.id",  coordinator_group},
+                { "enable.auto.commit", false}
+        };
+
+        cppkafka::Configuration worker_consumer_config = {
+                { "metadata.broker.list", para.broker_list},
+                { "group.id",  worker_group},
+                { "enable.auto.commit", false }
+        };
+
+        cppkafka::Configuration receiver_consumer_config = {
+                { "metadata.broker.list", para.broker_list},
+                { "group.id",  receiver_group},
+                { "enable.auto.commit", false }
+        };
+
+        cppkafka::Configuration producer_config = {
+                { "metadata.broker.list", para.broker_list}
+        };
+
+        dhnsw::Coordinator coordinator(process_id, sub_hnsw_id, para.dim, para.num_centroid, para.num_subhnsw, para.wake_up_controller, para.hnsw_dir + "/hnsw_slave" + std::to_string(sub_hnsw_id), para.hnsw_dir + "/hnsw_meta", para.map_address, producer_config, coordinator_consumer_config, para.sender_ef, para.slave_ef);
+
+        std::thread worker_threads[para.num_worker];
+        for(int i = 0; i < para.num_worker; i++)
+            worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
+
+        std::thread receiver(receiver_func, process_id, receiver_consumer_config, producer_config);
+
+        coordinator.startWork();
     }
 }
 

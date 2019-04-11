@@ -97,7 +97,13 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("sender_ef",        po::value<int    >(&para.sender_ef),                          "sender accurate controller")
 		("slave_ef",         po::value<int    >(&para.slave_ef),                           "slave accurate controller")
 		("zookeeper_hosts",  po::value<string >(&para.hosts),                              "host for ZooKeeper")
-    ;
+		("num_centroid",     po::value<int >(&para.num_centroid),                          "number of points in the base layer of meta hnsw")
+		("num_subhnsw",      po::value<int >(&para.num_subhnsw),                           "number of subhnsw")
+		("wakeup_rate",      po::value<int >(&para.wake_up_controller),                    "topk returning for metagraph")
+		("map_address",      po::value<string >(&para.map_address),                        "address of map file")
+		("broker_list",      po::value<string >(&para.broker_list),                        "the hosts:port the kafka is using")
+		("num_worker",      po::value<int >(&para.num_worker),                             "number of worker per thread")
+		;
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, opts), vm);

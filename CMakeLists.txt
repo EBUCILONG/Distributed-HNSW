@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(DistributedHNSW)
 
 add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/)
+add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/cppkafka/)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp ")
@@ -24,8 +25,8 @@ include_directories(${OpenMP_INCLUDE_DIRS})
 find_package (MPI)
 include_directories(${MPI_INCLUDE_PATH})
 
-#find_package(Zookeeper REQUIRED)
-#include_directories(${Zookeeper_INCLUDE_DIRS})
+find_package(Zookeeper REQUIRED)
+include_directories(${Zookeeper_INCLUDE_DIRS})
 
 link_libraries(-lpthread)
 
@@ -34,6 +35,7 @@ INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include)
 
 SET(EXAMPLES
     bug
+    bug2
     #sift1k
 )
 

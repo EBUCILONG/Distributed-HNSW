@@ -2,6 +2,8 @@
 
 #include <unordered_map>
 #include <queue>
+
+#include "dhnswlib/time.hpp"
 #include "cppkafka/include/cppkafka/consumer.h"
 #include "cppkafka/include/cppkafka/producer.h"
 #include "cppkafka/include/cppkafka/configuration.h"
@@ -80,7 +82,7 @@ namespace dhnsw {
         explicit Receiver(int process_id, const cppkafka::Configuration& consumer_config,
                 const cppkafka::Configuration& producer_config):
                 _consumer(consumer_config), _producer(producer_config) {
-            string topic_name = "receiver_" + std::to_string(process_id);
+            string topic_name = "receiver_t_" + std::to_string(process_id);
             _consumer.subscribe(topic_name);
         };
 

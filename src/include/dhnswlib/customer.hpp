@@ -96,7 +96,7 @@ namespace dhnsw {
         void send_message(){
             int sizer = _querys.getSize();
             int dimer = _querys.getDim();
-            string topic("query");
+            string topic("query_t");
             for (int i = 0; i < sizer; i++) {
                 QueryMessage qm(i, _querys[i], dimer);
                 string payload = qm.toString();

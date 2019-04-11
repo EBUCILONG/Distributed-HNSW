@@ -112,8 +112,8 @@ namespace dhnsw {
         _hnsw(hnsw),
         _consumer(consumer_config),
         _producer(producer_config){
-            string topic("subhnsw_");
-            topic = topic + std::to_string(_subhnsw_id);
+            string topic("subhnsw_t_");
+            topic =topic + std::to_string(_subhnsw_id);
             _consumer.subscribe({topic});
         }
 
