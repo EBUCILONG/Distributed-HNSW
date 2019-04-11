@@ -5,7 +5,7 @@
 		<Option title="DistributedHNSW"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="clang"/>
-		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\include\;CMake Files\src\include\kahiplib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\Modules\;CMake Files\src\;CMake Files\src\include\;CMake Files\src\include\kahiplib\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug"/>
@@ -32,6 +32,56 @@
 				<Option type="4"/>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bug2">
+				<Option output="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/bug2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/oruqimaru/anaconda3/include/eigen3"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/Cellar/open-mpi/4.0.0/include"/>
+					<Add directory="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 bug2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bug2/fast">
+				<Option output="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/bug2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/oruqimaru/anaconda3/include/eigen3"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/Cellar/open-mpi/4.0.0/include"/>
+					<Add directory="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 bug2/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -350,7 +400,7 @@
 			<Option target="bug"/>
 		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/apps/bug2.cpp">
-			<Option target="bug"/>
+			<Option target="bug2"/>
 		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include/kahiplib/extern/argtable3-3.0.3/argtable3.c">
 			<Option target="libkaffpa"/>
@@ -828,6 +878,9 @@
 		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake/Modules/FindZookeeper.cmake">
+			<Option virtualFolder="CMake Files\cmake\Modules\"/>
 		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include/kahiplib/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\src\include\kahiplib\"/>

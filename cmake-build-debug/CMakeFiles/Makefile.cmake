@@ -53,6 +53,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/FindMPI/test_mpi.cpp"
   "CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
   "CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
+  "../cmake/Modules/FindZookeeper.cmake"
   "../src/include/kahiplib/CMakeLists.txt"
   )
 
@@ -71,6 +72,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/bug2.dir/DependInfo.cmake"
   "CMakeFiles/bug.dir/DependInfo.cmake"
   "src/include/kahiplib/CMakeFiles/libkaffpa_parallel.dir/DependInfo.cmake"
   "src/include/kahiplib/CMakeFiles/libmapping.dir/DependInfo.cmake"

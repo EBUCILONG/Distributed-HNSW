@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bug.dir/src/apps/bug.cpp.o"
-  "CMakeFiles/bug.dir/src/apps/bug2.cpp.o"
   "bug.pdb"
   "bug"
 )

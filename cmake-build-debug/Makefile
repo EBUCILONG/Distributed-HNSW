@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named bug2
+
+# Build rule for target.
+bug2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bug2
+.PHONY : bug2
+
+# fast build rule for target.
+bug2/fast:
+	$(MAKE) -f CMakeFiles/bug2.dir/build.make CMakeFiles/bug2.dir/build
+.PHONY : bug2/fast
+
+#=============================================================================
 # Target rules for targets named bug
 
 # Build rule for target.
@@ -208,7 +221,7 @@ src/apps/bug2.o: src/apps/bug2.cpp.o
 
 # target to build an object file
 src/apps/bug2.cpp.o:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug2.cpp.o
+	$(MAKE) -f CMakeFiles/bug2.dir/build.make CMakeFiles/bug2.dir/src/apps/bug2.cpp.o
 .PHONY : src/apps/bug2.cpp.o
 
 src/apps/bug2.i: src/apps/bug2.cpp.i
@@ -217,7 +230,7 @@ src/apps/bug2.i: src/apps/bug2.cpp.i
 
 # target to preprocess a source file
 src/apps/bug2.cpp.i:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug2.cpp.i
+	$(MAKE) -f CMakeFiles/bug2.dir/build.make CMakeFiles/bug2.dir/src/apps/bug2.cpp.i
 .PHONY : src/apps/bug2.cpp.i
 
 src/apps/bug2.s: src/apps/bug2.cpp.s
@@ -226,7 +239,7 @@ src/apps/bug2.s: src/apps/bug2.cpp.s
 
 # target to generate assembly for a file
 src/apps/bug2.cpp.s:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/src/apps/bug2.cpp.s
+	$(MAKE) -f CMakeFiles/bug2.dir/build.make CMakeFiles/bug2.dir/src/apps/bug2.cpp.s
 .PHONY : src/apps/bug2.cpp.s
 
 # Help Target
@@ -237,6 +250,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... bug2"
 	@echo "... bug"
 	@echo "... libkaffpa_parallel"
 	@echo "... libmapping"

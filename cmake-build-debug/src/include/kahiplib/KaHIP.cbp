@@ -5,7 +5,7 @@
 		<Option title="KaHIP"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="clang"/>
-		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\include\;CMake Files\src\include\kahiplib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\cmake\Modules\;CMake Files\src\;CMake Files\src\include\;CMake Files\src\include\kahiplib\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake-build-debug/src/include/kahiplib"/>
@@ -752,6 +752,9 @@
 		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/cmake/Modules/FindZookeeper.cmake">
+			<Option virtualFolder="CMake Files\cmake\Modules\"/>
 		</Unit>
 		<Unit filename="/Users/oruqimaru/hnsw-repo/Distributed-HNSW/src/include/kahiplib/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\src\include\kahiplib\"/>

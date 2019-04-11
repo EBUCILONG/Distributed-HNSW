@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 2.8)
 project(DistributedHNSW)
 
 add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/)
-add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/cppkafka/)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp ")
