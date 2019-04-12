@@ -20,6 +20,13 @@ namespace dhnsw {
     enum lock_status {
         LOCK_SUCCESS, LOCK_OCCUPIED, LOCK_FAILURE
     };
+
+    /*  Structure of zookeeper directory
+     *  --/dhnsw value: number of duplicates
+     *      |- /1: lock1, lock2
+     *      |- /2: ...
+     *      |- ...
+     */
     class TaskControl {
         const char* _hosts;
         const int _timeout;
