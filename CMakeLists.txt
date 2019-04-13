@@ -29,11 +29,9 @@ include_directories(${MPI_INCLUDE_PATH})
 find_package(Zookeeper REQUIRED)
 include_directories(${Zookeeper_INCLUDE_DIRS})
 
-find_package(RdKafka REQUIRED ${FIND_PACKAGE_QUIET})
-
 link_libraries(-lpthread)
 
-INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include)
+INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_DIR})
 
 
 SET(EXAMPLES
@@ -47,11 +45,11 @@ SET(EXAMPLES
 #target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
 #target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 
-link_libraries(${RdKafka_LIBRARIES})
+
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
-    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
+    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa ${RDKAFKA_LIBRARY} cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
 ENDFOREACH(EXAMPLE)
 
 
