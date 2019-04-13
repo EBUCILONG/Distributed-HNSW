@@ -84,8 +84,10 @@ namespace dhnsw {
         explicit Receiver(int process_id, const cppkafka::Configuration& consumer_config,
                 const cppkafka::Configuration& producer_config):
                 _consumer(consumer_config), _producer(producer_config) {
+            vector<string> topics;
             string topic_name = "receiver_t_" + std::to_string(process_id);
-            _consumer.subscribe(topic_name);
+            topics.push_back(topic_name);
+            _consumer.subscribe(topics);
         };
 
         void receive() {
