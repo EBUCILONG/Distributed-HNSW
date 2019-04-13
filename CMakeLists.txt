@@ -47,6 +47,8 @@ SET(EXAMPLES
 #target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
 #target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 
+message(${RDKAFKA_LIBRARY})
+
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
     target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa cppkafka ${RdKafka_LIBRARIES} libmapping ${OpenMP_CXX_LIBRARIES})
