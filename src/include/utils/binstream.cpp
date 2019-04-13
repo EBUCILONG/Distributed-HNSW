@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "base/serialization.hpp"
+#include "utils/binstream.hpp"
 
 #include <string>
 #include <vector>
