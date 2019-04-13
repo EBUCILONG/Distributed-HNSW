@@ -47,7 +47,7 @@ SET(EXAMPLES
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
-    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
+    target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa cppkafka rdkafka libmapping ${OpenMP_CXX_LIBRARIES})
 ENDFOREACH(EXAMPLE)
 
 
