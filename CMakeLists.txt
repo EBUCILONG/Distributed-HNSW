@@ -28,8 +28,6 @@ include_directories(${MPI_INCLUDE_PATH})
 
 find_package(Zookeeper REQUIRED)
 include_directories(${Zookeeper_INCLUDE_DIRS})
-find_package(RdKafka REQUIRED)
-include_directories(${RdKafka_INCLUDE_DIRS})
 
 link_libraries(-lpthread)
 
