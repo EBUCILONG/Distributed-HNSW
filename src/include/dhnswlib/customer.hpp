@@ -29,6 +29,7 @@
 #include "hnswlib/hnswalg.h"
 #include "utils/binstream.hpp"
 #include "matrix.hpp"
+#include "husky/base/serialization.hpp"
 
 using husky::base::BinStream;
 using std::stringstream;

@@ -4,6 +4,7 @@ project(DistributedHNSW)
 
 add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/kahiplib/)
 add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/cppkafka/)
+add_subdirectory(${DistributedHNSW_SOURCE_DIR}/src/include/husky)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 

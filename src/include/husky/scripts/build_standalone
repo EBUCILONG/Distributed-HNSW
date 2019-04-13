@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -z $HUSKY_ROOT ]; then
+  export HUSKY_ROOT=/PATH/TO/HUSKY
+fi
+export HUSKY_BUILD=$HUSKY_ROOT/release
+
+if [ -z $LIBRARY_PATH ]; then
+    echo "Please set LIBRARY_PATH"
+    exit
+fi
+
+echo "Finding library from environment variable LIBRARY_PATH:"
+echo $LIBRARY_PATH
+
+g++ $@ -std=c++14 -DWITH_HDFS -DWITH_MONGODB -I$HUSKY_ROOT \
+        -lzmq -lhdfs3 -lmongoclient -pthread -ltcmalloc -lboost_system -lboost_filesystem -lboost_thread -lboost_program_options  \
+        -L$HUSKY_BUILD -lhusky
