@@ -32,7 +32,7 @@ include_directories(${Zookeeper_INCLUDE_DIRS})
 
 link_libraries(-lpthread)
 
-INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_DIR} ${DistributedHNSW_SOURCE_DIR}/src/includ/husky)
+INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_DIR} ${DistributedHNSW_SOURCE_DIR}/src/include/husky)
 
 
 SET(EXAMPLES
