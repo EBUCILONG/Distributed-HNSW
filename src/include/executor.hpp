@@ -102,7 +102,8 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("wakeup_rate",      po::value<int >(&para.wake_up_controller),                    "topk returning for metagraph")
 		("map_address",      po::value<string >(&para.map_address),                        "address of map file")
 		("broker_list",      po::value<string >(&para.broker_list),                        "the hosts:port the kafka is using")
-		("num_worker",      po::value<int >(&para.num_worker),                             "number of worker per thread")
+		("num_worker",       po::value<int >(&para.num_worker),                            "number of worker per thread")
+		("top_k",            po::value<int >(&para.topK),                                  "top k to return")
 		;
 
     po::variables_map vm;
