@@ -94,8 +94,9 @@ namespace dhnsw {
         cout << "[EXECUTE] Before coordinator constructor." << endl;
         dhnsw::Coordinator coordinator(process_id, sub_hnsw_id, para.dim, para.num_centroid, para.num_subhnsw, para.wake_up_controller, para.hnsw_dir + "/hnsw_slave" + std::to_string(sub_hnsw_id), para.hnsw_dir + "/hnsw_meta", para.map_address, producer_config, coordinator_consumer_config, para.sender_ef, para.slave_ef);
 
-        cout << "[EXECUTE] Before initiating worker threads." << endl;
+        cout << "[EXECUTE] Before initiating " << para.num_worker <<" worker threads." << endl;
         std::thread worker_threads[para.num_worker];
+        cout << "[EXECUTE] Allocated thread array." << endl;
         for(int i = 0; i < para.num_worker; i++)
             worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
         cout << "[EXECUTE] Before initiating receiver thread." << endl;
