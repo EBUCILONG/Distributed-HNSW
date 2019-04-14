@@ -48,6 +48,7 @@ namespace dhnsw {
 
     void dhnsw_execute(ss::parameter& para) {
         // get task from ZooKeeper
+        cout << "[EXECUTE] Before getting task control." << endl;
         int sub_hnsw_id = -1, process_id = -1;
         TaskControl tc(para.hosts);
         int status = tc.getTask(sub_hnsw_id, process_id);
@@ -58,6 +59,7 @@ namespace dhnsw {
             cout << "[EXEC] All tasks occupied." << endl;
             return;
         }
+        cout << "[EXECUTE] Successfully gotten task." << endl;
         // get task successful
         //TODO: Implement coordinator logic
         string worker_group = "subhnsw_g_";
@@ -87,15 +89,16 @@ namespace dhnsw {
         cppkafka::Configuration producer_config = {
                 { "metadata.broker.list", para.broker_list}
         };
-
+        cout << "[EXECUTE] Before coordinator constructor." << endl;
         dhnsw::Coordinator coordinator(process_id, sub_hnsw_id, para.dim, para.num_centroid, para.num_subhnsw, para.wake_up_controller, para.hnsw_dir + "/hnsw_slave" + std::to_string(sub_hnsw_id), para.hnsw_dir + "/hnsw_meta", para.map_address, producer_config, coordinator_consumer_config, para.sender_ef, para.slave_ef);
 
+        cout << "[EXECUTE] Before initiating worker threads." << endl;
         std::thread worker_threads[para.num_worker];
         for(int i = 0; i < para.num_worker; i++)
             worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
-
+        cout << "[EXECUTE] Before initiating receiver thread." << endl;
         std::thread receiver(receiver_func, process_id, receiver_consumer_config, producer_config);
-
+        cout << "[EXECUTE] Before starting coordinator." << endl;
         coordinator.startWork();
     }
 }

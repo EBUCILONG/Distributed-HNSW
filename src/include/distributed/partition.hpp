@@ -90,10 +90,6 @@ namespace mt{
             free(adjwgt);
             free(result_partition);
 //            cout << "#[sender] exiting getPartition" << endl;
-            std::ofstream output("./map.txt");
-            output << result.size() << endl;
-            output << n_parts << endl;
-            for (int i=0; i<result.size(); i++) output << result[i] << endl;
             return result;
 		}
 	};
