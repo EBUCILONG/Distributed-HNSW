@@ -117,12 +117,14 @@ namespace dhnsw {
             string topic("subhnsw_t_");
             topic =topic + std::to_string(_subhnsw_id);
             _consumer.subscribe({topic});
+            cout << "[WORK] worker successfully initialized." << endl;
         }
 
         TaskMessage getTask(){
             string string_msg;
 
             while (true) {
+                cout << "[WORK] Inside getTask, reprating to poll." << endl;
                 cppkafka::Message msg = _consumer.poll();
 
                 // Make sure we have a message before processing it
@@ -133,6 +135,7 @@ namespace dhnsw {
                         }
                         continue;
                     } else {
+                        cout << "[WORK] Message received." << endl;
                         _consumer.commit(msg);
                         string_msg = string(msg.get_payload());
                         break;
@@ -157,6 +160,7 @@ namespace dhnsw {
 
         void startWork(){
             while(true) {
+                cout << "[WORK] before getTask." << endl;
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
                 string topic("receiver_");
