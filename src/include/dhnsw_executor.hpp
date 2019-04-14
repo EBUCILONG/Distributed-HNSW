@@ -36,7 +36,6 @@ using std::thread;
 namespace dhnsw {
 
     void worker_func(int subhnsw_id, int top_k, int data_dim, hnswlib::HierarchicalNSW<float>* hnsw, cppkafka::Configuration consumer_config, cppkafka::Configuration producer_config) {
-        //TODO: Implement worker logic
         dhnsw::Worker worker(subhnsw_id, top_k, data_dim, hnsw, consumer_config, producer_config);
         worker.startWork();
     }
