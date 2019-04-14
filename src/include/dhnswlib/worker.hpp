@@ -124,7 +124,7 @@ namespace dhnsw {
             string string_msg;
 
             while (true) {
-                cout << "[WORK] Inside getTask, reprating to poll." << endl;
+                cout << "[WORK] Inside getTask, polling for message." << endl;
                 cppkafka::Message msg = _consumer.poll();
 
                 // Make sure we have a message before processing it

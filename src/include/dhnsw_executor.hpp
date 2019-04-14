@@ -61,7 +61,7 @@ namespace dhnsw {
             cout << "[EXEC] All tasks occupied." << endl;
             return;
         }
-        cout << "[EXECUTE] Successfully gotten task." << endl;
+        cout << "[EXECUTE] Successfully gotten task: process id: "<< process_id << " sub_hnsw_id: "<< sub_hnsw_id << endl;
         // get task successful
         //TODO: Implement coordinator logic
         string worker_group = "subhnsw_g_";
