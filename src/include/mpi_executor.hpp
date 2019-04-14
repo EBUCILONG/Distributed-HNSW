@@ -92,7 +92,7 @@ namespace mt {
 				sender->saveHNSW(para.hnsw_dir + "/hnsw_sender");
 			}
 			else
-				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_sender", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER, para.sender_ef);
+				sender = new Sender(world_size - 2, query, para.hnsw_dir + "/hnsw_meta", centroids, partition, DATA_DIMENSION, centroids.size(), SIZEWORKER, para.sender_ef);
 			vector<vector<int> > clusters;
 			mt::loadClusters(clusters, para.cluster_file);
 			for (int i = 0; i < SIZEWORKER; i++){
