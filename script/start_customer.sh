@@ -28,7 +28,7 @@ slave_ef=10
 
 # gdb --args \
 
-./bug2 \
+./start_customer \
     -p 1000 \
     --max_balance 4 \
     -i 100 \

@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+e9d9393e1dd20ae4c139b6c328a0effd src/include/cppkafka/CMakeFiles/docs
+945ee3069cd9d9f54b05adacfe5948c5 src/include/cppkafka/CMakeFiles/uninstall

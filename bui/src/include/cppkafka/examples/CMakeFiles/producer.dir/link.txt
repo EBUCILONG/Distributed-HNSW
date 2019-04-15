@@ -1,0 +1,1 @@
+/data/opt/brew/bin/ccache /data/opt/brew/bin/c++  -std=c++11 -Wall  -rdynamic CMakeFiles/producer.dir/producer_example.cpp.o  -o producer -Wl,-rpath,/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/cppkafka/lib:/data/sydeng/lib/lib ../lib/libcppkafka.so.0.2 /data/sydeng/lib/lib/librdkafka.so -lboost_program_options-mt -lpthread -lrt -lssl -lcrypto -ldl -lz 

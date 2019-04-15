@@ -1,0 +1,2 @@
+/data/opt/brew/bin/ccache /data/opt/brew/bin/ar qc libhusky-base.a  CMakeFiles/base-objs.dir/counter_barrier.cpp.o CMakeFiles/base-objs.dir/generation_lock.cpp.o CMakeFiles/base-objs.dir/hash.cpp.o CMakeFiles/base-objs.dir/log.cpp.o CMakeFiles/base-objs.dir/assert.cpp.o CMakeFiles/base-objs.dir/disk_store.cpp.o CMakeFiles/base-objs.dir/serialization.cpp.o CMakeFiles/base-objs.dir/session_local.cpp.o CMakeFiles/base-objs.dir/thread_support.cpp.o
+/data/opt/brew/bin/ccache /data/opt/brew/bin/ranlib libhusky-base.a

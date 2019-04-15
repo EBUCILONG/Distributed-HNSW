@@ -1,0 +1,13 @@
+# Target labels
+ gtest
+# Source files and their labels
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/CMakeFiles/gtest
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/CMakeFiles/gtest.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/CMakeFiles/gtest-complete.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-install.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-mkdir.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-download.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-update.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-patch.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-configure.rule
+/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky/third_party/src/gtest-stamp/gtest-build.rule
