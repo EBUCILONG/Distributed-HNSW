@@ -9,6 +9,11 @@
 #include <boost/program_options.hpp>
 #include <boost/program_options/option.hpp>
 #include <boost/program_options/errors.hpp>
+#include <cppkafka/message_builder.h>
+#include <cppkafka/cppkafka.h>
+#include <cppkafka/configuration.h>
+#include <cppkafka/consumer.h>
+#include <cppkafka/producer.h>
 
 #include "bench/bencher.hpp"
 #include "bench/prober.hpp"
