@@ -173,9 +173,11 @@ namespace dhnsw {
 				set.insert(_map[(int) knn.top().second]);
 				knn.pop();
 			}
-			result.resize(set.size());
-			std::copy(set.begin(), set.end(), result.begin());
-        }
+//			result.resize(set.size());
+//			std::copy(set.begin(), set.end(), result.begin());
+        	for(int i = 0; i < 10; i++)
+        		result.push_back(i);
+		}
 
 		QueryMessage getQuery(){
 			string string_msg;
