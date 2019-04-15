@@ -38,6 +38,7 @@ SET(EXAMPLES
     bug
     bug2
     start_customer
+    start_evaluator
     #sift1k
 )
 
