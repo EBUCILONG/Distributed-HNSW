@@ -47,6 +47,7 @@ namespace dhnsw {
         }
 
         vector<vector<pair<float, int>>> evaluate(long long& avg_time) {
+            cout << "[EVAL] Evaluator started." << endl;
             int counter = 0;
             long long total_time = 0;
             while (counter < _n_queries) {
@@ -66,6 +67,8 @@ namespace dhnsw {
                     total_time += get_current_time_milliseconds() - result_msg->_start_time;
                     counter++;
                     // free memory
+                    cout << "[EVAL] Before deleting result_msg" << endl;
+                    cout << "[EVAL] counter: " << counter << " , total: " << _n_queries << endl;
                     delete result_msg;
                 }
             }
