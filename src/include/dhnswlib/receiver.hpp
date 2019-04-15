@@ -120,7 +120,7 @@ namespace dhnsw {
                         _query_map.erase(result_msg->_query_id);
                         total_time += get_current_time_milliseconds() - result_msg->_start_time;
                         counter++;
-                        cout << "[RECV] Sent " << counter << " messages." << endl;
+//                        cout << "[RECV] Sent " << counter << " messages." << endl;
                     }
                     // free memory
                     delete result_msg;

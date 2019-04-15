@@ -68,7 +68,7 @@ namespace dhnsw {
                     total_time += get_current_time_milliseconds() - result_msg->_start_time;
                     counter++;
                     // free memory
-//                    cout << "[EVAL] counter: " << counter << " , total: " << _n_queries << endl;
+                    cout << "[EVAL] counter: " << counter << " , total: " << _n_queries << endl;
                     delete result_msg;
                 }
             }
