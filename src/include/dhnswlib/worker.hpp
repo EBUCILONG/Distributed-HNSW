@@ -117,7 +117,6 @@ namespace dhnsw {
             string topic("subhnsw_t_");
             topic =topic + std::to_string(_subhnsw_id);
             _consumer.subscribe({topic});
-            cout << "[WORK] worker successfully initialized." << endl;
         }
 
         TaskMessage getTask(){
@@ -159,7 +158,6 @@ namespace dhnsw {
 
         void startWork(){
             while(true) {
-                cout << "[WORK] before getTask." << endl;
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
                 string topic("receiver_t_");
