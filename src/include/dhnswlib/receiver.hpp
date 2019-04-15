@@ -78,6 +78,7 @@ namespace dhnsw {
             string topic = "evaluation";
             string payload = result.toString();
             _producer.produce(cppkafka::MessageBuilder(topic.c_str()).key("key").payload(payload));
+            cout << "[RECV] Produced message" << endl;
         }
 
     public:
@@ -105,7 +106,6 @@ namespace dhnsw {
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
-                    cout << "[RECV] message received." << endl;
                     Answer& answer = _query_map[result_msg->_query_id];
                     answer.start_time = result_msg->_start_time;
                     // Add result into queue

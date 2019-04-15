@@ -164,7 +164,6 @@ namespace dhnsw {
                 const string key = "key";
                 const string payload = result.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).key(key).payload(payload));
-                cout << "[WORK] produced message." << endl;
             }
         }
     };
