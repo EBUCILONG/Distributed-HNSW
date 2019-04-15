@@ -90,7 +90,7 @@ namespace dhnsw {
 	        }
 			_start_time = start_time;
 			_query_id = query_id;
-			_total_piece = total_piece
+			_total_piece = total_piece;
 		}
 
 		string toString(){
