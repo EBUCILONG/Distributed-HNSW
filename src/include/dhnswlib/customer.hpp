@@ -107,7 +107,7 @@ namespace dhnsw {
                 QueryMessage qm(i, _querys[i], dimer);
                 string payload = qm.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
-                usleep(1000);
+                usleep(2000);
                 cout << "[CUST] Produced " << i+1 << " messages." << endl;
             }
         }
