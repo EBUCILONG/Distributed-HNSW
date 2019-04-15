@@ -99,7 +99,7 @@ namespace dhnsw {
         for(int i = 0; i < para.num_worker; i++)
             worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
 
-        std::thread receiver(receiver_func, process_id, receiver_consumer_config, producer_config);
+        std::thread receiver(receiver_func, process_id, para.topK, receiver_consumer_config, producer_config);
 
         coordinator.startWork();
     }

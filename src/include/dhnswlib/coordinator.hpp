@@ -205,9 +205,8 @@ namespace dhnsw {
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
 				TaskMessage message(_process_id, query_id, aim_subhnsw_id.size(), _data_dim, start_time, query);
-				const string key = "key";
 				const string payload = message.toString();
-				_producer.produce(cppkafka::MessageBuilder(topic.c_str()).key(key).payload(payload));
+				_producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
 			}
         }
 

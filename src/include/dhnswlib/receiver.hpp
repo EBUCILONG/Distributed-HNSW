@@ -25,7 +25,7 @@ using std::endl;
 namespace dhnsw {
 
     // takes an uninitialized result_msg pointer
-    bool receiveAnswer(ResultMessage*& result_msg, cppkafka::Consumer& consumer) {
+    bool receiveAnswer(ResultMessage*& result_msg, cppkafka::Consumer& consumer, int top_k) {
         cppkafka::Message msg = consumer.poll();
         if(!msg) return false;
         if(msg.get_error()) {
@@ -39,7 +39,7 @@ namespace dhnsw {
         const cppkafka::Buffer& msg_body = msg.get_payload();
         string msg_string = msg_body;
         // deserialize content & return the object
-        result_msg = new ResultMessage(TOPK, msg_string);
+        result_msg = new ResultMessage(top_k, msg_string);
         return true;
     }
 
@@ -54,14 +54,15 @@ namespace dhnsw {
         unordered_map<int, Answer> _query_map;
         cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
+        int _top_k;
 
         void _insert_answers(priority_queue<pair<float, int>>& pq, vector<int>& index, vector<float>& dist) {
             /* Inserts candidate vectors into priority queue. An vector will be
                 ignored if it is not in the top n results. */
-            for (int i=0; i< TOPK; i++) {
+            for (int i=0; i< _top_k; i++) {
                 // Check if we should insert the vector
-                if (pq.size() < TOPK || dist[i] < pq.top().first) {
-                    if(pq.size() >= TOPK) pq.pop();
+                if (pq.size() < _top_k || dist[i] < pq.top().first) {
+                    if(pq.size() >= _top_k) pq.pop();
                     pq.push(make_pair(dist[i], index[i]));
                 }
             }
@@ -76,17 +77,17 @@ namespace dhnsw {
                 result_ids.push_back(pq.top().second);
                 pq.pop();
             }
-            ResultMessage result(query_id, 1, TOPK, _query_map[query_id].start_time, result_ids, dists);
+            ResultMessage result(query_id, 1, _top_k, _query_map[query_id].start_time, result_ids, dists);
             string topic = "evaluation";
             string payload = result.toString();
-            _producer.produce(cppkafka::MessageBuilder(topic.c_str()).key("key").payload(payload));
+            _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
             cout << "[RECV] Produced message" << endl;
         }
 
     public:
-        explicit Receiver(int process_id, const cppkafka::Configuration& consumer_config,
+        explicit Receiver(int process_id, int top_k, const cppkafka::Configuration& consumer_config,
                 const cppkafka::Configuration& producer_config):
-                _consumer(consumer_config), _producer(producer_config) {
+                _consumer(consumer_config), _producer(producer_config), _top_k(top_k) {
             vector<string> topics;
             string topic_name = "receiver_t_" + std::to_string(process_id);
             topics.push_back(topic_name);
@@ -104,7 +105,7 @@ namespace dhnsw {
             while (true) {
                 // receive message
                 ResultMessage* result_msg;
-                bool ret = receiveAnswer(result_msg, _consumer);
+                bool ret = receiveAnswer(result_msg, _consumer, _top_k);
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received

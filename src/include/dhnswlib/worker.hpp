@@ -161,9 +161,8 @@ namespace dhnsw {
                 ResultMessage result = solveTask(task);
                 string topic("receiver_t_");
                 topic = topic + std::to_string(task._process_id);
-                const string key = "key";
                 const string payload = result.toString();
-                _producer.produce(cppkafka::MessageBuilder(topic.c_str()).key(key).payload(payload));
+                _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
             }
         }
     };

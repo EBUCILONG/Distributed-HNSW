@@ -27,7 +27,7 @@ int main(int argc, char** argv){
             { "enable.auto.commit", false }
     };
     Bencher truth_bench(para.ground_truth.c_str());
-    dhnsw::Evaluator evaluator(truth_bench.getQueries(), evaluator_config);
+    dhnsw::Evaluator evaluator(truth_bench.getQueries(), para.topK, evaluator_config);
     long long avg_time = 0;
     vector<vector<pair<float, int>>> result = evaluator.evaluate(avg_time);
     Bencher current_bench(result, false);

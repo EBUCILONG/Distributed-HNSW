@@ -38,10 +38,10 @@ namespace dhnsw {
         vector<vector<pair<float, int>>> _result;
         cppkafka::Consumer _consumer;
     public:
-        explicit Evaluator(int n_queries, const cppkafka::Configuration& config):
+        explicit Evaluator(int n_queries, int top_k, const cppkafka::Configuration& config):
         _n_queries(n_queries), _consumer(config) {
             _result.resize(n_queries);
-            for (int i=0; i<n_queries; i++) _result[i].resize(TOP_K);
+            for (int i=0; i<n_queries; i++) _result[i].resize(top_k);
             vector<string> topics;
             topics.push_back("evaluation");
             _consumer.subscribe(topics);
