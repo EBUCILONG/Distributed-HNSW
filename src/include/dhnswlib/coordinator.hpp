@@ -68,12 +68,12 @@ namespace dhnsw {
             std::copy(input_string.c_str(), input_string.c_str() + input_string.length(), buffer.begin());
             BinStream bs(buffer);
             int size;
-            if (vec_dim != size){
-                cout << "#[error ] received task message query wrong length!" << endl;
-                assert(0);
-            }
             float float_buffer;
             bs >> _process_id >> _query_id >> _total_piece >> size;
+			if (vec_dim != size){
+				cout << "#[error ] received task message query wrong length!" << endl;
+				assert(0);
+			}
             for (int i = 0; i < size; i++){
                 bs >> float_buffer;
                 _query.push_back(float_buffer);
