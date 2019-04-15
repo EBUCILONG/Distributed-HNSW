@@ -133,7 +133,6 @@ namespace dhnsw {
                         }
                         continue;
                     } else {
-                        cout << "[WORK] Message received." << endl;
                         _consumer.commit(msg);
                         string_msg = string(msg.get_payload());
                         break;

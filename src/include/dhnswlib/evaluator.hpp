@@ -56,6 +56,7 @@ namespace dhnsw {
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
+                    cout << "[EVAL] Received message." << endl;
                     vector<int> result_ids = result_msg->_result_ids;
                     vector<float> distance = result_msg->_dists;
                     for(int i=0; i<result_msg->_top_k; i++) {
@@ -69,6 +70,7 @@ namespace dhnsw {
                 }
             }
             avg_time = (total_time) / _n_queries;
+            cout << "[EVAL] All messages received." << endl;
             return _result;
         }
     };
