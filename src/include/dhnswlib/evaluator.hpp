@@ -41,6 +41,7 @@ namespace dhnsw {
         explicit Evaluator(int n_queries, const cppkafka::Configuration& config):
         _n_queries(n_queries), _consumer(config) {
             _result.resize(n_queries);
+            for (int i=0; i<n_queries; i++) _result[i].resize(TOP_K);
             vector<string> topics;
             topics.push_back("evaluation");
             _consumer.subscribe(topics);
