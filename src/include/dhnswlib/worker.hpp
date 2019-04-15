@@ -81,7 +81,7 @@ namespace dhnsw {
             }
             for (int i = 0; i < _top_k; i++){
                 bs >> dist_buffer;
-                _dists.push_back(id_buffer);
+                _dists.push_back(dist_buffer);
             }
             bs >> _start_time;
         }
