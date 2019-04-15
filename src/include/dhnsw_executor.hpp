@@ -45,9 +45,9 @@ namespace dhnsw {
         worker.startWork();
     }
 
-    void receiver_func(int process_id, const cppkafka::Configuration& consumer_config,
+    void receiver_func(int process_id, int top_k, const cppkafka::Configuration& consumer_config,
                        const cppkafka::Configuration& producer_config) {
-        Receiver receiver(process_id, consumer_config, producer_config);
+        Receiver receiver(process_id, top_k, consumer_config, producer_config);
         receiver.receive();
     }
 
