@@ -59,11 +59,14 @@ namespace dhnsw {
                     // msg received
                     cout << "[EVAL] Received message." << endl;
                     vector<int> result_ids = result_msg->_result_ids;
+                    cout << "[EVAL] Allocating distace vector." << endl;
                     vector<float> distance = result_msg->_dists;
+                    cout << "[EVAL] Filling Matrix." << endl;
                     for(int i=0; i<result_msg->_top_k; i++) {
                         _result[result_msg->_query_id][i] = make_pair(distance[i], result_ids[i]);
                     }
                     // Increment counter & check if received data from all slaves
+                    cout << "[EVAL] Get time." << endl;
                     total_time += get_current_time_milliseconds() - result_msg->_start_time;
                     counter++;
                     // free memory
