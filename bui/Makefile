@@ -80,28 +80,6 @@ install/local/fast: preinstall/fast
 	/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Headers\" \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -123,6 +101,28 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Headers\" \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -157,6 +157,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named bug
+
+# Build rule for target.
+bug: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bug
+.PHONY : bug
+
+# fast build rule for target.
+bug/fast:
+	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/build
+.PHONY : bug/fast
+
+#=============================================================================
 # Target rules for targets named bug2
 
 # Build rule for target.
@@ -170,6 +183,19 @@ bug2/fast:
 .PHONY : bug2/fast
 
 #=============================================================================
+# Target rules for targets named start_evaluator
+
+# Build rule for target.
+start_evaluator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 start_evaluator
+.PHONY : start_evaluator
+
+# fast build rule for target.
+start_evaluator/fast:
+	$(MAKE) -f CMakeFiles/start_evaluator.dir/build.make CMakeFiles/start_evaluator.dir/build
+.PHONY : start_evaluator/fast
+
+#=============================================================================
 # Target rules for targets named start_customer
 
 # Build rule for target.
@@ -181,19 +207,6 @@ start_customer: cmake_check_build_system
 start_customer/fast:
 	$(MAKE) -f CMakeFiles/start_customer.dir/build.make CMakeFiles/start_customer.dir/build
 .PHONY : start_customer/fast
-
-#=============================================================================
-# Target rules for targets named bug
-
-# Build rule for target.
-bug: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bug
-.PHONY : bug
-
-# fast build rule for target.
-bug/fast:
-	$(MAKE) -f CMakeFiles/bug.dir/build.make CMakeFiles/bug.dir/build
-.PHONY : bug/fast
 
 #=============================================================================
 # Target rules for targets named libkaffpa
@@ -458,6 +471,33 @@ src/apps/start_customer.cpp.s:
 	$(MAKE) -f CMakeFiles/start_customer.dir/build.make CMakeFiles/start_customer.dir/src/apps/start_customer.cpp.s
 .PHONY : src/apps/start_customer.cpp.s
 
+src/apps/start_evaluator.o: src/apps/start_evaluator.cpp.o
+
+.PHONY : src/apps/start_evaluator.o
+
+# target to build an object file
+src/apps/start_evaluator.cpp.o:
+	$(MAKE) -f CMakeFiles/start_evaluator.dir/build.make CMakeFiles/start_evaluator.dir/src/apps/start_evaluator.cpp.o
+.PHONY : src/apps/start_evaluator.cpp.o
+
+src/apps/start_evaluator.i: src/apps/start_evaluator.cpp.i
+
+.PHONY : src/apps/start_evaluator.i
+
+# target to preprocess a source file
+src/apps/start_evaluator.cpp.i:
+	$(MAKE) -f CMakeFiles/start_evaluator.dir/build.make CMakeFiles/start_evaluator.dir/src/apps/start_evaluator.cpp.i
+.PHONY : src/apps/start_evaluator.cpp.i
+
+src/apps/start_evaluator.s: src/apps/start_evaluator.cpp.s
+
+.PHONY : src/apps/start_evaluator.s
+
+# target to generate assembly for a file
+src/apps/start_evaluator.cpp.s:
+	$(MAKE) -f CMakeFiles/start_evaluator.dir/build.make CMakeFiles/start_evaluator.dir/src/apps/start_evaluator.cpp.s
+.PHONY : src/apps/start_evaluator.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -466,13 +506,14 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... bug"
+	@echo "... bug2"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... bug2"
+	@echo "... start_evaluator"
 	@echo "... start_customer"
-	@echo "... bug"
-	@echo "... edit_cache"
 	@echo "... libkaffpa"
 	@echo "... libkaffpa_parallel"
 	@echo "... libmapping"
@@ -496,6 +537,9 @@ help:
 	@echo "... src/apps/start_customer.o"
 	@echo "... src/apps/start_customer.i"
 	@echo "... src/apps/start_customer.s"
+	@echo "... src/apps/start_evaluator.o"
+	@echo "... src/apps/start_evaluator.i"
+	@echo "... src/apps/start_evaluator.s"
 .PHONY : help
 
 

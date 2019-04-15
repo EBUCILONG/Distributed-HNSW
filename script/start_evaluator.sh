@@ -7,7 +7,7 @@ hnsw_dir="/data/sydeng/repositary/hnsw-repo/testOut/sift1m/hnsw"
 map_address="/data/sydeng/repositary/hnsw-repo/testOut/sift1m/map"
 
 zookeeper_hosts="w2:2181"
-broker_list="w3:9092"
+broker_list="w11:9092,w12:9092"
 
 data_set="sift1m"
 metric="euclid"
