@@ -92,7 +92,7 @@ namespace dhnsw {
 
         void receive() {
             /* Starts the receiver. */
-
+            cout << "[RECV] receiver started." << endl;
             // main Loop for receiving message
             int counter = 0;
             long long total_time = 0;
@@ -105,6 +105,7 @@ namespace dhnsw {
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
+                    cout << "[RECV] message received." << endl;
                     Answer& answer = _query_map[result_msg->_query_id];
                     answer.start_time = result_msg->_start_time;
                     // Add result into queue
