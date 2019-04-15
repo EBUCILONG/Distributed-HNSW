@@ -75,6 +75,7 @@ namespace dhnsw {
 				assert(0);
 			}
 			bs >> float_buffer;
+			bs >> float_buffer;
             for (int i = 0; i < size; i++){
                 bs >> float_buffer;
                 _query.push_back(float_buffer);
