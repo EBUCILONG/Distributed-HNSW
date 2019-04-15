@@ -172,10 +172,10 @@ namespace dhnsw {
 				set.insert(_map[(int) knn.top().second]);
 				knn.pop();
 			}
-//			result.resize(set.size());
-//			std::copy(set.begin(), set.end(), result.begin());
-        	for(int i = 0; i < 10; i++)
-        		result.push_back(i);
+			result.resize(set.size());
+			std::copy(set.begin(), set.end(), result.begin());
+//        	for(int i = 0; i < 10; i++)
+//        		result.push_back(i);
 		}
 
 		QueryMessage getQuery(){
@@ -205,10 +205,10 @@ namespace dhnsw {
         void produceTask(int query_id, vector<float>& query, long long start_time){
 			vector<int> aim_subhnsw_id;
 			getWakeUpId(query, aim_subhnsw_id);
-			cout << query_id << " ";
-			for (int i = 0; i < query.size(); i++)
-				cout << query[i] << " ";
-			cout << endl;
+//			cout << query_id << " ";
+//			for (int i = 0; i < query.size(); i++)
+//				cout << query[i] << " ";
+//			cout << endl;
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
