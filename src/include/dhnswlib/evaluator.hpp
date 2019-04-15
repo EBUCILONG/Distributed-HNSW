@@ -59,21 +59,16 @@ namespace dhnsw {
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
-                    cout << "[EVAL] Received message." << endl;
                     vector<int> result_ids = result_msg->_result_ids;
-                    cout << "[EVAL] Allocating distace vector." << endl;
                     vector<float> distance = result_msg->_dists;
-                    cout << "[EVAL] Filling Matrix." << endl;
                     for(int i=0; i<result_msg->_top_k; i++) {
                         _result[result_msg->_query_id][i] = make_pair(distance[i], result_ids[i]);
                     }
-                    // Increment counter & check if received data from all slaves
-                    cout << "[EVAL] Get time." << endl;
+                    // increment counter
                     total_time += get_current_time_milliseconds() - result_msg->_start_time;
                     counter++;
                     // free memory
-                    cout << "[EVAL] Before deleting result_msg" << endl;
-                    cout << "[EVAL] counter: " << counter << " , total: " << _n_queries << endl;
+//                    cout << "[EVAL] counter: " << counter << " , total: " << _n_queries << endl;
                     delete result_msg;
                 }
             }
