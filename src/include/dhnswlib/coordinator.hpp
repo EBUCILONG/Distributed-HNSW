@@ -74,13 +74,10 @@ namespace dhnsw {
 				cout << "#[error ] received task message query wrong length!" << endl;
 				assert(0);
 			}
-			cout << _query_id << " ";
             for (int i = 0; i < size; i++){
                 bs >> float_buffer;
-                cout << float_buffer << " ";
                 _query.push_back(float_buffer);
             }
-            cout << endl;
             bs >> _start_time;
 	    }
 
