@@ -163,7 +163,7 @@ namespace dhnsw {
                 cout << "[WORK] before getTask." << endl;
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
-                string topic("receiver_");
+                string topic("receiver_t_");
                 topic = topic + std::to_string(task._process_id);
                 const string key = "key";
                 const string payload = result.toString();
