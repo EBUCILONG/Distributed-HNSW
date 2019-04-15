@@ -89,10 +89,10 @@ namespace dhnsw {
         string toString(){
             BinStream bs;
             bs << _query_id << _total_piece << _top_k;
-            for (auto& elem : _result_ids)
-                bs << elem;
-            for (auto& elem : _dists)
-                bs << elem;
+            for (int i = 0; i < _top_k; i++)
+                bs << _result_ids[i];
+            for (int i = 0; i < _top_k; i++)
+                bs << _dists[i];
             bs << _start_time;
             return bs.to_string();
         }

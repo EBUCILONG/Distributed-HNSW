@@ -76,8 +76,8 @@ namespace dhnsw {
         string toString(){
             BinStream bs;
             bs << query_id_ << query_.size();
-            for (auto& elem : query_)
-                bs << elem;
+            for (int i =0 ; i < query_.size(); i++)
+                bs << query_[i];
             bs << start_time_;
             return bs.to_string();
         }
