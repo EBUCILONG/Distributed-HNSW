@@ -110,6 +110,7 @@ namespace dhnsw {
                 usleep(2000);
                 cout << "[CUST] Produced " << i+1 << " messages." << endl;
             }
+            sleep(10);
         }
     };
 }
