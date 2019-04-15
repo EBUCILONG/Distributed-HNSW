@@ -35,11 +35,12 @@ namespace dhnsw {
     class Evaluator{
     private:
         int _n_queries;
+        int _top_k;
         vector<vector<pair<float, int>>> _result;
         cppkafka::Consumer _consumer;
     public:
         explicit Evaluator(int n_queries, int top_k, const cppkafka::Configuration& config):
-        _n_queries(n_queries), _consumer(config) {
+        _n_queries(n_queries), _consumer(config), _top_k(top_k) {
             _result.resize(n_queries);
             for (int i=0; i<n_queries; i++) _result[i].resize(top_k);
             vector<string> topics;
@@ -54,7 +55,7 @@ namespace dhnsw {
             while (counter < _n_queries) {
                 // receive message
                 ResultMessage* result_msg;
-                bool ret = receiveAnswer(result_msg, _consumer);
+                bool ret = receiveAnswer(result_msg, _consumer, _top_k);
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // msg received
