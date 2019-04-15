@@ -42,7 +42,7 @@ namespace dhnsw {
         _n_queries(n_queries), _consumer(config) {
             _result.resize(n_queries);
             vector<string> topics;
-            topics.push_back("evaluation")
+            topics.push_back("evaluation");
             _consumer.subscribe(topics);
         }
 
