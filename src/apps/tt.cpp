@@ -2,9 +2,8 @@
 // Created by Oruqimaru on 16/4/2019.
 //
 
-#include "distributed/partition.hpp"
+#include "matrix.hpp"
 #include "parameters.hpp"
-#include "dhnsw_executor.hpp"
 #include "executor.hpp"
 
 int main(int argc, char** argv){
