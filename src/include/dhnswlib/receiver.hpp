@@ -115,12 +115,12 @@ namespace dhnsw {
                     _insert_answers(answer.p_queue, result_msg->_result_ids, result_msg->_dists);
                     // Increment counter & check if received data from all slaves
                     answer.n_slaves ++;
-                    cout << "[RECV] Accumulated: " << answer.n_slaves << ", Total: " << result_msg->_total_piece << endl;
                     if (answer.n_slaves == result_msg->_total_piece) {
                         _commit_answers(answer.p_queue, result_msg->_query_id);
                         _query_map.erase(result_msg->_query_id);
                         total_time += get_current_time_milliseconds() - result_msg->_start_time;
                         counter++;
+                        cout << "[RECV] Sent " << counter << " messages." << endl;
                     }
                     // free memory
                     delete result_msg;

@@ -211,8 +211,11 @@ namespace dhnsw {
         }
 
         void startWork(){
+		    int total = 0;
         	while(true){
         		QueryMessage msg = getQuery();
+        		total += 1;
+                cout << "[COORD] Received " << total << " messages." << endl;
         		produceTask(msg.query_id_, msg.query_, msg.start_time_);
         	}
         }
