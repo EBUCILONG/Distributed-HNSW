@@ -39,6 +39,7 @@ SET(EXAMPLES
     bug2
     start_customer
     start_evaluator
+    tt
     #sift1k
 )
 
@@ -50,7 +51,7 @@ SET(EXAMPLES
 
 
 FOREACH(EXAMPLE ${EXAMPLES} )
-    ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp)
+    ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp src/apps/tt.cpp)
     target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa ${RDKAFKA_LIBRARY} cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
 ENDFOREACH(EXAMPLE)
 
