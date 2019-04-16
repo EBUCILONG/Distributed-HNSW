@@ -27,4 +27,5 @@ int main(int argc, char** argv){
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
     customer.send_message();
+    customer.idle();
 }
