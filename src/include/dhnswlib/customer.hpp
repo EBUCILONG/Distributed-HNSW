@@ -52,10 +52,10 @@ namespace dhnsw {
         query_id_(query_id){
             for(int i = 0; i < vec_dim; i++)
                 query_.push_back(query_addr[i]);
-            cout << query_id << " ";
-            for(int i = 0; i < vec_dim; i++)
-                cout << query_[i] << " ";
-            cout << endl;
+//            cout << query_id << " ";
+//            for(int i = 0; i < vec_dim; i++)
+//                cout << query_[i] << " ";
+//            cout << endl;
             start_time_ = get_current_time_milliseconds();
             cout << "[CUST] start time: " << start_time_ << endl;
         }
