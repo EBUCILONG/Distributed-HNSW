@@ -30,12 +30,6 @@ int main(int argc, char** argv){
     dhnsw::Evaluator evaluator(truth_bench.getQueries(), para.topK, evaluator_config);
     long long avg_time = 0;
     vector<vector<pair<float, int>>> result = evaluator.evaluate(avg_time);
-    for (int i = 0; i < result.size(); i++) {
-        for (int j = 0; j < result[0].size(); j++) {
-            cout << result[i][j].second << " " << result[i][j].first << " ";
-        }
-        cout << endl;
-    }
     Bencher current_bench(result, false);
     cout << "time || recall"<< endl << std::to_string(avg_time) + " " + std::to_string(truth_bench.avg_recall(current_bench)) << endl;
     return 0;
