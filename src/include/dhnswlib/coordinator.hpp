@@ -74,8 +74,8 @@ namespace dhnsw {
 				cout << "#[error ] received task message query wrong length!" << endl;
 				assert(0);
 			}
-			bs >> float_buffer;
-			bs >> float_buffer;
+//			bs >> float_buffer;
+//			bs >> float_buffer;
             for (int i = 0; i < size; i++){
                 bs >> float_buffer;
                 _query.push_back(float_buffer);
@@ -97,7 +97,7 @@ namespace dhnsw {
 
 		string toString(){
             BinStream bs;
-            bs << _process_id << _query_id << _total_piece << _query.size();
+            bs << _process_id << _query_id << _total_piece << (int)_query.size();
             for(int i = 0; i < _query.size(); i++)
                 bs << _query[i];
             bs << _start_time;

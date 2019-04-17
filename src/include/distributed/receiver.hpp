@@ -33,8 +33,10 @@ namespace mt {
                 ignored if it is not in the top n results. */
             for (int i=0; i< TOPK; i++) {
                 // Check if we should insert the vector
-                if (pq.size() < TOPK || dist[i] < pq.top().first)
+                if (pq.size() < TOPK || dist[i] < pq.top().first) {
+                    if (pq.size() >= TOPK) pq.pop();
                     pq.push(make_pair(dist[i], index[i]));
+                }
             }
         }
 
