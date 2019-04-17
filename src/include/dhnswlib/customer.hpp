@@ -97,10 +97,11 @@ namespace dhnsw {
         Customer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
         _querys(querys),
         _num_subhnsw(num_subhnsw),
-        _producer(config){
-            _producer.set_produce_failure_callback([](const Message& msg) {
+        _producer(config) {
+            _producer.set_produce_failure_callback([](const Message &msg) {
                 cout << "Failed to produce message." << endl;
             });
+        }
 
 
         void send_message(){
