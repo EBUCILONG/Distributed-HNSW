@@ -81,7 +81,6 @@ namespace dhnsw {
             string topic = "evaluation";
             string payload = result.toString();
             _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
-            _producer.flush();
         }
 
     public:
