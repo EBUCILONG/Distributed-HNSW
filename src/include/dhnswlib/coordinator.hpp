@@ -216,6 +216,7 @@ namespace dhnsw {
 				const string payload = message.toString();
 				_producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
 			}
+			_producer.flush();
         }
 
         void startWork(){

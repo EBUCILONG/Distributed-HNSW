@@ -98,9 +98,6 @@ namespace dhnsw {
         _querys(querys),
         _num_subhnsw(num_subhnsw),
         _producer(config) {
-            _producer.set_produce_failure_callback([](const Message &msg) {
-                cout << "Failed to produce message." << endl;
-            });
         }
 
 
@@ -112,8 +109,9 @@ namespace dhnsw {
                 QueryMessage qm(i, _querys[i], dimer);
                 string payload = qm.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
-//                cout << "[CUST] Produced " << i+1 << " messages." << endl;
+                cout << "[CUST] Produced " << i+1 << " messages." << endl;
             }
+            _producer.flush();
         }
 
         void idle(){

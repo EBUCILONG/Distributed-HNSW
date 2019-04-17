@@ -163,6 +163,7 @@ namespace dhnsw {
                 topic = topic + std::to_string(task._process_id);
                 const string payload = result.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                _producer.flush();
             }
         }
     };
