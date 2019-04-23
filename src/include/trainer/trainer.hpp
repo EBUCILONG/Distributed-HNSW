@@ -59,6 +59,8 @@ namespace dhnsw{
         ss::Matrix<float> data(data_path);
         hnswlib::L2Space l2space(data.getDim());
         vector<vector<float> > centroids = get_centroids(data, aim_partition);
+        std::cout << "finish clustering" << std::endl;
+
         hnswlib::HierarchicalNSW<float> meta(&l2space, centroids.size(), hnsw_m, hnsw_ef_cons);
 
         omp_set_num_threads(18);
@@ -70,7 +72,7 @@ namespace dhnsw{
         for (int i = 1; i < centroids.size(); i++) {
             meta.addPoint((void *) centroids[i].data(), (size_t) i);
         }
-
+        std::cout << "finish constructing meta graph" << std::endl;
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
         vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
