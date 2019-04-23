@@ -393,7 +393,7 @@ namespace sm{
 	    }
 	};
 
-	vector<Cluster*>* cluster_machine (ss::Matrix<float>& datas,std::string dire, int nPartition, int iteration, int bomber, vector<float>& centroids){
+	vector<Cluster*>* cluster_machine (ss::Matrix<float>& datas/*,std::string dire*/, int nPartition, int iteration, int bomber, vector<vector<float> >& centroids){
 		int dim = datas.getDim();
 		Cluster* root = new Cluster (dim, datas[0]);
 
@@ -436,22 +436,22 @@ namespace sm{
 
 		assert (readyList->size() == nPartition);
 
-		std::ofstream wFile;
-		wFile.open(dire.c_str());
+//		std::ofstream wFile;
+//		wFile.open(dire.c_str());
+//
+//		wFile << nPartition << endl;
+//
+//		for (int i = 0; i < nPartition; i++){
+//			wFile << i << " "<< readyList->operator [](i)->get_size() << endl;
+//			for (int j = 0; j < readyList->operator [](i)->get_size(); j++)
+//				wFile << readyList->operator [](i)->operator [](j)->get_index() << endl;
+//		}
+//
+//		wFile.close();
 
-		wFile << nPartition << endl;
-
-		for (int i = 0; i < nPartition; i++){
-			wFile << i << " "<< readyList->operator [](i)->get_size() << endl;
-			for (int j = 0; j < readyList->operator [](i)->get_size(); j++)
-				wFile << readyList->operator [](i)->operator [](j)->get_index() << endl;
-		}
-
-		wFile.close();
-
-		centroids.reserve(nPartition * dim);
+		centroids.reserve(nPartition);
 		for (int i = 0; i < nPartition; i++)
-			centroids.insert(centroids.end(), readyList->operator [](i)->get_centroid()->begin(), readyList->operator [](i)->get_centroid()->begin());
+			centroids[i].insert(centroids[i].end(), readyList->operator [](i)->get_centroid()->begin(), readyList->operator [](i)->get_centroid()->end());
 
 		return readyList;
 	}

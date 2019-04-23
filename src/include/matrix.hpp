@@ -43,7 +43,7 @@ namespace ss {
 
         int _dimension;
         int _size;
-        T * _data;
+        T * _datsa;
 
     public:
 

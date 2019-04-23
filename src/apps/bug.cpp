@@ -13,4 +13,5 @@ int main(int argc, char** argv){
     ss::parameter para;
     LoadOptions(argc, argv, para);
     mt::mpiBody(para, partition);
+
 }

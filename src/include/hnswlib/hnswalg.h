@@ -3,6 +3,7 @@
 #include "visited_list_pool.h"
 #include "hnswlib.h"
 #include <random>
+#include <vector>
 #include <iostream>
 #include <queue>
 #include <fstream>

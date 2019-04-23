@@ -143,7 +143,7 @@ int SearchIterative(parameter &para) {
 
     cout << "#[training ] preparing clusters" << endl;
     std::vector<sm::Cluster*>* clusters;
-    std::vector<float> centroids;
+    std::vector<vector<float> > centroids;
     if (para.load_cluster){
     	clusters = sm::load_cluster(train_data, para.cluster_file, centroids);
     	if (clusters->size() != para.partition){
@@ -152,7 +152,7 @@ int SearchIterative(parameter &para) {
 		}
     }
     else
-    	clusters = sm::cluster_machine(train_data, para.output_file, para.partition,para.iteration, para.max_balance, centroids);
+    	clusters = sm::cluster_machine(train_data, para.partition, para.iteration, para.max_balance, centroids);
 
     cout << "#[temprory ] save centroids in: " << para.out_dir << "/centroids" << endl;
     std::ofstream wFile;
