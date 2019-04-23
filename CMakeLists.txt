@@ -40,6 +40,7 @@ SET(EXAMPLES
     start_customer
     start_evaluator
     tt
+    single_machine
     #sift1k
 )
 
