@@ -28,7 +28,7 @@ using std::vector;
 using std::string;
 
 namespace dhnsw{
-    vector<vector<float> > get_centroids(ss::Matrix<float>& data, int aim_partition, int iteration = 1000, int bomber = 8){
+    vector<vector<float> > get_centroids(ss::Matrix<float>& data, int aim_partition, int iteration = 75, int bomber = 4){
         std::vector<sm::Cluster*>* clusters;
         vector<vector<float> > centroids;
         clusters = sm::cluster_machine(data, aim_partition, iteration, bomber, centroids);
