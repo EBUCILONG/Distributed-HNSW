@@ -41,6 +41,7 @@ SET(EXAMPLES
     start_evaluator
     tt
     single_machine
+    binary_machine
     #sift1k
 )
 
