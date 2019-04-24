@@ -17,5 +17,5 @@ int main(int argc, char** argv){
 	mt::Partition partition(1);
 	ss::parameter para;
 	LoadOptions(argc, argv, para);
-	dhnsw::binary_trainer(para.dim, para.base_data, para.out_dir + "/centroids", para.num_centroid);
+	dhnsw::binary_trainer(para.dim, para.base_data, para.out_dir + "/centroids", para.out_dir + "/tree", para.num_centroid);
 }

@@ -394,7 +394,7 @@ namespace sm{
 	    }
 	};
 
-	void binary_cluster_machine (ss::Matrix<float>& datas, int power, vector<vector<float> >& centroids, int iteration = 50){
+	void binary_cluster_machine (ss::Matrix<float>& datas, int power, vector<vector<float> >& centroids, vector<vector<float> >& tree, int iteration = 50){
 		int dim = datas.getDim();
 		Cluster* root = new Cluster (dim, datas[0]);
 
@@ -405,6 +405,7 @@ namespace sm{
 		}
 
 		std::queue<Cluster*> workList;
+		vector<float> vec_buffer;
 		workList.push(root);
 
 		for (int i = 0; i < power; i++){
@@ -413,6 +414,10 @@ namespace sm{
 				workList.front()->cluster_binary(iteration);
 				for (int k = 0; k < workList.front()->_childrens.size(); k++)
 					workList.push(workList.front()->_childrens[k]);
+				vec_buffer.insert(vec_buffer.end(), workList.front()->get_centroid()->begin(), workList.front()->get_centroid()->end());
+				tree.push_back(vec_buffer);
+				vec_buffer.resize(0);
+				delete workList.front();
 				workList.pop();
 			}
 		}
@@ -423,6 +428,7 @@ namespace sm{
 		centroids.resize(sizer);
 		for (int i = 0; i < sizer; i++){
 			centroids[i].insert(centroids[i].end(), workList.front()->get_centroid()->begin(), workList.front()->get_centroid()->end());
+			tree.push_back(centroids[i]);
 			workList.pop();
 		}
 	}

@@ -56,11 +56,13 @@ namespace dhnsw{
     	fout.close();
     }
 
-    void binary_trainer(int dimension, string data_path, string centroid_path, int aim_partition){
+    void binary_trainer(int dimension, string data_path, string centroid_path, string tree_path, int aim_partition){
     	int power = (int) std::round(std::log2((float)aim_partition));
     	vector<vector<float> > centroids;
+    	vector<vector<float> > tree;
     	ss::Matrix<float> datas(data_path);
-    	sm::binary_cluster_machine(datas, power, centroids);
+    	sm::binary_cluster_machine(datas, power, centroids, tree);
+
     	save_centroids (centroid_path, centroids);
     }
 
