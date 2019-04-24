@@ -64,6 +64,7 @@ namespace dhnsw{
     	sm::binary_cluster_machine(datas, power, centroids, tree);
 
     	save_centroids (centroid_path, centroids);
+    	save_centroids (tree_path, tree);
     }
 
     void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
