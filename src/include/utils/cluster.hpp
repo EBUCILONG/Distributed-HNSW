@@ -408,7 +408,13 @@ namespace sm{
 		vector<float> vec_buffer;
 		workList.push(root);
 
-		for (int i = 0; i < power; i++){
+		workList.front()->cluster_binary(iteration);
+		for (int k = 0; k < workList.front()->_childrens.size(); k++)
+			workList.push(workList.front()->_childrens[k]);
+		delete workList.front();
+		workList.pop();
+
+		for (int i = 1; i < power; i++){
 			int buffer = workList.size();
 			for (int j = 0; j < buffer; j++){
 				workList.front()->cluster_binary(iteration);
