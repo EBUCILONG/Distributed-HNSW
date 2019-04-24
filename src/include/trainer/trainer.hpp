@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <stdlib.h>
+#include <cmath>
 
 #include <omp.h>
 
@@ -53,6 +54,14 @@ namespace dhnsw{
     		fout << std::endl;
     	}
     	fout.close();
+    }
+
+    void binary_trainer(int dimension, string data_path, string centroid_path, int aim_partition){
+    	int power = (int) std::round(std::log2((float)aim_partition));
+    	vector<vector<float> > centroids;
+    	ss::Matrix<float> datas(data_path);
+    	sm::binary_cluster_machine(datas, power, centroids);
+    	save_centroids (centroid_path, centroids);
     }
 
     void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){

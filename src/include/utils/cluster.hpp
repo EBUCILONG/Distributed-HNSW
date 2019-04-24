@@ -20,6 +20,7 @@
 #include <queue>
 #include <utility>
 #include <set>
+#include <cmath>
 
 #include "matrix.hpp"
 #include "metric.hpp"
@@ -393,6 +394,39 @@ namespace sm{
 	    }
 	};
 
+	void binary_cluster_machine (ss::Matrix<float>& datas, int power, vector<vector<float> >& centroids, int iteration = 50){
+		int dim = datas.getDim();
+		Cluster* root = new Cluster (dim, datas[0]);
+
+		for (int i = 0; i < datas.getSize(); i++){
+			Point* newPoint = new Point(i, dim);
+			newPoint->set_data(datas[i]);
+			root->append_point(newPoint);
+		}
+
+		std::queue<Cluster*> workList;
+		workList.push(root);
+
+		for (int i = 0; i < power; i++){
+			int buffer = workList.size();
+			for (int j = 0; j < buffer; j++){
+				workList.front()->cluster_binary(iteration);
+				for (int k = 0; k < workList.front()->_childrens.size(); k++)
+					workList.push(workList.front()->_childrens[k]);
+				workList.pop();
+			}
+		}
+
+		assert(workList.size() == (int) std::pow(2, power));
+
+		int sizer = workList.size();
+		centroids.resize(sizer);
+		for (int i = 0; i < sizer; i++){
+			centroids[i].insert(centroids[i].end(), workList.front()->get_centroid()->begin(), workList.front()->get_centroid()->end());
+			workList.pop();
+		}
+	}
+
 	vector<Cluster*>* cluster_machine (ss::Matrix<float>& datas/*,std::string dire*/, int nPartition, int iteration, int bomber, vector<vector<float> >& centroids){
 		int dim = datas.getDim();
 		Cluster* root = new Cluster (dim, datas[0]);
@@ -449,7 +483,7 @@ namespace sm{
 //
 //		wFile.close();
 
-		centroids.reserve(nPartition);
+		centroids.resize(nPartition);
 		for (int i = 0; i < nPartition; i++)
 			centroids[i].insert(centroids[i].end(), readyList->operator [](i)->get_centroid()->begin(), readyList->operator [](i)->get_centroid()->end());
 
