@@ -89,7 +89,7 @@ namespace dhnsw{
 		vector <int> partition_sizes(aim_num_subhnsw, 0);
 
 		for (int i = 0; i < map.size(); i++){
-			partition_sizes[map[i]]++;
+			partition_sizes[map[i]] += sizes[i];
 		}
 
 		for (int i = 0; i < aim_num_subhnsw; i++)
