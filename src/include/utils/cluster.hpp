@@ -297,7 +297,7 @@ namespace sm{
 			 *
 			 */
 			float numPCluster = (float)_size / (float)_aimNPartition;
-			int aim1 = (int) round((float)_childrens[0]->get_size() / numPCluster);
+			int aim1 = (int) floor((float)_childrens[0]->get_size() / numPCluster);
 			if (aim1 == 0)
 				aim1 = 1;
 			_childrens[0]->set_aimNPartition(aim1);
