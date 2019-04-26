@@ -394,7 +394,7 @@ namespace sm{
 	    }
 	};
 
-	void binary_cluster_machine (ss::Matrix<float>& datas, int power, vector<vector<float> >& centroids, vector<int> sizes, vector<vector<float> >& tree, int iteration = 50){
+	void binary_cluster_machine (ss::Matrix<float>& datas, int power, vector<vector<float> >& centroids, vector<int>& sizes, vector<vector<float> >& tree, int iteration = 50){
 		int dim = datas.getDim();
 		Cluster* root = new Cluster (dim, datas[0]);
 
