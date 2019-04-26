@@ -464,7 +464,6 @@ namespace sm{
 
             if (aimer->done_or_not() || aimer->get_aim_partition() == 1){
 				readyList->push_back(aimer);
-                cout << "completed " << readyList->size()*1.0 / nPartition << endl;
                 continue;
             }
 			if (aimer->get_aim_partition() > bomber){
