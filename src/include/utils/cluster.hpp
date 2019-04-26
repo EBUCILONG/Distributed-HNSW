@@ -233,6 +233,7 @@ namespace sm{
 
 		void cluster_balanced (int iteration){
 			float NoverK = (float)_size / (float)_aimNPartition;
+			std::cout << "nover " << NoverK << std::endl;
 
 			for (int i = 0; i < _aimNPartition; i++){
 				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
