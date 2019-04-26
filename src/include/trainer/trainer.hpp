@@ -100,15 +100,16 @@ namespace dhnsw{
     	save_centroids (tree_path, tree);
     }
 
-    void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
-        ss::Matrix<float> data(data_path);
+    void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, string hnsw_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
+    	long long start_time = get_current_time_milliseconds();
+    	ss::Matrix<float> data(data_path);
         hnswlib::L2Space l2space(data.getDim());
         vector<vector<float> > centroids = get_centroids(data, aim_partition);
         std::cout << "finish clustering" << std::endl;
 
         hnswlib::HierarchicalNSW<float> meta(&l2space, centroids.size(), hnsw_m, hnsw_ef_cons);
 
-        omp_set_num_threads(32);
+        omp_set_num_threads(31);
 
         for (int i = 0; i < 1; i++) {
             meta.addPoint((void *) centroids[i].data(), (size_t) i);
@@ -120,13 +121,10 @@ namespace dhnsw{
         std::cout << "finish constructing meta graph" << std::endl;
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
-        std::cout << "before partition" << std::endl;
         vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
-        std::cout << "after partition" << std::endl;
+        std::cout << "total time in milisecond " << get_current_time_milliseconds() - start_time << std::endl;
 
-
-        std::cout << map_path << std::endl;
-        std::cout << centroid_path << std::endl;
+        meta.saveIndex(hnsw_path);
         save_map (map_path, map, aim_num_subhnsw);
         save_centroids (centroid_path, centroids);
     }

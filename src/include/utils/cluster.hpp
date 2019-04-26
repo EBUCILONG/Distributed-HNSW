@@ -233,7 +233,6 @@ namespace sm{
 
 		void cluster_balanced (int iteration){
 			float NoverK = (float)_size / (float)_aimNPartition;
-			std::cout << "noverK " << NoverK << std::endl;
 
 			for (int i = 0; i < _aimNPartition; i++){
 				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
@@ -465,7 +464,6 @@ namespace sm{
 
             if (aimer->done_or_not() || aimer->get_aim_partition() == 1){
 				readyList->push_back(aimer);
-				std::cout << readyList->size() << std::endl;
                 continue;
             }
 			if (aimer->get_aim_partition() > bomber){
