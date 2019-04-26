@@ -232,7 +232,7 @@ namespace sm{
 		}
 
 		void cluster_balanced (int iteration){
-			float NoverK = _size / _aimNPartition;
+			float NoverK = (float)_size / (float)_aimNPartition;
 
 			for (int i = 0; i < _aimNPartition; i++){
 				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
