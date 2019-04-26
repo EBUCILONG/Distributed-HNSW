@@ -88,6 +88,8 @@ namespace dhnsw{
 
 		vector <int> partition_sizes(aim_num_subhnsw, 0);
 
+		std::cout << "sizes size " << sizes.size() << std::endl;
+
 		for (int i = 0; i < map.size(); i++){
 			partition_sizes[map[i]] += sizes[i];
 		}
