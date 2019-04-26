@@ -20,6 +20,7 @@
 
 #include <omp.h>
 
+#include "../dhnswlib/time.hpp"
 #include "../hnswlib/hnswalg.h"
 #include "../utils/cluster.hpp"
 #include "../matrix.hpp"
@@ -56,13 +57,45 @@ namespace dhnsw{
     	fout.close();
     }
 
-    void binary_trainer(int dimension, string data_path, string centroid_path, string tree_path, int aim_partition){
+    void binary_trainer(int dimension, string data_path, string centroid_path, string tree_path, string map_path, int aim_partition, int aim_num_subhnsw, mt::Partition& partition, int hnsw_m = 32, int hnsw_ef_cons = 100){
+    	long long start_time = get_current_time_milliseconds();
     	int power = (int) std::round(std::log2((float)aim_partition));
     	vector<vector<float> > centroids;
+    	vector<int> sizes;
     	vector<vector<float> > tree;
     	ss::Matrix<float> datas(data_path);
-    	sm::binary_cluster_machine(datas, power, centroids, tree);
+        hnswlib::L2Space l2space(datas.getDim());
 
+    	sm::binary_cluster_machine(datas, power, centroids, sizes, tree);
+
+    	hnswlib::HierarchicalNSW<float> meta(&l2space, centroids.size(), 32, 100);
+    	omp_set_num_threads(32);
+
+    	for (int i = 0; i < 1; i++) {
+			meta.addPoint((void *) centroids[i].data(), (size_t) i);
+		}
+#pragma omp parallel for
+		for (int i = 1; i < centroids.size(); i++) {
+			meta.addPoint((void *) centroids[i].data(), (size_t) i);
+		}
+
+		std::cout << "finish constructing meta graph" << std::endl;
+		vector<vector<int> > graph;
+		int num_edges = meta.getLevel0Graph(graph);
+		vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
+
+		std::cout << "total time in milisecond " << get_current_time_milliseconds() - start_time << std::endl;
+
+		vector <int> partition_sizes(aim_num_subhnsw, 0);
+
+		for (int i = 0; i < map.size(); i++){
+			partition_sizes[map[i]]++;
+		}
+
+		for (int i = 0; i < aim_num_subhnsw; i++)
+			std::cout << partition_sizes[i] << std::endl;
+
+		save_map (map_path, map, aim_num_subhnsw);
     	save_centroids (centroid_path, centroids);
     	save_centroids (tree_path, tree);
     }
@@ -75,7 +108,7 @@ namespace dhnsw{
 
         hnswlib::HierarchicalNSW<float> meta(&l2space, centroids.size(), hnsw_m, hnsw_ef_cons);
 
-        omp_set_num_threads(18);
+        omp_set_num_threads(32);
 
         for (int i = 0; i < 1; i++) {
             meta.addPoint((void *) centroids[i].data(), (size_t) i);
