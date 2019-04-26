@@ -120,8 +120,13 @@ namespace dhnsw{
         std::cout << "finish constructing meta graph" << std::endl;
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
+        std::cout << "before partition" << std::endl;
         vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
+        std::cout << "after partition" << std::endl;
 
+
+        std::cout << map_path << std::endl;
+        std::cout << centroid_path << std::endl;
         save_map (map_path, map, aim_num_subhnsw);
         save_centroids (centroid_path, centroids);
     }
