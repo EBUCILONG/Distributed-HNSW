@@ -105,6 +105,7 @@ namespace dhnsw{
     	ss::Matrix<float> data(data_path);
         hnswlib::L2Space l2space(data.getDim());
         vector<vector<float> > centroids = get_centroids(data, aim_partition);
+        assert(aim_partition == centroids.size());
         std::cout << "finish clustering" << std::endl;
 
         hnswlib::HierarchicalNSW<float> meta(&l2space, centroids.size(), hnsw_m, hnsw_ef_cons);
