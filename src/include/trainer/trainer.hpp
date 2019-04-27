@@ -30,11 +30,10 @@ using std::vector;
 using std::string;
 
 namespace dhnsw{
-    vector<vector<float> > get_centroids(ss::Matrix<float>& data, int aim_partition, int iteration = 75, int bomber = 4){
+std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partition, vector<vector<float> >& centroids,int iteration = 75, int bomber = 4){
         std::vector<sm::Cluster*>* clusters;
-        vector<vector<float> > centroids;
         clusters = sm::cluster_machine(data, aim_partition, iteration, bomber, centroids);
-        return centroids;
+        return clusters;
     }
 
     void save_map (string out_path, vector<int>& map, int num_partition){
@@ -100,11 +99,12 @@ namespace dhnsw{
     	save_centroids (tree_path, tree);
     }
 
-    void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, string hnsw_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
+    void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, string partition_map_path,string hnsw_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
     	long long start_time = get_current_time_milliseconds();
     	ss::Matrix<float> data(data_path);
         hnswlib::L2Space l2space(data.getDim());
-        vector<vector<float> > centroids = get_centroids(data, aim_partition);
+        vector<vector<float> > centroids;
+        std::vector<sm::Cluster*>* readyList = get_centroids(data, aim_partition, centroids);
         assert(aim_partition == centroids.size());
         std::cout << "finish clustering" << std::endl;
 
@@ -125,6 +125,19 @@ namespace dhnsw{
         vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
         std::cout << "total time in milisecond " << get_current_time_milliseconds() - start_time << std::endl;
 
+        int counter = 0;
+        vector<int> partition_map(data.getSize());
+        assert(readyList->size() == aim_partition);
+        for (int i = 0; i < readyList->size(); i++){
+        	for (int j = 0; j < readyList->operator [](i)->_datas.size(); j++){
+        		assert(map[i] >= 0 && map[i] < aim_num_subhnsw);
+        		partition_map[readyList->operator [](i)->_datas[j]->get_index()] = map[i];
+        		counter ++;
+        	}
+        }
+        assert(counter == data.getSize());
+
+        save_map(partition_map_path, partition_map,aim_num_subhnsw);
         meta.saveIndex(hnsw_path);
         save_map (map_path, map, aim_num_subhnsw);
         save_centroids (centroid_path, centroids);
