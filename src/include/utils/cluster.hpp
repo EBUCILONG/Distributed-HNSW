@@ -448,6 +448,9 @@ namespace sm{
 		int dim = datas.getDim();
 		Cluster* root = new Cluster (dim, datas[0]);
 
+		cout << datas.getDim() << endl;
+		cout << datas.getSize() <<endl;
+
 
         for (int i = 0; i < datas.getSize(); i++){
 			Point* newPoint = new Point(i, dim);
