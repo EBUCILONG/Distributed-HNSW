@@ -244,14 +244,17 @@ namespace sm{
 			for (int i = 0; i < iteration; i++){
 				for (int j = 0; j < _aimNPartition; j++)
 					_childrens[j]->reset_data();
+			std::cout << "start assign" << std::endl;
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
 					int label = _datas[j]->assign_cluster(&_childrens, true, NoverK);
 					insert_point (label, _datas[j]);
+					std::cout << "finish assign" + std::to_string(j) << std::endl;
 				}
 
 			//   cout << "finish assign cluster" << endl;
 
+				std::cout << "updating centroid" << std::endl;
 #pragma omp parallel for
 				for(int j = 0; j < _childrens.size(); j++){
 					_childrens[j]->update_centroid();
@@ -259,6 +262,8 @@ namespace sm{
 
 				//cout << "finish update centroid" << endl;
 			}
+
+			std::cout << "finish" << std::endl;
 
 			for (int i = 0; i < _aimNPartition; i++){
 				_childrens[i]->set_aimNPartition(1);
