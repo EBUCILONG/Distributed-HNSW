@@ -365,14 +365,11 @@ namespace sm{
 	int Point::assign_cluster (vector<Cluster*> *clusters, bool balance, float NoverK){
 		if (balance){
 			int label = -1;
-			float balance_dister = FLT_MIN;
+			float balance_dister = -FLT_MAX;
 			int size = clusters->size();
 			for (int i = 0; i < size; i ++){
 				float nh = (*clusters)[i]->get_balance_size();
 				float dist = (IP_dist((*clusters)[i]->get_unit_centroid()) + 1 - nh / NoverK / _dimension * std::log(nh)) / nh;
-				if (dist < FLT_MIN){
-					cout << nh << " " << dist << endl;
-				}
 				if (dist > balance_dister){
 					label = i;
 					balance_dister = dist;
