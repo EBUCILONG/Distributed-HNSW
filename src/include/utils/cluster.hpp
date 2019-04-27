@@ -368,6 +368,7 @@ namespace sm{
 			int size = clusters->size();
 			for (int i = 0; i < size; i ++){
 				float nh = (*clusters)[i]->get_balance_size();
+				cout << "nh " + std::to_string(nh) + "NoverK"+ std::to_string(NoverK) + "\n";
 				float dist = (IP_dist((*clusters)[i]->get_unit_centroid()) + 1 - nh / NoverK / _dimension * std::log(nh)) / nh;
 				if (dist > balance_dister){
 					label = i;
@@ -447,10 +448,6 @@ namespace sm{
 	vector<Cluster*>* cluster_machine (ss::Matrix<float>& datas/*,std::string dire*/, int nPartition, int iteration, int bomber, vector<vector<float> >& centroids){
 		int dim = datas.getDim();
 		Cluster* root = new Cluster (dim, datas[0]);
-
-		cout << datas.getDim() << endl;
-		cout << datas.getSize() <<endl;
-
 
         for (int i = 0; i < datas.getSize(); i++){
 			Point* newPoint = new Point(i, dim);
