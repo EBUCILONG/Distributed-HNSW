@@ -249,7 +249,7 @@ namespace sm{
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
 					int label = _datas[j]->assign_cluster(&_childrens, true, NoverK);
-					cout << std::to_string(label) + "\n" << endl;
+					assert(label >= 0 && label < _aimNPartition);
 					insert_point (label, _datas[j]);
 				}
 
