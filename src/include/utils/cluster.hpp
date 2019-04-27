@@ -249,7 +249,7 @@ namespace sm{
 				for(int j = 0; j < _size; j++){
 					int label = _datas[j]->assign_cluster(&_childrens, true, NoverK);
 					insert_point (label, _datas[j]);
-//					std::cout << "finish assign" + std::to_string(j) << std::endl;
+					std::cout << "finish assign" + std::to_string(j) << std::endl;
 				}
 
 			//   cout << "finish assign cluster" << endl;
@@ -262,8 +262,6 @@ namespace sm{
 
 				//cout << "finish update centroid" << endl;
 			}
-
-			std::cout << "finish" << std::endl;
 
 			for (int i = 0; i < _aimNPartition; i++){
 				_childrens[i]->set_aimNPartition(1);
@@ -371,7 +369,6 @@ namespace sm{
 			for (int i = 0; i < size; i ++){
 				float nh = (*clusters)[i]->get_balance_size();
 				float dist = (IP_dist((*clusters)[i]->get_unit_centroid()) + 1 - nh / NoverK / _dimension * std::log(nh)) / nh;
-				cout << dist <<
 				if (dist > balance_dister){
 					label = i;
 					balance_dister = dist;
@@ -449,8 +446,6 @@ namespace sm{
 
 	vector<Cluster*>* cluster_machine (ss::Matrix<float>& datas/*,std::string dire*/, int nPartition, int iteration, int bomber, vector<vector<float> >& centroids){
 		int dim = datas.getDim();
-		cout << datas.getDim() << endl;
-		cout <<datas.getSize() << endl;
 		Cluster* root = new Cluster (dim, datas[0]);
 
 
