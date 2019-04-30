@@ -122,6 +122,8 @@ namespace mt {
 			result[i] = partitioner.searchHnsw(data[i]);
 		}
 
+		cout << "#[worker]"+std::to_string(world_rank) + " start to save\n";
+
 		vector<std::ofstream* > fouts;
 		for (int i = 0; i < partitioner.getTotalPartition(); i++){
 			std::ofstream* fout = new std::ofstream(para.out_dir + "/subfile/w" + std::to_string(world_rank) + "/partition" + std::to_string(i), std::iostream::binary);
@@ -138,6 +140,7 @@ namespace mt {
 			fouts[i]->close();
 			delete fouts[i];
 		}
+		cout << "#[worker]"+std::to_string(world_rank) + " finish all\n";
 	}
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){
