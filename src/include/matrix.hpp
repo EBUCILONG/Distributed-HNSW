@@ -61,7 +61,7 @@ namespace ss {
         }
 
         explicit Matrix(const std::string &path, int aim_part, int total_part){
-        	loadPartIdvecs(this, aim_part, total_part);
+        	loadPartIdvecs(this, path, aim_part, total_part);
         }
         Matrix(const Matrix& M) = delete;
         Matrix& operator=(const Matrix& M)  = delete;

@@ -97,6 +97,10 @@ namespace mt {
 	}
 
 	void mpiPartitioner(ss::parameter& para){
+		/*
+		 * using para
+		 * base_data out_dir containing /hnsw/partition /partition_map
+		 */
 		int world_rank;
 		MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 		int world_size;
@@ -126,9 +130,9 @@ namespace mt {
 		int dimer = data.getDim();
 		for (int i = 0; i < sizer; i++){
 			std::ofstream* fout = fouts[result[i]];
-			fout->write((char*)dimer, sizeof(int));
+			fout->write((char*)&dimer, sizeof(int));
 			fout->write((char*)data[i], dimer * sizeof(float));
-			fout->write((char*)data.id_[i], sizeof(int));
+			fout->write((char*)&data.id_[i], sizeof(int));
 		}
 		for(int i = 0; i < partitioner.getTotalPartition(); i++){
 			fouts[i]->close();
