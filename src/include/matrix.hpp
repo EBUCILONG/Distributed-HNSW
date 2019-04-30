@@ -112,14 +112,14 @@ namespace ss {
 			unsigned bytesPerRecord = dimension * sizeof(DATATYPE) + 4;
 			assert(fileSize % (bytesPerRecord + 4) == 0);
 			uint64_t cardinality = fileSize / (bytesPerRecord+4);
-			id_.resize(cardinality);
+			data.id_.resize(cardinality);
 
 			data.reset(dimension, cardinality);
 			int id_buffer = 0;
 
 			fin.read(reinterpret_cast<char*>(data[0]), sizeof(float) * dimension);
 			fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
-			id_[0] = id_buffer;
+			data.id_[0] = id_buffer;
 
 			int dim;
 			for (int i = 1; i < cardinality; ++i) {
@@ -127,7 +127,7 @@ namespace ss {
 				assert(dim == dimension);
 				fin.read(reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
 				fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
-				id_[i] = id_buffer;
+				data.id_[i] = id_buffer;
 			}
 			fin.close();
         }
