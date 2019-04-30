@@ -107,7 +107,7 @@ namespace mt {
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
 		if (world_size != SIZEWORKER){
-			cout << "#[error ] wrong number process initialled" << endl;
+			cout << "#[error ] wrong number process initialled with" + std::to_string(world_size) << endl;
 			MPI_Abort(MPI_COMM_WORLD, 0);
 		}
 
