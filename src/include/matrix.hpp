@@ -145,8 +145,10 @@ namespace ss {
 			int id_buffer;
 			for (int i = 0; i < sizer; i++){
 				fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+				assert(dim == dimension);
 				fin.read(reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
 				fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
+				assert(id_buffer == full_size * aim_part + i);
 				data.id_[i] = id_buffer;
 			}
         }
