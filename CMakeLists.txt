@@ -35,14 +35,14 @@ INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_
 
 
 SET(EXAMPLES
-    bug
-    bug2
-    start_customer
-    start_evaluator
-    tt
-    single_machine
-    binary_machine
-    fvecs_hnsw_machine
+    #bug
+    #bug2
+    #start_customer
+    #start_evaluator
+    #tt
+    #single_machine
+    #binary_machine
+    #fvecs_hnsw_machine
     dataset_partitioner
     #sift1k
 )

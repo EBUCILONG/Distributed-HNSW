@@ -139,7 +139,7 @@ namespace ss {
 			data.id_.resize(sizer);
 
 			fin.seekg(step * full_size * aim_part, fin.beg);
-			std::cout << "seek with " + std::to_string(step * full_size * aim_part) + "\n";
+			std::cout << "seek with " + std::to_string(step * full_size * aim_part) + "step"+std::to_string(step) + "full_size"+std::to_string(full_size) + "aim_part"+std::to_string(aim_part) + "\n";
 
 			int dim;
 			int id_buffer;
