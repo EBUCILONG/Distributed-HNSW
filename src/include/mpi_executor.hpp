@@ -10,6 +10,8 @@
 #include <vector>
 #include <mpi.h>
 #include <iostream>
+#include <fstream>
+#include <queue>
 
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options.hpp>
@@ -31,6 +33,7 @@
 #include "distributed/receiver.hpp"
 #include "distributed/macro.h"
 
+using std::ifstream;
 using std::cout;
 using std::endl;
 using std::vector;
@@ -43,6 +46,41 @@ using std::string;
  */
 
 namespace mt {
+
+	class MpiPartition{
+	private:
+		int _dim;
+		int _total_partition;
+		vector<int> _map;
+		hnswlib::L2Space _l2space;
+		hnswlib::HierarchicalNSW<float> _hnsw;
+
+		int load_map(string map_path){
+			ifstream fin(map_path);
+			fin >> _total_partition;
+			int iter, buffer;
+			fin >> iter;
+			for (int i = 0; i < iter; i++){
+				fin >> buffer;
+				_map.push_back(buffer);
+			}
+			return iter;
+		}
+	public:
+		MpiPartition(int dim, string hnsw_path, string map_path):_dim(dim), _l2space(dim),_hnsw(&_l2space, hnsw_path){
+			int size = load_map(map_path);
+			assert(size == _hnsw.max_elements_);
+		}
+
+		int searchHnsw(float* query){
+			std::priority_queue<std::pair<float, long unsigned int > > result = _hnsw.searchKnn(query, 1);
+			return _map[result.top().second];
+		}
+
+		int getTotalPartition(){
+			return _total_partition;
+		}
+	};
 
 	void sendMessage(int index, Sender* sender, int& counter){
 		task_message tm;
@@ -58,8 +96,44 @@ namespace mt {
 		MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	}
 
-	void partitioner(){
+	void mpiPartitioner(ss::parameter& para){
+		int world_rank;
+		MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+		int world_size;
+		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
+		if (world_size != SIZEWORKER){
+			cout << "#[error ] wrong number process initialled" << endl;
+			MPI_Abort(MPI_COMM_WORLD, 0);
+		}
+
+		ss::Matrix<float> data(para.base_data, world_rank, world_size);
+		MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition", para.out_dir + "/partition_map");
+
+		omp_set_num_threads(20);
+		int sizer = data.getSize();
+		vector<int> result(sizer);
+#pragma omp parallel for
+		for (int i = 0; i < sizer; i++){
+			result[i] = partitioner.searchHnsw(data[i]);
+		}
+
+		vector<std::ofstream* > fouts;
+		for (int i = 0; i < partitioner.getTotalPartition(); i++){
+			std::ofstream* fout = new std::ofstream(para.out_dir + "/subfile/w" + std::to_string(world_rank) + "/partition" + std::to_string(i), std::iostream::binary);
+			fouts.push_back(fout);
+		}
+		int dimer = data.getDim();
+		for (int i = 0; i < sizer; i++){
+			std::ofstream* fout = fouts[result[i]];
+			fout->write((char*)dimer, sizeof(int));
+			fout->write((char*)data[i], dimer * sizeof(float));
+			fout->write((char*)data.id_[i], sizeof(int));
+		}
+		for(int i = 0; i < partitioner.getTotalPartition(); i++){
+			fouts[i]->close();
+			delete fouts[i];
+		}
 	}
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){

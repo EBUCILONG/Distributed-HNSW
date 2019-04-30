@@ -59,6 +59,10 @@ namespace ss {
         explicit Matrix(const std::string &path, int dim): _data(NULL){
         	loadIdvecs(this, path);
         }
+
+        explicit Matrix(const std::string &path, int aim_part, int total_part){
+        	loadPartIdvecs(this, aim_part, total_part);
+        }
         Matrix(const Matrix& M) = delete;
         Matrix& operator=(const Matrix& M)  = delete;
 
@@ -91,6 +95,59 @@ namespace ss {
                 norms[i] = ss::CalculateNorm((*this)[i], _dimension);
             }
             return norms;
+        }
+
+        template<typename DATATYPE>
+		friend void loadPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile, int aim_part, int total_part) {
+        	Matrix<DATATYPE>& data  = *data_point;
+
+        	std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
+			if (!fin) {
+				std::cout << "cannot open file " << dataFile.c_str() << std::endl;
+				assert(false);
+			}
+			uint64_t fileSize = fin.tellg();
+			fin.seekg(0, fin.beg);
+			assert(fileSize != 0);
+
+			int dimension;
+			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
+
+			unsigned step = dimension * sizeof(DATATYPE) + 4 + 4;
+			assert(fileSize % step == 0);
+			uint64_t cardinality = fileSize / step;
+
+			int sizer;
+			int full_size;
+			if (cardinality % total_part == 0){
+				sizer = cardinality / total_part;
+				full_size = sizer;
+			}
+			else{
+				if (aim_part == total_part - 1){
+					sizer = cardinality % total_part;
+					full_size = (cardinality - (cardinality % total_part)) / (total_part - 1);
+				}
+				else{
+					sizer = (cardinality - (cardinality % total_part)) / (total_part - 1);
+					full_size = sizer;
+				}
+			}
+
+			data.reset(dimension, sizer);
+			data.id_.resize(sizer);
+
+			fin.seekg(step * full_size * aim_part, fin.beg);
+
+
+			int dim;
+			int id_buffer;
+			for (int i = 0; i < sizer; i++){
+				fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+				fin.read(reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
+				fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
+				data.id_[i] = id_buffer;
+			}
         }
 
         template<typename DATATYPE>
