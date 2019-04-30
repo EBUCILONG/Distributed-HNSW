@@ -42,6 +42,7 @@ SET(EXAMPLES
     tt
     single_machine
     binary_machine
+    fvecs_hnsw_machine
     #sift1k
 )
 

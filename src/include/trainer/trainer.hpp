@@ -142,5 +142,31 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
         save_map (map_path, map, aim_num_subhnsw);
         save_centroids (centroid_path, centroids);
     }
+
+    void fvecs_hnsw_machine(ss::Matrix<float>& data, string hnsw_path, int hnsw_m = 32, int hnsw_ef = 100){
+        hnswlib::L2Space l2space(data.getDim());
+        hnswlib::HierarchicalNSW<float> partition(&l2space, data.getSize(), hnsw_m, hnsw_ef);
+        for (int i = 0; i < 1; i++) {
+			partition.addPoint((void *) data[i], (size_t) i);
+		}
+#pragma omp parallel for
+		for (int i = 1; i < data.getSize(); i++) {
+			partition.addPoint((void *) data[i], (size_t) i);
+		}
+		partition.saveIndex(hnsw_path);
+    }
+
+    void idvecs_hnsw_machine(ss::Matrix<float>& data, string hnsw_path, int hnsw_m = 32, int hnsw_ef = 100){
+        hnswlib::L2Space l2space(data.getDim());
+        hnswlib::HierarchicalNSW<float> partition(&l2space, data.getSize(), hnsw_m, hnsw_ef);
+        for (int i = 0; i < 1; i++) {
+			partition.addPoint((void *) data[i], (size_t) data.id_[i]);
+		}
+#pragma omp parallel for
+		for (int i = 1; i < data.getSize(); i++) {
+			partition.addPoint((void *) data[i], (size_t) data.id_[i]);
+		}
+		partition.saveIndex(hnsw_path);
+    }
 }
 

@@ -36,6 +36,8 @@
 
 #include "utils/calculator.hpp"
 
+using std::vector;
+
 namespace ss {
 
     template <class T>
@@ -46,12 +48,16 @@ namespace ss {
         T * _data;
 
     public:
+        vector<int> id_;
 
         ~Matrix() {
             std::free(_data);
         }
         explicit Matrix(const std::string &path): _data(NULL) {
             loadFvecs(this, path);
+        }
+        explicit Matrix(const std::string &path, int dim): _data(NULL){
+        	loadIdvecs(this, path);
         }
         Matrix(const Matrix& M) = delete;
         Matrix& operator=(const Matrix& M)  = delete;
@@ -85,6 +91,45 @@ namespace ss {
                 norms[i] = ss::CalculateNorm((*this)[i], _dimension);
             }
             return norms;
+        }
+
+        template<typename DATATYPE>
+        friend void loadIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile) {
+        	Matrix<DATATYPE>& data  = *data_point;
+
+			std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
+			if (!fin) {
+				std::cout << "cannot open file " << dataFile.c_str() << std::endl;
+				assert(false);
+			}
+			uint64_t fileSize = fin.tellg();
+			fin.seekg(0, fin.beg);
+			assert(fileSize != 0);
+
+			int dimension;
+			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
+
+			unsigned bytesPerRecord = dimension * sizeof(DATATYPE) + 4;
+			assert(fileSize % (bytesPerRecord + 4) == 0);
+			uint64_t cardinality = fileSize / (bytesPerRecord+4);
+			data.id_.resize(cardinality);
+
+			data.reset(dimension, cardinality);
+			int id_buffer = 0;
+
+			fin.read(reinterpret_cast<char*>(data[0]), sizeof(float) * dimension);
+			fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
+			data.id_[0] = id_buffer;
+
+			int dim;
+			for (int i = 1; i < cardinality; ++i) {
+				fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+				assert(dim == dimension);
+				fin.read(reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
+				fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
+				data.id_[i] = id_buffer;
+			}
+			fin.close();
         }
 
         template<typename DATATYPE>
