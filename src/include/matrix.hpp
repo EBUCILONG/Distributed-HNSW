@@ -60,7 +60,7 @@ namespace ss {
         	loadIdvecs(this, path);
         }
 
-        explicit Matrix(const std::string &path, int aim_part, int total_part){
+        explicit Matrix(const std::string &path, int aim_part, int total_part):_data(NULL),id_(){
         	loadPartIdvecs(this, path, aim_part, total_part);
         }
         Matrix(const Matrix& M) = delete;
