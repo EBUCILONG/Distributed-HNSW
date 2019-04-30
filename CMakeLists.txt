@@ -43,6 +43,7 @@ SET(EXAMPLES
     single_machine
     binary_machine
     fvecs_hnsw_machine
+    dataset_partitioner
     #sift1k
 )
 
