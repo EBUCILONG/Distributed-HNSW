@@ -112,11 +112,13 @@ namespace mt {
 		}
 
 		ss::Matrix<float> data(para.base_data, world_rank, world_size);
+		cout << "finish readin data\n";
 		MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition", para.out_dir + "/partition_map");
-
+		cout << "finish construct partitioner\n";
 		omp_set_num_threads(20);
 		int sizer = data.getSize();
 		vector<int> result(sizer);
+		cout << "start partition\n";
 #pragma omp parallel for
 		for (int i = 0; i < sizer; i++){
 			result[i] = partitioner.searchHnsw(data[i]);
