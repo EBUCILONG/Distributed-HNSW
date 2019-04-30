@@ -50,6 +50,7 @@ namespace dhnsw {
 
         vector<vector<pair<float, int>>> evaluate(long long& avg_time) {
             cout << "[EVAL] Evaluator started." << endl;
+            cout << "[EVAL]\t# Received\t|\tAvg. Time\t" << endl;
             int counter = 0;
             long long total_time = 0;
             while (counter < _n_queries) {
@@ -65,12 +66,14 @@ namespace dhnsw {
                         _result[result_msg->_query_id][i] = make_pair(distance[i], result_ids[i]);
                     }
                     // increment counter
-                    total_time += get_current_time_milliseconds() - result_msg->_start_time;
-                    cout << "[EVAL] start time: " << result_msg->_start_time << endl;
-                    cout << "[EVAL] minus: " << get_current_time_milliseconds() - result_msg->_start_time << endl;
+                    long long this_time = get_current_time_milliseconds() - result_msg->_start_time;
+                    total_time += this_time;
                     counter++;
+                    if (counter % 10 == 0) {
+                        cout << "[EVAL]\t"<< counter << "\t|\t" << total_time / 10.0 << endl;
+                        total_time = 0;
+                    }
                     // free memory
-                    cout << "[EVAL] counter: " << counter << " , total: " << _n_queries << endl;
                     delete result_msg;
                 }
             }
