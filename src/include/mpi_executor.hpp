@@ -58,7 +58,9 @@ namespace mt {
 		MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 	}
 
+	void partitioner(){
 
+	}
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){
 		int world_rank;
