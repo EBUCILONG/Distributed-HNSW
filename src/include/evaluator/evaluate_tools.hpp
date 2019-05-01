@@ -59,7 +59,7 @@ namespace eva{
 			for (int j = 0; j < sizer; j++){
 				std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(query[j], ks[i]);
 				for(int k = 0; k < ks[i]; k++){
-					set.insert((int)result.top().second);
+					set.insert(map[(int)result.top().second]);
 					result.pop();
 				}
 				for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
