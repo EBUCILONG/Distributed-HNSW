@@ -36,6 +36,7 @@
 #include <vector>
 
 #include "utils/calculator.hpp"
+#include "utils/hdfs_core.hpp"
 
 using std::vector;
 
@@ -119,7 +120,7 @@ namespace ss {
 
 			int dimension;
 //			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
-			hdfsRead(fs, fin, (void*)(&dimension), sizeof(int));
+			hdfsReadExact(fs, fin, (void*)(&dimension), sizeof(int));
 
 			unsigned step = dimension * sizeof(DATATYPE) + 4 + 4;
 			uint64_t fileSize = (long long) step * data_num;
@@ -152,11 +153,10 @@ namespace ss {
 			int dim;
 			int id_buffer;
 			for (int i = 0; i < sizer; i++){
-				hdfsRead(fs, fin, (void*)(&dim), sizeof(int));
+				hdfsReadExact(fs, fin, (char*)(&dim), sizeof(int));
 				assert(dim == dimension);
-				uint64_t real = hdfsRead(fs, fin, reinterpret_cast<void*>(data[i]), sizeof(float) * dimension);
-				assert(real == sizeof(float) * dimension);
-				hdfsRead(fs, fin, reinterpret_cast<void*> (&id_buffer), sizeof(int));
+				hdfsReadExact(fs, fin, reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
+				hdfsReadExact(fs, fin, reinterpret_cast<char*> (&id_buffer), sizeof(int));
 				if(id_buffer != full_size * aim_part + i){
 					cout << "expect " + std::to_string(full_size * aim_part + i) + " actual " + std::to_string(id_buffer) + "\n";
 					assert(id_buffer == full_size * aim_part + i);
