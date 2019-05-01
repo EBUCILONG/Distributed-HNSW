@@ -54,15 +54,14 @@ namespace eva{
 		cout << "k || avg || stv || specific data" << endl;
 		meta.setEf(100);
 		for (int i = 0; i < ks.size(); i++){
-			set<int> set;
 			vector<int> counter(total_partition, 0);
 			for (int j = 0; j < sizer; j++){
+				set<int> set;
 				std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(query[j], ks[i]);
 				for(int k = 0; k < ks[i]; k++){
 					set.insert(map[(int)result.top().second]);
 					result.pop();
 				}
-				cout << set.size() << endl;
 				for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
 					counter[*it]++;
 				}
