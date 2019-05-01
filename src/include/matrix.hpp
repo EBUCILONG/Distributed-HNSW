@@ -156,7 +156,10 @@ namespace ss {
 				assert(dim == dimension);
 				hdfsRead(fs, fin, reinterpret_cast<void*>(data[i]), sizeof(float) * dimension);
 				hdfsRead(fs, fin, reinterpret_cast<void*> (&id_buffer), sizeof(int));
-				assert(id_buffer == full_size * aim_part + i);
+				if(id_buffer != full_size * aim_part + i){
+					cout << "expect " + std::to_string(full_size * aim_part + i) + " actual " + std::to_string(id_buffer) + "\n";
+					assert(id_buffer == full_size * aim_part + i);
+				}
 				data.id_[i] = id_buffer;
 			}
         }
