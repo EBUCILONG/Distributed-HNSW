@@ -25,7 +25,7 @@ do
     do
         input_file=$INPUT_PATH/w$j/partition$i && \
         echo "[PART-$i] Processing subfile w$j/partition$i" && sleep 1
-#        cat $input_file >> $output_file
+        cat $input_file >> $output_file
     done &
 done
 wait
