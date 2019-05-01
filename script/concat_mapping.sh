@@ -15,7 +15,7 @@ onexit () {
 echo Confirm output path $OUTPUT_PATH
 echo Confirm input path $INPUT_PATH
 
-trap "onexit" SIGINT
+#trap "onexit" SIGINT
 
 for ((i=0, partitionNum=10; i<partitionNum; i++))
 do
@@ -30,4 +30,4 @@ do
 done
 wait
 echo "All tasks completed."
-trap SIGINT
+#trap SIGINT
