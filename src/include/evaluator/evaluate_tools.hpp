@@ -62,6 +62,7 @@ namespace eva{
 					set.insert(map[(int)result.top().second]);
 					result.pop();
 				}
+				cout << set.size() << endl;
 				for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
 					counter[*it]++;
 				}
