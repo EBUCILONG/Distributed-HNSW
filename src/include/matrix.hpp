@@ -120,7 +120,7 @@ namespace ss {
 
 			int dimension;
 //			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
-			hdfsReadExact(fs, fin, (void*)(&dimension), sizeof(int));
+			hdfsReadExact(fs, fin, (char*)(&dimension), sizeof(int));
 
 			unsigned step = dimension * sizeof(DATATYPE) + 4 + 4;
 			uint64_t fileSize = (long long) step * data_num;
