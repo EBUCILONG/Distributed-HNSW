@@ -26,7 +26,7 @@ do
         input_file=$INPUT_PATH/w$j/partition$i
         echo "[PART-$i] Processing subfile w$j/partition$i"
         cat $input_file >> $output_file
-    done &
+    done
 done
 wait
 echo "All tasks completed."
