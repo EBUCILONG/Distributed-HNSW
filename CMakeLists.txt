@@ -37,7 +37,7 @@ set(HDFS_LIBRARY_DIR "/data/opt/hadoop-2.6.0/lib/native/")
 link_libraries(-lpthread)
 
 INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_DIR} ${HDFS_INCLUDE_DIR})
-link_libraries(${HDFS_LIBRARY_DIR})
+link_libraries(${HDFS_LIBRARY_DIR}/libhdfs.so)
 
 
 SET(EXAMPLES
