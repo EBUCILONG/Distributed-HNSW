@@ -18,6 +18,7 @@
 #include <boost/program_options/option.hpp>
 #include <boost/program_options/errors.hpp>
 
+#include "dhnswlib/time.hpp"
 #include "bench/bencher.hpp"
 #include "bench/prober.hpp"
 #include "parameters.hpp"
@@ -111,10 +112,15 @@ namespace mt {
 			MPI_Abort(MPI_COMM_WORLD, 0);
 		}
 
+		long long start_time = dhnsw::get_current_time_milliseconds();
 		ss::Matrix<float> data(para.hdfs_host, para.hdfs_port, para.base_data, world_rank, world_size, para.base_size);
-		cout << "finish readin data\n";
+		long long load_time = dhnsw::get_current_time_milliseconds();
+		cout << "#[timer] load file use " + std::to_string(load_time - start_time) + " milisecond\n";
+
 		MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition", para.out_dir + "/partition_map");
-		cout << "finish construct partitioner\n";
+		long long construct_time = dhnsw::get_current_time_milliseconds();
+		cout << "#[timer] construct partitioner use " + std::to_string(construct_time - load_time) + " milisecond\n";
+
 		omp_set_num_threads(20);
 		int sizer = data.getSize();
 		vector<int> result(sizer);
@@ -124,6 +130,8 @@ namespace mt {
 			result[i] = partitioner.searchHnsw(data[i]);
 		}
 
+		long long partition_time = dhnsw::get_current_time_milliseconds();
+		cout << "#[timer] partition use " + std::to_string(partition_time - construct_time) + " milisecond\n";
 		cout << "#[worker]"+std::to_string(world_rank) + " start to save\n";
 
 		vector<std::ofstream* > fouts;
@@ -142,7 +150,8 @@ namespace mt {
 			fouts[i]->close();
 			delete fouts[i];
 		}
-		cout << "#[worker]"+std::to_string(world_rank) + " finish all\n";
+		long long save_time = dhnsw::get_current_time_milliseconds();
+		cout << "#[timer] save use " + std::to_string(save_time - partition_time) + " milisecond\n";
 	}
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){
