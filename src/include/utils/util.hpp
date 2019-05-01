@@ -59,7 +59,7 @@ namespace dhnsw{
 		float aver = avg(data);
 		float result = 0;
 		for(auto& elem:data){
-			result+=(elem - avg) * (elem - avg);
+			result+=((float)elem - avg) * ((float)elem - avg);
 		}
 		return (float) sqrt(result / data.size());
 	}
