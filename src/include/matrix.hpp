@@ -154,7 +154,8 @@ namespace ss {
 			for (int i = 0; i < sizer; i++){
 				hdfsRead(fs, fin, (void*)(&dim), sizeof(int));
 				assert(dim == dimension);
-				hdfsRead(fs, fin, reinterpret_cast<void*>(data[i]), sizeof(float) * dimension);
+				uint64_t real = hdfsRead(fs, fin, reinterpret_cast<void*>(data[i]), sizeof(float) * dimension);
+				assert(real == sizeof(float) * dimension);
 				hdfsRead(fs, fin, reinterpret_cast<void*> (&id_buffer), sizeof(int));
 				if(id_buffer != full_size * aim_part + i){
 					cout << "expect " + std::to_string(full_size * aim_part + i) + " actual " + std::to_string(id_buffer) + "\n";
