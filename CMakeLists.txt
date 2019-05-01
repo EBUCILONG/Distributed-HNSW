@@ -50,6 +50,7 @@ SET(EXAMPLES
     #binary_machine
     #fvecs_hnsw_machine
     dataset_partitioner
+    wakerate_tester
     #sift1k
 )
 

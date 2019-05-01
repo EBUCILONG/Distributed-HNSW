@@ -24,6 +24,46 @@
 #include <time.h>
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <math.h>
+
+using std::vector;
+using std::string;
+using std::ifstream;
+
+namespace dhnsw{
+	int load_partition_map(string map_path, vector<int>& map){
+		int total_partition;
+		ifstream fin(map_path);
+		fin >> total_partition;
+		int iter, buffer;
+		fin >> iter;
+		for (int i = 0; i < iter; i++){
+			fin >> buffer;
+			map.push_back(buffer);
+		}
+		return total_partition;
+	}
+
+	float avg(vector<int>& data){
+		float result = 0;
+		for(auto& elem:data){
+			result+=elem;
+		}
+		result /= data.size();
+		return result;
+	}
+
+	float stv(vector<int>& data){
+		float aver = avg(data);
+		float result = 0;
+		for(auto& elem:data){
+			result+=(elem - avg) * (elem - avg);
+		}
+		return (float) sqrt(result / data.size());
+	}
+}
 
 namespace ss {
 
