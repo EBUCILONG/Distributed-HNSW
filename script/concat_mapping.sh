@@ -23,8 +23,8 @@ do
     output_file=$OUTPUT_PATH/partition$i && \
     for ((j=0, subfileNum=10; j<subfileNum; j++))
     do
-        input_file=$INPUT_PATH/w$j/partition$i && \
-        echo "[PART-$i] Processing subfile w$j/partition$i" && sleep 1
+        input_file=$INPUT_PATH/w$j/partition$i
+        echo "[PART-$i] Processing subfile w$j/partition$i"
         cat $input_file >> $output_file
     done &
 done
