@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 OUTPUT_PATH=/data/sydeng/repositary/hnsw-repo/testOut/deep1b-10m/10000/subfile/concated
-INPUT_PATH=/data/sydeng/repositary/hnsw-repo/testOut/deep1b-10m/10000/subfile/
+INPUT_PATH=/data/sydeng/repositary/hnsw-repo/testOut/deep1b-10m/10000/subfile
 
 onexit () {
     echo "Aborting..."
@@ -21,11 +21,11 @@ for ((i=0, partitionNum=10; i<partitionNum; i++))
 do
     echo "[PART-$i] Concatenating partition $i out of" $((partitionNum-1)) && \
     output_file=$OUTPUT_PATH/partition$i && \
-    input_file=$INPUT_PATH/w$i && \
     for ((j=0, subfileNum=10; j<subfileNum; j++))
     do
-        echo "[PART-$i] Processing subfile w$i" && sleep 1
-        cat $input_file >> $output_file
+        input_file=$INPUT_PATH/w$j/partition$i && \
+        echo "[PART-$i] Processing subfile w$j/partition$i" && sleep 1
+#        cat $input_file >> $output_file
     done &
 done
 wait
