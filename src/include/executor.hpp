@@ -104,6 +104,9 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("broker_list",      po::value<string >(&para.broker_list),                        "the hosts:port the kafka is using")
 		("num_worker",       po::value<int >(&para.num_worker),                            "number of worker per thread")
 		("top_k",            po::value<int >(&para.topK),                                  "top k to return")
+		("hdfs_port",        po::value<int >(&para.hdfs_port),                             "specify the hdfs port")
+		("hdfs_host",        po::value<string >(&para.hdfs_host),                          "the hosts of hdfs")
+		("base_size", 		 po::value<int >(&para.base_size),                             "base dataset size")
 		;
 
     po::variables_map vm;

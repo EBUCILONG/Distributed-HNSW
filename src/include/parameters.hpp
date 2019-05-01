@@ -41,7 +41,11 @@ namespace ss{
 
     	std::string map_address;
 
+    	std::string hdfs_host;
+
     	std::string broker_list;
+
+    	int hdfs_port;
 
     	int num_worker;
 

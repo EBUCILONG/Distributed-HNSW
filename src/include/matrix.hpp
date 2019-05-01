@@ -63,8 +63,8 @@ namespace ss {
         	loadIdvecs(this, path);
         }
 
-        explicit Matrix(const std::string &path, int aim_part, int total_part):_data(NULL),id_(){
-        	loadPartIdvecs(this, path, aim_part, total_part);
+        explicit Matrix(const std::string& hdfs_ip, int hdfs_port, const std::string& dataFile, int aim_part, int total_part, int data_num):_data(NULL),id_(){
+        	loadPartIdvecs(this, hdfs_ip, hdfs_port, dataFile, aim_part, total_part， data_num);
         }
         Matrix(const Matrix& M) = delete;
         Matrix& operator=(const Matrix& M)  = delete;
@@ -105,8 +105,8 @@ namespace ss {
         	Matrix<DATATYPE>& data  = *data_point;
 
 //        	std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
-        	hdfsFS fs = hdfsConnect(hdfs_ip, hdfs_port);
-        	hdfsFile fin = hdfsOpenFile(fs, dataFile, O_RDONLY, 0, 0, 0);
+        	hdfsFS fs = hdfsConnect(hdfs_ip.c_str(), hdfs_port);
+        	hdfsFile fin = hdfsOpenFile(fs, dataFile.c_str(), O_RDONLY, 0, 0, 0);
 			if (!fin){
 				fprintf(stderr, "Failed to open %s for reading!\n", dataFile);
 				exit(-1);

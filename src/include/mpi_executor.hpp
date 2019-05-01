@@ -111,7 +111,7 @@ namespace mt {
 			MPI_Abort(MPI_COMM_WORLD, 0);
 		}
 
-		ss::Matrix<float> data(para.base_data, world_rank, world_size);
+		ss::Matrix<float> data(para.hdfs_host, para.hdfs_port, para.base_data, world_rank, world_size, para.base_size);
 		cout << "finish readin data\n";
 		MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition", para.out_dir + "/partition_map");
 		cout << "finish construct partitioner\n";
