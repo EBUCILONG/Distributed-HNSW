@@ -63,8 +63,8 @@ namespace ss {
         	loadIdvecs(this, path);
         }
 
-        explicit Matrix(const std::string& hdfs_ip, int hdfs_port, const std::string& dataFile, int aim_part, int total_part, int data_num):_data(NULL),id_(){
-        	loadPartIdvecs(this, hdfs_ip, hdfs_port, dataFile, aim_part, total_part， data_num);
+        explicit Matrix(const std::string& hdfs_ip, int hdfs_port, const std::string& dataFile, int aim_part, int total_part, int data_num):_data(NULL), id_(){
+        	loadPartIdvecs(this, hdfs_ip, hdfs_port, dataFile, aim_part, total_part, data_num);
         }
         Matrix(const Matrix& M) = delete;
         Matrix& operator=(const Matrix& M)  = delete;
