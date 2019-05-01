@@ -29,9 +29,15 @@ include_directories(${MPI_INCLUDE_PATH})
 find_package(Zookeeper REQUIRED)
 include_directories(${Zookeeper_INCLUDE_DIRS})
 
+set(HDFS_INCLUDE_DIR "/data/opt/hadoop-2.6.0/include/")
+set(HDFS_LIBRARY_DIR "/data/opt/hadoop-2.6.0/lib/native/")
+
+
+
 link_libraries(-lpthread)
 
-INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_DIR})
+INCLUDE_DIRECTORIES(${DistributedHNSW_SOURCE_DIR}/src/include ${RDKAFKA_INCLUDE_DIR} ${HDFS_INCLUDE_DIR})
+link_libraries(${HDFS_LIBRARY_DIR})
 
 
 SET(EXAMPLES

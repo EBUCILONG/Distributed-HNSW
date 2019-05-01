@@ -27,6 +27,7 @@
 #pragma once
 
 #include <assert.h>
+#include <hdfs.h>
 
 #include <cmath>
 #include <fstream>
@@ -39,6 +40,8 @@
 using std::vector;
 
 namespace ss {
+
+	static const int HDFS_BUF_SIZE = 65536;
 
     template <class T>
     class Matrix {
@@ -98,24 +101,29 @@ namespace ss {
         }
 
         template<typename DATATYPE>
-		friend void loadPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile, int aim_part, int total_part) {
+		friend void loadPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& hdfs_ip, int hdfs_port, const std::string& dataFile, int aim_part, int total_part, int data_num) {
         	Matrix<DATATYPE>& data  = *data_point;
 
-        	std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
-			if (!fin) {
-				std::cout << "cannot open file " << dataFile.c_str() << std::endl;
-				assert(false);
+//        	std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
+        	hdfsFS fs = hdfsConnect(hdfs_ip, hdfs_port);
+        	hdfsFile fin = hdfsOpenFile(fs, dataFile, O_RDONLY, 0, 0, 0);
+			if (!fin){
+				fprintf(stderr, "Failed to open %s for reading!\n", dataFile);
+				exit(-1);
 			}
-			uint64_t fileSize = fin.tellg();
-			fin.seekg(0, fin.beg);
-			assert(fileSize != 0);
+
+//			if (!fin) {
+//				std::cout << "cannot open file " << dataFile.c_str() << std::endl;
+//				assert(false);
+//			}
 
 			int dimension;
-			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
+//			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
+			hdfsRead(fs, fin, (void*)(&dimension), sizeof(int));
 
 			unsigned step = dimension * sizeof(DATATYPE) + 4 + 4;
-			assert(fileSize % step == 0);
-			uint64_t cardinality = fileSize / step;
+			uint64_t fileSize = (long long) step * data_num;
+			uint64_t cardinality = (long long)data_num;
 
 			int sizer;
 			int full_size;
@@ -138,16 +146,16 @@ namespace ss {
 			std::cout << "after reset\n";
 			data.id_.resize(sizer);
 
-			fin.seekg((long long)step * (long long)full_size * (long long)aim_part, fin.beg);
+			hdfsSeek(fs,fin,(long long)step * (long long)full_size * (long long)aim_part);
 			//std::cout << "seek with " + std::to_string(step * full_size * aim_part) + "step"+std::to_string(step) + "full_size"+std::to_string(full_size) + "aim_part"+std::to_string(aim_part) + "\n";
 
 			int dim;
 			int id_buffer;
 			for (int i = 0; i < sizer; i++){
-				fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+				hdfsRead(fs, fin, (void*)(&dim), sizeof(int));
 				assert(dim == dimension);
-				fin.read(reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
-				fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
+				hdfsRead(fs, fin, reinterpret_cast<void*>(data[i]), sizeof(float) * dimension);
+				hdfsRead(fs, fin, reinterpret_cast<void*> (&id_buffer), sizeof(int));
 				assert(id_buffer == full_size * aim_part + i);
 				data.id_[i] = id_buffer;
 			}
