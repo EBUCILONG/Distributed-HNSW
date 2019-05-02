@@ -33,7 +33,7 @@ using std::string;
 using std::ifstream;
 
 namespace dhnsw{
-	void getIdvecsInfo(const string& path, int& dimension, int size){
+	void getIdvecsInfo(const string& path, int& dimension, int& size){
 		std::ifstream fin(path.c_str(), std::ios::binary | std::ios::ate);
 		if (!fin) {
 			std::cout << "cannot open file " << path.c_str() << std::endl;
@@ -48,7 +48,6 @@ namespace dhnsw{
 		unsigned step = dim * sizeof(float) + 4 + 4;
 		assert(fileSize % step == 0);
 		uint64_t cardinality = fileSize / step;
-		cout << cardinality << endl;
 		dimension = dim;
 		size = (int) cardinality;
 		fin.close();
