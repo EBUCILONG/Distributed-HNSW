@@ -198,11 +198,11 @@ namespace ss {
 			}
 			else{
 				if (aim_part == total_part - 1){
-					sizer = cardinality % total_part;
-					full_size = (cardinality - (cardinality % total_part)) / (total_part - 1);
+					sizer = (cardinality - (cardinality % total_part)) / total_part + cardinality % total_part;
+					full_size = (cardinality - (cardinality % total_part)) / total_part;
 				}
 				else{
-					sizer = (cardinality - (cardinality % total_part)) / (total_part - 1);
+					sizer = (cardinality - (cardinality % total_part)) / total_part;
 					full_size = sizer;
 				}
 			}
