@@ -33,6 +33,25 @@ using std::string;
 using std::ifstream;
 
 namespace dhnsw{
+	void getIdvecsInfo(const string& path, int& dimension, int size){
+		std::ifstream fin(path.c_str(), std::ios::binary | std::ios::ate);
+		if (!fin) {
+			std::cout << "cannot open file " << path.c_str() << std::endl;
+			assert(false);
+		}
+		uint64_t fileSize = fin.tellg();
+		fin.seekg(0, fin.beg);
+		assert(fileSize != 0);
+
+		int dim;
+		fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+		unsigned step = dim * sizeof(float) + 4 + 4;
+		int cardinality = (int) (fileSize / step);
+		dimension = dim;
+		size = cardinality;
+		fin.close();
+	}
+
 	int load_partition_map(string map_path, vector<int>& map){
 		int total_partition;
 		ifstream fin(map_path);

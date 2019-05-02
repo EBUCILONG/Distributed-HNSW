@@ -23,6 +23,7 @@
 #include "../dhnswlib/time.hpp"
 #include "../hnswlib/hnswalg.h"
 #include "../utils/cluster.hpp"
+#include "../utils/util.hpp"
 #include "../matrix.hpp"
 #include "../distributed/partition.hpp"
 
@@ -156,17 +157,25 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
 		partition.saveIndex(hnsw_path);
     }
 
-    void idvecs_hnsw_machine(ss::Matrix<float>& data, string hnsw_path, int hnsw_m = 32, int hnsw_ef = 100){
-        hnswlib::L2Space l2space(data.getDim());
-        hnswlib::HierarchicalNSW<float> partition(&l2space, data.getSize(), hnsw_m, hnsw_ef);
-        for (int i = 0; i < 1; i++) {
-			partition.addPoint((void *) data[i], (size_t) data.id_[i]);
-		}
+    void idvecs_hnsw_machine(string& data_path, string& hnsw_path, int total_part, int hnsw_m = 32, int hnsw_ef = 100){
+    	int dimension, size;
+    	int counter = 0;
+    	dhnsw::getIdvecsInfo(data_path, dimension,size);
+        hnswlib::L2Space l2space(dimension);
+        hnswlib::HierarchicalNSW<float> hnsw(&l2space, size, hnsw_m, hnsw_ef);
+        for (int part = 0; part < total_part; part++){
+        	ss::Matrix<float> data(data_path, part, total_part);
+        	for (int i = 0; i < 1; i++) {
+				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
+			}
 #pragma omp parallel for
-		for (int i = 1; i < data.getSize(); i++) {
-			partition.addPoint((void *) data[i], (size_t) data.id_[i]);
-		}
-		partition.saveIndex(hnsw_path);
+			for (int i = 1; i < data.getSize(); i++) {
+				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
+			}
+			counter += data.getSize();
+        }
+        assert(counter == size);
+		hnsw.saveIndex(hnsw_path);
     }
 }
 
