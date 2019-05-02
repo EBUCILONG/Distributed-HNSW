@@ -46,9 +46,9 @@ namespace dhnsw{
 		int dim;
 		fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
 		unsigned step = dim * sizeof(float) + 4 + 4;
-		int cardinality = (int) (fileSize / step);
+		uint64_t cardinality = fileSize / step;
 		dimension = dim;
-		size = cardinality;
+		size = (int) cardinality;
 		fin.close();
 	}
 
