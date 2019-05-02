@@ -164,6 +164,7 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
     	cout << "#[trainer] matrix total size: " << size  <<" with dim: " << dimension << endl;
         hnswlib::L2Space l2space(dimension);
         hnswlib::HierarchicalNSW<float> hnsw(&l2space, size, hnsw_m, hnsw_ef);
+        std::set<int> set;
         for (int part = 0; part < total_part; part++){
         	ss::Matrix<float> data(data_path, part, total_part);
         	for (int i = 0; i < 1; i++) {
@@ -174,8 +175,11 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
 				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
 			}
 			counter += data.getSize();
+			for (int i = 0; i < data.getSize(); i++)
+				set.insert(data.id_[i]);
         }
         assert(counter == size);
+        assert(set.size() == size);
 		hnsw.saveIndex(hnsw_path);
     }
 }
