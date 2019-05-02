@@ -208,7 +208,6 @@ namespace ss {
 			}
 			std::cout << "reach reset with dim " + std::to_string(dimension) + " " + std::to_string(sizer) + "\n";
 			data.reset(dimension, sizer);
-			std::cout << "after reset\n";
 			data.id_.resize(sizer);
 
 			fin.seekg((long long)step * (long long)full_size * (long long)aim_part, fin.beg);
