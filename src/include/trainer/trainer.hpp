@@ -161,7 +161,7 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
     	int dimension, size;
     	int counter = 0;
     	dhnsw::getIdvecsInfo(data_path, dimension,size);
-    	cout << "#[trainer] matrix total size: " << size << endl;
+    	cout << "#[trainer] matrix total size: " << size  <<" with dim: " << dimension << endl;
         hnswlib::L2Space l2space(dimension);
         hnswlib::HierarchicalNSW<float> hnsw(&l2space, size, hnsw_m, hnsw_ef);
         for (int part = 0; part < total_part; part++){
