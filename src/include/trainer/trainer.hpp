@@ -165,7 +165,8 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
         hnswlib::L2Space l2space(dimension);
         hnswlib::HierarchicalNSW<float> hnsw(&l2space, size, hnsw_m, hnsw_ef);
         std::set<int> set;
-//        long long total_time = 0;
+        long long start_time = dhnsw::get_current_time_milliseconds();
+
         for (int part = 0; part < total_part; part++){
         	ss::Matrix<float> data(data_path, part, total_part);
         	cout << "#[trainer] start to assert "<< part << " part" << endl;
@@ -181,6 +182,7 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
 				set.insert(data.id_[i]);
 			cout << "#[trainer] finish assert " << part << " part" << endl;
         }
+        cout << "#[trainer] use " << dhnsw::get_current_time_milliseconds() - start_time << " miliseconds" << endl;
         assert(counter == size);
         assert(set.size() == size);
 		hnsw.saveIndex(hnsw_path);
