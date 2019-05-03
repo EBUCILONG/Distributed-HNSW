@@ -78,7 +78,7 @@ namespace mt{
             for(int i=0;i<m;i++) adjwgt[i] = _weight_func(max_weight - adjwgt_t[i]);
 //            cout << "#[sender] inside getPartition after weight inverse" << endl;
             // run kaffpa
-            double imbalance = 0.0075;
+            double imbalance = 0.0065;
             int edge_cut = 0;
             kaffpa(&n, NULL, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, 0, STRONG, &edge_cut, result_partition);
 //            cout << "#[sender] inside getPartition after kaffpa" << endl;
