@@ -80,8 +80,7 @@ namespace mt{
             // run kaffpa
             double imbalance = 0.03;
             int edge_cut = 0;
-            cout << "Before kaffpa" << endl;
-            kaffpa(&n, NULL, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, 0, STRONG, &edge_cut, result_partition);
+            kaffpa(&n, NULL, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, 0, ECO, &edge_cut, result_partition);
 //            cout << "#[sender] inside getPartition after kaffpa" << endl;
             vector<int> result(result_partition, result_partition + n);
             // free all malloced arrays
