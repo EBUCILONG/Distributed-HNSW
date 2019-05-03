@@ -163,7 +163,7 @@ namespace ss {
 				hdfsReadExact(fs, fin, reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
 				hdfsReadExact(fs, fin, reinterpret_cast<char*> (&id_buffer), sizeof(int));
 				if(id_buffer != full_size * aim_part + i){
-					cout << "expect " + std::to_string(full_size * aim_part + i) + " actual " + std::to_string(id_buffer) + "\n";
+					std::cout << "expect " + std::to_string(full_size * aim_part + i) + " actual " + std::to_string(id_buffer) + "\n";
 					assert(id_buffer == full_size * aim_part + i);
 				}
 				data.id_[i] = id_buffer;
