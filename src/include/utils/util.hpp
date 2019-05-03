@@ -66,6 +66,22 @@ namespace dhnsw{
 		return total_partition;
 	}
 
+	int load_centroids(string centroid_path, vector<vector<float>>& centroid) {
+	    ifstream fin(centroid_path);
+	    int dimension, total_num;
+	    fin >> dimension >> total_num;
+	    for(int i=0; i< total_num; i++){
+	        vector<float> vec;
+	        for(int j=0; j< dimension; j++) {
+	            float val;
+	            fin >> val;
+	            vec.push_back(val);
+	        }
+	        centroid.push_back(vec);
+	    }
+	    return total_num;
+	}
+
 	float avg(vector<int>& data){
 		float result = 0;
 		for(auto& elem:data){
