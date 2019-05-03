@@ -51,7 +51,7 @@ SET(EXAMPLES
     #fvecs_hnsw_machine
     #dataset_partitioner
     #wakerate_tester
-    idvecs_hnsw_machine
+    #idvecs_hnsw_machine
     test_partition
     #sift1k
 )
