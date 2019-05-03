@@ -38,6 +38,8 @@ int main(int argc, char** argv){
     cout << "Loading centroids" << endl;
     int num_nodes = dhnsw::load_centroids(centroid_path, centroids);
     int num_edges = meta.getLevel0Graph(graph);
+    cout << graph.size() << endl;
+    cout << centroids.size() << endl;
     cout << "Calculating map" << endl;
     vector<int> map = partition.getPartition(graph, centroids, num_edges, 10);
     cout << "Saving map" << endl;
