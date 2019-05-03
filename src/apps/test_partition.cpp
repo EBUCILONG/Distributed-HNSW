@@ -7,6 +7,7 @@
 
 using std::cin;
 using std::cout;
+using std::endl;
 
 
 void save_map (string out_path, vector<int>& map, int num_partition){
@@ -27,13 +28,18 @@ int main(int argc, char** argv){
     cin >> centroid_path;
     cout << "mapping save path: ";
     cin >> save_path;
+    cout << "Getting hnsw" << endl;
     hnswlib::L2Space l2space(96);
     hnswlib::HierarchicalNSW<float> meta(&l2space, hnsw_path);
+    cout << "Creating partition" << endl;
     mt::Partition partition(1);
     vector<vector<int> > graph;
     vector<vector<float>> centroids;
+    cout << "Loading centroids" << endl;
     int num_nodes = dhnsw::load_centroids(centroid_path, centroids);
     int num_edges = meta.getLevel0Graph(graph);
+    cout << "Calculating map" << endl;
     vector<int> map = partition.getPartition(graph, centroids, num_edges, 10);
+    cout << "Saving map" << endl;
     save_map(save_path, map, 10);
 }
