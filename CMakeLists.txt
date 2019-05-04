@@ -52,7 +52,7 @@ SET(EXAMPLES
     #dataset_partitioner
     #wakerate_tester
     #idvecs_hnsw_machine
-    test_partition
+    load_hnsw
     #sift1k
 )
 
