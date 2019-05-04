@@ -28,6 +28,7 @@ int main(int argc, char** argv){
     hnswlib::L2Space l2space(96);
     hnswlib::HierarchicalNSW<float> meta(&l2space, hnsw_path);
     cout << "Loaded HNSW, blocking..." << endl;
-    cout << "Press any key to exit" << endl;
-    getchar();
+    cout << "Press enter to exit" << endl;
+    string tmp;
+    cin >> tmp;
 }
