@@ -77,7 +77,7 @@ namespace dhnsw {
                 result_ids.push_back(pq.top().second);
                 pq.pop();
             }
-            ResultMessage result(query_id, 1, _top_k, _query_map[query_id].start_time, result_ids, dists);
+            ResultMessage result(query_id, 1, _top_k, _query_map[query_id].start_time, get_current_time_milliseconds(), result_ids, dists);
             string topic = "evaluation";
             string payload = result.toString();
             _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
@@ -97,8 +97,6 @@ namespace dhnsw {
             /* Starts the receiver. */
             cout << "[RECV] receiver started." << endl;
             // main Loop for receiving message
-            int counter = 0;
-            long long total_time = 0;
 
             // deliberate endless loop
             while (true) {
@@ -117,8 +115,6 @@ namespace dhnsw {
                     if (answer.n_slaves == result_msg->_total_piece) {
                         _commit_answers(answer.p_queue, result_msg->_query_id);
                         _query_map.erase(result_msg->_query_id);
-                        total_time += get_current_time_milliseconds() - result_msg->_start_time;
-                        counter++;
 //                        cout << "[RECV] Sent " << counter << " messages." << endl;
                     }
                     // free memory

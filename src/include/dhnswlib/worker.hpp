@@ -51,13 +51,15 @@ namespace dhnsw {
         vector<float> _dists;
         //vector<vector<float> > _result_datas;
         long long _start_time;
-        ResultMessage(int query_id, int total_piece, int top_k, long long start_time,vector<int>& result_ids, vector<float>& dists):
+        long long _end_time;
+        ResultMessage(int query_id, int total_piece, int top_k, long long start_time, long long end_time = 0, vector<int>& result_ids, vector<float>& dists):
         _query_id(query_id),
         _total_piece(total_piece),
         _top_k(top_k),
         _result_ids(result_ids),
         _dists(dists),
-        _start_time(start_time){
+        _start_time(start_time),
+        _end_time(end_time) {
             if (_top_k != _result_ids.size()){
                 cout << "#[error ] sending result message wrong topk or vec size!" << endl;
                 assert(0);
@@ -84,6 +86,7 @@ namespace dhnsw {
                 _dists.push_back(dist_buffer);
             }
             bs >> _start_time;
+            bs >> _end_time;
         }
 
         string toString(){
@@ -94,6 +97,7 @@ namespace dhnsw {
             for (int i = 0; i < _top_k; i++)
                 bs << _dists[i];
             bs << _start_time;
+            bs << _end_time;
             return bs.to_string();
         }
     };
@@ -152,7 +156,7 @@ namespace dhnsw {
                 dists.push_back(topk.top().first);
                 topk.pop();
             }
-            return ResultMessage(task._query_id, task._total_piece, _top_k, task._start_time, ids, dists);
+            return ResultMessage(task._query_id, task._total_piece, _top_k, task._start_time, 0, ids, dists);
         }
 
         void startWork(){

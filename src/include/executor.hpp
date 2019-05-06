@@ -107,6 +107,9 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("hdfs_port",        po::value<int >(&para.hdfs_port),                             "specify the hdfs port")
 		("hdfs_host",        po::value<string >(&para.hdfs_host),                          "the hosts of hdfs")
 		("base_size", 		 po::value<int >(&para.base_size),                             "base dataset size")
+		("eval_log_path",    po::value<string >(&para.eval_log_path) ->default_value("./eval_log"), "evaluator log path")
+		("eval_print_intv",  po::value<unsigned>(&para.eval_print_intv)->default_value(100), "evaluator print interval" )
+		("cust_send_intv",   po::value<int >(&para.customer_send_intv)->default_value(0),  "customer send interval" )
 		;
 
     po::variables_map vm;

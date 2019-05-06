@@ -141,6 +141,13 @@ namespace ss{
         // specifies the host server
         std::string hosts;
 
+        // for customer
+        int customer_send_intv;
+
+        // for evaluator
+        std::string eval_log_path;
+        unsigned eval_print_intv;
+
     } typedef parameter;
 
 } // namespace ss

@@ -26,6 +26,5 @@ int main(int argc, char** argv){
             { "metadata.broker.list", para.broker_list}
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
-    customer.send_message(para.customer_send_intv);
-    customer.idle();
+    while(true) customer.send_message(para.customer_send_intv);
 }

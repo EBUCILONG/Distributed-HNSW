@@ -93,15 +93,17 @@ namespace dhnsw {
         ss::Matrix<float>& _querys;
         int _num_subhnsw;
         cppkafka::Producer _producer;
+        int _messages_sent;
+
     public:
         Customer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
         _querys(querys),
         _num_subhnsw(num_subhnsw),
-        _producer(config) {
+        _producer(config),
+        _messages_sent(0) {
         }
 
-
-        void send_message(){
+        void send_message(unsigned interval){
             int sizer = _querys.getSize();
             int dimer = _querys.getDim();
             string topic("query_t");
@@ -109,8 +111,9 @@ namespace dhnsw {
                 QueryMessage qm(i, _querys[i], dimer);
                 string payload = qm.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
-                usleep(100000);
-                cout << "[CUST] Produced " << i+1 << " messages." << endl;
+                if(interval != 0) usleep(interval);
+                _messages_sent ++;
+                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
             _producer.flush();
         }
