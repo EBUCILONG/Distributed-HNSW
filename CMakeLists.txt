@@ -42,9 +42,11 @@ link_libraries(${HDFS_LIBRARY_DIR}/libhdfs.so)
 
 SET(EXAMPLES
     #bug
-    #bug2
-    #start_customer
-    #start_evaluator
+    bug2
+    start_customer
+    start_benchmark_evaluator
+    start_throughput_evaluator
+    start_customer_endless
     #tt
     #single_machine
     #binary_machine
@@ -52,7 +54,7 @@ SET(EXAMPLES
     #dataset_partitioner
     #wakerate_tester
     #idvecs_hnsw_machine
-    load_hnsw
+    #load_hnsw
     #sift1k
 )
 
