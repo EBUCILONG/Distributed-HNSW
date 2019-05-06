@@ -52,7 +52,7 @@ namespace dhnsw {
         //vector<vector<float> > _result_datas;
         long long _start_time;
         long long _end_time;
-        ResultMessage(int query_id, int total_piece, int top_k, long long start_time, long long end_time = 0, vector<int>& result_ids, vector<float>& dists):
+        ResultMessage(int query_id, int total_piece, int top_k, long long start_time, long long end_time, vector<int>& result_ids, vector<float>& dists):
         _query_id(query_id),
         _total_piece(total_piece),
         _top_k(top_k),
