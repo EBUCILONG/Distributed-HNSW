@@ -26,9 +26,11 @@ wake_up_controller=10
 sender_ef=10
 slave_ef=10
 
+send_intv=$1
+
 # gdb --args \
 
-./start_evaluator \
+./start_customer_endless \
     -p 1000 \
     --max_balance 4 \
     -i 100 \
@@ -51,7 +53,8 @@ slave_ef=10
     --hnsw_dir ${hnsw_dir}  \
     --map_address ${map_address}    \
     --top_k ${topk}   \
-    --num_worker ${num_worker}
+    --num_worker ${num_worker}  \
+    --cust_send_intv ${send_intv}
 
 
 
