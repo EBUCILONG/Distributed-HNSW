@@ -28,7 +28,7 @@ int main(int argc, char** argv){
     };
     Bencher truth_bench(para.ground_truth.c_str());
     dhnsw::ThroughputEvaluator evaluator(para.topK, evaluator_config, para.eval_log_path);
-    evaluator.evaluate(avg_time, para.eval_print_intv);
+    evaluator.evaluate(para.eval_print_intv);
     return 0;
 }
 
