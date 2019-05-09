@@ -127,7 +127,8 @@ namespace dhnsw {
                     total_time += this_time;
                     counter++;
                     if (counter % print_interval == 0) {
-                        cout << "[EVAL]\t"<< counter << "\t|\t" << (double)total_time / print_interval << endl;
+                        cout << "[EVAL]\t"<< counter << "\t|\t" << (double)total_time / print_interval <<
+                            "\t|\t" << result_msg->_total_piece <<endl;
                         total_time = 0;
                     }
                     // log answer into file
