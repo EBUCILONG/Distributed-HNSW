@@ -19,7 +19,7 @@ data_dim=128
 
 #para for multithread
 num_worker=2
-num_coordinator = 1
+num_coordinator=1
 
 #para that may change frequently
 topk=10
