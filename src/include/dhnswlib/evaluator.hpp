@@ -114,6 +114,7 @@ namespace dhnsw {
             cout << "[EVAL]\t# Received\t|\tAvg. Time\t|\t" << endl;
             long long counter = 0;
             long long total_time = 0;
+            long long last_time = get_current_time_milliseconds();
             int total_wake = 0;
             while (true) {
                 // receive message
@@ -129,8 +130,11 @@ namespace dhnsw {
                     total_time += this_time;
                     counter++;
                     if (counter % print_interval == 0) {
-                        cout << "[EVAL]\t"<< counter << "\t|\t" << (double)total_time / print_interval <<
-                            "\t|\t" << (double)total_wake / print_interval << endl;
+                        cout << "[EVAL]\t"<< counter << "\t|\t"
+                        << (double)total_time / print_interval <<"\t|\t"
+                        << (double)total_wake / print_interval <<"\t|\t"
+                        << (double)print_interval / (now - last_time)<<endl;
+                        last_time = now;
                         total_time = 0;
                         total_wake = 0;
                     }
