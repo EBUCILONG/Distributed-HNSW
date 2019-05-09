@@ -111,11 +111,11 @@ namespace dhnsw {
                 QueryMessage qm(i, _querys[i], dimer);
                 string payload = qm.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                _producer.flush();
                 if(interval != 0) usleep(interval);
                 _messages_sent ++;
                 cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
-            _producer.flush();
         }
 
         void idle(){
