@@ -77,7 +77,7 @@ namespace dhnsw {
                 result_ids.push_back(pq.top().second);
                 pq.pop();
             }
-            ResultMessage result(query_id, 1, _top_k, _query_map[query_id].start_time, get_current_time_milliseconds(), result_ids, dists);
+            ResultMessage result(query_id, _query_map[query_id].n_slaves, _top_k, _query_map[query_id].start_time, get_current_time_milliseconds(), result_ids, dists);
             string topic = "evaluation";
             string payload = result.toString();
             _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
