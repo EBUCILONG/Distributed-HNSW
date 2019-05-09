@@ -97,9 +97,11 @@ namespace dhnsw {
             /* Starts the receiver. */
             cout << "[RECV] receiver started." << endl;
             // main Loop for receiving message
-
+            long long total_time = 0;
+            int counter = 0;
             // deliberate endless loop
             while (true) {
+                long long start_time = get_current_time_milliseconds();
                 // receive message
                 ResultMessage* result_msg;
                 bool ret = receiveAnswer(result_msg, _consumer, _top_k);
@@ -116,6 +118,13 @@ namespace dhnsw {
                         _commit_answers(answer.p_queue, result_msg->_query_id);
                         _query_map.erase(result_msg->_query_id);
 //                        cout << "[RECV] Sent " << counter << " messages." << endl;
+                    }
+                    long long end_time = get_current_time_milliseconds();
+                    total_time += end_time - start_time;
+                    counter++;
+                    if(counter % 10000 == 0) {
+                        cout << "[RECV] avg time: " << (float)total_time / 10000 << endl;
+                        total_time = 0;
                     }
                     // free memory
                     delete result_msg;

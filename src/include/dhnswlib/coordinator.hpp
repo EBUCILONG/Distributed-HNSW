@@ -205,7 +205,6 @@ namespace dhnsw {
         void produceTask(int query_id, vector<float>& query, long long start_time){
 			vector<int> aim_subhnsw_id;
 			getWakeUpId(query, aim_subhnsw_id);
-			cout << "[COOR] wake up: " << aim_subhnsw_id.size() << endl;
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
@@ -216,12 +215,19 @@ namespace dhnsw {
         }
 
         void startWork(){
-		    int total = 0;
+		    int counter = 0;
+		    long long total_time = 0;
         	while(true){
+        	    long long start_time = get_current_time_milliseconds();
         		QueryMessage msg = getQuery();
-        		total += 1;
-                cout << "[COORD] Received " << total << " messages." << endl;
         		produceTask(msg.query_id_, msg.query_, msg.start_time_);
+        		long long end_time = get_current_time_milliseconds();
+                total_time += end_time - start_time;
+                counter++;
+                if(counter % 10000 == 0) {
+                    cout << "[COOR] avg time: " << (float)total_time / 10000 << endl;
+                    total_time = 0;
+                }
         	}
         }
 	};

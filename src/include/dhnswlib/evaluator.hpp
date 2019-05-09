@@ -130,8 +130,9 @@ namespace dhnsw {
                     counter++;
                     if (counter % print_interval == 0) {
                         cout << "[EVAL]\t"<< counter << "\t|\t" << (double)total_time / print_interval <<
-                            "\t|\t" << total_wake / print_interval << endl;
+                            "\t|\t" << (double)total_wake / print_interval << endl;
                         total_time = 0;
+                        total_wake = 0;
                     }
                     // log answer into file
 //                    log_answer(result_msg->_start_time, result_msg->_end_time);
