@@ -114,7 +114,7 @@ namespace dhnsw {
                 _messages_sent ++;
                 cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
-            _producer.flush();
+            _producer.flush(30000);
         }
 
         void idle(){

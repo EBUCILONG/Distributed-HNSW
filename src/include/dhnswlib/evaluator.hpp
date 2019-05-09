@@ -111,9 +111,10 @@ namespace dhnsw {
         void evaluate(int print_interval) {
             assert(print_interval != 0);
             cout << "[EVAL] Evaluator started." << endl;
-            cout << "[EVAL]\t# Received\t|\tAvg. Time\t" << endl;
+            cout << "[EVAL]\t# Received\t|\tAvg. Time\t|\t" << endl;
             long long counter = 0;
             long long total_time = 0;
+            int total_wake = 0;
             while (true) {
                 // receive message
                 ResultMessage* result_msg;
@@ -124,11 +125,12 @@ namespace dhnsw {
 //                    long long this_time = result_msg->_end_time - result_msg->_start_time;
                     long long now = get_current_time_milliseconds();
                     long long this_time = now - result_msg->_start_time;
+                    total_wake += result_msg->_total_piece;
                     total_time += this_time;
                     counter++;
                     if (counter % print_interval == 0) {
                         cout << "[EVAL]\t"<< counter << "\t|\t" << (double)total_time / print_interval <<
-                            "\t|\t" << result_msg->_total_piece <<endl;
+                            "\t|\t" << total_wake / print_interval << endl;
                         total_time = 0;
                     }
                     // log answer into file
