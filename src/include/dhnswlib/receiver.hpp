@@ -102,11 +102,11 @@ namespace dhnsw {
             // deliberate endless loop
             while (true) {
                 // receive message
+                long long start_time = get_current_time_milliseconds();
                 ResultMessage* result_msg;
                 bool ret = receiveAnswer(result_msg, _consumer, _top_k);
                 if(!ret) continue;  // failed to receive msg
                 else {
-                    long long start_time = get_current_time_milliseconds();
                     // msg received
                     Answer& answer = _query_map[result_msg->_query_id];
                     answer.start_time = result_msg->_start_time;
