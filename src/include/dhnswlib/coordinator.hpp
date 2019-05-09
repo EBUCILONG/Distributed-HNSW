@@ -218,8 +218,8 @@ namespace dhnsw {
 		    int counter = 0;
 		    long long total_time = 0;
         	while(true){
-        	    long long start_time = get_current_time_milliseconds();
         		QueryMessage msg = getQuery();
+                long long start_time = get_current_time_milliseconds();
         		produceTask(msg.query_id_, msg.query_, msg.start_time_);
         		long long end_time = get_current_time_milliseconds();
                 total_time += end_time - start_time;

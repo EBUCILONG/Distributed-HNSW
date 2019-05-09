@@ -163,8 +163,8 @@ namespace dhnsw {
             int counter = 0;
             long long total_time = 0;
             while(true) {
-                long long start_time = get_current_time_milliseconds();
                 TaskMessage task = getTask();
+                long long start_time = get_current_time_milliseconds();
                 ResultMessage result = solveTask(task);
                 string topic("receiver_t_");
                 topic = topic + std::to_string(task._process_id);
