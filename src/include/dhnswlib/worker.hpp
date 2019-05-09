@@ -160,13 +160,23 @@ namespace dhnsw {
         }
 
         void startWork(){
+            int counter = 0;
+            long long total_time = 0;
             while(true) {
+                long long start_time = get_current_time_milliseconds();
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
                 string topic("receiver_t_");
                 topic = topic + std::to_string(task._process_id);
                 const string payload = result.toString();
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                long long end_time = get_current_time_milliseconds();
+                total_time += end_time - start_time;
+                counter ++;
+                if(counter % 10000 == 0) {
+                    cout << "[WORK] avg time: " << (float)total_time / 10000 << endl;
+                    total_time = 0;
+                }
             }
         }
     };
