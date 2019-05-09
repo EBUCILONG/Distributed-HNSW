@@ -19,6 +19,7 @@ data_dim=128
 
 #para for multithread
 num_worker=2
+num_coordinator = 1
 
 #para that may change frequently
 topk=10
@@ -51,7 +52,8 @@ slave_ef=10
     --hnsw_dir ${hnsw_dir}  \
     --map_address ${map_address}    \
     --top_k ${topk}   \
-    --num_worker ${num_worker}
+    --num_worker ${num_worker}  \
+    --num_coordinator ${num_coordinator}
 
 
 

@@ -114,7 +114,7 @@ namespace dhnsw {
 		int _num_centroids;
 		int _num_subhnsw;
 		hnswlib::L2Space _l2space;
-		hnswlib::HierarchicalNSW<float> _metahnsw;
+		hnswlib::HierarchicalNSW<float>* _metahnsw;
 		cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
         vector<int> _map;
@@ -141,25 +141,43 @@ namespace dhnsw {
 	public:
         hnswlib::HierarchicalNSW<float>* _subhnsw_addr;
 
-
 		Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller, string subhnsw_dir, string meta_hnsw_dir, string map_dir, cppkafka::Configuration producer_config, cppkafka::Configuration consumer_config, int meta_ef = 10, int sub_ef = 10):
 		_subhnsw_id(hnsw_id),
 		_process_id(process_id),
 		_l2space(vec_dim),
-		_metahnsw(&_l2space, meta_hnsw_dir),
 		_data_dim(vec_dim),
 		_wakeup_controller(wakeup_controller),
 		_producer(producer_config),
 		_consumer(consumer_config){
         	string topic = "query_t";
         	_consumer.subscribe({topic});
+            _metahnsw = new hnswlib::HierarchicalNSW<float>(&_l2space, meta_hnsw_dir);
 			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
 			loadMap(map_dir);
 			_subhnsw_addr->setEf(sub_ef);
-			_metahnsw.setEf(meta_ef);
+			_metahnsw->setEf(meta_ef);
 		}
+
+        Coordinator(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw, int wakeup_controller,  hnswlib::HierarchicalNSW<float>* subhnsw, hnswlib::HierarchicalNSW<float>* metahnsw, string map_dir, cppkafka::Configuration producer_config, cppkafka::Configuration consumer_config, int meta_ef = 10, int sub_ef = 10):
+                _subhnsw_id(hnsw_id),
+                _process_id(process_id),
+                _l2space(vec_dim),
+                _metahnsw(metahnsw),
+                _subhnsw_addr(subhnsw),
+                _data_dim(vec_dim),
+                _wakeup_controller(wakeup_controller),
+                _producer(producer_config),
+                _consumer(consumer_config){
+            string topic = "query_t";
+            _consumer.subscribe({topic});
+            _num_centroids = num_centroid;
+            _num_subhnsw = num_subhnsw;
+            loadMap(map_dir);
+        }
+
+        hnswlib::HierarchicalNSW<float>* getMetaGraph() {return _metahnsw;}
 
 		void getWakeUpId(vector<float>& query, vector<int>& result){
 			set<int> set;
@@ -167,7 +185,7 @@ namespace dhnsw {
 				cout << "#[error ] query wrong dimension" << endl;
 				assert(0);
 			}
-			priority_queue<pair<float, long unsigned int > > knn = _metahnsw.searchKnn(query.data(), _wakeup_controller);
+			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
 			for (int i = 0; i < _wakeup_controller; i++){
 				set.insert(_map[(int) knn.top().second]);
 				knn.pop();

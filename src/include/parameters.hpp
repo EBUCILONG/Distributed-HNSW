@@ -144,6 +144,9 @@ namespace ss{
         // for customer
         int customer_send_intv;
 
+        // for coordinator
+        int num_coordinator;
+
         // for evaluator
         std::string eval_log_path;
         unsigned eval_print_intv;

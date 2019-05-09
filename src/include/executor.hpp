@@ -110,6 +110,7 @@ void LoadOptions(int argc, char **argv, parameter &para) {
 		("eval_log_path",    po::value<string >(&para.eval_log_path) ->default_value("./eval_log"), "evaluator log path")
 		("eval_print_intv",  po::value<unsigned>(&para.eval_print_intv)->default_value(100), "evaluator print interval" )
 		("cust_send_intv",   po::value<int >(&para.customer_send_intv)->default_value(0),  "customer send interval" )
+		("num_coordinator",  po::value<int >(&para.num_coordinator),                       "number of coordinator per process" )
 		;
 
     po::variables_map vm;
