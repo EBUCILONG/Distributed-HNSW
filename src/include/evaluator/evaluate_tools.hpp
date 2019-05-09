@@ -73,7 +73,7 @@ namespace eva{
 			cout << ks[i] << " "
 				 << dhnsw::avg(counter) / query.getSize() << " "
 	 			 << dhnsw::stv(counter) / query.getSize() << " "
-	 			 << total_time / query.getSize() << " ";
+	 			 << (float)total_time / (float)query.getSize() << " ";
 			for (int j = 0; j < counter.size(); j++)
 				cout << counter[j] << " ";
 			cout << endl;
