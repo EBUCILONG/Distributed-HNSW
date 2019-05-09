@@ -57,7 +57,6 @@ namespace dhnsw {
 //                cout << query_[i] << " ";
 //            cout << endl;
             start_time_ = get_current_time_milliseconds();
-            cout << "[CUST] start time: " << start_time_ << endl;
         }
 
         QueryMessage(int vec_dim, string input_string){

@@ -205,10 +205,7 @@ namespace dhnsw {
         void produceTask(int query_id, vector<float>& query, long long start_time){
 			vector<int> aim_subhnsw_id;
 			getWakeUpId(query, aim_subhnsw_id);
-			cout << query_id << " ";
-			for (int i = 0; i < query.size(); i++)
-				cout << query[i] << " ";
-			cout << endl;
+			cout << "[COOR] wake up: " << aim_subhnsw_id.size() << endl;
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
