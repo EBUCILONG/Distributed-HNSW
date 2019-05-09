@@ -52,7 +52,7 @@ SET(EXAMPLES
         #binary_machine
         #fvecs_hnsw_machine
         #dataset_partitioner
-        #wakerate_tester
+        wakerate_tester
         #idvecs_hnsw_machine
         #load_hnsw
         #sift1k
