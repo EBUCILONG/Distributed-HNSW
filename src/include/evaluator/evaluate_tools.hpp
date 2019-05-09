@@ -21,6 +21,7 @@
 #include <sstream>
 #include <stdlib.h>
 
+#include "dhnswlib/time.hpp"
 #include "hnswlib/hnswalg.h"
 #include "utils/util.hpp"
 #include "matrix.hpp"
@@ -51,24 +52,28 @@ namespace eva{
 //		for (int i = 1; i <= 8; i++)
 //			efs.push_back(100 + 50 * i);
 
-		cout << "k || avg || stv || specific data" << endl;
+		cout << "k   avg   stv   time(us)   specific data" << endl;
 		meta.setEf(100);
 		for (int i = 0; i < ks.size(); i++){
+			long long total_time = 0;
 			vector<int> counter(total_partition, 0);
 			for (int j = 0; j < sizer; j++){
+				long long start_time = dhnsw::get_current_time_milliseconds();
 				set<int> set;
 				std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(query[j], ks[i]);
 				for(int k = 0; k < ks[i]; k++){
 					set.insert(map[(int)result.top().second]);
 					result.pop();
 				}
+				total_time += dhnsw::get_current_time_milliseconds() - start_time;
 				for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
 					counter[*it]++;
 				}
 			}
 			cout << ks[i] << " "
 				 << dhnsw::avg(counter) / query.getSize() << " "
-	 			 << dhnsw::stv(counter) / query.getSize() << " ";
+	 			 << dhnsw::stv(counter) / query.getSize() << " "
+	 			 << total_time / query.getSize() << " ";
 			for (int j = 0; j < counter.size(); j++)
 				cout << counter[j] << " ";
 			cout << endl;
