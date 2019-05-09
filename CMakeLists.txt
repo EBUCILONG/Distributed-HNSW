@@ -42,11 +42,12 @@ link_libraries(${HDFS_LIBRARY_DIR}/libhdfs.so)
 
 SET(EXAMPLES
     #bug
-    bug2
-    start_customer
-    start_benchmark_evaluator
-    start_throughput_evaluator
-    start_customer_endless
+    #bug2
+    #start_customer
+    #start_benchmark_evaluator
+    #start_throughput_evaluator
+    #start_customer_endless
+    ground_truth
     #tt
     #single_machine
     #binary_machine

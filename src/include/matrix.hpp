@@ -98,6 +98,10 @@ namespace ss {
             return _size;
         }
 
+        T* getData() const {
+            return _data;
+        }
+
         std::vector<T> calNorms() const {
             std::vector<T> norms(_size);
             for (int i = 0; i < _size; ++i) {
