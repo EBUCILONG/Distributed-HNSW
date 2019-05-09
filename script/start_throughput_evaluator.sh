@@ -54,8 +54,8 @@ print_intv=${2:-100}
     --hnsw_dir ${hnsw_dir}  \
     --map_address ${map_address}    \
     --top_k ${topk}   \
-    --num_worker ${num_worker}
-    --eval_log_path ${log_path}
+    --num_worker ${num_worker}  \
+    --eval_log_path ${log_path} \
     --eval_print_intv ${print_intv}
 
 

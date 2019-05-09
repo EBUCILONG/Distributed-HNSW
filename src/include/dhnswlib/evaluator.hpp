@@ -121,7 +121,9 @@ namespace dhnsw {
                 if(!ret) continue;  // failed to receive msg
                 else {
                     // increment counter
-                    long long this_time = result_msg->_end_time - result_msg->_start_time;
+//                    long long this_time = result_msg->_end_time - result_msg->_start_time;
+                    long long now = get_current_time_milliseconds();
+                    long long this_time = now - result_msg->_start_time;
                     total_time += this_time;
                     counter++;
                     if (counter % print_interval == 0) {
@@ -129,7 +131,8 @@ namespace dhnsw {
                         total_time = 0;
                     }
                     // log answer into file
-                    log_answer(result_msg->_start_time, result_msg->_end_time);
+//                    log_answer(result_msg->_start_time, result_msg->_end_time);
+                    log_answer(result_msg->_start_time, now);
                     // free memory
                     delete result_msg;
                 }
