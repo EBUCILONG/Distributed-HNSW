@@ -93,13 +93,15 @@ namespace dhnsw {
         int _num_subhnsw;
         cppkafka::Producer _producer;
         int _messages_sent;
+        std::chrono::milliseconds _timeout;
 
     public:
         Customer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
         _querys(querys),
         _num_subhnsw(num_subhnsw),
         _producer(config),
-        _messages_sent(0) {
+        _messages_sent(0),
+        _timeout(30000) {
         }
 
         void send_message(unsigned interval){
@@ -114,7 +116,7 @@ namespace dhnsw {
                 _messages_sent ++;
                 cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
-            _producer.flush(30000);
+            _producer.flush(_timeout);
         }
 
         void idle(){
