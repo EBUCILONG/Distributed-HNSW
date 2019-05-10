@@ -33,8 +33,6 @@ using std::string;
 using std::ifstream;
 
 namespace dhnsw{
-	void
-
 	void getIdvecsInfo(const string& path, int& dimension, int& size){
 		std::ifstream fin(path.c_str(), std::ios::binary | std::ios::ate);
 		if (!fin) {
