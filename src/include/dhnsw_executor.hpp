@@ -101,6 +101,10 @@ namespace dhnsw {
 
         cppkafka::Configuration producer_config = {
                 { "metadata.broker.list", para.broker_list}
+                { "queue.buffering.max.ms", 0}
+                {"fetch.wait.max.ms", 0}
+                {"queue.buffering.max.ms", 0}
+                {"fetch.wait.max.ms", 0}
         };
 
         dhnsw::Coordinator coordinator( process_id, sub_hnsw_id, para.dim, para.num_centroid,
