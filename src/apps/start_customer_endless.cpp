@@ -23,7 +23,10 @@ int main(int argc, char** argv){
     LoadOptions(argc, argv, para);
     ss::Matrix<float> queries(para.query_data);
     cppkafka::Configuration producer_config = {
-            { "metadata.broker.list", para.broker_list}
+            { "metadata.broker.list", para.broker_list},
+            { "queue.buffering.max.ms", 0},
+            {"fetch.wait.max.ms", 0},
+            {"queue.buffering.max.ms", 0}
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
     while(true) customer.send_message(para.customer_send_intv);
