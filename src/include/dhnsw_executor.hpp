@@ -104,7 +104,8 @@ namespace dhnsw {
                 { "queue.buffering.max.ms", 0},
                 {"fetch.wait.max.ms", 0},
                 {"queue.buffering.max.ms", 0},
-                {"fetch.wait.max.ms", 0}
+                {"fetch.wait.max.ms", 0},
+                {"batch.size", 1}
         };
 
         dhnsw::Coordinator coordinator( process_id, sub_hnsw_id, para.dim, para.num_centroid,
