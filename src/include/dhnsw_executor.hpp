@@ -81,6 +81,8 @@ namespace dhnsw {
         string receiver_group = "receiver_g_";
         receiver_group += std::to_string(process_id);
 
+        cout << "[ALL] :" << para.broker_list << endl;
+
         cppkafka::Configuration coordinator_consumer_config = {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  coordinator_group},
