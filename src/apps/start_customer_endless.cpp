@@ -24,6 +24,7 @@ int main(int argc, char** argv){
     ss::Matrix<float> queries(para.query_data);
     cppkafka::Configuration producer_config = {
             { "metadata.broker.list", para.broker_list},
+            {"block.on.buffer.full", false}
 //            { "queue.buffering.max.ms", 10},
 //            {"fetch.wait.max.ms", 5},
     };
