@@ -10,6 +10,7 @@
 #include <cppkafka/consumer.h>
 #include <cppkafka/producer.h>
 
+#include "dhnswlib/time.hpp"
 #include "executor.hpp"
 #include "parameters.hpp"
 #include "dhnswlib/customer.hpp"
@@ -26,6 +27,10 @@ int main(int argc, char** argv){
             { "metadata.broker.list", para.broker_list}
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
-    customer.send_message(para.customer_send_intv);
+    long long start_time = dhnsw::get_current_time_nanoseconds();
+    for (int i = 0; i < 10; i++) {
+        customer.send_message(para.customer_send_intv);
+    }
+    cout << (float) (dhnsw::get_current_time_nanoseconds() - start_time) / 10 << endl;
     customer.idle();
 }
