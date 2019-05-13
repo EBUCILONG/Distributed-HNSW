@@ -250,7 +250,7 @@ namespace dhnsw {
 //				cout.setf(std::ios::right);
 //                cout.width(10);
 //                cout.fill(' ');
-                if(counter % 100 == 0) {
+                if(counter % 1 == 0) {
                     cout << "[COOR] " << (float) total_time / 100 << " " << msg.query_id_ << endl;
                     total_time = 0;
                 }
