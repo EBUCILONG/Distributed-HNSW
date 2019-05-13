@@ -13,6 +13,7 @@
 #include <string>
 #include <fstream>
 #include <ostream>
+#include <iostream>
 #include <set>
 #include <queue>
 #include <utility>
@@ -246,6 +247,7 @@ namespace dhnsw {
                 start_time = end_time;
                 work_time += end_time - work_start_time;
                 counter++;
+				cout.setf(std::ios::right);
                 cout.width(10);
                 cout.fill(' ');
                 if(counter % 100 == 0) {
