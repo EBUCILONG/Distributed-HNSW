@@ -19,8 +19,12 @@
 
 namespace dhnsw {
         inline long long get_current_time_milliseconds() {
-            return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
+            return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch())
                     .count();
         }
 
+        inline long long get_current_time_nanoseconds() {
+            return std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch())
+                    .count();
+        }
 }  // namespace husky

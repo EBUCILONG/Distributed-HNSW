@@ -235,15 +235,19 @@ namespace dhnsw {
         void startWork(){
 		    int counter = 0;
 		    long long total_time = 0;
+		    long long work_time = 0;
+			long long start_time = get_current_time_nanoseconds();
         	while(true){
-                long long start_time = get_current_time_milliseconds();
         		QueryMessage msg = getQuery();
+        		long long work_start_time = get_current_time_nanoseconds();;
         		produceTask(msg.query_id_, msg.query_, msg.start_time_);
-        		long long end_time = get_current_time_milliseconds();
+        		long long end_time = get_current_time_nanoseconds();
                 total_time += end_time - start_time;
+                start_time = end_time;
+                work_time += end_time - work_start_time;
                 counter++;
-                if(counter % 1 == 0) {
-                    cout << "[COOR] avg time: " << (float)total_time / 1 << endl;
+                if(counter % 100 == 0) {
+                    cout << "[COOR] avg time: " << (float)total_time / 100 << endl;
                     total_time = 0;
                 }
         	}
