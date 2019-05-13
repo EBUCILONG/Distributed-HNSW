@@ -242,8 +242,8 @@ namespace dhnsw {
         		long long end_time = get_current_time_milliseconds();
                 total_time += end_time - start_time;
                 counter++;
-                if(counter % 100 == 0) {
-                    cout << "[COOR] avg time: " << (float)total_time / 100 << endl;
+                if(counter % 1 == 0) {
+                    cout << "[COOR] avg time: " << (float)total_time / 1 << endl;
                     total_time = 0;
                 }
         	}
