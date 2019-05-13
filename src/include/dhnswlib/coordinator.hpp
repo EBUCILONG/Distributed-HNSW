@@ -243,7 +243,7 @@ namespace dhnsw {
                 total_time += end_time - start_time;
                 counter++;
                 if(counter % 100 == 0) {
-                    cout << "[COOR] avg time: " << (float)total_time / 10000 << endl;
+                    cout << "[COOR] avg time: " << (float)total_time / 100 << endl;
                     total_time = 0;
                 }
         	}
