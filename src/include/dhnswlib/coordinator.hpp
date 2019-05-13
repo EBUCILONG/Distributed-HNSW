@@ -237,22 +237,21 @@ namespace dhnsw {
 		    int counter = 0;
 		    long long total_time = 0;
 		    long long work_time = 0;
-			long long start_time = get_current_time_nanoseconds();
+			long long start_time = get_current_time_milliseconds();
         	while(true){
         		QueryMessage msg = getQuery();
-        		long long work_start_time = get_current_time_nanoseconds();;
-        		produceTask(msg.query_id_, msg.query_, msg.start_time_);
-        		long long end_time = get_current_time_nanoseconds();
+//        		long long work_start_time = get_current_time_nanoseconds();;
+//        		produceTask(msg.query_id_, msg.query_, msg.start_time_);
+        		long long end_time = get_current_time_milliseconds();
                 total_time += end_time - start_time;
                 start_time = end_time;
-                work_time += end_time - work_start_time;
+//                work_time += end_time - work_start_time;
                 counter++;
-				cout.setf(std::ios::right);
-                cout.width(10);
-                cout.fill(' ');
+//				cout.setf(std::ios::right);
+//                cout.width(10);
+//                cout.fill(' ');
                 if(counter % 100 == 0) {
-                    cout << "[COOR] work avg time: " << (float)work_time / 100 << " total avg time " << (float) total_time / 100000 << endl;
-                    work_time = 0;
+                    cout << "[COOR] " << (float) total_time / 100 << endl;
                     total_time = 0;
                 }
         	}
