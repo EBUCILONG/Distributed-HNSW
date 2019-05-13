@@ -26,6 +26,9 @@ int main(int argc, char** argv){
     ss::parameter para;
     LoadOptions(argc, argv, para);
     ss::Matrix<float> queries(para.query_data);
+
+    cout << "[ALL] :" << para.broker_list << endl;
+
     cppkafka::Configuration producer_config = {
             { "metadata.broker.list", para.broker_list},
             { "queue.buffering.max.ms", 100},
