@@ -38,9 +38,10 @@ int main(int argc, char** argv){
         long long this_time = 0;//dhnsw::get_current_time_milliseconds();
         time_sum += this_time - last_time;
         last_time = this_time;
-        if (counter % 10000 == 0){
+        if (counter == 10000){
             cout << "[CUST] " << (float) time_sum / 10000 << "per 10000" << endl;
             time_sum = 0;
+            counter = 0;
         }
         counter++;
     }
