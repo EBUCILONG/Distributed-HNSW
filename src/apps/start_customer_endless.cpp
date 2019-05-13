@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 #include <cppkafka/message_builder.h>
 #include <cppkafka/cppkafka.h>
 #include <cppkafka/configuration.h>
@@ -18,6 +19,8 @@
 
 using std::vector;
 using std::string;
+using std::cout;
+using std::endl;
 
 int main(int argc, char** argv){
     ss::parameter para;
