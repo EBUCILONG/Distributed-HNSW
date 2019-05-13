@@ -247,7 +247,7 @@ namespace dhnsw {
                 work_time += end_time - work_start_time;
                 counter++;
                 if(counter % 100 == 0) {
-                    cout << "[COOR] avg time: " << (float)work_time / 100 << endl;
+                    cout << "[COOR] work avg time: " << (float)work_time / 100 << " total avg time " << (float) total_time / 100000 << endl;
                     work_time = 0;
                     total_time = 0;
                 }
