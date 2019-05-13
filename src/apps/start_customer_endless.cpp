@@ -32,7 +32,7 @@ int main(int argc, char** argv){
     cppkafka::Configuration producer_config = {
             { "metadata.broker.list", para.broker_list},
             { "queue.buffering.max.ms", 100},
-//            {"debug", "msg"}
+            {"debug", "msg"}
 //            {"fetch.wait.max.ms", 5},
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
