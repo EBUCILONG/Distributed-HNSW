@@ -35,13 +35,13 @@ int main(int argc, char** argv){
 
     while(true) {
         customer.send_message(para.customer_send_intv);
-//        long long this_time = dhnsw::get_current_time_milliseconds();
-//        time_sum += this_time - last_time;
-//        last_time = this_time;
-//        if (counter % 10000 == 0){
-//            cout << "[CUST] " << (float) time_sum / 10000 << "per 10000" << endl;
-//            time_sum = 0;
-//        }
-//        counter++;
+        long long this_time = 0;//dhnsw::get_current_time_milliseconds();
+        time_sum += this_time - last_time;
+        last_time = this_time;
+        if (counter % 10000 == 0){
+            cout << "[CUST] " << (float) time_sum / 10000 << "per 10000" << endl;
+            time_sum = 0;
+        }
+        counter++;
     }
 }
