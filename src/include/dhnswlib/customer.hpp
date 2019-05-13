@@ -114,7 +114,7 @@ namespace dhnsw {
                 _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
                 if(interval != 0) usleep(interval);
                 _messages_sent ++;
-                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
+//                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
         }
 
