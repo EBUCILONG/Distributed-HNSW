@@ -118,7 +118,7 @@ namespace dhnsw {
                                         para.hnsw_dir + "/hnsw_meta", para.map_address, producer_config, coordinator_consumer_config,
                                         para.sender_ef, para.slave_ef);
 
-        std::thread coordinator_threads[para.num_coordinator];
+        std::thread coordinator_threads[para.num_coordinator - 1];
 
         for(int i=0; i<para.num_coordinator-1; i++)
             coordinator_threads[i] = std::thread(coordinator_func, process_id, sub_hnsw_id, para.dim, para.num_centroid,

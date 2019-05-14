@@ -251,7 +251,7 @@ namespace dhnsw {
 //                cout.width(10);
 //                cout.fill(' ');
                 if(counter % 100 == 0) {
-                    cout << "[COOR] " << (float) total_time / 100 << endl;
+                    cout << "[COOR] " << std::__libcpp_thread_get_current_id() << (float) total_time / 100 << endl;
                     total_time = 0;
                 }
         	}
