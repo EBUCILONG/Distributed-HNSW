@@ -87,6 +87,7 @@ namespace dhnsw {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  coordinator_group},
                 { "enable.auto.commit", true},
+                {"enable.auto.offset.store", false},
                 {"fetch.wait.max.ms", 1000},
                 {"debug", "msg"}
         };
@@ -96,6 +97,7 @@ namespace dhnsw {
                 { "group.id",  worker_group},
                 { "enable.auto.commit", true },
                 {"fetch.wait.max.ms", 1000},
+                {"enable.auto.offset.store", false},
                 {"debug", "msg"}
         };
 
@@ -103,6 +105,7 @@ namespace dhnsw {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  receiver_group},
                 { "enable.auto.commit", true },
+                {"enable.auto.offset.store", false},
                 {"fetch.wait.max.ms", 1000},
                 {"debug", "msg"}
         };
