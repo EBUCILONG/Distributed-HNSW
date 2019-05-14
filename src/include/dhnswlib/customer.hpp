@@ -114,7 +114,7 @@ namespace dhnsw {
                 try {
                     _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
                 }
-                catch {
+                catch(int error) {
                     _producer.poll();
                 }
                 if(interval != 0) usleep(interval);
