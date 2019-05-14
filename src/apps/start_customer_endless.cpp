@@ -31,7 +31,7 @@ int main(int argc, char** argv){
 
     cppkafka::Configuration producer_config = {
             { "metadata.broker.list", para.broker_list},
-            { "queue.buffering.max.ms", 1000},
+            { "queue.buffering.max.ms", 500},
             {"debug", "msg"}
 //            {"fetch.wait.max.ms", 5},
     };
