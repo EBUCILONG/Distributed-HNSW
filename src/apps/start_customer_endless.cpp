@@ -33,7 +33,7 @@ int main(int argc, char** argv){
             { "metadata.broker.list", para.broker_list},
             { "queue.buffering.max.ms", 500},
             { "batch.num.messages", 1000},
-            { "queue.buffering.max.messages", 2000},
+            { "queue.buffering.max.messages", 10000},
             {"debug", "msg"}
 //            {"fetch.wait.max.ms", 5},
     };
