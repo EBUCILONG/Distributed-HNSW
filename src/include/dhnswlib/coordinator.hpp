@@ -211,7 +211,7 @@ namespace dhnsw {
 						}
 						continue;
 					} else {
-						_consumer.async_commit(msg);
+//						_consumer.async_commit(msg);
 						string_msg = string(msg.get_payload());
 						break;
 					}

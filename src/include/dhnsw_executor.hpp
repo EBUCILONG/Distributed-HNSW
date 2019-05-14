@@ -86,7 +86,7 @@ namespace dhnsw {
         cppkafka::Configuration coordinator_consumer_config = {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  coordinator_group},
-                { "enable.auto.commit", false},
+                { "enable.auto.commit", true},
                 {"fetch.wait.max.ms", 1000},
                 {"debug", "msg"}
         };
@@ -94,7 +94,7 @@ namespace dhnsw {
         cppkafka::Configuration worker_consumer_config = {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  worker_group},
-                { "enable.auto.commit", false },
+                { "enable.auto.commit", true },
                 {"fetch.wait.max.ms", 1000},
                 {"debug", "msg"}
         };
@@ -102,7 +102,7 @@ namespace dhnsw {
         cppkafka::Configuration receiver_consumer_config = {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  receiver_group},
-                { "enable.auto.commit", false },
+                { "enable.auto.commit", true },
                 {"fetch.wait.max.ms", 1000},
                 {"debug", "msg"}
         };
