@@ -24,9 +24,10 @@ int main(int argc, char** argv){
     cppkafka::Configuration evaluator_config = {
             { "metadata.broker.list", para.broker_list},
             { "group.id",  "evaluator_g"},
-            { "enable.auto.commit", false }
+            { "enable.auto.commit", true },
+            {"enable.auto.offset.store", false},
     };
-    Bencher truth_bench(para.ground_truth.c_str());
+//    Bencher truth_bench(para.ground_truth.c_str());
     dhnsw::ThroughputEvaluator evaluator(para.topK, evaluator_config, para.eval_log_path);
     evaluator.evaluate(para.eval_print_intv);
     return 0;
