@@ -111,11 +111,15 @@ namespace dhnsw {
             for (int i = 0; i < sizer; i++) {
                 QueryMessage qm(i, _querys[i], dimer);
                 string payload = qm.toString();
-                try {
-                    _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
-                }
-                catch(cppkafka::HandleException error) {
-                    _producer.poll();
+                while(true) {
+                    try {
+                        _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                    }
+                    catch (cppkafka::HandleException error) {
+                        _producer.poll();
+                        continue;
+                    }
+                    break;
                 }
                 if(interval != 0) usleep(interval);
                 _messages_sent ++;
