@@ -68,7 +68,7 @@ namespace dhnsw {
                     }
                     // increment counter
                     long long this_time = result_msg->_end_time;
-                    total_time += this_time;
+                    total_time += this_time - result_msg->_start_time;
                     counter++;
                     if (counter % 10 == 0) {
                         cout << "[EVAL]\t"<< counter << "\t|\t" << total_time / 10.0 << endl;
