@@ -137,7 +137,7 @@ namespace dhnsw {
                         }
                         continue;
                     } else {
-                        _consumer.commit(msg);
+                        _consumer.store_offset(msg);
                         string_msg = string(msg.get_payload());
                         break;
                     }
@@ -169,7 +169,16 @@ namespace dhnsw {
                 string topic("receiver_t_");
                 topic = topic + std::to_string(task._process_id);
                 const string payload = result.toString();
-                _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                while(true) {
+                    try {
+                        _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                    }
+                    catch (cppkafka::HandleException error) {
+                        _producer.poll();
+                        continue;
+                    }
+                    break;
+                }
                 long long end_time = get_current_time_milliseconds();
                 total_time += end_time - start_time;
                 counter ++;

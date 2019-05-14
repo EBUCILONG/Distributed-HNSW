@@ -36,6 +36,7 @@ namespace dhnsw {
             return false;
         }
         // a message is received
+        _consumer.store_offset(msg);
         const cppkafka::Buffer& msg_body = msg.get_payload();
         string msg_string = msg_body;
         // deserialize content & return the object
@@ -80,7 +81,16 @@ namespace dhnsw {
             ResultMessage result(query_id, _query_map[query_id].n_slaves, _top_k, _query_map[query_id].start_time, get_current_time_milliseconds(), result_ids, dists);
             string topic = "evaluation";
             string payload = result.toString();
-            _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+            while(true) {
+                try {
+                    _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                }
+                catch (cppkafka::HandleException error) {
+                    _producer.poll();
+                    continue;
+                }
+                break;
+            }
         }
 
     public:

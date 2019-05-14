@@ -232,7 +232,16 @@ namespace dhnsw {
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
 				TaskMessage message(_process_id, query_id, aim_subhnsw_id.size(), _data_dim, start_time, query);
 				const string payload = message.toString();
-				_producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+				while(true) {
+					try {
+						_producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+					}
+					catch (cppkafka::HandleException error) {
+						_producer.poll();
+						continue;
+					}
+					break;
+				}
 			}
         }
 
