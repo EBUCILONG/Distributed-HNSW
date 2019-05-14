@@ -124,8 +124,8 @@ namespace dhnsw {
 			ifstream i_file(map_dir);
 			int num_centroids = 0;
 			int num_subhnsw = 0;
-			i_file >> num_centroids;
 			i_file >> num_subhnsw;
+			i_file >> num_centroids;
 			if (_num_centroids != num_centroids || _num_subhnsw != num_subhnsw){
 				cout << "#[error ] map file wrong size" << endl;
 				assert(0);
