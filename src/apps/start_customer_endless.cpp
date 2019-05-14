@@ -27,14 +27,12 @@ int main(int argc, char** argv){
     LoadOptions(argc, argv, para);
     ss::Matrix<float> queries(para.query_data);
 
-    cout << "[ALL] :" << para.broker_list << endl;
-
     cppkafka::Configuration producer_config = {
             { "metadata.broker.list", para.broker_list},
 //            { "queue.buffering.max.ms", 10},
 //            { "batch.num.messages", 1000},
 //            { "queue.buffering.max.messages", 10000},
-            {"debug", "msg"}
+//            {"debug", "msg"}
 //            {"fetch.wait.max.ms", 5},
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
@@ -44,14 +42,5 @@ int main(int argc, char** argv){
 
     while(true) {
         customer.send_message(para.customer_send_intv);
-        long long this_time = 0;//dhnsw::get_current_time_milliseconds();
-        time_sum += this_time - last_time;
-        last_time = this_time;
-        if (counter == 10000){
-            cout << "[CUST] " << (float) time_sum / 10000 << "per 10000" << endl;
-            time_sum = 0;
-            counter = 0;
-        }
-        counter++;
     }
 }
