@@ -49,12 +49,12 @@ using std::chrono::steady_clock;
 
 namespace dhnsw {
 
-	const auto callback = [](const cppkafka::Topic&, const cppkafka::Buffer& key, int32_t partition_count) {
-		// We'll convert the key into an int and perform modulo
-		// over the amount of partitions
-		std::srand((unsigned int) std::time(NULL));
-		return std::rand() % partition_count;
-	};
+//	const auto callback = [](const cppkafka::Topic&, const cppkafka::Buffer& key, int32_t partition_count) {
+//		// We'll convert the key into an int and perform modulo
+//		// over the amount of partitions
+//		std::srand((unsigned int) std::time(NULL));
+//		return std::rand() % partition_count;
+//	};
 
 	class TaskMessage{
 	public:
@@ -211,7 +211,7 @@ namespace dhnsw {
 						}
 						continue;
 					} else {
-						_consumer.commit(msg);
+						_consumer.async_commit(msg);
 						string_msg = string(msg.get_payload());
 						break;
 					}
