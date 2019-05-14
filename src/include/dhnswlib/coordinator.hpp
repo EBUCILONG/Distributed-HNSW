@@ -127,7 +127,9 @@ namespace dhnsw {
 			i_file >> num_subhnsw;
 			i_file >> num_centroids;
 			if (_num_centroids != num_centroids || _num_subhnsw != num_subhnsw){
-				cout << "#[error ] map file wrong size" << endl;
+				cout << "#[error ] map file wrong size with " << _num_centroids <<" "<<num_centroids<<" "<<
+				_num_subhnsw << " " << num_subhnsw
+				<< endl;
 				assert(0);
 			}
 			int buffer = 0;
