@@ -241,7 +241,7 @@ namespace dhnsw {
         	while(true){
         		QueryMessage msg = getQuery();
 //        		long long work_start_time = get_current_time_nanoseconds();;
-        		produceTask(msg.query_id_, msg.query_, msg.start_time_);
+//        		produceTask(msg.query_id_, msg.query_, msg.start_time_);
         		long long end_time = get_current_time_milliseconds();
                 total_time += end_time - start_time;
                 start_time = end_time;

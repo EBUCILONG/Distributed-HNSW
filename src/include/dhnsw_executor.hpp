@@ -125,11 +125,11 @@ namespace dhnsw {
                     para.num_subhnsw, para.wake_up_controller, coordinator._subhnsw_addr, coordinator.getMetaGraph(),
                     para.map_address, producer_config, coordinator_consumer_config, para.sender_ef, para.slave_ef);
 
-        std::thread worker_threads[para.num_worker];
-        for(int i = 0; i < para.num_worker; i++)
-            worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
-
-        std::thread receiver(receiver_func, process_id, para.topK, receiver_consumer_config, producer_config);
+//        std::thread worker_threads[para.num_worker];
+//        for(int i = 0; i < para.num_worker; i++)
+//            worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
+//
+//        std::thread receiver(receiver_func, process_id, para.topK, receiver_consumer_config, producer_config);
 
         coordinator.startWork();
     }
