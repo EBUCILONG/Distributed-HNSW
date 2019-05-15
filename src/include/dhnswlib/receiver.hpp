@@ -36,7 +36,7 @@ namespace dhnsw {
             return false;
         }
         // a message is received
-        _consumer.store_offset(msg);
+        consumer.store_offset(msg);
         const cppkafka::Buffer& msg_body = msg.get_payload();
         string msg_string = msg_body;
         // deserialize content & return the object
