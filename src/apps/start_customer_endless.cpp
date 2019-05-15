@@ -32,7 +32,7 @@ int main(int argc, char** argv){
 //            { "queue.buffering.max.ms", 10},
 //            { "batch.num.messages", 1000},
 //            { "queue.buffering.max.messages", 10000},
-//            {"debug", "msg"}
+            {"debug", "msg"}
 //            {"fetch.wait.max.ms", 5},
     };
     dhnsw::Customer customer(para.num_subhnsw, queries, producer_config);
