@@ -118,31 +118,21 @@ namespace dhnsw {
             int total_wake = 0;
             while (true) {
                 // receive message
-                ResultMessage* result_msg;
-                bool ret = receiveAnswer(result_msg, _consumer, _top_k);
-                if(!ret) continue;  // failed to receive msg
-                else {
-                    // increment counter
-//                    long long this_time = result_msg->_end_time - result_msg->_start_time;
-                    long long now = get_current_time_milliseconds();
-                    long long this_time = now - result_msg->_start_time;
-                    total_wake += result_msg->_total_piece;
-                    total_time += this_time;
-                    counter++;
-                    if (counter % print_interval == 0) {
-                        cout << "[EVAL]\t"<< counter << "\t|\t"
-                        << (double)total_time / print_interval <<"\t|\t"
-                        << (double)total_wake / print_interval <<"\t|\t"
-                        << (double)print_interval / (now - last_time)<<endl;
-                        last_time = now;
-                        total_time = 0;
-                        total_wake = 0;
+                cppkafka::Message msg = _consumer.poll();
+                if(!msg) continue;
+                if(msg.get_error()) {
+                    if (!msg.is_eof()) {
+                        // error
+                        cout << "[RECV] Some error occured when polling from kafka." << endl;
                     }
-                    // log answer into file
-//                    log_answer(result_msg->_start_time, result_msg->_end_time);
-                    log_answer(result_msg->_start_time, now);
-                    // free memory
-                    delete result_msg;
+                    continue;
+                }
+                // a message is received
+                _consumer.store_offset(msg);
+                counter++;
+                if (counter % print_interval == 0){
+                    long long this_time = get_current_time_milliseconds();
+                    cout << "[EVAL]\t" << counter << "\t|\t" << (float) (this_time - last_time) / print_interval << endl;
                 }
             }
         }
