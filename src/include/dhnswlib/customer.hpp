@@ -121,8 +121,6 @@ namespace dhnsw {
                     }
                     break;
                 }
-                if(interval != 0) usleep(interval);
-                _messages_sent ++;
 //                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
         }
