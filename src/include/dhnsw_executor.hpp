@@ -40,25 +40,19 @@ using std::thread;
 
 namespace dhnsw {
 
-    void coordinator_func(int process_id, int hnsw_id, int vec_dim, int num_centroid, int num_subhnsw,
-            int wakeup_controller, hnswlib::HierarchicalNSW<float>* subhnsw, hnswlib::HierarchicalNSW<float>* metahnsw, string map_dir,
-            cppkafka::Configuration producer_config, cppkafka::Configuration consumer_config,
-            int meta_ef = 10, int sub_ef = 10) {
-        dhnsw::Coordinator coordinator(process_id, hnsw_id, vec_dim, num_centroid, num_subhnsw, wakeup_controller,
-                                       subhnsw, metahnsw, map_dir, producer_config, consumer_config,
-                                       meta_ef, sub_ef);
-        coordinator.startWork();
+    void coordinator_func(dhnsw::Coordinator* coordinator) {
+//        dhnsw::Coordinator coordinator(process_id, hnsw_id, vec_dim, num_centroid, num_subhnsw, wakeup_controller,
+//                                       subhnsw, metahnsw, map_dir, producer_config, consumer_config,
+//                                       meta_ef, sub_ef);
+        coordinator->startWork();
     }
 
-    void worker_func(int subhnsw_id, int top_k, int data_dim, hnswlib::HierarchicalNSW<float>* hnsw, cppkafka::Configuration consumer_config, cppkafka::Configuration producer_config) {
-        dhnsw::Worker worker(subhnsw_id, top_k, data_dim, hnsw, consumer_config, producer_config);
-        worker.startWork();
+    void worker_func(dhnsw::Worker* worker){
+        worker->startWork();
     }
 
-    void receiver_func(int process_id, int top_k, const cppkafka::Configuration& consumer_config,
-                       const cppkafka::Configuration& producer_config) {
-        Receiver receiver(process_id, top_k, consumer_config, producer_config);
-        receiver.receive();
+    void receiver_func(dhnsw::Receiver* receiver) {
+        receiver->receive();
     }
 
     void dhnsw_execute(ss::parameter& para) {
@@ -121,20 +115,20 @@ namespace dhnsw {
                                         para.hnsw_dir + "/hnsw_meta", para.map_address, producer_config, coordinator_consumer_config,
                                         para.sender_ef, para.slave_ef);
 
-        std::thread coordinator_threads[para.num_coordinator - 1];
+        dhnsw::Worker worker(sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
 
-        for(int i=0; i<para.num_coordinator-1; i++)
-            coordinator_threads[i] = std::thread(coordinator_func, process_id, sub_hnsw_id, para.dim, para.num_centroid,
-                    para.num_subhnsw, para.wake_up_controller, coordinator._subhnsw_addr, coordinator.getMetaGraph(),
-                    para.map_address, producer_config, coordinator_consumer_config, para.sender_ef, para.slave_ef);
+        Receiver receiver(process_id, para.topK, receiver_consumer_config, producer_config);
+
+        std::thread coordinator_threads[para.num_coordinator];
+        for(int i=0; i<para.num_coordinator; i++)
+            coordinator_threads[i] = std::thread(coordinator_func, &coordinator);
 
         std::thread worker_threads[para.num_worker];
         for(int i = 0; i < para.num_worker; i++)
-            worker_threads[i] = std::thread(worker_func, sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
+            worker_threads[i] = std::thread(worker_func, &worker);
 
-        std::thread receiver(receiver_func, process_id, para.topK, receiver_consumer_config, producer_config);
-
-        coordinator.startWork();
+//        std::thread receiver_thread(receiver_func, &receiver);
+        receiver.receive();
     }
 }
 
