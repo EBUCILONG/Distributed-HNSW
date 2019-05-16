@@ -27,4 +27,48 @@ namespace dhnsw {
             return std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch())
                     .count();
         }
+
+        class Timer{
+        private:
+            long long _last_time;
+        public:
+            Timer(){
+                update_time();
+            }
+
+            void update_time(){
+                _last_time = get_current_time();
+            }
+
+            virtual long long get_current_time() = 0;
+
+            long long get_span(){
+                return get_current_time() - _last_time;
+            }
+
+            long long span_and_update(){
+                long long this_time = get_current_time();
+                long long result = this_time - _last_time;
+                _last_time = this_time;
+                return result;
+            }
+
+            long long get_last_time(){
+                return _last_time;
+            }
+        };
+
+        class MiliTimer : public Timer{
+        public:
+            long long get_current_time(){
+                return get_current_time_milliseconds();
+            }
+        };
+
+        class NanoTimer : public Timer{
+        public:
+            long long get_current_time(){
+                return get_current_time_nanoseconds();
+            }
+        };
 }  // namespace husky
