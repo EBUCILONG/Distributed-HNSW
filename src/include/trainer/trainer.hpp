@@ -236,6 +236,7 @@ namespace dhnsw{
 
         cout << "sfkjl" << endl;
         dhnsw::MiliTimer miliTimer;
+        cout << "dlajflakjf" << endl;
         miliTimer.update_time();
 		cout << "skadjfjlasd" << endl;
 
