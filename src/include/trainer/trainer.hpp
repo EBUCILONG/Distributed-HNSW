@@ -229,7 +229,7 @@ namespace dhnsw{
 		save_map (map_path, map, aim_num_subhnsw);
 	}
 
-    void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, string partition_map_path, string hnsw_path, string cluster_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
+    void single_machine_trainer(int dimension, int aim_partition, int aim_num_subhnsw, string data_path, string centroid_path, string map_path, string partition_map_path, string hnsw_path, string partition_hnsw_path,string cluster_path, mt::Partition& partition, int hnsw_m, int hnsw_ef_cons){
 		omp_set_num_threads(31);
     	ss::Matrix<float> data(data_path);
         hnswlib::L2Space l2space(data.getDim());
@@ -259,9 +259,22 @@ namespace dhnsw{
         for (int i = 1; i < centroids.size(); i++) {
             meta.addPoint((void *) centroids[i].data(), (size_t) i);
         }
-		std::cout << "finish constructing meta graph using " << miliTimer.get_span() << " ms" << std::endl;
+
+		std::cout << "finish constructing meta graph using " << miliTimer.span_and_update() << " ms" << std::endl;
 		//NOTE: save hnsw
+
+		hnswlib::HierarchicalNSW<float> partition_hnsw(&l2space, data.getSize(), hnsw_m, hnsw_ef_cons);
+		for (int i = 0; i < 1; i++) {
+			partition_hnsw.addPoint((void *) data[i], (size_t) i);
+		}
+#pragma omp parallel for
+		for (int i = 1; i < centroids.size(); i++) {
+			partition_hnsw.addPoint((void *) data[i], (size_t) i);
+		}
+		std::cout << "finish constructing partition graph using " << miliTimer.span_and_update() << " ms" << std::endl;
+
         meta.saveIndex(hnsw_path);
+		partition_hnsw.saveIndex(partition_hnsw_path);
 
 		miliTimer.update_time();
 
@@ -291,7 +304,7 @@ namespace dhnsw{
 		partition.saveIndex(hnsw_path);
     }
 
-    void idvecs_hnsw_machine(string& data_path, string& hnsw_path, int total_part, int hnsw_m = 32, int hnsw_ef = 100){
+    void idvecs_hnsw_machine(string& data_path, string hnsw_path, int total_part, int hnsw_m = 32, int hnsw_ef = 100){
     	int dimension, size;
     	int counter = 0;
     	dhnsw::getIdvecsInfo(data_path, dimension,size);

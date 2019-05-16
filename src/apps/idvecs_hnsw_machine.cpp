@@ -21,7 +21,7 @@ int main(int argc, char** argv){
     ss::parameter para;
     LoadOptions(argc, argv, para);
     omp_set_num_threads(24);
-    dhnsw::idvecs_hnsw_machine(para.base_data, para.hnsw_dir, 10);
+    dhnsw::idvecs_hnsw_machine(para.base_data, para.out_dir + "/hnsw/partition", 10);
 }
 
 
