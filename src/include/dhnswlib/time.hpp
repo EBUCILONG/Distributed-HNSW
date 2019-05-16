@@ -33,7 +33,9 @@ namespace dhnsw {
             long long _last_time;
         public:
             Timer(){
+                std::cout << "ddgdg" << std::endl;
                 update_time();
+                std::cout << "asdaoijsd" << std::endl;
             }
 
             void update_time(){
@@ -61,6 +63,7 @@ namespace dhnsw {
         class MiliTimer : public Timer{
         public:
             MiliTimer(){
+                std::cout << "akjdhakjfdhkajs" << std::endl;
             }
 
             long long get_current_time(){
