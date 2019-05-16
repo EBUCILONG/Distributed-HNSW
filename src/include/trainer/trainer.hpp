@@ -54,13 +54,16 @@ namespace dhnsw{
 		assert(set.size() == size);
 	}
 
-    void get_cluster(vector<vector<int> >& clusters, std::vector<sm::Cluster*>* readyList){
+    int get_cluster(vector<vector<int> >& clusters, std::vector<sm::Cluster*>* readyList){
+		int counter = 0;
 		clusters.resize(readyList->size());
 		for (int i = 0; i < readyList->size(); i++){
 			for (int j = 0; j < readyList->operator[](i)->_datas.size(); i++){
 				clusters[i].push_back(readyList->operator[](i)->_datas[j]->get_index());
+				counter ++;
 			}
 		}
+		return counter;
 	}
 
 	void save_cluster(vector<vector<int> >& clusters, string path){
@@ -243,9 +246,10 @@ namespace dhnsw{
 
         std::cout << "[trainer]# finish clustering using " << miliTimer.span_and_update() << " ms" << std::endl;
 		vector<vector<int> > clusters;
-		get_cluster(clusters, readyList);
+		int cluster_size = get_cluster(clusters, readyList);
 		//NOTE:save cluster
 		save_cluster(clusters, cluster_path);
+		assert(cluster_size == data.getSize());
 
         hnswlib::HierarchicalNSW<float> meta(&l2space, centroids.size(), hnsw_m, hnsw_ef_cons);
         for (int i = 0; i < 1; i++) {
