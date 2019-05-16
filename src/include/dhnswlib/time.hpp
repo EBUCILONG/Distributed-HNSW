@@ -60,6 +60,9 @@ namespace dhnsw {
 
         class MiliTimer : public Timer{
         public:
+            MiliTimer(){
+            }
+
             long long get_current_time(){
                 return get_current_time_milliseconds();
             }
