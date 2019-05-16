@@ -60,14 +60,35 @@ namespace dhnsw {
             }
         };
 
-        class MiliTimer : public Timer{
+        class MiliTimer{
+        private:
+            long long _last_time;
         public:
             MiliTimer(){
-                std::cout << "akjdhakjfdhkajs" << std::endl;
+                update_time();
             }
 
             long long get_current_time(){
                 return get_current_time_milliseconds();
+            }
+
+            void update_time(){
+                _last_time = get_current_time();
+            }
+
+            long long get_span(){
+                return get_current_time() - _last_time;
+            }
+
+            long long span_and_update(){
+                long long this_time = get_current_time();
+                long long result = this_time - _last_time;
+                _last_time = this_time;
+                return result;
+            }
+
+            long long get_last_time(){
+                return _last_time;
             }
         };
 
