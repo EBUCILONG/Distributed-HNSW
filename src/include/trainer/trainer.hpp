@@ -234,8 +234,10 @@ namespace dhnsw{
     	ss::Matrix<float> data(data_path);
         hnswlib::L2Space l2space(data.getDim());
 
+        cout << "sfkjl" << endl;
         dhnsw::MiliTimer miliTimer;
         miliTimer.update_time();
+		count << "skadjfjlasd" << endl;
 
         vector<vector<float> > centroids;
         std::vector<sm::Cluster*>* readyList = get_centroids(data, aim_partition, centroids);
