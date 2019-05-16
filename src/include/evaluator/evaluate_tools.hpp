@@ -46,13 +46,13 @@ namespace eva{
 		assert(meta.max_elements_ == map.size());
 		int sizer = query.getSize();
 
-		vector<int> ks;
-		for(int i = 1; i <= 10; i++)
-			ks.push_back(10 * i);
+		vector<int> ks = {1, 5, 10, 20, 50, 100};
+//		for(int i = 1; i <= 10; i++)
+//			ks.push_back(10 * i);
 //		for (int i = 1; i <= 8; i++)
 //			efs.push_back(100 + 50 * i);
 
-		cout << "k   avg   stv   time(us)   specific data" << endl;
+		cout << "k   avg   stv   time(ms)" << endl;
 		meta.setEf(100);
 		for (int i = 0; i < ks.size(); i++){
 			long long total_time = 0;
@@ -73,10 +73,7 @@ namespace eva{
 			cout << ks[i] << " "
 				 << dhnsw::avg(counter) / query.getSize() << " "
 	 			 << dhnsw::stv(counter) / query.getSize() << " "
-	 			 << (float)total_time / (float)query.getSize() << " ";
-			for (int j = 0; j < counter.size(); j++)
-				cout << counter[j] << " ";
-			cout << endl;
+	 			 << (float)total_time / (float)query.getSize() << endl;
 		}
 	}
 }
