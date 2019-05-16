@@ -233,7 +233,6 @@ namespace sm{
 
 		void cluster_balanced (int iteration){
 			float NoverK = (float)_size / (float)_aimNPartition;
-			std::cout << "nover " << NoverK << std::endl;
 
 			for (int i = 0; i < _aimNPartition; i++){
 				Cluster *buffer = new Cluster(_dimension, _datas[i]->get_data());
@@ -244,7 +243,6 @@ namespace sm{
 			for (int i = 0; i < iteration; i++){
 				for (int j = 0; j < _aimNPartition; j++)
 					_childrens[j]->reset_data();
-			std::cout << "start assign" << std::endl;
 
 #pragma omp parallel for
 				for(int j = 0; j < _size; j++){
@@ -254,8 +252,6 @@ namespace sm{
 				}
 
 			//   cout << "finish assign cluster" << endl;
-
-				std::cout << "updating centroid" << std::endl;
 #pragma omp parallel for
 				for(int j = 0; j < _childrens.size(); j++){
 					_childrens[j]->update_centroid();
