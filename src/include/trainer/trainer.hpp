@@ -237,7 +237,7 @@ namespace dhnsw{
         cout << "sfkjl" << endl;
         dhnsw::MiliTimer miliTimer;
         miliTimer.update_time();
-		count << "skadjfjlasd" << endl;
+		cout << "skadjfjlasd" << endl;
 
         vector<vector<float> > centroids;
         std::vector<sm::Cluster*>* readyList = get_centroids(data, aim_partition, centroids);
