@@ -45,6 +45,7 @@ namespace dhnsw{
 
 		int dim;
 		fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+		std::cout << "dimension" << dim << std::endl;
 		unsigned step = dim * sizeof(float) + 4 + 4;
 		assert(fileSize % step == 0);
 		uint64_t cardinality = fileSize / step;

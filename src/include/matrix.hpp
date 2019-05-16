@@ -37,7 +37,7 @@
 #include <vector>
 
 #include "utils/calculator.hpp"
-//#include "utils/hdfs_core.hpp"
+#include "utils/hdfs_core.hpp"
 
 using std::vector;
 
