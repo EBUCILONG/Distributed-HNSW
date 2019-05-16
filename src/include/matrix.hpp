@@ -28,7 +28,8 @@
 
 #include <assert.h>
 #include <hdfs.h>
-
+#include <Eigen/Dense>
+#include <Eigen/SVD>
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -327,6 +328,24 @@ namespace ss {
 
         int getSize() const {
             return _matrix.getSize();
+        }
+    };
+
+    class Rotator {
+    private:
+        const int _dimension;
+        Eigen::MatrixXf _rot_matrix;
+    public:
+        Rotator(int dimension): _dimension(dimension) {
+            Eigen::MatrixXf rot = Eigen::MatrixXf::Random(dimension, dimension);
+            Eigen::JacobiSVD<Eigen::MatrixXf> svd(rot, Eigen::ComputeThinU);
+            _rot_matrix = svd.matrixU();
+        }
+
+        void* rotate(float* old_vec, float* ret_vec) {
+            Eigen::MatrixXf mat = Eigen::Map<Eigen::MatrixXf>(old_vec, _dimension, 1);
+            Eigen::MatrixXf ret_mat = _rot_matrix * mat;
+            for(int i=0;i<_dimension;i++) ret_vec[i] = ret_mat.data()[i];
         }
     };
 
