@@ -55,7 +55,6 @@ namespace ss {
         vector<int> id_;
 
         ~Matrix() {
-        	std::cout << "matrix die" << std::endl;
             std::free(_data);
         }
         explicit Matrix(const std::string &path): _data(NULL) {
