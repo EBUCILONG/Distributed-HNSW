@@ -304,6 +304,37 @@ namespace dhnsw{
 		partition.saveIndex(hnsw_path);
     }
 
+//	void idvecs_hnsw_machine(string& data_path, string hnsw_path, int hnsw_m = 32, int hnsw_ef = 100){
+//		int dimension, size;
+//		int counter = 0;
+//		dhnsw::getIdvecsInfo(data_path, dimension,size);
+//		cout << "#[trainer] matrix total size: " << size  <<" with dim: " << dimension << endl;
+//		hnswlib::L2Space l2space(dimension);
+//		hnswlib::HierarchicalNSW<float> hnsw(&l2space, size, hnsw_m, hnsw_ef);
+//		std::set<int> set;
+//		long long start_time = dhnsw::get_current_time_milliseconds();
+//
+//		for (int part = 0; part < total_part; part++){
+//			ss::Matrix<float> data(data_path, part, total_part);
+//			cout << "#[trainer] start to assert "<< part << " part" << endl;
+//			for (int i = 0; i < 1; i++) {
+//				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
+//			}
+//#pragma omp parallel for
+//			for (int i = 1; i < data.getSize(); i++) {
+//				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
+//			}
+//			counter += data.getSize();
+//			for (int i = 0; i < data.getSize(); i++)
+//				set.insert(data.id_[i]);
+//			cout << "#[trainer] finish assert " << part << " part" << endl;
+//		}
+//		cout << "#[trainer] use " << dhnsw::get_current_time_milliseconds() - start_time << " miliseconds" << endl;
+//		assert(counter == size);
+//		assert(set.size() == size);
+//		hnsw.saveIndex(hnsw_path);
+//	}
+
     void idvecs_hnsw_machine(string& data_path, string hnsw_path, int total_part, int hnsw_m = 32, int hnsw_ef = 100){
     	int dimension, size;
     	int counter = 0;
