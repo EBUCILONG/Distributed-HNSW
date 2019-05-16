@@ -1,1 +1,0 @@
-cmd='/data/opt/brew/Cellar/cmake/3.10.1/bin/cmake;-DCMAKE_INSTALL_PREFIX:PATH=/data/sydeng/repositary/hnsw-repo/Distributed-HNSW/bui/src/include/husky;-DWITH_GFLAGS=OFF;-DBUILD_TESTING=OFF;-DBUILD_SHARED_LIBS=OFF;-GUnix Makefiles;<SOURCE_DIR><SOURCE_SUBDIR>'
