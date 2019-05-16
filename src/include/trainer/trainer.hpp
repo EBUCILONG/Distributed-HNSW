@@ -58,7 +58,7 @@ namespace dhnsw{
 		int counter = 0;
 		clusters.resize(readyList->size());
 		for (int i = 0; i < readyList->size(); i++){
-			for (int j = 0; j < readyList->operator[](i)->_datas.size(); i++){
+			for (int j = 0; j < readyList->operator[](i)->_datas.size(); j++){
 				clusters[i].push_back(readyList->operator[](i)->_datas[j]->get_index());
 				counter ++;
 			}
