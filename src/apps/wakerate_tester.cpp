@@ -22,7 +22,7 @@ using std::string;
 int main(int argc, char** argv){
 	ss::parameter para;
 	LoadOptions(argc, argv, para);
-	eva::test_wake_rate(para.out_dir + "/hnsw/meta", para.out_dir + "/map", para.query_data);
+	eva::test_wake_rate(para.out_dir + "/hnsw/hnsw_meta", para.out_dir + "/map", para.query_data);
 }
 
 

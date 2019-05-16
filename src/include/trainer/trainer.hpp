@@ -45,6 +45,10 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
     	fout.close();
     }
 
+    void save_graph (int num_edges, vector<vector<int> >& graph, string path){
+
+	}
+
     void save_centroids (string out_path, vector<vector<float> > centroids){
     	std::ofstream fout(out_path);
     	int dim = centroids[0].size();
@@ -120,6 +124,7 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
         for (int i = 1; i < centroids.size(); i++) {
             meta.addPoint((void *) centroids[i].data(), (size_t) i);
         }
+		meta.saveIndex(hnsw_path);
         std::cout << "finish constructing meta graph" << std::endl;
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
@@ -136,10 +141,12 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
         		counter ++;
         	}
         }
-        assert(counter == data.getSize());
+        if(counter != data.getSize()) {
+        	cout << "[error]# counter != data size" << endl;
+			assert(counter == data.getSize());
+		}
 
         save_map(partition_map_path, partition_map,aim_num_subhnsw);
-        meta.saveIndex(hnsw_path);
         save_map (map_path, map, aim_num_subhnsw);
         save_centroids (centroid_path, centroids);
     }
