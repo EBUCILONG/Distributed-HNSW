@@ -52,6 +52,7 @@ namespace mt{
             if(!xadj || !adjncy || !adjwgt || !adjwgt_t) {
                 std::cout << "#[error] Failed to allocate memory for graph file." << std::endl;
                 MPI_Abort(MPI_COMM_WORLD, 0);
+                assert(0);
             }
             // fill in the arrays
 //            cout << "#[sender] inside getPartition after pointer check" << endl;
@@ -75,7 +76,13 @@ namespace mt{
             xadj[n] = pos_count;
 //            cout << "#[sender] inside getPartition after fill in arrays" << endl;
             // inverse the weights
-            for(int i=0;i<m;i++) adjwgt[i] = _weight_func(max_weight - adjwgt_t[i]);
+            for(int i=0;i<m;i++) {
+                adjwgt[i] = _weight_func(max_weight - adjwgt_t[i]);
+                if(adjwgt[i] < 0) {
+                    cout << "[PART] Weight of a edge is less than zero." << endl;
+                    assert(0);
+                }
+            }
 //            cout << "#[sender] inside getPartition after weight inverse" << endl;
             // run kaffpa
             double imbalance = 0.0065;

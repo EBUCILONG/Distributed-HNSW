@@ -88,7 +88,7 @@ std::vector<sm::Cluster*>* get_centroids(ss::Matrix<float>& data, int aim_partit
 		int num_edges = meta.getLevel0Graph(graph);
 		vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
 
-		std::cout << "total time in milisecond " << get_current_time_milliseconds() - start_time << std::endl;
+		std::cout << "total time in millisecond " << get_current_time_milliseconds() - start_time << std::endl;
 
 		vector <int> partition_sizes(aim_num_subhnsw, 0);
 
