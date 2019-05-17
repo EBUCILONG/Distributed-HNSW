@@ -59,6 +59,7 @@ SET(EXAMPLES
     #idvecs_hnsw_machine
     #load_hnsw
     #sift1k
+    start_customer_rotate
 )
 
 #add_executable(interface_test interface/kaHIP_interface.cpp)
