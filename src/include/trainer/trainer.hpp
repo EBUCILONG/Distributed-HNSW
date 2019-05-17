@@ -221,7 +221,9 @@ namespace dhnsw{
 		hnswlib::L2Space l2space(dimension);
 		hnswlib::HierarchicalNSW<float> meta(&l2space, hnsw_path);
 		int num_edges = meta.getLevel0Graph(graph);
+		cout << "here" << endl;
 		vector<int> map = partition.getPartition(graph, centroids, num_edges, aim_num_subhnsw);
+		cout << "now here" << endl;
 		vector<int> partition_map;
 		get_partition_map(size, partition_map, clusters, map);
 
