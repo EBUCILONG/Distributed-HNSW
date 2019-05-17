@@ -141,24 +141,23 @@ namespace dhnsw {
         cppkafka::Producer _producer;
         int _messages_sent;
         std::chrono::milliseconds _timeout;
-        ss::Rotator _rotator;
     public:
         RotateCustomer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
                 _querys(querys),
                 _num_subhnsw(num_subhnsw),
                 _producer(config),
                 _messages_sent(0),
-                _timeout(30000),
-                _rotator(querys.getDim()) {
+                _timeout(30000) {
         }
 
         void send_message(unsigned interval){
             int sizer = _querys.getSize();
             int dimer = _querys.getDim();
+            ss::Rotator rotator(dimer);
             string topic("query_t");
             for (int i = 0; i < sizer; i++) {
                 float vect[dimer];
-                _rotator.rotate(_querys[i], vect);
+                rotator.rotate(_querys[i], vect);
                 QueryMessage qm(i, vect, dimer);
                 string payload = qm.toString();
                 while(true) {
