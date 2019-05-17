@@ -132,4 +132,54 @@ namespace dhnsw {
             }
         }
     };
+
+
+    class RotateCustomer{
+    private:
+        ss::Matrix<float>& _querys;
+        int _num_subhnsw;
+        cppkafka::Producer _producer;
+        int _messages_sent;
+        std::chrono::milliseconds _timeout;
+        ss::Rotator _rotator;
+    public:
+        Customer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
+                _querys(querys),
+                _num_subhnsw(num_subhnsw),
+                _producer(config),
+                _messages_sent(0),
+                _timeout(30000),
+                _rotator(querys.getDim()) {
+        }
+
+        void send_message(unsigned interval){
+            int sizer = _querys.getSize();
+            int dimer = _querys.getDim();
+            string topic("query_t");
+            for (int i = 0; i < sizer; i++) {
+                float vect[dimer];
+                _rotator.rotate(_querys[i], vect);
+                QueryMessage qm(i, vect, dimer);
+                string payload = qm.toString();
+                while(true) {
+                    try {
+                        _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+                    }
+                    catch (cppkafka::HandleException error) {
+                        _producer.poll();
+                        continue;
+                    }
+                    break;
+                }
+//                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
+            }
+        }
+
+        void idle(){
+            while(true){
+                cout << "idling" << endl;
+                sleep(2);
+            }
+        }
+    };
 }

@@ -47,8 +47,8 @@ SET(EXAMPLES
     #start_benchmark_evaluator
     #start_throughput_evaluator
     #start_customer_endless
-    ground_truth
-    recover_single_machine
+    #ground_truth
+    #recover_single_machine
     #tt
     #single_machine
     #binary_machine
@@ -58,6 +58,7 @@ SET(EXAMPLES
     #idvecs_hnsw_machine
     #load_hnsw
     #sift1k
+    start_customer_rotate
 )
 
 #add_executable(interface_test interface/kaHIP_interface.cpp)
