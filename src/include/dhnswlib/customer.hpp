@@ -143,7 +143,7 @@ namespace dhnsw {
         std::chrono::milliseconds _timeout;
         ss::Rotator _rotator;
     public:
-        Customer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
+        RotateCustomer(int num_subhnsw, ss::Matrix<float>& querys, cppkafka::Configuration config):
                 _querys(querys),
                 _num_subhnsw(num_subhnsw),
                 _producer(config),
