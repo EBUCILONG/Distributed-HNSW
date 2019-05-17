@@ -48,6 +48,7 @@ SET(EXAMPLES
     #start_throughput_evaluator
     #start_customer_endless
     ground_truth
+    recover_single_machine
     #tt
     #single_machine
     #binary_machine
