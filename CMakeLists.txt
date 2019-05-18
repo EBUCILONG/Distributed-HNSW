@@ -47,8 +47,9 @@ SET(EXAMPLES
     #start_benchmark_evaluator
     #start_throughput_evaluator
     #start_customer_endless
-    #ground_truth
-    #recover_single_machine
+    ground_truth
+    recover_single_machine
+    naive_machine
     #tt
     #single_machine
     #binary_machine

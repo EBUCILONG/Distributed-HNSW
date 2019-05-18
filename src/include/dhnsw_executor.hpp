@@ -40,11 +40,11 @@ using std::thread;
 
 namespace dhnsw {
 
-    void coordinator_func(dhnsw::Coordinator* coordinator) {
+    void coordinator_func(dhnsw::Coordinator* coordinator, int naive=0) {
 //        dhnsw::Coordinator coordinator(process_id, hnsw_id, vec_dim, num_centroid, num_subhnsw, wakeup_controller,
 //                                       subhnsw, metahnsw, map_dir, producer_config, consumer_config,
 //                                       meta_ef, sub_ef);
-        coordinator->startWork();
+        coordinator->startWork(naive);
     }
 
     void worker_func(dhnsw::Worker* worker){
@@ -55,7 +55,7 @@ namespace dhnsw {
         receiver->receive();
     }
 
-    void dhnsw_execute(ss::parameter& para) {
+    void dhnsw_execute(ss::parameter& para, int naive=0) {
         // get task from ZooKeeper
         int sub_hnsw_id = -1, process_id = -1;
         TaskControl tc(para.hosts);
@@ -121,7 +121,7 @@ namespace dhnsw {
 
         std::thread coordinator_threads[para.num_coordinator];
         for(int i=0; i<para.num_coordinator; i++)
-            coordinator_threads[i] = std::thread(coordinator_func, &coordinator);
+            coordinator_threads[i] = std::thread(coordinator_func, &coordinator, naive);
 
         std::thread worker_threads[para.num_worker];
         for(int i = 0; i < para.num_worker; i++)

@@ -224,9 +224,15 @@ namespace dhnsw {
 			return QueryMessage(_data_dim, string_msg);
 		}
 
-        void produceTask(int query_id, vector<float>& query, long long start_time){
+        void produceTask(int query_id, vector<float>& query, long long start_time, int num_subhnsw=0){
 			vector<int> aim_subhnsw_id;
-			getWakeUpId(query, aim_subhnsw_id);
+			if(num_subhnsw == 0) {
+				getWakeUpId(query, aim_subhnsw_id);
+			}
+			else{
+				for (int i = 0; i < num_subhnsw; i++)
+					aim_subhnsw_id.push_back(i);
+			}
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
@@ -245,7 +251,7 @@ namespace dhnsw {
 			}
         }
 
-        void startWork(){
+        void startWork(int num_subhnsw=0){
 		    int counter = 0;
 		    long long total_time = 0;
 		    long long work_time = 0;
@@ -253,7 +259,7 @@ namespace dhnsw {
         	while(true){
         		QueryMessage msg = getQuery();
 //        		long long work_start_time = get_current_time_nanoseconds();;
-        		produceTask(msg.query_id_, msg.query_, msg.start_time_);
+        		produceTask(msg.query_id_, msg.query_, msg.start_time_, num_subhnsw);
 //        		long long end_time = get_current_time_milliseconds();
 //                total_time += end_time - start_time;
 //                start_time = end_time;
