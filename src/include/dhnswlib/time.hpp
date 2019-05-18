@@ -33,9 +33,7 @@ namespace dhnsw {
             long long _last_time;
         public:
             Timer(){
-                std::cout << "ddgdg" << std::endl;
                 update_time();
-                std::cout << "asdaoijsd" << std::endl;
             }
 
             void update_time(){
