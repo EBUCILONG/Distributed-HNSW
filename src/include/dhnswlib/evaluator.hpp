@@ -59,7 +59,7 @@ namespace dhnsw {
                 ResultMessage* result_msg;
                 bool ret = receiveAnswer(result_msg, _consumer, _top_k);
                 if(!ret) continue;  // failed to receive msg
-                else if(result_msg->_result_ids > 10000)
+                else if(result_msg->_query_id > 10000)
                     continue;
                 else {
                     // msg received
