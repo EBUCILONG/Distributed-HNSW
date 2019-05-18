@@ -123,6 +123,7 @@ namespace dhnsw {
                 }
 //                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
+            _producer.flush();
         }
 
         void idle(){
