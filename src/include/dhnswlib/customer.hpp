@@ -109,7 +109,7 @@ namespace dhnsw {
             int dimer = _querys.getDim();
             string topic("query_t");
             for (int i = 0; i < sizer; i++) {
-                QueryMessage qm(i, _querys[i], dimer);
+                QueryMessage qm(_messages_sent, _querys[i], dimer);
                 string payload = qm.toString();
                 while(true) {
                     try {
@@ -121,6 +121,7 @@ namespace dhnsw {
                     }
                     break;
                 }
+                _messages_sent ++;
 //                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
         }
@@ -158,7 +159,7 @@ namespace dhnsw {
             for (int i = 0; i < sizer; i++) {
                 float vect[dimer];
                 rotator.rotate(_querys[i], vect);
-                QueryMessage qm(i, vect, dimer);
+                QueryMessage qm(_messages_sent, vect, dimer);
                 string payload = qm.toString();
                 while(true) {
                     try {
@@ -170,6 +171,7 @@ namespace dhnsw {
                     }
                     break;
                 }
+                _messages_sent ++;
 //                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
         }
