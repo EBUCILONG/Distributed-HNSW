@@ -77,7 +77,7 @@ namespace mt{
 //            cout << "#[sender] inside getPartition after fill in arrays" << endl;
             // inverse the weights
             for(int i=0;i<m;i++) {
-                adjwgt[i] = _weight_func(max_weight - adjwgt_t[i]);
+                adjwgt[i] = _weight_func(max_weight - adjwgt_t[i] + 0.01);
                 if(adjwgt[i] < 0) {
                     cout << "[PART] Weight of a edge is less than zero." << endl;
                     assert(0);
