@@ -56,7 +56,7 @@ namespace dhnsw {
 //            for(int i = 0; i < vec_dim; i++)
 //                cout << query_[i] << " ";
 //            cout << endl;
-            start_time_ = get_current_time_milliseconds();
+            start_time_ = get_current_time_nanoseconds();
         }
 
         QueryMessage(int vec_dim, string input_string){

@@ -110,6 +110,33 @@ namespace dhnsw {
             _save_file << start_time << " " << end_time << endl;
         }
 
+        void evaluate(){
+            cout << "[EVAL] Evaluator started." << endl;
+            cout << "[EVAL]\t# Received\t|\tDelay. Time\t|\t" << endl;
+            long long counter = 0;
+            long long current_time;
+            while (true) {
+                // receive message
+                cppkafka::Message msg = _consumer.poll();
+                if(!msg) continue;
+                if(msg.get_error()) {
+                    if (!msg.is_eof()) {
+                        // error
+//                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+                    }
+                    continue;
+                }
+                // a message is received
+                _consumer.store_offset(msg);
+                const cppkafka::Buffer& msg_body = msg.get_payload();
+                string msg_string = msg_body;
+                dhnsw::ResultMessage rm(10, msg_string);
+                counter++;
+                current_time = get_current_time_nanoseconds();
+                cout << "[EVAL]\t" << counter << "\t|\t" << current_time -  rm._start_time<< endl;
+            }
+        }
+
         void evaluate(int print_interval) {
             assert(print_interval != 0);
             cout << "[EVAL] Evaluator started." << endl;
@@ -125,7 +152,7 @@ namespace dhnsw {
                 if(msg.get_error()) {
                     if (!msg.is_eof()) {
                         // error
-                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+//                        cout << "[RECV] Some error occured when polling from kafka." << endl;
                     }
                     continue;
                 }

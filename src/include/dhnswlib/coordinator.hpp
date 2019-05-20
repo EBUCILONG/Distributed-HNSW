@@ -249,6 +249,7 @@ namespace dhnsw {
 					break;
 				}
 			}
+
         }
 
         void startWork(int num_subhnsw=0){
