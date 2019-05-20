@@ -60,6 +60,7 @@ SET(EXAMPLES
     #load_hnsw
     #sift1k
     start_customer_rotate
+    start_delay_evaluator
 )
 
 #add_executable(interface_test interface/kaHIP_interface.cpp)
