@@ -31,7 +31,7 @@ namespace dhnsw {
         if(msg.get_error()) {
             if (!msg.is_eof()) {
                 // error
-                cout << "[RECV] Some error occured when polling from kafka." << endl;
+//                cout << "[RECV] Some error occured when polling from kafka." << endl;
             }
             return false;
         }
