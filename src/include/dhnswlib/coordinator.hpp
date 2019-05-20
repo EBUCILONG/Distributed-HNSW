@@ -209,7 +209,7 @@ namespace dhnsw {
 				if (msg) {
 					if (msg.get_error()) {
 						if (!msg.is_eof()) {
-							cout << "#[error #] receive error message from kafka" << endl;
+//							cout << "#[error #] receive error message from kafka" << endl;
 						}
 						continue;
 					} else {

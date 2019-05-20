@@ -133,7 +133,7 @@ namespace dhnsw {
                 if (msg) {
                     if (msg.get_error()) {
                         if (!msg.is_eof()) {
-                            cout << "#[error #] receive error message from kafka" << endl;
+//                            cout << "#[error #] receive error message from kafka" << endl;
                         }
                         continue;
                     } else {
@@ -160,10 +160,7 @@ namespace dhnsw {
         }
 
         void startWork(){
-            int counter = 0;
-            long long total_time = 0;
             while(true) {
-                long long start_time = get_current_time_milliseconds();
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
                 string topic("receiver_t_");
@@ -178,13 +175,6 @@ namespace dhnsw {
                         continue;
                     }
                     break;
-                }
-                long long end_time = get_current_time_milliseconds();
-                total_time += end_time - start_time;
-                counter ++;
-                if(counter % 10000 == 0) {
-                    cout << "[WORK] avg time: " << (float)total_time / 10000 << endl;
-                    total_time = 0;
                 }
             }
         }
