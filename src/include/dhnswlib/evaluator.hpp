@@ -148,7 +148,7 @@ namespace dhnsw {
                 dhnsw::ResultMessage rm(10, msg_string);
                 counter++;
                 current_time = get_current_time_nanoseconds();
-                long long delay = rm._start_time - rm._end_time;
+                long long delay = rm._end_time - rm._start_time;
                 cout << "[EVAL]\t" << counter << "\t|\t" << delay<< endl;
                 times.push_back(delay);
                 if (counter == print_interval)

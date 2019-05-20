@@ -122,7 +122,6 @@ namespace dhnsw {
                     // Increment counter & check if received data from all slaves
                     answer.n_slaves ++;
                     if (answer.n_slaves == result_msg->_total_piece) {
-                        long long end_time = get_current_time_nanoseconds();
                         _commit_answers(answer.p_queue, result_msg->_query_id);
                         _query_map.erase(result_msg->_query_id);
 //                        cout << "[RECV] Sent " << counter << " messages." << endl;
