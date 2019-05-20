@@ -173,7 +173,7 @@ namespace dhnsw {
                     break;
                 }
                 if (interval != 0){
-                    sleep(interval);
+                    usleep(interval);
                 }
                 _messages_sent ++;
 //                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
