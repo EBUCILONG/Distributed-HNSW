@@ -117,6 +117,19 @@ namespace dhnsw {
             vector<long long> times;
             long long counter = 0;
             long long current_time;
+            for (int i = 0; i < 2000; i++){
+                cppkafka::Message msg = _consumer.poll();
+                if(!msg) continue;
+                if(msg.get_error()) {
+                    if (!msg.is_eof()) {
+                        // error
+//                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+                    }
+                    continue;
+                }
+                // a message is received
+                _consumer.store_offset(msg);
+            }
             while (true) {
                 // receive message
                 cppkafka::Message msg = _consumer.poll();
