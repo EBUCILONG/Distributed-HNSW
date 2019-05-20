@@ -11,6 +11,7 @@
 #include <utility>
 #include <string>
 #include <sstream>
+#include <algorithm>
 #include <stdlib.h>
 #include <sys/timeb.h>
 #include <sys/types.h>
@@ -110,9 +111,10 @@ namespace dhnsw {
             _save_file << start_time << " " << end_time << endl;
         }
 
-        void evaluate(){
+        void evaluate(int print_interval, bool delay){
             cout << "[EVAL] Evaluator started." << endl;
             cout << "[EVAL]\t# Received\t|\tDelay. Time\t|\t" << endl;
+            vector<long long> times;
             long long counter = 0;
             long long current_time;
             while (true) {
@@ -133,8 +135,14 @@ namespace dhnsw {
                 dhnsw::ResultMessage rm(10, msg_string);
                 counter++;
                 current_time = get_current_time_nanoseconds();
-                cout << "[EVAL]\t" << counter << "\t|\t" << current_time -  rm._start_time<< endl;
+                long long delay = current_time -  rm._start_time;
+                cout << "[EVAL]\t" << counter << "\t|\t" << delay<< endl;
+                times.push_back(delay);
+                if (counter == print_interval)
+                    break;
             }
+            std::sort(times.begin(), times.end());
+            cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << endl;
         }
 
         void evaluate(int print_interval) {
