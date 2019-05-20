@@ -117,19 +117,19 @@ namespace dhnsw {
             vector<long long> times;
             long long counter = 0;
             long long current_time;
-//            for (int i = 0; i < 10000; i++){
-//                cppkafka::Message msg = _consumer.poll();
-//                if(!msg) continue;
-//                if(msg.get_error()) {
-//                    if (!msg.is_eof()) {
-//                        // error
-////                        cout << "[RECV] Some error occured when polling from kafka." << endl;
-//                    }
-//                    continue;
-//                }
-//                // a message is received
-//                _consumer.store_offset(msg);
-//            }
+            for (int i = 0; i < 2000; i++){
+                cppkafka::Message msg = _consumer.poll();
+                if(!msg) continue;
+                if(msg.get_error()) {
+                    if (!msg.is_eof()) {
+                        // error
+//                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+                    }
+                    continue;
+                }
+                // a message is received
+                _consumer.store_offset(msg);
+            }
             while (true) {
                 // receive message
                 cppkafka::Message msg = _consumer.poll();
@@ -155,7 +155,6 @@ namespace dhnsw {
                     break;
             }
             std::sort(times.begin(), times.end());
-            times.erase(times.begin()+times.size()/2, times.end());
             cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << endl;
         }
 
