@@ -78,7 +78,7 @@ namespace dhnsw {
                 result_ids.push_back(pq.top().second);
                 pq.pop();
             }
-            ResultMessage result(query_id, _query_map[query_id].n_slaves, _top_k, _query_map[query_id].start_time, get_current_time_milliseconds(), result_ids, dists);
+            ResultMessage result(query_id, _query_map[query_id].n_slaves, _top_k, _query_map[query_id].start_time, get_current_time_nanoseconds(), result_ids, dists);
             string topic = "evaluation";
             string payload = result.toString();
             while(true) {
@@ -122,6 +122,7 @@ namespace dhnsw {
                     // Increment counter & check if received data from all slaves
                     answer.n_slaves ++;
                     if (answer.n_slaves == result_msg->_total_piece) {
+                        long long end_time = get_current_time_nanoseconds();
                         _commit_answers(answer.p_queue, result_msg->_query_id);
                         _query_map.erase(result_msg->_query_id);
 //                        cout << "[RECV] Sent " << counter << " messages." << endl;
