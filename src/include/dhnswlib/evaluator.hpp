@@ -117,7 +117,7 @@ namespace dhnsw {
             vector<long long> times;
             long long counter = 0;
             long long current_time;
-            for (int i = 0; i < 2000; i++){
+            for (int i = 0; i < 10000; i++){
                 cppkafka::Message msg = _consumer.poll();
                 if(!msg) continue;
                 if(msg.get_error()) {
