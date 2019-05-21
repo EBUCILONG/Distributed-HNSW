@@ -111,7 +111,7 @@ namespace ss {
         }
 
         template<typename DATATYPE>
-		friend void loadPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& hdfs_ip, int hdfs_port, const std::string& dataFile, int aim_part, int total_part, int data_num) {
+		void loadPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& hdfs_ip, int hdfs_port, const std::string& dataFile, int aim_part, int total_part, int data_num) {
         	Matrix<DATATYPE>& data  = *data_point;
 
 //        	std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
@@ -175,7 +175,7 @@ namespace ss {
         }
 
         template<typename DATATYPE>
-		friend void loadDiskPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile, int aim_part, int total_part) {
+		void loadDiskPartIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile, int aim_part, int total_part) {
 			Matrix<DATATYPE>& data  = *data_point;
 
         	std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
@@ -234,7 +234,7 @@ namespace ss {
 		}
 
         template<typename DATATYPE>
-        friend void loadIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile) {
+        void loadIdvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile) {
         	Matrix<DATATYPE>& data  = *data_point;
 
 			std::ifstream fin(dataFile.c_str(), std::ios::binary | std::ios::ate);
@@ -273,7 +273,7 @@ namespace ss {
         }
 
         template<typename DATATYPE>
-        friend void loadFvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile) {
+        void loadFvecs(Matrix<DATATYPE> * data_point, const std::string& dataFile) {
 
             Matrix<DATATYPE>& data  = *data_point;
 
