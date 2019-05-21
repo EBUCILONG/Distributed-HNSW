@@ -52,12 +52,16 @@ namespace dhnsw{
 
     int ip_partition(int num_subhnsw, int num_replica, string ball_path,string truth_path, string reverse_truth_path, string base_file, string out_dir, mt::Partition& partition,int hnsw_m = 32, int hnsw_ef = 100){
         omp_set_num_threads(24);
-        vector<vector<float> > ball;
-        load_ball(ball, ball_path);
+        ss::Matrix<float> ball(ball_path);
+        vector<vector<float> > vec_ball(ball.getSize());
+        for (int i = 0; i < ball.getSize(); i++){
+            for (int j = 0; j < ball.getDim(); j++)
+                vec_ball[i].push_back(ball[i][j]);
+        }
         ss::Matrix<int> groud_truth(truth_path);
         ss::Matrix<int> reverse_truth(reverse_truth_path);
-        vector<vector<int> > sub_space(ball.size());
-        vector<int> sub_size(ball.size());
+        vector<vector<int> > sub_space(ball.getSize());
+        vector<int> sub_size(ball.getSize());
         std::set<int> set;
         for (int i = 0; i < groud_truth.getSize(); i++)
             set.insert(i);
@@ -74,23 +78,23 @@ namespace dhnsw{
             sub_space[*reverse_truth[*it]].push_back(*it);
         }
 
-        hnswlib::L2Space l2space(ball[0].size());
-        hnswlib::HierarchicalNSW<float> meta(&l2space, ball.size(), hnsw_m, hnsw_ef);
+        hnswlib::L2Space l2space(ball.getDim());
+        hnswlib::HierarchicalNSW<float> meta(&l2space, ball.getSize(), hnsw_m, hnsw_ef);
 
         for (int i = 0; i < 1; i++) {
-            meta.addPoint((void *) ball[i].data(), (size_t) i);
+            meta.addPoint((void *) ball.getDim(), (size_t) i);
         }
 #pragma omp parallel for
-        for (int i = 1; i < ball.size(); i++) {
-            meta.addPoint((void *) ball[i].data(), (size_t) i);
+        for (int i = 1; i < ball.getSize(); i++) {
+            meta.addPoint((void *) ball.getDim(), (size_t) i);
         }
 
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
-        for (int i = 0; i < ball.size(); i++){
+        for (int i = 0; i < ball.getSize(); i++){
             sub_size[i] = sub_space[i].size();
         }
-        vector<int> map = partition.getPartition(graph, ball, sub_size, num_edges, num_subhnsw);
+        vector<int> map = partition.getPartition(graph, vec_ball, sub_size, num_edges, num_subhnsw);
         vector<int> space_size(num_subhnsw, 0);
         vector<vector<int> > partition_result(num_subhnsw);
         for (int i = 0; i < map.size(); i++){
@@ -110,7 +114,7 @@ namespace dhnsw{
 
         ifstream fin(base_file);
 
-        long long step = (long long) (ball[0].size() * sizeof(float) + sizeof(int));
+        long long step = (long long) (ball.getDim() * sizeof(float) + sizeof(int));
 
         for(int i = 0; i < num_subhnsw; i++){
             ofstream fout(out_dir + "/subfile/partition" + std::to_string(i), std::ios::binary);
