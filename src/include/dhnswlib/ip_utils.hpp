@@ -25,8 +25,6 @@
 #include "dhnswlib/customer.hpp"
 #include "dhnswlib/time.hpp"
 #include "waker/waker.hpp"
-#include "hnswlib/hnswalg.h"
-#include "utils/binstream.hpp"
 #include "utils/calculator.hpp"
 #include "distributed/partition.hpp"
 
