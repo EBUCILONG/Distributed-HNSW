@@ -12,7 +12,6 @@
 
 #include "parameters.hpp"
 #include "distributed/partition.hpp"
-#include "trainer/trainer.hpp"
 #include "executor.hpp"
 #include "dhnswlib/ip_utils.hpp"
 
