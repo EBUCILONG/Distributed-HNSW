@@ -57,6 +57,7 @@ namespace dhnsw{
         ss::Matrix<int> groud_truth(truth_path);
         ss::Matrix<int> reverse_truth(reverse_truth_path);
         vector<vector<int> > sub_space(ball.size());
+        vector<int> sub_size(ball.size());
         std::set<int> set;
         for (int i = 0; i < groud_truth.getSize(); i++)
             set.insert(i);
@@ -86,7 +87,10 @@ namespace dhnsw{
 
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
-        vector<int> map = partition.getPartition(graph, ball, num_edges, num_subhnsw);
+        for (int i = 0; i < ball.size(); i++){
+            sub_size[i] = sub_space[i].size();
+        }
+        vector<int> map = partition.getPartition(graph, ball, sub_size, num_edges, num_subhnsw);
         vector<int> space_size(num_subhnsw, 0);
         vector<vector<int> > partition_result(num_subhnsw);
         for (int i = 0; i < map.size(); i++){
