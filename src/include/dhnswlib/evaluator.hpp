@@ -26,6 +26,7 @@
 #include "dhnswlib/coordinator.hpp"
 #include "dhnswlib/receiver.hpp"
 #include "parameters.hpp"
+#include "utils/util.hpp"
 
 using std::cout;
 using std::endl;
@@ -156,7 +157,7 @@ namespace dhnsw {
             }
             times.erase(times.begin(), times.begin()+10000);
             std::sort(times.begin(), times.end());
-            cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << endl;
+            cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << "avg: " << dhnsw::avg(times) << endl;
         }
 
         void evaluate(int print_interval) {
