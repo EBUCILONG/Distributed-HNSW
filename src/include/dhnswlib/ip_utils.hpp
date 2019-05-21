@@ -26,6 +26,7 @@
 #include "dhnswlib/time.hpp"
 #include "waker/waker.hpp"
 #include "utils/calculator.hpp"
+#include "matrix.hpp"
 #include "distributed/partition.hpp"
 
 using std::vector;
