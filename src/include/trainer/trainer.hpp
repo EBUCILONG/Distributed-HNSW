@@ -20,12 +20,12 @@
 
 #include <omp.h>
 
-#include "../dhnswlib/time.hpp"
-#include "../hnswlib/hnswalg.h"
-#include "../utils/cluster.hpp"
-#include "../utils/util.hpp"
-#include "../matrix.hpp"
-#include "../distributed/partition.hpp"
+#include "dhnswlib/time.hpp"
+#include "hnswlib/hnswalg.h"
+#include "utils/cluster.hpp"
+#include "utils/util.hpp"
+#include "matrix.hpp"
+#include "distributed/partition.hpp"
 
 using std::vector;
 using std::string;
