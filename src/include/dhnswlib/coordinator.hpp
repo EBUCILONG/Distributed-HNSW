@@ -155,6 +155,7 @@ namespace dhnsw {
         	string topic = "query_t";
         	_consumer.subscribe({topic});
             _metahnsw = new hnswlib::HierarchicalNSW<float>(&_l2space, meta_hnsw_dir);
+            cout << "[COOR] Loaded meta graph" << endl;
 			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;

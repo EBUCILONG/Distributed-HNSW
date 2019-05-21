@@ -68,7 +68,9 @@ SET(EXAMPLES
 #target_compile_definitions(interface_test PRIVATE "-DMODE_KAFFPA")
 #target_link_libraries(interface_test libkaffpa libmapping ${OpenMP_CXX_LIBRARIES})
 
-
+SET(IPEXAMPLES
+        ip_partition
+        )
 
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp )
@@ -76,3 +78,7 @@ FOREACH(EXAMPLE ${EXAMPLES} )
 ENDFOREACH(EXAMPLE)
 
 
+FOREACH(IPEXAMPLE ${IPEXAMPLES} )
+    ADD_EXECUTABLE(${IPEXAMPLE} src/ip-apps/${IPEXAMPLE}.cpp )
+    target_link_libraries(${IPEXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa ${RDKAFKA_LIBRARY} cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
+ENDFOREACH(EXAMPLE)
