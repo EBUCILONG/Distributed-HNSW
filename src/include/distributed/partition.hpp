@@ -16,6 +16,7 @@ using std::endl;
 
 namespace mt{
 	class Partition{
+	private:
 		int (* _weight_func)(float);
 
 		static int inline _square_weight(float weight) {
@@ -26,18 +27,10 @@ namespace mt{
             return int(pow(1.01, weight));
         }
 
-	public:
-		explicit Partition(int mode) {
-			if(mode == 0) _weight_func = _square_weight;
-			else if(mode == 1) _weight_func = _power_weight;
-			else {
-				std::cout << "[#error] Unsupported partition mode " << mode << " ." << std::endl;
-                MPI_Abort(MPI_COMM_WORLD, 0);
-			}
-		}
-
-		vector<int> getPartition(vector<vector<int>>& graph, vector<vector<float>>& centroids, int n_edges, int n_parts) {
-//            cout << "#[sender] inside getPartition" << endl;
+        vector<int> _partitionHelper(vector<vector<int>> &graph, vector<vector<float>> &centroids, int n_edges,
+                                     int n_parts,
+                                     int *vwgt) {
+            //            cout << "#[sender] inside getPartition" << endl;
             int n = graph.size();
             int m = n_edges;
             int dim = centroids[0].size();
@@ -87,7 +80,7 @@ namespace mt{
             // run kaffpa
             double imbalance = 0.0065;
             int edge_cut = 0;
-            kaffpa(&n, NULL, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, 0, STRONG, &edge_cut, result_partition);
+            kaffpa(&n, vwgt, xadj, adjwgt, adjncy, &n_parts, &imbalance, true, 0, STRONG, &edge_cut, result_partition);
 //            cout << "#[sender] inside getPartition after kaffpa" << endl;
             vector<int> result(result_partition, result_partition + n);
             // free all malloced arrays
@@ -98,6 +91,26 @@ namespace mt{
             free(result_partition);
 //            cout << "#[sender] exiting getPartition" << endl;
             return result;
+        }
+
+	public:
+		explicit Partition(int mode) {
+			if(mode == 0) _weight_func = _square_weight;
+			else if(mode == 1) _weight_func = _power_weight;
+			else {
+				std::cout << "[#error] Unsupported partition mode " << mode << " ." << std::endl;
+                MPI_Abort(MPI_COMM_WORLD, 0);
+			}
 		}
+
+
+		vector<int> getPartition(vector<vector<int>>& graph, vector<vector<float>>& centroids, int n_edges, int n_parts) {
+            return _partitionHelper(graph, centroids, n_edges, n_parts, NULL);
+		}
+
+        vector<int> getPartition(vector<vector<int>>& graph, vector<vector<float>>& centroids,
+                vector<int>& centroid_weights,int n_edges, int n_parts) {
+            return _partitionHelper(graph, centroids, n_edges, n_parts, centroid_weights.data());
+        }
 	};
 }
