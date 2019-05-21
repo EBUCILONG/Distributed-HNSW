@@ -6,6 +6,8 @@
 // Created by Oruqimaru on 16/4/2019.
 //
 
+#pragma  once
+
 #include <vector>
 #include <string>
 
