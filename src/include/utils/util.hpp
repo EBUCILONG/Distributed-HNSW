@@ -92,6 +92,15 @@ namespace dhnsw{
 		return result;
 	}
 
+	long long avg(vector<long long>& data){
+		float result = 0;
+		for(auto& elem:data){
+			result+=elem;
+		}
+		result /= data.size();
+		return result;
+	}
+
 	float stv(vector<int>& data){
 		float aver = avg(data);
 		float result = 0;
