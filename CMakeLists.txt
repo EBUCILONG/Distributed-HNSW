@@ -59,6 +59,7 @@ SET(EXAMPLES
     #idvecs_hnsw_machine
     #load_hnsw
     #sift1k
+    ip_partition
     start_customer_rotate
     start_delay_evaluator
 )
@@ -75,10 +76,4 @@ SET(IPEXAMPLES
 FOREACH(EXAMPLE ${EXAMPLES} )
     ADD_EXECUTABLE(${EXAMPLE} src/apps/${EXAMPLE}.cpp )
     target_link_libraries(${EXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa ${RDKAFKA_LIBRARY} cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
-ENDFOREACH(EXAMPLE)
-
-
-FOREACH(IPEXAMPLE ${IPEXAMPLES} )
-    ADD_EXECUTABLE(${IPEXAMPLE} src/ip-apps/${IPEXAMPLE}.cpp )
-    target_link_libraries(${IPEXAMPLE} ${Boost_LIBRARIES} ${MPI_C_LIBRARIES} ${Zookeeper_LIBRARIES} libkaffpa ${RDKAFKA_LIBRARY} cppkafka libmapping ${OpenMP_CXX_LIBRARIES})
 ENDFOREACH(EXAMPLE)
