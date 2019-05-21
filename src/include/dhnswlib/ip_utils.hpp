@@ -27,7 +27,6 @@
 #include "waker/waker.hpp"
 #include "hnswlib/hnswalg.h"
 #include "utils/binstream.hpp"
-#include "matrix.hpp"
 #include "utils/calculator.hpp"
 #include "distributed/partition.hpp"
 

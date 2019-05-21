@@ -6,7 +6,7 @@
 // Created by Oruqimaru on 16/4/2019.
 //
 
-#pragma  once
+#pragma once
 
 #include <vector>
 #include <string>
