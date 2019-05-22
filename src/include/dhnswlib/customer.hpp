@@ -148,7 +148,7 @@ namespace dhnsw {
                 _querys(querys),
                 _num_subhnsw(num_subhnsw),
                 _producer(config),
-                _messages_sent(0),
+                _messages_sent(1000),
                 _timeout(30000) {
         }
 
