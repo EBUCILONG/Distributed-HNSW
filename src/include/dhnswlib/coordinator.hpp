@@ -114,7 +114,8 @@ namespace dhnsw {
 		int _data_dim;
 		int _num_centroids;
 		int _num_subhnsw;
-		hnswlib::L2Space _l2space;
+//		hnswlib::L2Space _l2space;
+		hnswlib::InnerProductSpace _l2space;
 		hnswlib::HierarchicalNSW<float>* _metahnsw;
 		cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
