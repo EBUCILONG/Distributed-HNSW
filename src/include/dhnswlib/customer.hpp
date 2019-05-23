@@ -124,7 +124,6 @@ namespace dhnsw {
                 _messages_sent ++;
 //                cout << "[CUST] Produced " << _messages_sent << " messages." << endl;
             }
-            _producer.flush();
         }
 
         void idle(){
@@ -148,13 +147,12 @@ namespace dhnsw {
                 _querys(querys),
                 _num_subhnsw(num_subhnsw),
                 _producer(config),
-                _messages_sent(1000),
+                _messages_sent(0),
                 _timeout(30000) {
         }
 
         void send_message(unsigned interval){
-            int sizer = _querys.getSize();
-            int dimer = _querys.getDim();
+              int dimer = _querys.getDim();
             ss::Rotator rotator(dimer);
             string topic("query_t");
             for (int i = 0; i < sizer; i++) {

@@ -82,11 +82,11 @@ namespace dhnsw{
         hnswlib::HierarchicalNSW<float> meta(&l2space, ball.getSize(), hnsw_m, hnsw_ef);
 
         for (int i = 0; i < 1; i++) {
-            meta.addPoint((void *) ball.getDim(), (size_t) i);
+            meta.addPoint((void *) ball[i], (size_t) i);
         }
 #pragma omp parallel for
         for (int i = 1; i < ball.getSize(); i++) {
-            meta.addPoint((void *) ball.getDim(), (size_t) i);
+            meta.addPoint((void *) ball[i], (size_t) i);
         }
 
         vector<vector<int> > graph;
