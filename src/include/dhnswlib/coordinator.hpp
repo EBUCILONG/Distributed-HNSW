@@ -28,6 +28,7 @@
 #include <cppkafka/consumer.h>
 #include <cppkafka/producer.h>
 
+#include "hnswlib/space_ip.h"
 #include "utils/calculator.hpp"
 #include "dhnswlib/customer.hpp"
 #include "dhnswlib/time.hpp"
