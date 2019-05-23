@@ -25,6 +25,7 @@
 #include "utils/cluster.hpp"
 #include "utils/util.hpp"
 #include "matrix.hpp"
+#include "hnswlib/space_ip.h"
 #include "distributed/partition.hpp"
 
 using std::vector;
@@ -294,7 +295,7 @@ namespace dhnsw{
     }
 
     void fvecs_hnsw_machine(ss::Matrix<float>& data, string hnsw_path, int hnsw_m = 32, int hnsw_ef = 100){
-        hnswlib::L2Space l2space(data.getDim());
+        hnswlib::InnerProductSpace l2space(data.getDim());
         hnswlib::HierarchicalNSW<float> partition(&l2space, data.getSize(), hnsw_m, hnsw_ef);
         for (int i = 0; i < 1; i++) {
 			partition.addPoint((void *) data[i], (size_t) i);
