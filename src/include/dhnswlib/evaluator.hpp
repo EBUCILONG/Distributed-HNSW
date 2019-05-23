@@ -181,7 +181,7 @@ namespace dhnsw {
                     string msg_string = msg_body;
                     dhnsw::ResultMessage rm(10, msg_string);
                     if (counter % print_interval == 0) {
-                        cout << start_time - rm._end_time / 1000000 << endl;
+                        cout << get_current_time_milliseconds() - start_time << endl;
                     }
                     counter++;
                 }
