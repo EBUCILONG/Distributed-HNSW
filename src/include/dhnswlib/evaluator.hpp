@@ -113,11 +113,12 @@ namespace dhnsw {
         }
 
         void evaluate(int print_interval, bool delay){
-            cout << "[EVAL] Evaluator started." << endl;
-            cout << "[EVAL]\t# Received\t|\tDelay. Time\t|\t" << endl;
-            vector<long long> times;
-            long long counter = 0;
-            long long current_time;
+            if (delay){
+                cout << "[EVAL] Evaluator started." << endl;
+                cout << "[EVAL]\t# Received\t|\tDelay. Time\t|\t" << endl;
+                vector<long long> times;
+                long long counter = 0;
+                long long current_time;
 //            for (int i = 0; i < 5000; i++){
 //                cppkafka::Message msg = _consumer.poll();
 //                if(!msg) continue;
@@ -131,33 +132,60 @@ namespace dhnsw {
 //                // a message is received
 //                _consumer.store_offset(msg);
 //            }
-            while (true) {
-                // receive message
-                cppkafka::Message msg = _consumer.poll();
-                if(!msg) continue;
-                if(msg.get_error()) {
-                    if (!msg.is_eof()) {
-                        // error
+                while (true) {
+                    // receive message
+                    cppkafka::Message msg = _consumer.poll();
+                    if(!msg) continue;
+                    if(msg.get_error()) {
+                        if (!msg.is_eof()) {
+                            // error
 //                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+                        }
+                        continue;
                     }
-                    continue;
+                    // a message is received
+                    _consumer.store_offset(msg);
+                    const cppkafka::Buffer& msg_body = msg.get_payload();
+                    string msg_string = msg_body;
+                    dhnsw::ResultMessage rm(10, msg_string);
+                    counter++;
+                    current_time = get_current_time_nanoseconds();
+                    long long delay = rm._end_time - rm._start_time;
+                    cout << "[EVAL]\t" << counter << "\t|\t" << delay<< endl;
+                    times.push_back(delay);
+                    if (counter == print_interval)
+                        break;
                 }
-                // a message is received
-                _consumer.store_offset(msg);
-                const cppkafka::Buffer& msg_body = msg.get_payload();
-                string msg_string = msg_body;
-                dhnsw::ResultMessage rm(10, msg_string);
-                counter++;
-                current_time = get_current_time_nanoseconds();
-                long long delay = rm._end_time - rm._start_time;
-                cout << "[EVAL]\t" << counter << "\t|\t" << delay<< endl;
-                times.push_back(delay);
-                if (counter == print_interval)
-                    break;
+                times.erase(times.begin(), times.begin()+10000);
+                std::sort(times.begin(), times.end());
+                cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << "avg: " << dhnsw::avg(times) << endl;
             }
-            times.erase(times.begin(), times.begin()+10000);
-            std::sort(times.begin(), times.end());
-            cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << "avg: " << dhnsw::avg(times) << endl;
+            else{
+                long long start_time = get_current_time_milliseconds();
+                long long counter = 0;
+
+                while (true) {
+                    // receive message
+                    cppkafka::Message msg = _consumer.poll();
+                    if(!msg) continue;
+                    if(msg.get_error()) {
+                        if (!msg.is_eof()) {
+                            // error
+//                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+                        }
+                        continue;
+                    }
+                    // a message is received
+                    _consumer.store_offset(msg);
+                    const cppkafka::Buffer& msg_body = msg.get_payload();
+                    string msg_string = msg_body;
+                    dhnsw::ResultMessage rm(10, msg_string);
+                    if (counter % print_interval == 0) {
+                        cout << rm._end_time / 1000000 - start_time << endl;
+                    }
+                    counter++;
+                }
+            }
         }
 
         void evaluate(int print_interval) {

@@ -90,6 +90,7 @@ namespace dhnsw{
         }
 
         cout << "finish constructing hnsw" << endl;
+        meta.saveIndex(out_dir + "/hnsw_meta");
 
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);

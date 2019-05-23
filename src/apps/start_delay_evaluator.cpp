@@ -30,6 +30,6 @@ int main(int argc, char** argv){
     };
 //    Bencher truth_bench(para.ground_truth.c_str());
     dhnsw::ThroughputEvaluator evaluator(para.topK, evaluator_config, para.eval_log_path);
-    evaluator.evaluate(para.eval_print_intv, true);
+    evaluator.evaluate(para.eval_print_intv, para.load_cluster);
     return 0;
 }
