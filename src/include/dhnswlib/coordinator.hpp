@@ -28,7 +28,7 @@
 #include <cppkafka/consumer.h>
 #include <cppkafka/producer.h>
 
-
+#include "utils/calculator.hpp"
 #include "dhnswlib/customer.hpp"
 #include "dhnswlib/time.hpp"
 #include "waker/waker.hpp"
@@ -114,8 +114,8 @@ namespace dhnsw {
 		int _data_dim;
 		int _num_centroids;
 		int _num_subhnsw;
-//		hnswlib::L2Space _l2space;
-		hnswlib::InnerProductSpace _l2space;
+		hnswlib::L2Space _l2space;
+		hnswlib::InnerProductSpace _ip_space;
 		hnswlib::HierarchicalNSW<float>* _metahnsw;
 		cppkafka::Consumer _consumer;
         cppkafka::Producer _producer;
@@ -149,6 +149,7 @@ namespace dhnsw {
 		_subhnsw_id(hnsw_id),
 		_process_id(process_id),
 		_l2space(vec_dim),
+		_ip_space(vec_dim),
 		_data_dim(vec_dim),
 		_wakeup_controller(wakeup_controller),
 		_producer(producer_config),
@@ -157,7 +158,8 @@ namespace dhnsw {
         	_consumer.subscribe({topic});
             _metahnsw = new hnswlib::HierarchicalNSW<float>(&_l2space, meta_hnsw_dir);
             cout << "[COOR] Loaded meta graph" << endl;
-			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
+//			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
+			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_ip_space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
 			loadMap(map_dir);
@@ -186,11 +188,22 @@ namespace dhnsw {
 
 		void getWakeUpId(vector<float>& query, vector<int>& result){
 			set<int> set;
+
+
+			vector<float> norm_q;
+			norm_q.insert(norm_q.begin(), query.begin(), query.end());
+			float norm = ss::CalculateNorm<float>(norm_q.data(), query.size());
+			for (int i = 0; i < query.size(); i++){
+				norm_q[i] /= norm;
+			}
+
+
 			if (query.size() != _data_dim){
 				cout << "#[error ] query wrong dimension" << endl;
 				assert(0);
 			}
-			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
+//			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
+			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(norm_q.data(), _wakeup_controller);
 			for (int i = 0; i < _wakeup_controller; i++){
 				set.insert(_map[(int) knn.top().second]);
 				knn.pop();
