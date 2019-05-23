@@ -28,6 +28,7 @@
 #include "utils/calculator.hpp"
 #include "matrix.hpp"
 #include "distributed/partition.hpp"
+#include "trainer/trainer.hpp"
 
 using std::vector;
 using std::ofstream;
@@ -100,6 +101,8 @@ namespace dhnsw{
         vector<int> map = partition.getPartition(graph, vec_ball, sub_size, num_edges, num_subhnsw);
         vector<int> space_size(num_subhnsw, 0);
         vector<vector<int> > partition_result(num_subhnsw);
+
+        dhnsw::save_map(out_dir + "/map", map, num_subhnsw);
 
         cout << "finish partition" << endl;
 
