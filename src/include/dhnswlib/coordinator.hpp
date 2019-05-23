@@ -172,6 +172,7 @@ namespace dhnsw {
                 _subhnsw_id(hnsw_id),
                 _process_id(process_id),
                 _l2space(vec_dim),
+				_ip_space(vec_dim),
                 _metahnsw(metahnsw),
                 _subhnsw_addr(subhnsw),
                 _data_dim(vec_dim),
