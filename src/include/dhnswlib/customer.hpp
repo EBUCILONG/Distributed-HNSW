@@ -152,7 +152,8 @@ namespace dhnsw {
         }
 
         void send_message(unsigned interval){
-              int dimer = _querys.getDim();
+            int sizer = _querys.getSize();
+            int dimer = _querys.getDim();
             ss::Rotator rotator(dimer);
             string topic("query_t");
             for (int i = 0; i < sizer; i++) {
