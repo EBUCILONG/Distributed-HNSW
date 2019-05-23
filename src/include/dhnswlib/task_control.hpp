@@ -74,7 +74,7 @@ namespace dhnsw {
         }
 
     public:
-        explicit TaskControl(const string& hosts, int timeout = 30000): _hosts(hosts.c_str()),
+        explicit TaskControl(const string& hosts, int timeout = 10000): _hosts(hosts.c_str()),
         _timeout(timeout) {
             _handle = zookeeper_init(_hosts, _connection_watcher,  _timeout, NULL, (void*)"init", 0);
             assert(_handle != NULL && "[ZK] Failed to connect to ZooKeeper server.");
