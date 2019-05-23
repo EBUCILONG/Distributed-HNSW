@@ -22,7 +22,7 @@ int main(int argc, char** argv){
     LoadOptions(argc, argv, para);
     ss::Matrix<float> data(para.base_data);
     omp_set_num_threads(32);
-    dhnsw::fvecs_hnsw_machine(data, para.out_dir + "/hnsw/partition");
+    dhnsw::fvecs_hnsw_machine(data, para.hnsw_dir);
 }
 
 
