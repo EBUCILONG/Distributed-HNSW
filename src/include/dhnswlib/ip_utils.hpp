@@ -89,6 +89,8 @@ namespace dhnsw{
             meta.addPoint((void *) ball[i], (size_t) i);
         }
 
+        cout << "finish constructing hnsw" << endl;
+
         vector<vector<int> > graph;
         int num_edges = meta.getLevel0Graph(graph);
         for (int i = 0; i < ball.getSize(); i++){
@@ -97,6 +99,9 @@ namespace dhnsw{
         vector<int> map = partition.getPartition(graph, vec_ball, sub_size, num_edges, num_subhnsw);
         vector<int> space_size(num_subhnsw, 0);
         vector<vector<int> > partition_result(num_subhnsw);
+
+        cout << "finish partition" << endl;
+
         for (int i = 0; i < map.size(); i++){
             partition_result[map[i]].push_back(i);
             space_size[map[i]]++;
@@ -113,6 +118,8 @@ namespace dhnsw{
         char buffer[5000];
 
         ifstream fin(base_file);
+
+        cout << "ready to save" << endl;
 
         long long step = (long long) (ball.getDim() * sizeof(float) + sizeof(int));
 
