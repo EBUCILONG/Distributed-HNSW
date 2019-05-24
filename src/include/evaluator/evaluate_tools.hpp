@@ -57,8 +57,8 @@ namespace eva{
 		meta.setEf(100);
 
 		while (true){
-			ss::Rotator rotator(query.getDim());
-			float buffer[query.getDim()];
+//			ss::Rotator rotator(query.getDim());
+//			float buffer[query.getDim()];
 
 			for (int i = 0; i < ks.size(); i++){
 				long long total_time = 0;
@@ -66,8 +66,8 @@ namespace eva{
 				for (int j = 0; j < sizer; j++){
 					long long start_time = dhnsw::get_current_time_milliseconds();
 					set<int> set;
-					rotator.rotate(query[j], buffer);
-					std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(buffer, ks[i]);
+//					rotator.rotate(query[j], buffer);
+					std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(query[j], ks[i]);
 					for(int k = 0; k < ks[i]; k++){
 						set.insert(map[(int)result.top().second]);
 						result.pop();
