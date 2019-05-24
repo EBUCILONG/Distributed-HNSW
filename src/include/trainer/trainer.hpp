@@ -343,7 +343,7 @@ namespace dhnsw{
     	int counter = 0;
     	dhnsw::getIdvecsInfo(data_path, dimension,size);
     	cout << "#[trainer] matrix total size: " << size  <<" with dim: " << dimension << endl;
-        hnswlib::L2Space l2space(dimension);
+        hnswlib::InnerProductSpace l2space(dimension);
         hnswlib::HierarchicalNSW<float> hnsw(&l2space, size, hnsw_m, hnsw_ef);
         std::set<int> set;
         long long start_time = dhnsw::get_current_time_milliseconds();
