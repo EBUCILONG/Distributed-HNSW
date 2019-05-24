@@ -33,6 +33,7 @@
 using std::vector;
 using std::ofstream;
 using std::ifstream;
+using std::set;
 using std::cout;
 using std::endl;
 
@@ -64,7 +65,7 @@ namespace dhnsw{
         vector<vector<int> > sub_space(ball.getSize());
         vector<int> sub_size(ball.getSize());
         std::set<int> set;
-        for (int i = 0; i < groud_truth.getSize(); i++)
+        for (int i = 0; i < reverse_truth.getSize(); i++)
             set.insert(i);
 
         for (int i = 0; i < groud_truth.getSize(); i++){
@@ -101,23 +102,32 @@ namespace dhnsw{
         vector<int> map = partition.getPartition(graph, vec_ball, sub_size, num_edges, num_subhnsw);
         vector<int> space_size(num_subhnsw, 0);
         vector<vector<int> > partition_result(num_subhnsw);
+        vector<std::set<int> > result(num_subhnsw);
 
         dhnsw::save_map(out_dir + "/map", map, num_subhnsw);
 
         cout << "finish partition" << endl;
 
         for (int i = 0; i < map.size(); i++){
-            partition_result[map[i]].push_back(i);
-            space_size[map[i]]++;
+            int aim_subhnsw = map[i];
+            for (int j = 0; j < sub_space[i].size(); j++){
+                result[aim_subhnsw].insert(sub_space[i][j]);
+            }
         }
-        cout << "partition result ";
-        for (int i = 0; i < num_subhnsw; i++)
-            cout << space_size[i] << " ";
-        cout << endl;
+
+        for (int i = 0; i < num_subhnsw; i++){
+            partition_result[i].insert(partition_result[i].begin(), result[i].begin(), result[i].end());
+            space_size[i] = partition_result[i].size();
+        }
 
         for (int i = 0; i < num_subhnsw; i++){
             std::sort(partition_result[i].begin(), partition_result[i].end());
         }
+
+        cout << "partition result ";
+        for (int i = 0; i < num_subhnsw; i++)
+            cout << space_size[i] << " ";
+        cout << endl;
 
         char buffer[5000];
 
@@ -132,10 +142,9 @@ namespace dhnsw{
             for (int j = 0; j < partition_result[i].size(); j++){
                 fin.seekg(step*partition_result[i][j], fin.beg);
                 fin.read(reinterpret_cast<char*>(buffer), step);
-                //int* id = (int*)(buffer + step);
-                //*id = i;
+                int id = partition_result[i][j];
                 fout.write(buffer, step);
-                //fout.write(reinterpret_cast<char*> (&i), sizeof(int));
+                fout.write(reinterpret_cast<char*> (&id), sizeof(int));
             }
             fout.close();
         }

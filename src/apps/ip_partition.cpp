@@ -22,5 +22,5 @@ int main(int argc, char** argv){
     mt::Partition partition(1);
     ss::parameter para;
     LoadOptions(argc, argv, para);
-    dhnsw::ip_partition(para.num_subhnsw, 3, para.out_dir + "/ball",para.out_dir + "/truth", para.out_dir + "/reverse_truth", para.base_data, para.out_dir, partition);
+    dhnsw::ip_partition(para.num_subhnsw, 300, para.out_dir + "/ball",para.out_dir + "/truth", para.out_dir + "/reverse_truth", para.base_data, para.out_dir, partition);
 }
