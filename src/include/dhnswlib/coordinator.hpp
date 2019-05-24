@@ -159,8 +159,8 @@ namespace dhnsw {
         	_consumer.subscribe({topic});
             _metahnsw = new hnswlib::HierarchicalNSW<float>(&_l2space, meta_hnsw_dir);
             cout << "[COOR] Loaded meta graph" << endl;
+			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_ip_space, subhnsw_dir);
 //			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
-			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
 			loadMap(map_dir);
@@ -192,20 +192,20 @@ namespace dhnsw {
 			set<int> set;
 
 
-//			vector<float> norm_q;
-//			norm_q.insert(norm_q.begin(), query.begin(), query.end());
-//			float norm = ss::CalculateNorm<float>(norm_q.data(), query.size());
-//			for (int i = 0; i < query.size(); i++){
-//				norm_q[i] /= norm;
-//			}
+			vector<float> norm_q;
+			norm_q.insert(norm_q.begin(), query.begin(), query.end());
+			float norm = ss::CalculateNorm<float>(norm_q.data(), query.size());
+			for (int i = 0; i < query.size(); i++){
+				norm_q[i] /= norm;
+			}
 
 
 			if (query.size() != _data_dim){
 				cout << "#[error ] query wrong dimension" << endl;
 				assert(0);
 			}
-			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
-//			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(norm_q.data(), _wakeup_controller);
+//			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
+			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(norm_q.data(), _wakeup_controller);
 			for (int i = 0; i < _wakeup_controller; i++){
 				set.insert(_map[(int) knn.top().second]);
 				knn.pop();
