@@ -74,12 +74,11 @@ namespace eva{
 					}
 					total_time += dhnsw::get_current_time_milliseconds() - start_time;
 					for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
+						cout << *it << " ";
 						counter[*it]++;
 					}
+					cout << endl;
 				}
-				for (int i=0; i < total_partition; i++)
-					cout << counter[i] <<" ";
-				cout << endl;
 				cout << ks[i] << " "
 					 << dhnsw::avg(counter) / query.getSize() << " "
 					 << dhnsw::stv(counter) / query.getSize() << " "
