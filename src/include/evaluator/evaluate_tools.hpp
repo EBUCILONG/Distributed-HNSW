@@ -70,6 +70,9 @@ namespace eva{
 					counter[*it]++;
 				}
 			}
+			for (int i=0; i < total_partition; i++)
+				cout << counter[i] <<" ";
+			cout << endl;
 			cout << ks[i] << " "
 				 << dhnsw::avg(counter) / query.getSize() << " "
 	 			 << dhnsw::stv(counter) / query.getSize() << " "
