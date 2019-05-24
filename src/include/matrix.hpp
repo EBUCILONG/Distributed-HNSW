@@ -338,7 +338,7 @@ namespace ss {
     public:
         Rotator(int dimension): _dimension(dimension) {
             Eigen::MatrixXf rot = Eigen::MatrixXf::Random(dimension, dimension);
-            Eigen::JacobiSVD<Eigen::MatrixXf> svd(rot, Eigen::ComputeThinU);
+            Eigen::JacobiSVD<Eigen::MatrixXf> svd(rot);
             _rot_matrix = svd.matrixU();
         }
 
