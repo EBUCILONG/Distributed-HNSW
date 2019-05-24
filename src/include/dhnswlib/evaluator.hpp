@@ -156,9 +156,9 @@ namespace dhnsw {
                     if (counter == print_interval)
                         break;
                 }
-                times.erase(times.begin(), times.begin()+10000);
+                times.erase(times.begin(), times.begin()+6000);
                 std::sort(times.begin(), times.end());
-                cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << "avg: " << dhnsw::avg(times) << endl;
+                cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << " avg: " << dhnsw::avg(times) << endl;
             }
             else{
                 long long start_time = get_current_time_milliseconds();
