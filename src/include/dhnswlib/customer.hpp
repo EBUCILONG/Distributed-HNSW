@@ -10,6 +10,8 @@
 #include <string>
 #include <fstream>
 #include <ostream>
+#include <random>
+#include <algorithm>
 #include <set>
 #include <queue>
 #include <utility>
@@ -159,10 +161,18 @@ namespace dhnsw {
             int dimer = _querys.getDim();
             ss::Rotator rotator(dimer);
             string topic("query_t");
+            std::srand ( unsigned ( std::time(0) ) );
+            vector<int> shuffle;
+
+
+            for (int i = 0; i < _querys.getSize(); i++){
+                shuffle.push_back(i);
+            }
             for (int i = 0; i < sizer; i++) {
-                float vect[dimer];
-                rotator.rotate(_querys[i], vect);
-                QueryMessage qm(_messages_sent, vect, dimer);
+//                float vect[dimer];
+//                rotator.rotate(_querys[i], vect);
+                std::random_shuffle (shuffle.begin(), shuffle.end());
+                QueryMessage qm(_messages_sent, _querys[shuffle[i]], dimer);
                 string payload = qm.toString();
                 while(true) {
                     try {

@@ -8,6 +8,7 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
 #include <chrono>
 #include <thread>
 #include <vector>
@@ -46,6 +47,13 @@ namespace eva{
 		hnswlib::HierarchicalNSW<float> meta(&l2space, hnsw_path);
 		assert(meta.max_elements_ == map.size());
 		int sizer = query.getSize();
+		vector<int> shuffle;
+		std::srand ( unsigned ( std::time(0) ) );
+
+
+		for (int i = 0; i < query.getSize(); i++){
+			shuffle.push_back(i);
+		}
 
 		vector<int> ks = {1, 5, 10, 20, 50, 100};
 //		for(int i = 1; i <= 10; i++)
@@ -59,7 +67,7 @@ namespace eva{
 		while (true){
 //			ss::Rotator rotator(query.getDim());
 //			float buffer[query.getDim()];
-
+			std::random_shuffle (shuffle.begin(), shuffle.end());
 			for (int i = 0; i < ks.size(); i++){
 				long long total_time = 0;
 				vector<int> counter(total_partition, 0);
