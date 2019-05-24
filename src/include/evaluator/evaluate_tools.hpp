@@ -40,6 +40,7 @@ namespace eva{
 		ss::Matrix<float> query(query_path);
 		vector<int> map;
 
+
 		int total_partition = dhnsw::load_partition_map(map_path, map);
 		hnswlib::L2Space l2space(query.getDim());
 		hnswlib::HierarchicalNSW<float> meta(&l2space, hnsw_path);
@@ -54,29 +55,38 @@ namespace eva{
 
 		cout << "k   avg   stv   time(ms)" << endl;
 		meta.setEf(100);
-		for (int i = 0; i < ks.size(); i++){
-			long long total_time = 0;
-			vector<int> counter(total_partition, 0);
-			for (int j = 0; j < sizer; j++){
-				long long start_time = dhnsw::get_current_time_milliseconds();
-				set<int> set;
-				std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(query[j], ks[i]);
-				for(int k = 0; k < ks[i]; k++){
-					set.insert(map[(int)result.top().second]);
-					result.pop();
+
+		while (true){
+			ss::Rotator rotator(query.getDim());
+			float buffer[query.getDim()];
+
+			for (int i = 0; i < ks.size(); i++){
+				long long total_time = 0;
+				vector<int> counter(total_partition, 0);
+				for (int j = 0; j < sizer; j++){
+					long long start_time = dhnsw::get_current_time_milliseconds();
+					set<int> set;
+					rotator.rotate(query[j], buffer);
+					std::priority_queue<std::pair<float, long unsigned int > > result = meta.searchKnn(buffer, ks[i]);
+					for(int k = 0; k < ks[i]; k++){
+						set.insert(map[(int)result.top().second]);
+						result.pop();
+					}
+					total_time += dhnsw::get_current_time_milliseconds() - start_time;
+					for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
+						counter[*it]++;
+					}
 				}
-				total_time += dhnsw::get_current_time_milliseconds() - start_time;
-				for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
-					counter[*it]++;
-				}
+				for (int i=0; i < total_partition; i++)
+					cout << counter[i] <<" ";
+				cout << endl;
+				cout << ks[i] << " "
+					 << dhnsw::avg(counter) / query.getSize() << " "
+					 << dhnsw::stv(counter) / query.getSize() << " "
+					 << (float)total_time / (float)query.getSize() << endl;
 			}
-			for (int i=0; i < total_partition; i++)
-				cout << counter[i] <<" ";
+
 			cout << endl;
-			cout << ks[i] << " "
-				 << dhnsw::avg(counter) / query.getSize() << " "
-	 			 << dhnsw::stv(counter) / query.getSize() << " "
-	 			 << (float)total_time / (float)query.getSize() << endl;
 		}
 	}
 }
