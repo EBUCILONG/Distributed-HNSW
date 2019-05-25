@@ -98,7 +98,8 @@ namespace dhnsw {
                 const cppkafka::Configuration& producer_config):
                 _consumer(consumer_config), _producer(producer_config), _top_k(top_k) {
             vector<string> topics;
-            string topic_name = "receiver_t_" + std::to_string(process_id);
+            string topic_name = "receiver_t_";
+            // string topic_name = "receiver_t_" + std::to_string(process_id);
             topics.push_back(topic_name);
             _consumer.subscribe(topics);
         };
