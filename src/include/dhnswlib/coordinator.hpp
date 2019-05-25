@@ -13,6 +13,8 @@
 #include <string>
 #include <fstream>
 #include <ostream>
+#include <random>
+#include <functional>
 #include <iostream>
 #include <set>
 #include <queue>
@@ -241,7 +243,7 @@ namespace dhnsw {
 			return QueryMessage(_data_dim, string_msg);
 		}
 
-        void produceTask(int query_id, vector<float>& query, long long start_time, int num_subhnsw=0){
+        void produceTask(int query_id, vector<float>& query, long long start_time, int random_num, int num_subhnsw=0){
 			vector<int> aim_subhnsw_id;
 			if(num_subhnsw == 0) {
 				getWakeUpId(query, aim_subhnsw_id);
@@ -250,10 +252,13 @@ namespace dhnsw {
 				for (int i = 0; i < num_subhnsw; i++)
 					aim_subhnsw_id.push_back(i);
 			}
+
+
+
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
-				TaskMessage message(_process_id, query_id, aim_subhnsw_id.size(), _data_dim, start_time, query);
+				TaskMessage message(random_num, query_id, aim_subhnsw_id.size(), _data_dim, start_time, query);
 				const string payload = message.toString();
 				while(true) {
 					try {
@@ -274,11 +279,17 @@ namespace dhnsw {
 		    long long total_time = 0;
 		    long long work_time = 0;
 			long long start_time = get_current_time_milliseconds();
-        	while(true){
+			int t_id = (int) std::hash<std::thread::id>()(std::this_thread::get_id());
+
+			std::random_device rd;
+			std::mt19937 mt(rd() + t_id);
+			std::uniform_int_distribution<int> aim_receiver(0,39);
+
+			while(true){
         		QueryMessage msg = getQuery();
         		msg.start_time_ = get_current_time_nanoseconds();
 //        		long long work_start_time = get_current_time_nanoseconds();;
-        		produceTask(msg.query_id_, msg.query_, msg.start_time_, num_subhnsw);
+        		produceTask(msg.query_id_, msg.query_, msg.start_time_, aim_receiver(mt), num_subhnsw);
 //        		long long end_time = get_current_time_milliseconds();
 //                total_time += end_time - start_time;
 //                start_time = end_time;

@@ -73,7 +73,7 @@ namespace dhnsw {
         worker_group += std::to_string(sub_hnsw_id);
         string coordinator_group = "query_g";
         string receiver_group = "receiver_g_";
-        receiver_group += std::to_string(process_id);
+//        receiver_group += std::to_string(process_id);
 
         cout << "[ALL] :" << para.broker_list << endl;
 
