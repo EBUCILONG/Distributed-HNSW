@@ -64,10 +64,10 @@ namespace eva{
 		cout << "k   avg   stv   time(ms)" << endl;
 		meta.setEf(100);
 
-		while (true){
+//		while (true){
 //			ss::Rotator rotator(query.getDim());
 //			float buffer[query.getDim()];
-			std::random_shuffle (shuffle.begin(), shuffle.end());
+//			std::random_shuffle (shuffle.begin(), shuffle.end());
 			for (int i = 0; i < ks.size(); i++){
 				long long total_time = 0;
 				vector<int> counter(total_partition, 0);
@@ -81,11 +81,6 @@ namespace eva{
 						result.pop();
 					}
 					total_time += dhnsw::get_current_time_milliseconds() - start_time;
-					for (std::set<int>::iterator it=set.begin(); it!=set.end(); ++it){
-						cout << *it << " ";
-						counter[*it]++;
-					}
-					cout << endl;
 				}
 				cout << ks[i] << " "
 					 << dhnsw::avg(counter) / query.getSize() << " "
@@ -94,6 +89,6 @@ namespace eva{
 			}
 
 			cout << endl;
-		}
+//		}
 	}
 }
