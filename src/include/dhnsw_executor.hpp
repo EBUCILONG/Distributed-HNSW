@@ -83,7 +83,7 @@ namespace dhnsw {
                 { "enable.auto.commit", true},
                 {"enable.auto.offset.store", false},
                 {"fetch.wait.max.ms", 1000},
-                {"partition.assignment.strategy", "sticky"},
+//                {"partition.assignment.strategy", "sticky"},
 //                {"debug", "msg"}
         };
 
@@ -93,7 +93,7 @@ namespace dhnsw {
                 { "enable.auto.commit", true },
                 {"fetch.wait.max.ms", 1000},
                 {"enable.auto.offset.store", false},
-                {"partition.assignment.strategy", "sticky"},
+//                {"partition.assignment.strategy", "sticky"},
 //                {"debug", "msg"}
         };
 
@@ -103,7 +103,7 @@ namespace dhnsw {
                 { "enable.auto.commit", true },
                 {"enable.auto.offset.store", false},
                 {"fetch.wait.max.ms", 1000},
-                {"partition.assignment.strategy", "sticky"},
+//                {"partition.assignment.strategy", "sticky"},
 //                {"debug", "msg"}
         };
 
