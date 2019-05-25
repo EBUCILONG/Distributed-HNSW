@@ -107,10 +107,10 @@ namespace mt {
 		int world_size;
 		MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-		if (world_size != SIZEWORKER){
-			cout << "#[error ] wrong number process initialled with" + std::to_string(world_size) << endl;
-			MPI_Abort(MPI_COMM_WORLD, 0);
-		}
+//		if (world_size != SIZEWORKER){
+//			cout << "#[error ] wrong number process initialled with" + std::to_string(world_size) << endl;
+//			MPI_Abort(MPI_COMM_WORLD, 0);
+//		}
 
 		long long start_time = dhnsw::get_current_time_milliseconds();
 		ss::Matrix<float> data(para.hdfs_host, para.hdfs_port, para.base_data, world_rank, world_size, para.base_size);
