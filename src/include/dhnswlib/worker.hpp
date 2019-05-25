@@ -163,7 +163,7 @@ namespace dhnsw {
             while(true) {
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
-                  string topic("receiver_t_");
+                  string topic("receiver_t");
 //                topic = topic + std::to_string(task._process_id);
                 const string payload = result.toString();
                 while(true) {
