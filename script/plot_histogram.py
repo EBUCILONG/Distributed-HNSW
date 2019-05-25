@@ -1,5 +1,6 @@
 import sys
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import seaborn as sns
 
 if __name__ == '__main__':
@@ -25,6 +26,7 @@ if __name__ == '__main__':
     # plt.ylabel("Y")
     # plt.xticks(range(bin_width*(min_data // bin_width), max_data + bin_width + 1, bin_width))
     sns.set_style('whitegrid')
-    sns.distplot(data, bins=range(bin_width*(min_data // bin_width), max_data + bin_width + 1, bin_width), kde=False, rug=True)
+    sns.distplot(data, bins=range(bin_width*(min_data // bin_width), max_data + bin_width + 1, bin_width), kde=False, rug=False)
+    plt.gca().get_xaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x/60000), ',')))
     plt.show()
     # plt.savefig(output_file)
