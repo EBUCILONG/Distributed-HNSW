@@ -1,6 +1,6 @@
 import sys
+import bisect
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import seaborn as sns
 
 if __name__ == '__main__':
@@ -20,13 +20,21 @@ if __name__ == '__main__':
             data.append(this_data)
     max_data = max(data)
     min_data = min(data)
-    print(max_data)
+    # calculate histogram
+    bins = [i for i in range((min_data // bin_width - 1)*bin_width, max_data + 2*bin_width, bin_width)]
+    hist = [0 for i in bins]
+    for point in data:
+        hist[bisect.bisect_right(bins, point) - 1] += 1
+    accum = []
+    add = 0
+    for i in hist:
+        add += i
+        accum.append(add)
     # plt.title("Title")
     # plt.xlabel("X")
     # plt.ylabel("Y")
-    # plt.xticks(range(bin_width*(min_data // bin_width), max_data + bin_width + 1, bin_width))
+    # plt.xticks(range(0, max_data + bin_width + 1, bin_width))
     sns.set_style('whitegrid')
-    sns.distplot(data, bins=range(bin_width*(min_data // bin_width), max_data + bin_width + 1, bin_width), kde=False, rug=False)
-    plt.gca().get_xaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x/60000), ',')))
+    sns.lineplot(bins, accum)
     plt.show()
     # plt.savefig(output_file)
