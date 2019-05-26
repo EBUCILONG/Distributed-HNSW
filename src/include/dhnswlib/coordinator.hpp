@@ -283,7 +283,7 @@ namespace dhnsw {
 
 			std::random_device rd;
 			std::mt19937 mt(rd() + t_id);
-			std::uniform_int_distribution<int> aim_receiver(0,19);
+			std::uniform_int_distribution<int> aim_receiver(0,39);
 
 			while(true){
         		QueryMessage msg = getQuery();
