@@ -163,12 +163,14 @@ namespace dhnsw {
             while(true) {
                 TaskMessage task = getTask();
                 ResultMessage result = solveTask(task);
-                  string topic("receiver_t");
-//                topic = topic + std::to_string(task._process_id);
+
+                string topic("receiver_t_");
+                topic = topic + std::to_string(task._process_id);
                 const string payload = result.toString();
                 while(true) {
                     try {
-                        _producer.produce(cppkafka::MessageBuilder(topic.c_str()).partition(task._process_id).payload(payload));
+                        _producer.produce(cppkafka::MessageBuilder(topic.c_str()).payload(payload));
+//                        _producer.produce(cppkafka::MessageBuilder(topic.c_str()).partition(task._process_id).payload(payload));
                     }
                     catch (cppkafka::HandleException error) {
                         _producer.poll();
