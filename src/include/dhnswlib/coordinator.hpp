@@ -218,30 +218,55 @@ namespace dhnsw {
 //        		result.push_back(i);
 		}
 
-		QueryMessage getQuery(){
-			string string_msg;
+//		QueryMessage getQuery(){
+//			string string_msg;
+//
+//			while (true) {
+//				cppkafka::Message msg = _consumer.poll();
+//
+//				// Make sure we have a message before processing it
+//				if (msg) {
+//					if (msg.get_error()) {
+//						if (!msg.is_eof()) {
+////							cout << "#[error #] receive error message from kafka" << endl;
+//						}
+//						continue;
+//					} else {
+////						_consumer.async_commit(msg);
+//						_consumer.store_offset(msg);
+//						string_msg = string(msg.get_payload());
+//						break;
+//					}
+//				}
+//			}
+//
+//			return QueryMessage(_data_dim, string_msg);
+//		}
 
-			while (true) {
-				cppkafka::Message msg = _consumer.poll();
+        QueryMessage getQuery(cppkafka::Message& msg){
+            string string_msg;
 
-				// Make sure we have a message before processing it
-				if (msg) {
-					if (msg.get_error()) {
-						if (!msg.is_eof()) {
+            while (true) {
+                msg = _consumer.poll();
+
+                // Make sure we have a message before processing it
+                if (msg) {
+                    if (msg.get_error()) {
+                        if (!msg.is_eof()) {
 //							cout << "#[error #] receive error message from kafka" << endl;
-						}
-						continue;
-					} else {
+                        }
+                        continue;
+                    } else {
 //						_consumer.async_commit(msg);
-						_consumer.store_offset(msg);
-						string_msg = string(msg.get_payload());
-						break;
-					}
-				}
-			}
+//                        _consumer.store_offset(msg);
+                        string_msg = string(msg.get_payload());
+                        break;
+                    }
+                }
+            }
 
-			return QueryMessage(_data_dim, string_msg);
-		}
+            return QueryMessage(_data_dim, string_msg);
+        }
 
         void produceTask(int query_id, vector<float>& query, long long start_time, int random_num, int num_subhnsw=0){
 			vector<int> aim_subhnsw_id;
@@ -286,12 +311,14 @@ namespace dhnsw {
 			std::uniform_int_distribution<int> aim_receiver(0,39);
 
 			while(true){
-        		QueryMessage msg = getQuery();
+                cppkafka::Message mess;
+        		QueryMessage msg = getQuery(mess);
         		msg.start_time_ = get_current_time_nanoseconds();
 //        		long long work_start_time = get_current_time_nanoseconds();;
 //        		produceTask(msg.query_id_, msg.query_, msg.start_time_, aim_receiver(mt), num_subhnsw);
-				produceTask(msg.query_id_, msg.query_, msg.start_time_, _process_id, num_subhnsw);
-// long long end_time = get_current_time_milliseconds();
+	            produceTask(msg.query_id_, msg.query_, msg.start_time_, _process_id, num_subhnsw);
+                _consumer.store_offset(mess);
+	            // long long end_time = get_current_time_milliseconds();
 //                total_time += end_time - start_time;
 //                start_time = end_time;
 //                work_time += end_time - work_start_time;

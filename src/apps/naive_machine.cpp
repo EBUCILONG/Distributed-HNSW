@@ -10,5 +10,5 @@
 int main(int argc, char** argv){
     ss::parameter para;
     LoadOptions(argc, argv, para);
-    dhnsw::dhnsw_execute(para);
+    dhnsw::dhnsw_execute(para, para.num_subhnsw);
 }
