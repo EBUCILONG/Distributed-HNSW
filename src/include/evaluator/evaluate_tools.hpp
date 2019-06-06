@@ -85,6 +85,9 @@ namespace eva{
 						counter[*it]++;
 					}
 				}
+				for (int i = 0; i < counter.size(); i++){
+				    cout << counter[i] << " ";
+				}
 				cout << ks[i] << " "
 					 << dhnsw::avg(counter) / query.getSize() << " "
 					 << dhnsw::stv(counter) / query.getSize() << " "

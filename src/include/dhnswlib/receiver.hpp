@@ -69,7 +69,7 @@ namespace dhnsw {
             }
         }
 
-        void _commit_answers(priority_queue<pair<float, int>>& pq, int query_id) {
+        void _commit_answers(priority_queue<pair<float, int>>& pq, int query_id, vector<int> aim_hnsws) {
             /* Gets all elements from the priority queue, and sends a message to evaluator */
             vector<int> result_ids;
             vector<float> dists;
@@ -78,7 +78,7 @@ namespace dhnsw {
                 result_ids.push_back(pq.top().second);
                 pq.pop();
             }
-            ResultMessage result(query_id, _query_map[query_id].n_slaves, _top_k, _query_map[query_id].start_time, get_current_time_nanoseconds(), result_ids, dists);
+            ResultMessage result(query_id, _query_map[query_id].n_slaves, _top_k, _query_map[query_id].start_time, get_current_time_nanoseconds(), aim_hnsws, result_ids, dists);
             string topic = "evaluation";
             string payload = result.toString();
             while(true) {
@@ -123,7 +123,7 @@ namespace dhnsw {
                     // Increment counter & check if received data from all slaves
                     answer.n_slaves ++;
                     if (answer.n_slaves == result_msg->_total_piece) {
-                        _commit_answers(answer.p_queue, result_msg->_query_id);
+                        _commit_answers(answer.p_queue, result_msg->_query_id, result_msg->_aim_hnsws);
                         _query_map.erase(result_msg->_query_id);
 //                        cout << "[RECV] Sent " << counter << " messages." << endl;
                     }

@@ -112,6 +112,68 @@ namespace dhnsw {
             _save_file << start_time << " " << end_time << endl;
         }
 
+        void evaluate(int print_interval, vector<int> aim_hnsws, int delay_limit){
+            cout << "[EVAL] Evaluator started." << endl;
+            cout << "[EVAL]\t# Received\t|\tDelay. Time\t|\t" << endl;
+            vector<long long> times;
+            long long counter = 0;
+            long long current_time;
+//            for (int i = 0; i < 5000; i++){
+//                cppkafka::Message msg = _consumer.poll();
+//                if(!msg) continue;
+//                if(msg.get_error()) {
+//                    if (!msg.is_eof()) {
+//                        // error
+////                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+//                    }
+//                    continue;
+//                }
+//                // a message is received
+//                _consumer.store_offset(msg);
+//            }
+            while (true) {
+                // receive message
+                cppkafka::Message msg = _consumer.poll();
+                if(!msg) continue;
+                if(msg.get_error()) {
+                    if (!msg.is_eof()) {
+                        // error
+//                        cout << "[RECV] Some error occured when polling from kafka." << endl;
+                    }
+                    continue;
+                }
+                // a message is received
+                _consumer.store_offset(msg);
+                const cppkafka::Buffer& msg_body = msg.get_payload();
+                string msg_string = msg_body;
+                dhnsw::ResultMessage rm(10, msg_string);
+                current_time = get_current_time_nanoseconds();
+                long long delay = rm._end_time - rm._start_time;
+                bool aim = false;
+                for (int i = 0; i < aim_hnsws.size(); i++){
+                    for(int j = 0; j < rm._aim_hnsws.size(); j++){
+                        if (aim_hnsws[i] == rm._aim_hnsws[j]){
+                            aim = true;
+                            break;
+                        }
+                    }
+                    if (aim == true)
+                        break;
+                }
+                if (aim == true && delay < delay_limit){
+                    cout << "[EVAL]\t" << counter << "\t|\t" << delay<< endl;
+                    times.push_back(delay);
+                    counter++;
+                }
+                if (counter == print_interval)
+                    break;
+            }
+
+            times.erase(times.begin(), times.begin()+4000);
+            std::sort(times.begin(), times.end());
+            cout << "[EVAL]: 90: " << times[times.size() / 10 * 9] << " 95: " <<  times[times.size() / 100 * 95] << " avg: " << dhnsw::avg(times) << endl;
+        }
+
         void evaluate(int print_interval, bool delay){
             if (delay){
                 cout << "[EVAL] Evaluator started." << endl;

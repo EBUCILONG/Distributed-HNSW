@@ -65,6 +65,7 @@ namespace dhnsw {
         int _query_id;
         int _total_piece;
         vector<float> _query;
+        vector<int> _aim_hnsws;
         long long _start_time;
 
 	    TaskMessage(int vec_dim, string& input_string){
@@ -72,9 +73,18 @@ namespace dhnsw {
             std::copy(input_string.c_str(), input_string.c_str() + input_string.length(), buffer.begin());
             BinStream bs(buffer);
             int size;
+            int hnsw_size;
             float float_buffer;
-            bs >> _process_id >> _query_id >> _total_piece >> size;
-			if (vec_dim != size){
+            int int_buffer;
+            bs >> _process_id >> _query_id >> _total_piece >> hnsw_size;
+
+            for (int i = 0; i < hnsw_size; i++){
+            	bs >> int_buffer;
+            	_aim_hnsws.push_back(int_buffer);
+            }
+
+            bs >> size;
+            if (vec_dim != size){
 				cout << "#[error ] received task message query wrong length!" << endl;
 				assert(0);
 			}
@@ -87,11 +97,12 @@ namespace dhnsw {
             bs >> _start_time;
 	    }
 
-		TaskMessage(int process_id, int query_id, int total_piece, int vec_dim, long long start_time, vector<float>& query):
+		TaskMessage(int process_id, int query_id, int total_piece, int vec_dim, long long start_time, vector<int>& aim_hnsws, vector<float>& query):
 		_process_id(process_id),
+		_aim_hnsws(aim_hnsws),
 		_query(query){
 	        if (query.size() != vec_dim){
-	            cout << "#[error ] sending task message query wrong length!" << endl;
+	            cout << "#[error ] sending task m essage query wrong length!" << endl;
 	            assert(0);
 	        }
 			_start_time = start_time;
@@ -101,7 +112,11 @@ namespace dhnsw {
 
 		string toString(){
             BinStream bs;
-            bs << _process_id << _query_id << _total_piece << (int)_query.size();
+            bs << _process_id << _query_id << _total_piece << (int) _aim_hnsws.size();
+            for(int i = 0; i < _aim_hnsws.size(); i++){
+            	bs << _aim_hnsws[i];
+            }
+            bs << (int)_query.size();
             for(int i = 0; i < _query.size(); i++)
                 bs << _query[i];
             bs << _start_time;
@@ -278,12 +293,12 @@ namespace dhnsw {
 					aim_subhnsw_id.push_back(i);
 			}
 
-
+			TaskMessage message(random_num, query_id, aim_subhnsw_id.size(), _data_dim, start_time, aim_subhnsw_id, query);
 
 			for (int i = 0; i < aim_subhnsw_id.size(); i++){
 				string topic("subhnsw_t_");
 				topic = topic + std::to_string(aim_subhnsw_id[i]);
-				TaskMessage message(random_num, query_id, aim_subhnsw_id.size(), _data_dim, start_time, query);
+
 				const string payload = message.toString();
 				while(true) {
 					try {

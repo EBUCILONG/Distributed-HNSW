@@ -48,14 +48,17 @@ namespace dhnsw {
         int _total_piece;
         int _top_k;
         vector<int> _result_ids;
+        vector<int> _aim_hnsws;
         vector<float> _dists;
         //vector<vector<float> > _result_datas;
         long long _start_time;
         long long _end_time;
-        ResultMessage(int query_id, int total_piece, int top_k, long long start_time, long long end_time, vector<int>& result_ids, vector<float>& dists):
+
+        ResultMessage(int query_id, int total_piece, int top_k, long long start_time, long long end_time, vector<int>& aim_hnsws, vector<int>& result_ids, vector<float>& dists):
         _query_id(query_id),
         _total_piece(total_piece),
         _top_k(top_k),
+        _aim_hnsws(aim_hnsws),
         _result_ids(result_ids),
         _dists(dists),
         _start_time(start_time),
@@ -77,6 +80,7 @@ namespace dhnsw {
                 cout << "#[error ] received result message wrong topK!" << endl;
                 assert(0);
             }
+
             for (int i = 0; i < _top_k; i++){
                 bs >> id_buffer;
                 _result_ids.push_back(id_buffer);
@@ -84,6 +88,12 @@ namespace dhnsw {
             for (int i = 0; i < _top_k; i++){
                 bs >> dist_buffer;
                 _dists.push_back(dist_buffer);
+            }
+            int aim_size = 0;
+            bs >> aim_size;
+            for (int i = 0; i < aim_size; i++){
+                bs >> id_buffer;
+                _aim_hnsws.push_back(id_buffer);
             }
             bs >> _start_time;
             bs >> _end_time;
@@ -96,6 +106,9 @@ namespace dhnsw {
                 bs << _result_ids[i];
             for (int i = 0; i < _top_k; i++)
                 bs << _dists[i];
+            bs << _aim_hnsws.size();
+            for (int i = 0; i < _aim_hnsws.size(); i++)
+                bs << _aim_hnsws[i];
             bs << _start_time;
             bs << _end_time;
             return bs.to_string();
@@ -156,7 +169,7 @@ namespace dhnsw {
                 dists.push_back(topk.top().first);
                 topk.pop();
             }
-            return ResultMessage(task._query_id, task._total_piece, _top_k, task._start_time, 0, ids, dists);
+            return ResultMessage(task._query_id, task._total_piece, _top_k, task._start_time, 0, task._aim_hnsws, ids, dists);
         }
 
         void startWork(){
