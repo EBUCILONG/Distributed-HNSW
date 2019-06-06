@@ -106,7 +106,7 @@ namespace dhnsw {
                 bs << _result_ids[i];
             for (int i = 0; i < _top_k; i++)
                 bs << _dists[i];
-            bs << _aim_hnsws.size();
+            bs << (int) _aim_hnsws.size();
             for (int i = 0; i < _aim_hnsws.size(); i++)
                 bs << _aim_hnsws[i];
             bs << _start_time;
