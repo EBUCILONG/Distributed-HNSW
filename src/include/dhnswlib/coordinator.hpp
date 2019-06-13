@@ -176,8 +176,8 @@ namespace dhnsw {
         	_consumer.subscribe({topic});
             _metahnsw = new hnswlib::HierarchicalNSW<float>(&_l2space, meta_hnsw_dir);
             cout << "[COOR] Loaded meta graph" << endl;
-//			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_ip_space, subhnsw_dir);
-			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
+			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_ip_space, subhnsw_dir);
+//			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
 			loadMap(map_dir);
@@ -208,7 +208,7 @@ namespace dhnsw {
 		void getWakeUpId(vector<float>& query, vector<int>& result){
 			set<int> set;
 
-
+//			change ip
 			vector<float> norm_q;
 			norm_q.insert(norm_q.begin(), query.begin(), query.end());
 			float norm = ss::CalculateNorm<float>(norm_q.data(), query.size());
@@ -221,8 +221,9 @@ namespace dhnsw {
 				cout << "#[error ] query wrong dimension" << endl;
 				assert(0);
 			}
-			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
-//			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(norm_q.data(), _wakeup_controller);
+//			change ip
+//			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
+			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(norm_q.data(), _wakeup_controller);
 			for (int i = 0; i < _wakeup_controller; i++){
 				set.insert(_map[(int) knn.top().second]);
 				knn.pop();
@@ -330,8 +331,9 @@ namespace dhnsw {
         		QueryMessage msg = getQuery(mess);
         		msg.start_time_ = get_current_time_nanoseconds();
 //        		long long work_start_time = get_current_time_nanoseconds();;
-        		produceTask(msg.query_id_, msg.query_, msg.start_time_, aim_receiver(mt), num_subhnsw);
-//	            produceTask(msg.query_id_, msg.query_, msg.start_time_, _process_id, num_subhnsw);
+//change receiver
+//        		produceTask(msg.query_id_, msg.query_, msg.start_time_, aim_receiver(mt), num_subhnsw);
+	            produceTask(msg.query_id_, msg.query_, msg.start_time_, _process_id, num_subhnsw);
                 _consumer.store_offset(mess);
 	            // long long end_time = get_current_time_milliseconds();
 //                total_time += end_time - start_time;
