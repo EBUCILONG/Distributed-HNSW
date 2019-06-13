@@ -82,7 +82,7 @@ namespace dhnsw {
                 { "group.id",  coordinator_group},
                 { "enable.auto.commit", true},
                 {"enable.auto.offset.store", false},
-//                {"fetch.wait.max.ms", 1000},
+                {"fetch.wait.max.ms", 1000},
 //                {"partition.assignment.strategy", "sticky"},
 //                {"debug", "msg"}
         };
@@ -91,7 +91,7 @@ namespace dhnsw {
                 { "metadata.broker.list", para.broker_list},
                 { "group.id",  worker_group},
                 { "enable.auto.commit", true },
-//                {"fetch.wait.max.ms", 1000},
+                {"fetch.wait.max.ms", 1000},
                 {"enable.auto.offset.store", false},
 //                {"partition.assignment.strategy", "sticky"},
 //                {"debug", "msg"}
@@ -102,14 +102,14 @@ namespace dhnsw {
                 { "group.id",  receiver_group},
                 { "enable.auto.commit", true },
                 {"enable.auto.offset.store", false},
-//                {"fetch.wait.max.ms", 1000},
+                {"fetch.wait.max.ms", 1000},
 //                {"partition.assignment.strategy", "sticky"},
 //                {"debug", "msg"}
         };
 
         cppkafka::Configuration producer_config = {
                 { "metadata.broker.list", para.broker_list},
-                { "batch.num.messages", 2000},
+                { "batch.num.messages", 1000},
 //                { "queue.buffering.max.ms", 100},
 //                {"debug", "msg"}
         };
