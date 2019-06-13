@@ -210,11 +210,13 @@ namespace dhnsw {
                     const cppkafka::Buffer& msg_body = msg.get_payload();
                     string msg_string = msg_body;
                     dhnsw::ResultMessage rm(10, msg_string);
-                    counter++;
                     current_time = get_current_time_nanoseconds();
                     long long delay = rm._end_time - rm._start_time;
                     cout << "[EVAL]\t" << counter << "\t|\t" << delay<< endl;
-                    times.push_back(delay);
+                    if (delay <= 10000000){
+                        counter++;
+                        times.push_back(delay);
+                    }
                     if (counter == print_interval)
                         break;
                 }
