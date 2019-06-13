@@ -330,8 +330,8 @@ namespace dhnsw {
         		QueryMessage msg = getQuery(mess);
         		msg.start_time_ = get_current_time_nanoseconds();
 //        		long long work_start_time = get_current_time_nanoseconds();;
-//        		produceTask(msg.query_id_, msg.query_, msg.start_time_, aim_receiver(mt), num_subhnsw);
-	            produceTask(msg.query_id_, msg.query_, msg.start_time_, _process_id, num_subhnsw);
+        		produceTask(msg.query_id_, msg.query_, msg.start_time_, aim_receiver(mt), num_subhnsw);
+//	            produceTask(msg.query_id_, msg.query_, msg.start_time_, _process_id, num_subhnsw);
                 _consumer.store_offset(mess);
 	            // long long end_time = get_current_time_milliseconds();
 //                total_time += end_time - start_time;
