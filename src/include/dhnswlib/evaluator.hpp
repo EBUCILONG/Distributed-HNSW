@@ -288,12 +288,14 @@ namespace dhnsw {
                     if (aim == true)
                         break;
                 }
-                if (aim == true)
+                if (aim == true) {
                     counter++;
-                if (counter % print_interval == 0){
-                    long long this_time = get_current_time_milliseconds();
-                    cout << "[EVAL]\t" << counter << "\t|\t" << (float) (this_time - last_time) / print_interval << endl;
-                    last_time = this_time;
+                    if (counter % print_interval == 0) {
+                        long long this_time = get_current_time_milliseconds();
+                        cout << "[EVAL]\t" << counter << "\t|\t" << (float) (this_time - last_time) / print_interval
+                             << endl;
+                        last_time = this_time;
+                    }
                 }
             }
         }
