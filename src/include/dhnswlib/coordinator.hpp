@@ -177,6 +177,7 @@ namespace dhnsw {
             _metahnsw = new hnswlib::HierarchicalNSW<float>(&_l2space, meta_hnsw_dir);
             cout << "[COOR] Loaded meta graph" << endl;
 			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_ip_space, subhnsw_dir);
+			cout << _subhnsw_addr->max_elements_ << endl;
 //			_subhnsw_addr = new hnswlib::HierarchicalNSW<float>(&_l2space, subhnsw_dir);
 			_num_centroids = num_centroid;
 			_num_subhnsw = num_subhnsw;
