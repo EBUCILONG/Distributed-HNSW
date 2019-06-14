@@ -25,7 +25,7 @@ int main(int argc, char** argv){
     cout << "hnsw_path: ";
     cin >> hnsw_path;
     cout << "Getting hnsw" << endl;
-    hnswlib::InnerProductSpace l2space(128);
+    hnswlib::InnerProductSpace l2space(384);
     hnswlib::HierarchicalNSW<float> meta(&l2space, hnsw_path);
     cout << meta.max_elements_ << endl;
     cout << "Loaded HNSW, blocking..." << endl;
