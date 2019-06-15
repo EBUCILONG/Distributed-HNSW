@@ -273,22 +273,22 @@ namespace dhnsw {
                 }
                 // a message is received
                 _consumer.store_offset(msg);
-                const cppkafka::Buffer& msg_body = msg.get_payload();
-                string msg_string = msg_body;
-                dhnsw::ResultMessage rm(10, msg_string);
-                vector<int> aim_hnsws = {0, 9};
-                bool aim = false;
-                for (int i = 0; i < aim_hnsws.size(); i++){
-                    for(int j = 0; j < rm._aim_hnsws.size(); j++){
-                        if (aim_hnsws[i] == rm._aim_hnsws[j]){
-                            aim = true;
-                            break;
-                        }
-                    }
-                    if (aim == true)
-                        break;
-                }
-                if (aim == true) {
+//                const cppkafka::Buffer& msg_body = msg.get_payload();
+//                string msg_string = msg_body;
+//                dhnsw::ResultMessage rm(10, msg_string);
+//                vector<int> aim_hnsws = {0, 9};
+//                bool aim = false;
+//                for (int i = 0; i < aim_hnsws.size(); i++){
+//                    for(int j = 0; j < rm._aim_hnsws.size(); j++){
+//                        if (aim_hnsws[i] == rm._aim_hnsws[j]){
+//                            aim = true;
+//                            break;
+//                        }
+//                    }
+//                    if (aim == true)
+//                        break;
+//                }
+//                if (aim == true) {
                     counter++;
                     if (counter % print_interval == 0) {
                         long long this_time = get_current_time_milliseconds();
@@ -296,7 +296,7 @@ namespace dhnsw {
                              << endl;
                         last_time = this_time;
                     }
-                }
+//                }
             }
         }
     };

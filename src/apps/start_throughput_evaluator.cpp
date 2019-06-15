@@ -26,6 +26,7 @@ int main(int argc, char** argv){
             { "group.id",  "evaluator_g"},
             { "enable.auto.commit", true },
             {"enable.auto.offset.store", false},
+            {"debug", "msg"}
     };
 //    Bencher truth_bench(para.ground_truth.c_str());
     dhnsw::ThroughputEvaluator evaluator(para.topK, evaluator_config, para.eval_log_path);
