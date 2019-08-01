@@ -129,7 +129,7 @@ namespace mt {
             cout << "#[timer] load file use " + std::to_string(load_time - start_time) + " milisecond\n";
             vector<int> result(data.getSize());
             {
-                MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition",
+                MpiPartition partitioner(data.getDim(), para.out_dir + "/partition",
                                          para.out_dir + "/partition_map");
                 long long construct_time = dhnsw::get_current_time_milliseconds();
                 cout << "#[timer] construct partitioner use " + std::to_string(construct_time - load_time) +
