@@ -184,8 +184,10 @@ namespace mt {
                 vector<int> zeroSendCount(world_rank, 0);
                 vector<int> zeroRecvCount(world_rank, 0);
                 zeroSendCount[aim_partition] = sendCounts[aim_partition];
+                cout << "w" + std::to_string(world_rank);
                 for (int i = 0; i < zeroSendCount.size(); i++){
-                    cout << zeroSendCount[i] << " ";
+                    if(zeroSendCount[i] != 0)
+                        cout <<zeroSendCount[i] << " ";
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
                 MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
