@@ -176,7 +176,7 @@ namespace mt {
                     cpy_ptr += sizeof(int);
                     memcpy(cpy_ptr, data[id_que[i]], sizeof(float)*para.dim);
                     cpy_ptr += sizeof(float)*para.dim;
-                    *cpy_ptr = id_que[i];
+                    *cpy_ptr = data.id_[id_que[i]];
                     cpy_ptr += sizeof(int);
                 }
                 vector<int> sendDiff(world_rank, 0);
