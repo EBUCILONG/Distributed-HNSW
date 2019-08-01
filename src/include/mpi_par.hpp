@@ -179,12 +179,11 @@ namespace mt {
                     *cpy_ptr = data.id_[id_que[i]];
                     cpy_ptr += sizeof(int);
                 }
-                vector<int> sendDiff(world_rank, 0);
-                vector<int> recvDiff(world_rank, 0);
-                vector<int> zeroSendCount(world_rank, 0);
-                vector<int> zeroRecvCount(world_rank, 0);
+                vector<int> sendDiff(world_size, 0);
+                vector<int> recvDiff(world_size, 0);
+                vector<int> zeroSendCount(world_size, 0);
+                vector<int> zeroRecvCount(world_size, 0);
                 zeroSendCount[aim_partition] = sendCounts[aim_partition];
-                cout << "w" + std::to_string(world_rank);
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     if(zeroSendCount[i] != 0)
                         cout <<zeroSendCount[i] << " ";
@@ -194,7 +193,7 @@ namespace mt {
                         recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
 
                 int index = check_only_nonzero(zeroRecvCount);
-                if(index != (world_size - diff + world_rank)%world_rank || zeroRecvCount[index] != recvCounts[index])
+                if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
                     MPI_Abort(MPI_COMM_WORLD, 0);
                 fout.write(recvBuf, sizeOfItem*zeroRecvCount[index]);
                 MPI_Barrier(MPI_COMM_WORLD);
