@@ -189,8 +189,10 @@ namespace mt {
                         cout <<zeroSendCount[i] << " ";
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
+                cout << "w"+std::to_string(world_rank) + "ready to alltoallv\n";
                 MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
                         recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
+                cout << "w"+std::to_string(world_rank) + "finish to alltoallv\n";
 
                 int index = check_only_nonzero(zeroRecvCount);
                 if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
