@@ -8,6 +8,7 @@
 
 #include "distributed/partition.hpp"
 #include "mpi_executor.hpp"
+#include "mpi_par.hpp"
 #include "parameters.hpp"
 #include "executor.hpp"
 
@@ -15,7 +16,7 @@ int main(int argc, char** argv){
     MPI_Init(&argc, &argv);
     ss::parameter para;
     LoadOptions(argc, argv, para);
-    mt::mpiPartitioner(para);
-
+//    mt::mpiPartitioner(para);
+    mt::smart_partitioner(para);
 }
 
