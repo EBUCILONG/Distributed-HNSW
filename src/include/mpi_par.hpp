@@ -173,6 +173,9 @@ namespace mt {
                 vector<int> zeroSendCount(world_rank, 0);
                 vector<int> zeroRecvCount(world_rank, 0);
                 zeroSendCount[aim_partition] = sendCounts[aim_partition];
+                for (int i = 0; i < zeroSendCount.size(); i++){
+                    cout << zeroSendCount[i] << " ";
+                }
                 MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
                         recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
 
