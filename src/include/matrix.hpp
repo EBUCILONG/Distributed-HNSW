@@ -264,6 +264,7 @@ namespace ss {
 			int dim;
 			for (int i = 1; i < cardinality; ++i) {
 				fin.read(reinterpret_cast<char*>(&dim), sizeof(int));
+				cout << dim;
 				assert(dim == dimension);
 				fin.read(reinterpret_cast<char*>(data[i]), sizeof(float) * dimension);
 				fin.read(reinterpret_cast<char*> (&id_buffer), sizeof(int));
