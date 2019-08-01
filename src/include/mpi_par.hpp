@@ -155,6 +155,7 @@ namespace mt {
             int sizeOfItem = sizeof(float) * para.dim + sizeof(int) * 2;
             MPI_Alltoall(sendCounts.data(), 1, MPI_INT,
                          recvCounts.data(), 1, MPI_INT, MPI_COMM_WORLD);
+            MPI_Barrier(MPI_COMM_WORLD);
             sendBuf = (char *) malloc((long long)sizeOfItem * (long long) data.getSize());
             recvBuf = (char *) malloc((long long)sizeOfItem * (long long) data.getSize());
             char* cpy_ptr = sendBuf;
