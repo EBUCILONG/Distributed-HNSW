@@ -55,6 +55,21 @@ namespace mt {
 
 
 
+    int check_only_nonzero(vector<int>& aimer){
+        int sum = 0;
+        int result;
+        for(int i = 0; i < aimer.size(); i++){
+            if (aimer[i] != 0){
+                sum++;
+                result = i;
+            }
+        }
+        if (sum == 1)
+            return result;
+        else
+            return -1;
+    }
+
     void smart_partitioner(ss::parameter& para){
         /*
          * using para
@@ -65,53 +80,109 @@ namespace mt {
         int world_size;
         MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
+        MPI_Aint dimen_p, floatarr_p, id_p;
+        int dimen;
+        float floatarr[para.dim];
+        int id;
+
+        // 获取各个元素之间的相对地址
+        MPI_Get_address(&dimen, &dimen_p);
+        MPI_Get_address(floatarr, &floatarr_p);
+        MPI_Get_address(&id, &id_p);  // 注意注意使用指针
+
+        MPI_Aint displacement[3] = {
+                0, // 第一个偏移值为0
+                floatarr_p - dimen_p,
+                id_p - dimen_p
+        };
+
+        MPI_Datatype types[3] = { MPI_INT, MPI_FLOAT, MPI_CHAR };
+        int blockLength[3] = { 1, para.dim, 1 };
+        MPI_Datatype itemType;
+        MPI_Type_create_struct(
+                3,
+                blockLength, // 分块长度
+                displacement, // 偏移值
+                types, // 类型
+                &itemType // 类型指针
+        );
+        MPI_Type_commit(&itemType);
+
+
 //		if (world_size != SIZEWORKER){
 //			cout << "#[error ] wrong number process initialled with" + std::to_string(world_size) << endl;
 //			MPI_Abort(MPI_COMM_WORLD, 0);
 //		}
 
+//////////////////////////////////////////////////////prepare mpi utils finished/////////////////////////////////////////////////
 
-        long long start_time = dhnsw::get_current_time_milliseconds();
-        ss::Matrix<float> data(para.base_data, para.dim);
-//        ss::Matrix<float> data(para.hdfs_host, para.hdfs_port, para.base_data, world_rank, world_size, para.base_size);
-        long long load_time = dhnsw::get_current_time_milliseconds();
+        char* sendBuf=NULL;
+        char* recvBuf=NULL;
+        std::ofstream fout = std::ofstream(para.out_dir + "/partition" + std::to_string(world_rank), std::iostream::binary);
+        vector<vector<int>> map(para.num_subhnsw);
+        vector<int> sendCounts(para.num_subhnsw, 0);
+        vector<int> recvCounts(para.num_subhnsw, 0);
+        {
+            long long start_time = dhnsw::get_current_time_milliseconds();
+            ss::Matrix<float> data(para.base_data, para.dim);
+            long long load_time = dhnsw::get_current_time_milliseconds();
+            cout << "#[timer] load file use " + std::to_string(load_time - start_time) + " milisecond\n";
+            vector<int> result(data.getSize());
+            {
+                MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition",
+                                         para.out_dir + "/partition_map");
+                long long construct_time = dhnsw::get_current_time_milliseconds();
+                cout << "#[timer] construct partitioner use " + std::to_string(construct_time - load_time) +
+                        " milisecond\n";
 
-
-        MpiPartition partitioner(data.getDim(), para.out_dir + "/hnsw/partition", para.out_dir + "/partition_map");
-        long long construct_time = dhnsw::get_current_time_milliseconds();
-        cout << "#[timer] construct partitioner use " + std::to_string(construct_time - load_time) + " milisecond\n";
-
-        omp_set_num_threads(20);
-        int sizer = data.getSize();
-        vector<int> result(sizer);
-        cout << "start partition\n";
+                omp_set_num_threads(20);
+                int sizer = data.getSize();
+                cout << "start partition\n";
 #pragma omp parallel for
-        for (int i = 0; i < sizer; i++){
-            result[i] = partitioner.searchHnsw(data[i]);
-        }
+                for (int i = 0; i < sizer; i++) {
+                    result[i] = partitioner.searchHnsw(data[i]);
+                }
 
-        long long partition_time = dhnsw::get_current_time_milliseconds();
-        cout << "#[timer] partition use " + std::to_string(partition_time - construct_time) + " milisecond\n";
-        cout << "#[worker]"+std::to_string(world_rank) + " start to save\n";
+                long long partition_time = dhnsw::get_current_time_milliseconds();
+                cout << "#[timer] partition use " + std::to_string(partition_time - construct_time) + " milisecond\n";
+            }//free partition
 
-        vector<std::ofstream* > fouts;
-        for (int i = 0; i < partitioner.getTotalPartition(); i++){
-            std::ofstream* fout = new std::ofstream(para.out_dir + "/subfile/w" + std::to_string(world_rank) + "/partition" + std::to_string(i), std::iostream::binary);
-            fouts.push_back(fout);
+            for (int i = 0; i < result.size(); i++){
+                map[result[i]].push_back(i);
+                sendCounts[result[i]]++;
+            }
+
+            int sizeOfItem = sizeof(float) * para.dim + sizeof(int) * 2;
+            MPI_Alltoall(sendCounts.data(), 1, MPI_INT,
+                         recvCounts.data(), 1, MPI_INT, MPI_COMM_WORLD);
+            sendBuf = (char *) malloc((long long)sizeOfItem * (long long) data.getSize());
+            recvBuf = (char *) malloc((long long)sizeOfItem * (long long) data.getSize());
+            char* cpy_ptr = sendBuf;
+            for(int diff = 0; diff < world_size; diff++){
+                int aim_partition = (world_rank + diff) % world_size;
+                for(int i = 0; i < map[aim_partition].size(); i++){
+                    vector<int>& id_que = map[aim_partition];
+                    *cpy_ptr = para.dim;
+                    cpy_ptr += sizeof(int);
+                    memcpy(cpy_ptr, data[id_que[i]], sizeof(float)*para.dim);
+                    cpy_ptr += sizeof(float)*para.dim;
+                    *cpy_ptr = id_que[i];
+                }
+                vector<int> sendDiff(world_rank, 0);
+                vector<int> recvDiff(world_rank, 0);
+                vector<int> zeroSendCount(world_rank, 0);
+                vector<int> zeroRecvCount(world_rank, 0);
+                zeroSendCount[aim_partition] = sendCounts[aim_partition];
+                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
+                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
+
+                int index = check_only_nonzero(zeroRecvCount);
+                if(index != (world_size - diff)%world_rank || zeroRecvCount[index] != recvCounts[index])
+                    MPI_Abort(MPI_COMM_WORLD, 0);
+                fout.write(recvBuf, sizeOfItem*zeroRecvCount[index]);
+                MPI_Barrier(MPI_COMM_WORLD);
+            }
         }
-        int dimer = data.getDim();
-        for (int i = 0; i < sizer; i++){
-            std::ofstream* fout = fouts[result[i]];
-            fout->write((char*)&dimer, sizeof(int));
-            fout->write((char*)data[i], dimer * sizeof(float));
-            fout->write((char*)&data.id_[i], sizeof(int));
-        }
-        for(int i = 0; i < partitioner.getTotalPartition(); i++){
-            fouts[i]->close();
-            delete fouts[i];
-        }
-        long long save_time = dhnsw::get_current_time_milliseconds();
-        cout << "#[timer] save use " + std::to_string(save_time - partition_time) + " milisecond\n";
     }
 
 
