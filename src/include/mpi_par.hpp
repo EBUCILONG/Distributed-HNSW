@@ -168,7 +168,6 @@ namespace mt {
             recvBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(recvCounts));
             char* cpy_ptr = sendBuf;
 
-            cout << "worker" << world_rank << "ready to enter death loop" << endl;
             for(int diff = 0; diff < world_size; diff++){
                 int aim_partition = (world_rank + diff) % world_size;
                 for(int i = 0; i < map[aim_partition].size(); i++){
@@ -193,7 +192,7 @@ namespace mt {
                         recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
 
                 int index = check_only_nonzero(zeroRecvCount);
-                if(index != (world_size - diff)%world_rank || zeroRecvCount[index] != recvCounts[index])
+                if(index != (world_size - diff + world_rank)%world_rank || zeroRecvCount[index] != recvCounts[index])
                     MPI_Abort(MPI_COMM_WORLD, 0);
                 fout.write(recvBuf, sizeOfItem*zeroRecvCount[index]);
                 MPI_Barrier(MPI_COMM_WORLD);
