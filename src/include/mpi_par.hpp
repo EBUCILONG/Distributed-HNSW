@@ -176,6 +176,7 @@ namespace mt {
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     cout << zeroSendCount[i] << " ";
                 }
+                MPI_Barrier(MPI_COMM_WORLD);
                 MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
                         recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
 
