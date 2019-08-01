@@ -53,7 +53,14 @@ using std::string;
 
 namespace mt {
 
-
+    int find_max(vector<int>& aimer){
+        int result = aimer[0];
+        for(int i = 0; i < aimer.size(); i++){
+            if (aimer[i] > result)
+                result = aimer[i];
+        }
+        return result;
+    }
 
     int check_only_nonzero(vector<int>& aimer){
         int sum = 0;
@@ -156,8 +163,9 @@ namespace mt {
             MPI_Alltoall(sendCounts.data(), 1, MPI_INT,
                          recvCounts.data(), 1, MPI_INT, MPI_COMM_WORLD);
             MPI_Barrier(MPI_COMM_WORLD);
-            sendBuf = (char *) malloc((long long)sizeOfItem * (long long) data.getSize());
-            recvBuf = (char *) malloc((long long)sizeOfItem * (long long) data.getSize());
+
+            sendBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(sendCounts));
+            recvBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(recvCounts));
             char* cpy_ptr = sendBuf;
             for(int diff = 0; diff < world_size; diff++){
                 int aim_partition = (world_rank + diff) % world_size;
