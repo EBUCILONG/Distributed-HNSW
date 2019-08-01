@@ -167,6 +167,8 @@ namespace mt {
             sendBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(sendCounts));
             recvBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(recvCounts));
             char* cpy_ptr = sendBuf;
+
+            cout << "worker" << world_rank << "ready to enter death loop" << endl;
             for(int diff = 0; diff < world_size; diff++){
                 int aim_partition = (world_rank + diff) % world_size;
                 for(int i = 0; i < map[aim_partition].size(); i++){
@@ -176,6 +178,7 @@ namespace mt {
                     memcpy(cpy_ptr, data[id_que[i]], sizeof(float)*para.dim);
                     cpy_ptr += sizeof(float)*para.dim;
                     *cpy_ptr = id_que[i];
+                    cpy_ptr += sizeof(int);
                 }
                 vector<int> sendDiff(world_rank, 0);
                 vector<int> recvDiff(world_rank, 0);
