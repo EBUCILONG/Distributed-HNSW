@@ -88,6 +88,8 @@ namespace mt {
          * using para
          * base_data out_dir containing /hnsw/partition /partition_map
          */
+        int provided, claimed;
+        MPI_Init_thread( 0, 0, MPI_THREAD_MULTIPLE, &provided);
         MPI_Status status;
         int world_rank;
         MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
@@ -199,10 +201,10 @@ namespace mt {
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
                 cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + " send " + std::to_string(sendCounts[dest_node]) + " to " + std::to_string(dest_node) + " recv " + std::to_string(recvCounts[source_node]) + " from" + std::to_string(source_node) + "\n";
-                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), MPI_INT,
-                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
-//                thread(thread_send_func, sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), dest_node);
-//                MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
+//                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), MPI_INT,
+//                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
+                thread(thread_send_func, sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), dest_node);
+                MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
 
 
 //                cout << "w"+std::to_string(world_rank) + "ready to recv\n";
