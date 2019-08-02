@@ -104,7 +104,7 @@ namespace mt {
                 id_p - dimen_p
         };
 
-        MPI_Datatype types[3] = { MPI_INT, MPI_FLOAT, MPI_CHAR };
+        MPI_Datatype types[3] = { MPI_INT, MPI_FLOAT, MPI_INT };
         int blockLength[3] = { 1, para.dim, 1 };
         MPI_Datatype itemType;
         MPI_Type_create_struct(
