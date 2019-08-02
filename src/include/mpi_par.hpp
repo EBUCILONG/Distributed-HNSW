@@ -201,7 +201,7 @@ namespace mt {
                 cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + " send " + std::to_string(sendCounts[dest_node]) + " to " + std::to_string(dest_node) + " recv " + std::to_string(recvCounts[source_node]) + " from" + std::to_string(source_node) + "\n";
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
-                thread(thread_recv_func,recvBuf, recvCounts[source_node], source_node, status);
+                thread(thread_recv_func, (void*)recvBuf, recvCounts[source_node], source_node, status);
                 MPI_Send(sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
                 cout << "w"+std::to_string(world_rank) + "ready to recv\n";
 
