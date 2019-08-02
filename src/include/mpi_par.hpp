@@ -80,6 +80,7 @@ namespace mt {
     }
 
     void thread_send_func(void* sendBuf, int counts, int dest_node){
+        cout << "start send\n";
         MPI_Send(sendBuf, counts, MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
     }
 
@@ -204,6 +205,7 @@ namespace mt {
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), MPI_INT,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
                 thread(thread_send_func, sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), dest_node);
+                cout << "start to recv\n";
                 MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
 
 
