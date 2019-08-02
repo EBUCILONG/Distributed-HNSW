@@ -192,7 +192,7 @@ namespace mt {
                         cout <<zeroSendCount[i] << "\n";
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
-                cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + "send to " + std::to_string(dest_node) + " recv from" + std::to_string(source_node) + "\n";
+                cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + " send " + std::to_string(sendCounts[dest_node]) + " to " + std::to_string(dest_node) + " recv from" + std::to_string(source_node) + "\n";
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
                 MPI_Sendrecv(sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), MPI_INT, dest_node, dest_node,
