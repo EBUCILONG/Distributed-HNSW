@@ -80,7 +80,6 @@ namespace mt {
     }
 
     void thread_send_func(void* sendBuf, int counts, int dest_node){
-        cout << "start send\n";
         MPI_Send(sendBuf, counts, MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
     }
 
