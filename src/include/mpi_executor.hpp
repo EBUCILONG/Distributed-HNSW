@@ -39,6 +39,7 @@ using std::cout;
 using std::endl;
 using std::vector;
 using std::string;
+using std::thread;
 
 /*
  * status code with two digit:
@@ -153,6 +154,8 @@ namespace mt {
 		long long save_time = dhnsw::get_current_time_milliseconds();
 		cout << "#[timer] save use " + std::to_string(save_time - partition_time) + " milisecond\n";
 	}
+
+
 
     void mpiBody(ss::parameter& para, mt::Partition& partition){
 		int world_rank;

@@ -16,6 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
+#include <thread>
 
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options.hpp>
@@ -75,6 +76,10 @@ namespace mt {
             return result;
         else
             return -1;
+    }
+
+    void thread_recv_func(void* recvBuf, int counts, int source_node, MPI_Status& status){
+        MPI_Recv(recvBuf, counts/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
     }
 
     void smart_partitioner(ss::parameter& para){
@@ -195,9 +200,10 @@ namespace mt {
                 cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + " send " + std::to_string(sendCounts[dest_node]) + " to " + std::to_string(dest_node) + " recv " + std::to_string(recvCounts[source_node]) + " from" + std::to_string(source_node) + "\n";
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
+                thread(thread_recv_func,recvBuf, recvCounts[source_node], source_node, status);
                 MPI_Send(sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
                 cout << "w"+std::to_string(world_rank) + "ready to recv\n";
-                MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
+
                 cout << "w"+std::to_string(world_rank) + "finish to sendrecv\n";
 
 //                int index = check_only_nonzero(zeroRecvCount);
