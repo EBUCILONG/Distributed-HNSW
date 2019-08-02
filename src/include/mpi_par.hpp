@@ -198,9 +198,9 @@ namespace mt {
                              recvBuf, recvCounts[source_node]*sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
                 cout << "w"+std::to_string(world_rank) + "finish to sendrecv\n";
 
-                int index = check_only_nonzero(zeroRecvCount);
-                if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
-                    MPI_Abort(MPI_COMM_WORLD, 0);
+//                int index = check_only_nonzero(zeroRecvCount);
+//                if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
+//                    MPI_Abort(MPI_COMM_WORLD, 0);
                 fout.write(recvBuf, sizeOfItem*zeroRecvCount[index]);
                 MPI_Barrier(MPI_COMM_WORLD);
             }
