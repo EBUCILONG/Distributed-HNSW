@@ -201,6 +201,7 @@ namespace mt {
 //                int index = check_only_nonzero(zeroRecvCount);
 //                if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
 //                    MPI_Abort(MPI_COMM_WORLD, 0);
+//              for test use
                 fout.write(recvBuf, sizeOfItem*recvCounts[source_node]);
                 MPI_Barrier(MPI_COMM_WORLD);
             }
