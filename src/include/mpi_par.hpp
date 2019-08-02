@@ -89,8 +89,6 @@ namespace mt {
          * using para
          * base_data out_dir containing /hnsw/partition /partition_map
          */
-        int provided, claimed;
-        MPI_Init_thread( 0, 0, MPI_THREAD_MULTIPLE, &provided);
         MPI_Status status;
         int world_rank;
         MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
