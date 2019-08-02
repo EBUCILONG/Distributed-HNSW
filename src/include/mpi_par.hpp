@@ -132,13 +132,13 @@ namespace mt {
 
         char* sendBuf=NULL;
         char* recvBuf=NULL;
-        std::ofstream fout = std::ofstream(para.out_dir + "/partition" + std::to_string(world_rank), std::iostream::binary);
+        std::ofstream fout = std::ofstream(para.out_dir + "/par" + std::to_string(world_rank), std::iostream::binary);
         vector<vector<int>> map(para.num_subhnsw);
         vector<int> sendCounts(para.num_subhnsw, 0);
         vector<int> recvCounts(para.num_subhnsw, 0);
         {
             long long start_time = dhnsw::get_current_time_milliseconds();
-            ss::Matrix<float> data(para.base_data, para.dim);
+            ss::Matrix<float> data(para.base_data + std::to_string(world_rank), para.dim);
             long long load_time = dhnsw::get_current_time_milliseconds();
             cout << "#[timer] load file use " + std::to_string(load_time - start_time) + " milisecond\n";
             vector<int> result(data.getSize());
