@@ -174,7 +174,7 @@ namespace mt {
             sendBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(sendCounts));
             recvBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(recvCounts));
 
-            for(int diff = 1; diff < world_size; diff++){
+            for(int diff = 0; diff < world_size; diff++){
                 char* cpy_ptr = sendBuf;
 
                 int dest_node = (world_rank + diff) % world_size;
