@@ -167,13 +167,14 @@ namespace mt {
 
             sendBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(sendCounts));
             recvBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(recvCounts));
-            char* cpy_ptr = sendBuf;
 
             for(int diff = 0; diff < world_size; diff++){
-                int aim_partition = (world_rank + diff) % world_size;
+                char* cpy_ptr = sendBuf;
+
+                int dest_node = (world_rank + diff) % world_size;
                 int source_node = (world_rank + world_size - diff) % world_size;
-                for(int i = 0; i < map[aim_partition].size(); i++){
-                    vector<int>& id_que = map[aim_partition];
+                for(int i = 0; i < map[dest_node].size(); i++){
+                    vector<int>& id_que = map[dest_node];
                     *cpy_ptr = para.dim;
                     cpy_ptr += sizeof(int);
                     memcpy(cpy_ptr, data[id_que[i]], sizeof(float)*para.dim);
@@ -185,7 +186,7 @@ namespace mt {
                 vector<int> recvDiff(world_size, 0);
                 vector<int> zeroSendCount(world_size, 0);
                 vector<int> zeroRecvCount(world_size, 0);
-                zeroSendCount[aim_partition] = sendCounts[aim_partition];
+                zeroSendCount[dest_node] = sendCounts[dest_node];
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     if(zeroSendCount[i] != 0)
                         cout <<zeroSendCount[i] << " ";
@@ -194,8 +195,8 @@ namespace mt {
                 cout << "w"+std::to_string(world_rank) + "ready to sendrecv\n";
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
-                MPI_Sendrecv(sendBuf, sendCounts[aim_partition]* sizeof(int), MPI_INT, aim_partition, aim_partition,
-                             recvBuf, recvCounts[source_node]*sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
+                MPI_Sendrecv(sendBuf, sendCounts[dest_node]*sizeOfItem, MPI_INT, dest_node, dest_node,
+                             recvBuf, recvCounts[source_node]*sizeOfItem, MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
                 cout << "w"+std::to_string(world_rank) + "finish to sendrecv\n";
 
 //                int index = check_only_nonzero(zeroRecvCount);
