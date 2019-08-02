@@ -39,7 +39,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 using std::string;
-using std::thread;
 
 /*
  * status code with two digit:
