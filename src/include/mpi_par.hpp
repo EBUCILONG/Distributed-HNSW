@@ -82,6 +82,7 @@ namespace mt {
          * using para
          * base_data out_dir containing /hnsw/partition /partition_map
          */
+        MPI_Status status;
         int world_rank;
         MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
         int world_size;
@@ -170,6 +171,7 @@ namespace mt {
 
             for(int diff = 0; diff < world_size; diff++){
                 int aim_partition = (world_rank + diff) % world_size;
+                int source_node = (world_rank + world_size - diff) % world_size;
                 for(int i = 0; i < map[aim_partition].size(); i++){
                     vector<int>& id_que = map[aim_partition];
                     *cpy_ptr = para.dim;
@@ -189,10 +191,12 @@ namespace mt {
                         cout <<zeroSendCount[i] << " ";
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
-                cout << "w"+std::to_string(world_rank) + "ready to alltoallv\n";
-                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
-                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
-                cout << "w"+std::to_string(world_rank) + "finish to alltoallv\n";
+                cout << "w"+std::to_string(world_rank) + "ready to sendrecv\n";
+//                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
+//                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
+                MPI_Sendrecv(sendBuf, sendCounts[aim_partition], itemType, aim_partition, aim_partition,
+                             recvBuf, recvCounts[source_node], itemType, source_node, source_node, MPI_COMM_WORLD, &status);
+                cout << "w"+std::to_string(world_rank) + "finish to sendrecv\n";
 
                 int index = check_only_nonzero(zeroRecvCount);
                 if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
