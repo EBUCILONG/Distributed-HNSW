@@ -79,8 +79,8 @@ namespace mt {
             return -1;
     }
 
-    void thread_recv_func(void* recvBuf, int counts, int source_node, MPI_Status& status){
-        MPI_Recv(recvBuf, counts/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
+    void thread_send_func(void* sendBuf, int counts, int dest_node){
+        MPI_Send(sendBuf, counts, MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
     }
 
     void smart_partitioner(ss::parameter& para){
@@ -201,8 +201,9 @@ namespace mt {
                 cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + " send " + std::to_string(sendCounts[dest_node]) + " to " + std::to_string(dest_node) + " recv " + std::to_string(recvCounts[source_node]) + " from" + std::to_string(source_node) + "\n";
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
-                thread(thread_recv_func, (void*)recvBuf, recvCounts[source_node], source_node, status);
-                MPI_Send(sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
+                MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
+                thread(thread_send_func, sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), dest_node);
+
                 cout << "w"+std::to_string(world_rank) + "ready to recv\n";
 
                 cout << "w"+std::to_string(world_rank) + "finish to sendrecv\n";
