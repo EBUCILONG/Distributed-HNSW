@@ -196,6 +196,7 @@ namespace mt {
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
                 MPI_Send(sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), MPI_INT, dest_node, dest_node, MPI_COMM_WORLD);
+                cout << "w"+std::to_string(world_rank) + "ready to recv\n";
                 MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
                 cout << "w"+std::to_string(world_rank) + "finish to sendrecv\n";
 
