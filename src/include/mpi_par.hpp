@@ -193,7 +193,7 @@ namespace mt {
                 vector<int> zeroSendCount(world_size, 0);
                 vector<int> zeroRecvCount(world_size, 0);
                 zeroSendCount[dest_node] = sendCounts[dest_node] * sizeOfItem / sizeof(int);
-                zeroSendCount[source_node] = recvCounts[source_node] * sizeOfItem / sizeof(int);
+                zeroRecvCount[source_node] = recvCounts[source_node] * sizeOfItem / sizeof(int);
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     if(zeroSendCount[i] != 0)
                         cout <<zeroSendCount[i] << "\n";
