@@ -193,17 +193,18 @@ namespace mt {
                 vector<int> zeroSendCount(world_size, 0);
                 vector<int> zeroRecvCount(world_size, 0);
                 zeroSendCount[dest_node] = sendCounts[dest_node] * sizeOfItem / sizeof(int);
+                zeroSendCount[source_node] = recvCounts[source_node] * sizeOfItem / sizeof(int);
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     if(zeroSendCount[i] != 0)
                         cout <<zeroSendCount[i] << "\n";
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
                 cout << "w"+std::to_string(world_rank) + "ready to sendrecv" + " send " + std::to_string(sendCounts[dest_node]) + " to " + std::to_string(dest_node) + " recv " + std::to_string(recvCounts[source_node]) + " from" + std::to_string(source_node) + "\n";
-//                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), MPI_INT,
-//                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
-                thread(thread_send_func, sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), dest_node);
-                cout << "start to recv\n";
-                MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
+                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), MPI_INT,
+                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
+//                thread(thread_send_func, sendBuf, sendCounts[dest_node]*sizeOfItem/ sizeof(int), dest_node);
+//                cout << "start to recv\n";
+//                MPI_Recv(recvBuf, recvCounts[source_node]*sizeOfItem/ sizeof(int), MPI_INT, source_node, source_node, MPI_COMM_WORLD, &status);
 
 
 //                cout << "w"+std::to_string(world_rank) + "ready to recv\n";
