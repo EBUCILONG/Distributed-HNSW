@@ -161,6 +161,8 @@ namespace mt {
                 cout << "#[timer] partition use " + std::to_string(partition_time - construct_time) + " milisecond\n";
             }//free partition
 
+            long long partition_time = dhnsw::get_current_time_milliseconds();
+
             for (int i = 0; i < result.size(); i++){
                 map[result[i]].push_back(i);
                 sendCounts[result[i]]++;
@@ -219,6 +221,8 @@ namespace mt {
                 fout.write(recvBuf, sizeOfItem*recvCounts[source_node]);
                 MPI_Barrier(MPI_COMM_WORLD);
             }
+            long long save_time = dhnsw::get_current_time_milliseconds();
+            cout << "#[timer] save use " + std::to_string(partition_time - save_time) + " milisecond\n";
         }
     }
 
