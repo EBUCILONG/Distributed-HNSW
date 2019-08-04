@@ -196,8 +196,9 @@ namespace mt {
                 vector<int> zeroRecvCount(world_size, 0);
 //                zeroSendCount[dest_node] = sendCounts[dest_node] * sizeOfItem / sizeof(int);
 //                zeroRecvCount[source_node] = recvCounts[source_node] * sizeOfItem / sizeof(int);
-                zeroSendCount[dest_node] = sendCounts[dest_node]* sizeOfItem / sizeof(unsigned long long);
-                zeroRecvCount[source_node] = recvCounts[source_node]* sizeOfItem / sizeof(unsigned long long);
+                int sizer = sizeOfItem / sizeof(unsigned long long);
+                zeroSendCount[dest_node] = sendCounts[dest_node]* sizer;
+                zeroRecvCount[source_node] = recvCounts[source_node]* sizer;
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     if(zeroSendCount[i] != 0)
                         cout <<zeroSendCount[i] << "\n";
@@ -218,7 +219,7 @@ namespace mt {
 //                if(index != (world_size - diff + world_rank)%world_size || zeroRecvCount[index] != recvCounts[index])
 //                    MPI_Abort(MPI_COMM_WORLD, 0);
 //              for test use
-                fout.write(recvBuf, sizeOfItem*recvCounts[source_node]);
+                fout.write(recvBuf, (long long)sizeOfItem* (long long)recvCounts[source_node]);
                 MPI_Barrier(MPI_COMM_WORLD);
             }
             long long save_time = dhnsw::get_current_time_milliseconds();
