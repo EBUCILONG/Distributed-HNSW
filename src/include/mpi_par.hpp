@@ -208,7 +208,7 @@ namespace mt {
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
 
                 MPI_Alltoallv(sendBuf, zeroSendCount.data() , sendDiff.data(), MPI_LONG_LONG,
-                              recvBuf, zeroRecvCount.data() , recvDiff.data(), itemType, MPI_COMM_WORLD);
+                              recvBuf, zeroRecvCount.data() , recvDiff.data(), MPI_LONG_LONG, MPI_COMM_WORLD);
 
 //                cout << "w"+std::to_string(world_rank) + "ready to recv\n";
 
