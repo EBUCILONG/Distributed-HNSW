@@ -173,6 +173,11 @@ namespace mt {
                          recvCounts.data(), 1, MPI_INT, MPI_COMM_WORLD);
             MPI_Barrier(MPI_COMM_WORLD);
 
+            long long sum;
+            for (int i = 0; i < recvCounts.size(); i++)
+                sum += recvCounts[i];
+            cout << "recv " + std::to_string(sum) + "\n";
+
             sendBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(sendCounts));
             recvBuf = (char *) malloc((long long)sizeOfItem * (long long) find_max(recvCounts));
 
