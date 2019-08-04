@@ -196,8 +196,8 @@ namespace mt {
                 vector<int> zeroRecvCount(world_size, 0);
 //                zeroSendCount[dest_node] = sendCounts[dest_node] * sizeOfItem / sizeof(int);
 //                zeroRecvCount[source_node] = recvCounts[source_node] * sizeOfItem / sizeof(int);
-                zeroSendCount[dest_node] = sendCounts[dest_node];
-                zeroRecvCount[source_node] = recvCounts[source_node];
+                zeroSendCount[dest_node] = sendCounts[dest_node]* sizeOfItem / sizeof(unsigned long long);
+                zeroRecvCount[source_node] = recvCounts[source_node]* sizeOfItem / sizeof(unsigned long long);
                 for (int i = 0; i < zeroSendCount.size(); i++){
                     if(zeroSendCount[i] != 0)
                         cout <<zeroSendCount[i] << "\n";
@@ -207,8 +207,8 @@ namespace mt {
 //                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), MPI_INT,
 //                        recvBuf, zeroRecvCount.data(), recvDiff.data(), MPI_INT, MPI_COMM_WORLD);
 
-                MPI_Alltoallv(sendBuf, zeroSendCount.data(), sendDiff.data(), itemType,
-                              recvBuf, zeroRecvCount.data(), recvDiff.data(), itemType, MPI_COMM_WORLD);
+                MPI_Alltoallv(sendBuf, zeroSendCount.data() , sendDiff.data(), MPI_LONG_LONG,
+                              recvBuf, zeroRecvCount.data() , recvDiff.data(), itemType, MPI_COMM_WORLD);
 
 //                cout << "w"+std::to_string(world_rank) + "ready to recv\n";
 
