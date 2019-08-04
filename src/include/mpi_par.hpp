@@ -173,7 +173,7 @@ namespace mt {
                          recvCounts.data(), 1, MPI_INT, MPI_COMM_WORLD);
             MPI_Barrier(MPI_COMM_WORLD);
 
-            long long sum;
+            long long sum = 0;
             for (int i = 0; i < recvCounts.size(); i++)
                 sum += recvCounts[i];
             cout << "recv " + std::to_string(sum) + "\n";
