@@ -351,13 +351,13 @@ namespace dhnsw{
         for (int part = 0; part < total_part; part++){
         	ss::Matrix<float> data(data_path, part, total_part);
         	cout << "#[trainer] start to assert "<< part << " part" << endl;
-        	for (int i = 0; i < 1; i++) {
-				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
-			}
-#pragma omp parallel for
-			for (int i = 1; i < data.getSize(); i++) {
-				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
-			}
+//        	for (int i = 0; i < 1; i++) {
+//				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
+//			}
+//#pragma omp parallel for
+//			for (int i = 1; i < data.getSize(); i++) {
+//				hnsw.addPoint((void *) data[i], (size_t) data.id_[i]);
+//			}
 			counter += data.getSize();
 			for (int i = 0; i < data.getSize(); i++)
 				set.insert(data.id_[i]);
@@ -365,6 +365,8 @@ namespace dhnsw{
         }
         cout << "#[trainer] use " << dhnsw::get_current_time_milliseconds() - start_time << " miliseconds" << endl;
         assert(counter == size);
+        cout << set.size() << endl;
+        cout << size << endl;
         assert(set.size() == size);
 		hnsw.saveIndex(hnsw_path);
     }
