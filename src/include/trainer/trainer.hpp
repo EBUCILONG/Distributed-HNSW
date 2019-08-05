@@ -366,7 +366,10 @@ namespace dhnsw{
         cout << "#[trainer] use " << dhnsw::get_current_time_milliseconds() - start_time << " miliseconds" << endl;
         assert(counter == size);
         cout << set.size() << endl;
-        cout << size << endl;
+        for (auto iter = set.begin(); iter != set.end(); iter++){
+        	cout << *iter << " ";
+        }
+        cout << endl << size << endl;
         assert(set.size() == size);
 		hnsw.saveIndex(hnsw_path);
     }
