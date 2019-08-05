@@ -228,7 +228,7 @@ namespace ss {
 //					cout << "expect " + std::to_string(full_size * aim_part + i) + " actual " + std::to_string(id_buffer) + "\n";
 //					assert(id_buffer == full_size * aim_part + i);
 //				}
-				assert(id_buffer >=0 && id_buffer < 500000000);
+//				assert(id_buffer >=0 && id_buffer < 500000000);
 				data.id_[i] = id_buffer;
 			}
 		}
