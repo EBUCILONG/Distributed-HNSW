@@ -188,11 +188,13 @@ namespace mt {
                 int source_node = (world_rank + world_size - diff) % world_size;
                 for(int i = 0; i < map[dest_node].size(); i++){
                     vector<int>& id_que = map[dest_node];
-                    *cpy_ptr = para.dim;
+                    int* ptr_buf = (int*) cpy_ptr;
+                    *ptr_buf = para.dim;
                     cpy_ptr += sizeof(int);
-                    memcpy(cpy_ptr, data[id_que[i]], sizeof(float)*para.dim);
+                    memcpy((void*)cpy_ptr, data[id_que[i]], sizeof(float)*para.dim);
                     cpy_ptr += sizeof(float)*para.dim;
-                    *cpy_ptr = data.id_[id_que[i]];
+                    ptr_buf = (int*)cpy_ptr;
+                    *ptr_buf = data.id_[id_que[i]];
                     cpy_ptr += sizeof(int);
                 }
                 vector<int> sendDiff(world_size, 0);
