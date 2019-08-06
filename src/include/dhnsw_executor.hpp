@@ -56,6 +56,7 @@ namespace dhnsw {
     }
 
     void dhnsw_execute(ss::parameter& para, int naive=0) {
+
         // get task from ZooKeeper
         int sub_hnsw_id = -1, process_id = -1;
         TaskControl tc(para.hosts);
@@ -115,8 +116,8 @@ namespace dhnsw {
         };
 
         dhnsw::Coordinator coordinator( process_id, sub_hnsw_id, para.dim, para.num_centroid,
-                                        para.num_subhnsw, para.wake_up_controller, para.hnsw_dir + "/hnsw_slave" + std::to_string(sub_hnsw_id),
-                                        para.hnsw_dir + "/hnsw_meta", para.map_address, producer_config, coordinator_consumer_config,
+                                        para.num_subhnsw, para.wake_up_controller, para.out_dir + "/hnsw_slave" + std::to_string(sub_hnsw_id),
+                                        para.out_dir + "/hnsw_meta", para.out_dir + "/map", producer_config, coordinator_consumer_config,
                                         para.sender_ef, para.slave_ef);
 
         dhnsw::Worker worker(sub_hnsw_id, para.topK, para.dim, coordinator._subhnsw_addr, worker_consumer_config, producer_config);
