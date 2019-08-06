@@ -7,6 +7,9 @@
 #include "executor.hpp"
 
 int main(int argc, char** argv){
+    int provided, claimed;
+    MPI_Init_thread( 0, 0, MPI_THREAD_MULTIPLE, &provided);
+
     ss::parameter para;
     LoadOptions(argc, argv, para);
     dhnsw::dhnsw_execute(para);
