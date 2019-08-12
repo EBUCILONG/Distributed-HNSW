@@ -57,22 +57,22 @@ namespace dhnsw {
 
     void dhnsw_execute(ss::parameter& para, int naive=0) {
 
-//        int world_rank;
-//        MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-//        int world_size;
-//        MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+        int world_rank;
+        MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+        int world_size;
+        MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
         // get task from ZooKeeper
-        int sub_hnsw_id, process_id;
-        TaskControl tc(para.hosts);
-        int status = tc.getTask(sub_hnsw_id, process_id);
-        if(status == LOCK_FAILURE) {
-            cout << "[EXEC] Failed to get task due to TaskControl Error." << endl;
-            exit(-1);
-        } else if(status == LOCK_OCCUPIED) {
-            cout << "[EXEC] All tasks occupied." << endl;
-            return;
-        }
+        int sub_hnsw_id = world_rank, process_id = world_rank;
+//        TaskControl tc(para.hosts);
+//        int status = tc.getTask(sub_hnsw_id, process_id);
+//        if(status == LOCK_FAILURE) {
+//            cout << "[EXEC] Failed to get task due to TaskControl Error." << endl;
+//            exit(-1);
+//        } else if(status == LOCK_OCCUPIED) {
+//            cout << "[EXEC] All tasks occupied." << endl;
+//            return;
+//        }
         cout << "[EXECUTE] PROCESS ID: "<< process_id << " SUB_HNSW_ID: "<< sub_hnsw_id << endl;
         // get task successful
         string worker_group = "subhnsw_g_";
