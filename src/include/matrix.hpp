@@ -248,7 +248,7 @@ namespace ss {
 
 			int dimension;
 			fin.read(reinterpret_cast<char*>(&dimension), sizeof(int));
-			cout << "dimen " + std::to_string(dimension) + "\n";
+//			cout << "dimen " + std::to_string(dimension) + "\n";
 
 			unsigned bytesPerRecord = dimension * sizeof(DATATYPE) + 4;
 			assert(fileSize % (bytesPerRecord + 4) == 0);
