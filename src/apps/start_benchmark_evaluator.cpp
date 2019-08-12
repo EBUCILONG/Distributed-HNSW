@@ -31,7 +31,7 @@ int main(int argc, char** argv){
     dhnsw::BenchmarkEvaluator evaluator(truth_bench.getQueries(), para.topK, evaluator_config);
     long long avg_time = 0;
     vector<int> id_get;
-    vector<vector<pair<float, int>>> result = evaluator.evaluate(avg_time, id_get, para.topK);
+    vector<vector<pair<float, int>>> result = evaluator.evaluate(avg_time, id_get, para.num_subhnsw);
 //    for (int i = 0; i < result.size(); i++){
 //        for (int j = 0; j < 10; j ++){
 //            cout << result[i][j].second << " " << result[i][j].first << " ";
