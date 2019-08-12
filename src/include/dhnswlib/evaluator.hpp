@@ -51,12 +51,12 @@ namespace dhnsw {
             _consumer.subscribe(topics);
         }
 
-        vector<vector<pair<float, int>>> evaluate(long long& avg_time) {
+        vector<vector<pair<float, int>>> evaluate(long long& avg_time, vector<int>& id_get, int controller) {
             cout << "[EVAL] Evaluator started." << endl;
             cout << "[EVAL]\t# Received\t|\tAvg. Time\t" << endl;
             int counter = 0;
             long long total_time = 0;
-            while (counter < _n_queries) {
+            while (counter < controller) {
                 // receive message
                 ResultMessage* result_msg;
                 bool ret = receiveAnswer(result_msg, _consumer, _top_k);
@@ -67,6 +67,7 @@ namespace dhnsw {
                     // msg received
                     vector<int> result_ids = result_msg->_result_ids;
                     vector<float> distance = result_msg->_dists;
+                    id_get.push_back(result_msg->_query_id);
                     for(int i=0; i<result_msg->_top_k; i++) {
                         _result[result_msg->_query_id][i] = make_pair(distance[i], result_ids[i]);
                     }
@@ -78,8 +79,10 @@ namespace dhnsw {
                         cout << "[EVAL]\t"<< counter << "\t|\t" << total_time / 10.0 << endl;
                         total_time = 0;
                     }
+
                     // free memory
                     delete result_msg;
+
                 }
             }
             avg_time = (total_time) / _n_queries;

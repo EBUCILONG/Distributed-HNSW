@@ -74,6 +74,17 @@ public:
         return this->_knns.size();
     }
 
+    float avg_recall(const Bencher& given, vector<int>& aim_id) const {
+        assert(this->size() >= given.size());
+
+        int size = aim_id.size();
+        float sum_recall = 0;
+        for (int i = 0; i < size; ++i) {
+            sum_recall += this->_knns[aim_id[i]].recall(given.getRecord(aim_id[i]));
+        }
+        return sum_recall / size;
+    }
+
     float avg_recall(const Bencher& given) const {
         assert(this->size() >= given.size());
 
