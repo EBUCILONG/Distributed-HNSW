@@ -210,8 +210,8 @@ namespace dhnsw {
 			set<int> set;
 
 //			change ip
-			vector<float> norm_q;
-			norm_q.insert(norm_q.begin(), query.begin(), query.end());
+//			vector<float> norm_q;
+//			norm_q.insert(norm_q.begin(), query.begin(), query.end());
 //			float norm = ss::CalculateNorm<float>(norm_q.data(), query.size());
 //			for (int i = 0; i < query.size(); i++){
 //				norm_q[i] /= norm;
@@ -225,10 +225,10 @@ namespace dhnsw {
 //			change ip
 			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(query.data(), _wakeup_controller);
 //			priority_queue<pair<float, long unsigned int > > knn = _metahnsw->searchKnn(norm_q.data(), _wakeup_controller);
-//			for (int i = 0; i < _wakeup_controller; i++){
-//				set.insert(_map[(int) knn.top().second]);
-//				knn.pop();
-//			}
+			for (int i = 0; i < _wakeup_controller; i++){
+				set.insert(_map[(int) knn.top().second]);
+				knn.pop();
+			}
 			result.resize(set.size());
 			std::copy(set.begin(), set.end(), result.begin());
 //        	for(int i = 0; i < 10; i++)
