@@ -291,7 +291,7 @@ namespace dhnsw {
 				getWakeUpId(query, aim_subhnsw_id);
 			}
 			else{
-				for (int i = 0; i < num_subhnsw; i++)
+				for (int i = 0; i < 10; i++)
 					aim_subhnsw_id.push_back(i);
 			}
 
